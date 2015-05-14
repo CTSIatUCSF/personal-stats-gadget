@@ -469,9 +469,9 @@
            </style>
     
         <div style="width:640px;" class="gadget-content">
-        		<div class="list-info">There are currently <span id="list-size"></span> people in your list.</div>
-        		<div class="list-descr">Choose what you'd like to do with their information. <span id="more-info">More information on the options</span></div>
-        		
+        		<div class="list-info">This is the Personal Stats Gadget's canvas page.</div>
+        		<!-- <div class="list-descr">Choose what you'd like to do with their information. <span id="more-info">More information on the options</span></div>
+
         		<div class="commands">
         			<div class="row">
         				<label>Email</label>
@@ -495,7 +495,7 @@
         				<label>Connect with</label>
         				<button class="btn btn-sm" id="create-doodle">
 		      				<span class="glyphicon glyphicon-gift"></span>
-		      				Create Doodle Poll 
+		      				Create Doodle Poll
 		    			</button>
         				<button class="btn btn-sm" id="create-chatter-group">
 		      				<span class="glyphicon glyphicon-cloud-upload"></span>
@@ -523,7 +523,7 @@
         		  </table>
         		</div>
         		<div id="debug" style="display:none"></div>
-        		
+
         		<div style="display:none">
         		  <div id="commands-help">
         		      <div class="help-content">
@@ -539,33 +539,33 @@
                       </div>
         		  </div>
         		</div>
-        		<iframe id="csvDownloadFrame" style="display:none"></iframe>        		
+        		<iframe id="csvDownloadFrame" style="display:none"></iframe>
 	    </div>
         <div id="create_group" style="display:none">
-                <div class="message hidden"><strong>Success! Your UCSF Chatter group has been created.</strong><br> 
+                <div class="message hidden"><strong>Success! Your UCSF Chatter group has been created.</strong><br>
                         Go to UCSF Chatter to start working with your group.</div>
                 <table>
-                    <tr>                
+                    <tr>
                         <td nowrap valign="top" style="padding-right: 10px;">UCSF Chatter Group Name:</td>
                         <td><input id="group_name" type="text" style="width:218px"></input><br><br></td>
                     </tr>
                     <tr>
                         <td nowrap valign="top" align="right" style="padding-right: 10px;">Group Description:</td>
                         <td><textarea id="group_description" rows="4" cols="25" style="width:218px"></textarea></td>
-                    </tr>                   
-                </table> 
+                    </tr>
+                </table>
         </div>
         <div id="create-doodle-dlg" style="display:none">
             <div class="instructions">After you’ve created a Doodle Poll (selected the date options and other settings), copy and paste these email addresses into the Invite Participants section and send your poll to them.</div>
             <div>
                 <textarea class="email-list" readonly></textarea>
             </div>
-        </div>
+        </div> -->
         <script type="text/javascript">
 
             function init() {
 	    		// mask all but delete until we are done loading
-                   gadgets.window.setTitle("ListMaker");                
+                   gadgets.window.setTitle("Personal Stats");                
            		// always show in canvas view
                    gadgets.orng.showGadget();
                    
