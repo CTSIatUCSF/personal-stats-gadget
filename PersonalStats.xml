@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Module>
-    <ModulePrefs title="Personal Stats" author="Dan Hoffman">
-        <Require feature="views" />
+	<ModulePrefs title="Personal Stats" author="Dan Hoffman">
+		<Require feature="views"/>
 		<Require feature="settitle"/>
-        <Require feature="osapi" />
-        <!-- Require feature="minimessage" /-->
-        <!-- Require feature="dynamic-height" /-->
-        <Require feature="orng" />
-        <Require feature="jsonld"/>
+		<Require feature="osapi"/>
+		<!-- Require feature="minimessage" /-->
+		<!-- Require feature="dynamic-height" /-->
+		<Require feature="orng"/>
+		<Require feature="jsonld"/>
 		<!-- Require feature="start-hidden" /-->
-    </ModulePrefs>
-    <Content type="html" view="canvas, small"><![CDATA[<!--HTML-->
+	</ModulePrefs>
+	<Content type="html" view="canvas, small"><![CDATA[<!--HTML-->
     <!DOCTYPE html>
     
         <!-- #includes -->
@@ -396,15 +396,15 @@
         }
         // ==============================================================                        
         </script>]]></Content>
-    <Content type="html" view="small" preferred_height="75" preferred_width="190"><![CDATA[<!--HTML-->
+	<Content type="html" view="small" preferred_height="75" preferred_width="190"><![CDATA[<!--HTML-->
     <!DOCTYPE html>
-                
-        <table id="button_and_help" cellspacing="2" cellpadding="0" style="display:block;">
-                <tr>
-                        <td class="tool_table_cell_small" style="width:160px;padding:4px 0">Create a list of profiles <br />for personal use.</td>
-                        <td><img src="images/hovertiptarget.png" border="0" onClick="gadgetEventTrack('help');showHelp()"></td>
-                </tr>
-        </table>
+ 
+ 		<table id="button_and_help" cellspacing="2" cellpadding="0" style="display:block;">
+ 				<tr>
+ 						<td class="tool_table_cell_small" style="width:160px;padding:4px 0"><a href='javascript:gadgets.views.requestNavigateTo("canvas");'>Click here for canvas view.</a></td>
+ 						<td><img src="images/hovertiptarget.png" border="0" onClick="gadgetEventTrack('help');showHelp()"></td>
+ 				</tr>
+ 		</table>
         
         <img id="waiting" src="images/waiting.gif" style="display:none;">
         <table id="actions" style="display:none;clear:right;" cellspacing="2" cellpadding="0">
@@ -428,7 +428,7 @@
                 
                 gadgets.util.registerOnLoadHandler(init);
         </script>]]></Content>
-    <Content type="html" view="canvas" preferred_height="620" preferred_width="800"><![CDATA[<!--HTML-->
+	<Content type="html" view="canvas" preferred_height="620" preferred_width="800"><![CDATA[<!--HTML-->
     <!DOCTYPE html>
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
            <script type="text/javascript" src="js/jquery.blockUI-2.66.0.js"></script>    
