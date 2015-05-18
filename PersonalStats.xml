@@ -2,7 +2,7 @@
 <Module>
   <ModulePrefs title="Demo OAuth2 Authorization Code Gadget (Simple pull from Google Contacts)">
     <OAuth2>
-      <Service name="googleAPI" scope="https://www.googleapis.com/analytics/v3/data/ga">
+      <Service name="googleAPI" scope="https://www.googleapis.com/auth/analytics.readonly">
       </Service>
     </OAuth2>
     <Require feature="oauthpopup" />
