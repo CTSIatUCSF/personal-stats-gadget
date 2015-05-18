@@ -200,6 +200,6 @@
 	          }, params);
 	        }
 
-	        gadgets.util.registerOnLoadHandler(init);
+	        gadgets.util.registerOnLoadHandler(fetchData);
         </script>]]></Content>
 </Module>
