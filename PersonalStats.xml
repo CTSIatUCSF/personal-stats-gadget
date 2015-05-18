@@ -100,15 +100,86 @@
         		<div class="list-info">This is the Personal Stats Gadget's canvas page.</div>
         		
         		<div id="debug" style="display:none"></div>
+				
+			    <div id="waiting" style="display: none">
+			      Please click
+			      <a href="#" id="approvaldone">I've approved access</a>
+			      once you've approved access to your data.
+			    </div>
+
+			    <div id="error" style="display: none;background-color:yellow;font-size:xx-small;" title="An error occured processing your request">
+			       <div id="error_code"><u>code:</u></div>
+			       <div id="error_uri"><u>uri:</u></div>
+			       <div id="error_description"><u>description:</u></div>
+			       <div id="error_explanation"><u>explanation:</u></div>
+			       <div id="error_trace"><u>trace:</u></div>
+			    </div>
 	    </div>
         <script type="text/javascript">
+
+	        function getElement(x) {
+	          return document.getElementById(x);
+	        }
+
+	        function showOneSection(toshow) {
+	          var sections = [ 'main', 'approval', 'waiting', 'error' ];
+	          for (var i=0; i < sections.length; ++i) {
+	            var s = sections[i];
+	            var el = getElement(s);
+	            if (s === toshow) {
+	              el.style.display = "block";
+	            } else {
+	              el.style.display = "none";
+	            }
+	          }
+	        }
 
             function init() {
 	    		// mask all but delete until we are done loading
                    gadgets.window.setTitle("Personal Stats");                
            		// always show in canvas view
                    gadgets.orng.showGadget();
+				   fetchData();
             }
+			
+	        function fetchData() {
+	          url = "https://www.googleapis.com/analytics/v3/data/ga";
+	          var params = {};
+	          params[gadgets.io.RequestParameters.CONTENT_TYPE] =
+	            gadgets.io.ContentType.TEXT;
+	          params[gadgets.io.RequestParameters.AUTHORIZATION] =
+	            gadgets.io.AuthorizationType.OAUTH2;
+	          params[gadgets.io.RequestParameters.METHOD] =
+	            gadgets.io.MethodType.GET;
+	          params[gadgets.io.RequestParameters.OAUTH_SERVICE_NAME] = "googleAPI";
+	          params[gadgets.io.RequestParameters.REFRESH_INTERVAL] = "0";
+
+	          gadgets.io.makeRequest(url, function (response) {
+	            if (response.oauthApprovalUrl) {
+	              var onOpen = function() {
+	                showOneSection('waiting');
+	              };
+	              var onClose = function() {
+	                fetchData();
+	              };
+	              var popup = new gadgets.oauth.Popup(response.oauthApprovalUrl,
+	                  null, onOpen, onClose);
+	              getElement('personalize').onclick = popup.createOpenerOnClick();
+	              getElement('approvaldone').onclick = popup.createApprovedOnClick();
+	              showOneSection('approval');
+	            } else if (response.data) {
+	              getElement('main').appendChild(document.createTextNode(response.data));
+	              showOneSection('main');
+	            } else {
+	               getElement('error_code').appendChild(document.createTextNode(response.oauthError));
+	               getElement('error_uri').appendChild(document.createTextNode(response.oauthErrorUri));
+	               getElement('error_description').appendChild(document.createTextNode(response.oauthErrorText));
+	               getElement('error_explanation').appendChild(document.createTextNode(response.oauthErrorExplanation));
+	               getElement('error_trace').appendChild(document.createTextNode(response.oauthErrorTrace));
+	              showOneSection('error');
+	            }
+	          }, params);
+	        }
                 
 	        gadgets.util.registerOnLoadHandler(init);
         </script>]]></Content>
