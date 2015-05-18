@@ -5,6 +5,7 @@
 	      <Service name="googleAPI" scope="https://www.googleapis.com/analytics/v3/data/ga">
 	      </Service>
 	    </OAuth2>
+	    <Require feature="oauthpopup" />
 		<Require feature="views"/>
 		<Require feature="settitle"/>
 		<Require feature="osapi"/>
