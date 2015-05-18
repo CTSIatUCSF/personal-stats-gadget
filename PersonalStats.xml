@@ -164,12 +164,14 @@
 	          var params = {};
 	          params[gadgets.io.RequestParameters.CONTENT_TYPE] =
 	            gadgets.io.ContentType.TEXT;
-	          params[gadgets.io.RequestParameters.AUTHORIZATION] =
-	            gadgets.io.AuthorizationType.OAUTH2;
-	          params[gadgets.io.RequestParameters.METHOD] =
-	            gadgets.io.MethodType.GET;
-	          params[gadgets.io.RequestParameters.OAUTH_SERVICE_NAME] = "googleAPI";
-	          params[gadgets.io.RequestParameters.REFRESH_INTERVAL] = "0";
+	          params[gadgets.io.RequestParameters.AUTHORIZATION] = 
+			  	gadgets.io.AuthorizationType.OAUTH2;
+	          params[gadgets.io.RequestParameters.METHOD] = 
+			  	gadgets.io.MethodType.GET;
+	          params[gadgets.io.RequestParameters.OAUTH_SERVICE_NAME] = 
+			  	"googleAPI";
+	          params[gadgets.io.RequestParameters.REFRESH_INTERVAL] = 
+			  	"0";
 
 	          gadgets.io.makeRequest(url, function (response) {
 	            if (response.oauthApprovalUrl) {
