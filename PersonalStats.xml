@@ -100,6 +100,22 @@
         		<div class="list-info">This is the Personal Stats Gadget's canvas page.</div>
         		
         		<div id="debug" style="display:none"></div>
+
+			    <div id="main" style="display: none">
+			    </div>
+
+			    <div id="approval" style="display: none">
+			      <a href="#" id="personalize">Personalize this gadget</a>
+			      <ol>
+			        <b><u>In order to use this Demo Gadget you must</u></b>
+			        <li>Have or create a Google account and know your userid and password</li>
+			        <li>Register a new application at <a href="https://code.google.com/apis/console">https://code.google.com/apis/console</a></li>
+			        <li>Make sure your app's "Redirect URIs" applies to your shindig environment (e.g. http://localhost:8080/gadgets/oauth2callback)</li>
+			        <li>Update the Google client "Client ID" and "Client Secret" in the OAuth2 persistence (default is <code>config/oauth2.json</code>)</li>
+			        <li>Restart the server</li>
+			        <li>Click the link above to initiate the authorization process</li>
+			      </ol>
+			    </div>
 				
 			    <div id="waiting" style="display: none">
 			      Please click
