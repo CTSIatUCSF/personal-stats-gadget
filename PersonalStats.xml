@@ -2,7 +2,7 @@
 <Module>
 	<ModulePrefs title="Personal Stats" author="Dan Hoffman">
 	    <OAuth2>
-	      <Service name="googleAPI" scope="https://www.google.com/m8/feeds/">
+	      <Service name="googleAPI" scope="https://www.googleapis.com/analytics/v3/data/ga">
 	      </Service>
 	    </OAuth2>
 		<Require feature="views"/>
