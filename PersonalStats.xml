@@ -1,113 +1,205 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <Module>
-  <ModulePrefs title="Demo OAuth2 Authorization Code Gadget (Simple pull from Google Contacts)">
-    <OAuth2>
-      <Service name="googleAPI" scope="https://www.googleapis.com/auth/analytics.readonly">
-      </Service>
-    </OAuth2>
-    <Require feature="oauthpopup" />
-  </ModulePrefs>
-  <Content type="html">
-      <![CDATA[
+	<ModulePrefs title="Personal Stats" author="Dan Hoffman">
+	    <OAuth2>
+	      <Service name="googleAPI" scope="https://www.googleapis.com/auth/analytics.readonly">
+	      </Service>
+	    </OAuth2>
+	    <Require feature="oauthpopup" />
+		<Require feature="views"/>
+		<Require feature="settitle"/>
+		<Require feature="osapi"/>
+		<!-- Require feature="minimessage" /-->
+		<!-- Require feature="dynamic-height" /-->
+		<Require feature="orng"/>
+		<Require feature="jsonld"/>
+		<!-- Require feature="start-hidden" /-->
+	</ModulePrefs>
+	<Content type="html" view="canvas, small"><![CDATA[<!--HTML-->
+    <!DOCTYPE html>
 
-    <style>
-    #main {
-        margin: 0px;
-        padding: 0px;
-        font-size: small;
-    }
-    </style>
+        <!-- #includes -->
+        <link rel="stylesheet" href="css/gadget.css" type="text/css" media="screen, projection" >
+        <link rel="stylesheet" href="css/inst.css" type="text/css" media="screen, projection" >
+        <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css" media="screen, projection" >
+	    <script type="text/javascript" src="js/os.js" ></script>
+	    <script type="text/javascript" src="js/ontology.js" ></script>
+        <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="js/environment.js"></script>
 
-    <div id="main" style="display: none">
-    </div>
+        <style>
+            .tool_title {font-size:14px;}
+            .tool_title_orange {font-weight:bold; font-size:14px; color:#CA7C29;margin-top:-1px;}
+            .tool_body {font-size:12px;}
+            .tool_credit {font-size:10px;}
+            .tool_table_cell {ffont-size:12px; padding:0 20px 0 0;}
+            .tool_table_cell_small {font-size:11px;}
+            .tool_table_cell_small span a {font-size:11px;}
+            .tool_table_cell_small span {font-size:11px;display:inline-block;margin-right: -15px; }
+            .tool_toggle_button {font-size: 13px;padding:0 5px;}
+    	</style>
 
-    <div id="approval" style="display: none">
-      <a href="#" id="personalize">Personalize this gadget</a>
-      <ol>
-        <b><u>In order to use this Demo Gadget you must</u></b> 
-        <li>Have or create a Google account and know your userid and password</li>
-        <li>Register a new application at <a href="https://code.google.com/apis/console">https://code.google.com/apis/console</a></li>
-        <li>Make sure your app's "Redirect URIs" applies to your shindig environment (e.g. http://localhost:8080/gadgets/oauth2callback)</li>
-        <li>Update the Google client "Client ID" and "Client Secret" in the OAuth2 persistence (default is <code>config/oauth2.json</code>)</li>
-        <li>Restart the server</li>
-        <li>Click the link above to initiate the authorization process</li>
-      </ol>    
-     
-    </div>
+        <script type="text/javascript">
 
-    <div id="waiting" style="display: none">
-      Please click
-      <a href="#" id="approvaldone">I've approved access</a>
-      once you've approved access to your data.
-    </div>
+        </script>]]></Content>
+	<Content type="html" view="small" preferred_height="75" preferred_width="190"><![CDATA[<!--HTML-->
+    <!DOCTYPE html>
 
-    <div id="error" style="display: none;background-color:yellow;font-size:xx-small;" title="An error occured processing your request">
-       <div id="error_code"><u>code:</u></div>
-       <div id="error_uri"><u>uri:</u></div>
-       <div id="error_description"><u>description:</u></div>
-       <div id="error_explanation"><u>explanation:</u></div>
-       <div id="error_trace"><u>trace:</u></div>
-    </div>
-    
-    <script type="text/javascript">
-      function getElement(x) {
-        return document.getElementById(x);
-      }
+ 		<table id="button_and_help" cellspacing="2" cellpadding="0" style="display:block;">
+ 				<tr>
+ 						<td class="tool_table_cell_small" style="width:160px;padding:4px 0"><a href='javascript:gadgets.views.requestNavigateTo("canvas");'>Click here for canvas view.</a></td>
+ 				</tr>
+ 		</table>
 
-      function showOneSection(toshow) {
-        var sections = [ 'main', 'approval', 'waiting', 'error' ];
-        for (var i=0; i < sections.length; ++i) {
-          var s = sections[i];
-          var el = getElement(s);
-          if (s === toshow) {
-            el.style.display = "block";
-          } else {
-            el.style.display = "none";
-          }
-        }
-      }
+        <img id="waiting" src="images/waiting.gif" style="display:none;">
 
-      function fetchData() {
-        url = "https://www.googleapis.com/analytics/v3/data/ga";
-        var params = {};
-        params[gadgets.io.RequestParameters.CONTENT_TYPE] =
-          gadgets.io.ContentType.TEXT;
-        params[gadgets.io.RequestParameters.AUTHORIZATION] =
-          gadgets.io.AuthorizationType.OAUTH2;
-        params[gadgets.io.RequestParameters.METHOD] =
-          gadgets.io.MethodType.GET;
-        params[gadgets.io.RequestParameters.OAUTH_SERVICE_NAME] = "googleAPI";
-        params[gadgets.io.RequestParameters.REFRESH_INTERVAL] = "0";
+        <script type="text/javascript">
+                gadgets.util.registerOnLoadHandler(init);
+        </script>]]></Content>
+	<Content type="html" view="canvas" preferred_height="620" preferred_width="800"><![CDATA[<!--HTML-->
+    <!DOCTYPE html>
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+           <script type="text/javascript" src="js/jquery.blockUI-2.66.0.js"></script>
+           <style type="text/css">
+                 input#close {margin-left:10px;}
+                 div.message {margin-bottom:10px;}
+                 div.info {color:green;}
+                 div.error {color:red;}
+                 .hidden {display:none;}
+                 p { width: 640px; }
 
-        gadgets.io.makeRequest(url, function (response) {
-          if (response.oauthApprovalUrl) {
-            var onOpen = function() {
-              showOneSection('waiting');
-            };
-            var onClose = function() {
-              fetchData();
-            };
-            var popup = new gadgets.oauth.Popup(response.oauthApprovalUrl,
-                null, onOpen, onClose);
-            getElement('personalize').onclick = popup.createOpenerOnClick();
-            getElement('approvaldone').onclick = popup.createApprovedOnClick();
-            showOneSection('approval');
-          } else if (response.data) {
-            getElement('main').appendChild(document.createTextNode(response.data));
-            showOneSection('main');
-          } else {
-             getElement('error_code').appendChild(document.createTextNode(response.oauthError));
-             getElement('error_uri').appendChild(document.createTextNode(response.oauthErrorUri));
-             getElement('error_description').appendChild(document.createTextNode(response.oauthErrorText));
-             getElement('error_explanation').appendChild(document.createTextNode(response.oauthErrorExplanation));
-             getElement('error_trace').appendChild(document.createTextNode(response.oauthErrorTrace));
-            showOneSection('error');
-          }
-        }, params);
-      }
 
-      gadgets.util.registerOnLoadHandler(fetchData);
-    </script>
-        ]]>
-  </Content>
+                .list-info {font-weight:bold; font-size:14px; color:#CA7C29;}
+                .list-descr {margin-top: 10px;}
+                #more-info {color: #0088CC !important; cursor: pointer;}
+                .commands {margin-top: 20px;}
+                .commands .row{ margin-top: 10px;}
+                .commands label {width: 100px; text-align: right;font-weight: bold; font-size: 13px; margin-right: 10px;}
+                .list-content {margin-top: 30px; height: 300px; overflow-y: auto;}
+                .list-content th {text-align: left; padding-bottom: 5px;}
+                .list-content th.name {width: 180px;}
+                .list-content th.title {width: 180px;}
+                .list-content th.email {width: 200px;}
+                .btn:hover{color:white;}
+                .btn-sm {background-color: lightgray;color: black;}
+
+                .ui-tooltip {max-width: 500px;}
+                .help-content div {margin-bottom: 10px;}
+                .help-content ul {list-style-type: disc; margin-left: 30px;}
+                .help-content li {margin-bottom:5px;}
+
+                .progress-msg {margin:5px;}
+
+                .gadget-content {margin-left: 50px;margin-top: 20px;}
+
+                #create-doodle-dlg .email-list {width: 410px;height: 130px;}
+                #create-doodle-dlg .instructions {margin-top: 10px; margin-bottom: 10px;}
+           </style>
+
+        <div style="width:640px;" class="gadget-content">
+        		<div class="list-info">This is the Personal Stats Gadget's canvas page.</div>
+
+        		<div id="debug" style="display:none"></div>
+
+			    <div id="main" style="display: none">
+			    </div>
+
+			    <div id="approval" style="display: none">
+			      <a href="#" id="personalize">Personalize this gadget</a>
+			      <ol>
+			        <b><u>In order to use this Demo Gadget you must</u></b>
+			        <li>Have or create a Google account and know your userid and password</li>
+			        <li>Register a new application at <a href="https://code.google.com/apis/console">https://code.google.com/apis/console</a></li>
+			        <li>Make sure your app's "Redirect URIs" applies to your shindig environment (e.g. http://localhost:8080/gadgets/oauth2callback)</li>
+			        <li>Update the Google client "Client ID" and "Client Secret" in the OAuth2 persistence (default is <code>config/oauth2.json</code>)</li>
+			        <li>Restart the server</li>
+			        <li>Click the link above to initiate the authorization process</li>
+			      </ol>
+			    </div>
+
+			    <div id="waiting" style="display: none">
+			      Please click
+			      <a href="#" id="approvaldone">I've approved access</a>
+			      once you've approved access to your data.
+			    </div>
+
+			    <div id="error" style="display: none;background-color:yellow;font-size:xx-small;" title="An error occured processing your request">
+			       <div id="error_code"><u>code:</u></div>
+			       <div id="error_uri"><u>uri:</u></div>
+			       <div id="error_description"><u>description:</u></div>
+			       <div id="error_explanation"><u>explanation:</u></div>
+			       <div id="error_trace"><u>trace:</u></div>
+			    </div>
+	    </div>
+        <script type="text/javascript">
+
+	        function getElement(x) {
+	          return document.getElementById(x);
+	        }
+
+	        function showOneSection(toshow) {
+	          var sections = [ 'main', 'approval', 'waiting', 'error' ];
+	          for (var i=0; i < sections.length; ++i) {
+	            var s = sections[i];
+	            var el = getElement(s);
+	            if (s === toshow) {
+	              el.style.display = "block";
+	            } else {
+	              el.style.display = "none";
+	            }
+	          }
+	        }
+
+            function init() {
+	    		// mask all but delete until we are done loading
+                   gadgets.window.setTitle("Personal Stats");
+           		// always show in canvas view
+                   gadgets.orng.showGadget();
+				   fetchData();
+            }
+
+	        function fetchData() {
+	          url = "https://www.googleapis.com/analytics/v3/data/ga";
+	          var params = {};
+	          params[gadgets.io.RequestParameters.CONTENT_TYPE] =
+	            gadgets.io.ContentType.TEXT;
+	          params[gadgets.io.RequestParameters.AUTHORIZATION] =
+			  	gadgets.io.AuthorizationType.OAUTH2;
+	          params[gadgets.io.RequestParameters.METHOD] =
+			  	gadgets.io.MethodType.GET;
+	          params[gadgets.io.RequestParameters.OAUTH_SERVICE_NAME] =
+			  	"googleAPI";
+	          params[gadgets.io.RequestParameters.REFRESH_INTERVAL] =
+			  	"0";
+
+	          gadgets.io.makeRequest(url, function (response) {
+	            if (response.oauthApprovalUrl) {
+	              var onOpen = function() {
+	                showOneSection('waiting');
+	              };
+	              var onClose = function() {
+	                fetchData();
+	              };
+	              var popup = new gadgets.oauth.Popup(response.oauthApprovalUrl,
+	                  null, onOpen, onClose);
+	              getElement('personalize').onclick = popup.createOpenerOnClick();
+	              getElement('approvaldone').onclick = popup.createApprovedOnClick();
+	              showOneSection('approval');
+	            } else if (response.data) {
+	              getElement('main').appendChild(document.createTextNode(response.data));
+	              showOneSection('main');
+	            } else {
+	               getElement('error_code').appendChild(document.createTextNode(response.oauthError));
+	               getElement('error_uri').appendChild(document.createTextNode(response.oauthErrorUri));
+	               getElement('error_description').appendChild(document.createTextNode(response.oauthErrorText));
+	               getElement('error_explanation').appendChild(document.createTextNode(response.oauthErrorExplanation));
+	               getElement('error_trace').appendChild(document.createTextNode(response.oauthErrorTrace));
+	              showOneSection('error');
+	            }
+	          }, params);
+	        }
+
+	        gadgets.util.registerOnLoadHandler(init);
+        </script>]]></Content>
 </Module>
