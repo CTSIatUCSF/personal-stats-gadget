@@ -55,6 +55,11 @@
         <img id="waiting" src="images/waiting.gif" style="display:none;">
 
         <script type="text/javascript">
+			
+	            function init() {
+					//
+	            }
+			
                 gadgets.util.registerOnLoadHandler(init);
         </script>]]></Content>
 	<Content type="html" view="canvas" preferred_height="620" preferred_width="800"><![CDATA[<!--HTML-->
