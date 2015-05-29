@@ -1,14 +1,8 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <Module>
-  <ModulePrefs title="Demo OAuth2 Authorization Code Gadget (Simple pull from Google Contacts)">
-    <OAuth2>
-      <Service name="googleAPI"> <!-- scope="https://www.googleapis.com/auth/analytics.readonly"> -->
-      </Service>
-    </OAuth2>
-    <Require feature="oauthpopup" />
-  </ModulePrefs>
-  <Content type="html">
-      <![CDATA[
+	<ModulePrefs title="Personal Stats Gadget">
+	</ModulePrefs>
+	<Content type="html"><![CDATA[
 
     <style>
     #main {
@@ -18,96 +12,209 @@
     }
     </style>
 
-    <div id="main" style="display: none">
-    </div>
+	<div id="wrapper">
+		<div id="view_count_container"><div>
+		<div id="chart_container"></div>
+	</div>
 
-    <div id="approval" style="display: none">
-      <a href="#" id="personalize">Personalize this gadget</a>
-      <ol>
-        <b><u>In order to use this Demo Gadget you must</u></b> 
-        <li>Have or create a Google account and know your userid and password</li>
-        <li>Register a new application at <a href="https://code.google.com/apis/console">https://code.google.com/apis/console</a></li>
-        <li>Make sure your app's "Redirect URIs" applies to your shindig environment (e.g. http://localhost:8080/gadgets/oauth2callback)</li>
-        <li>Update the Google client "Client ID" and "Client Secret" in the OAuth2 persistence (default is <code>config/oauth2.json</code>)</li>
-        <li>Restart the server</li>
-        <li>Click the link above to initiate the authorization process</li>
-      </ol>    
-     
-    </div>
+	<!-- Include libraries for getting Auth token using JWS -->
+	<script type="text/javascript" src="http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js"></script>
+	<script type="text/javascript" src="js/json-sans-eval-min.js"></script>
+	<script type="text/javascript" src="js/jws-3.2.min.js"></script>
+	
+	<!--Load the AJAX API-->
+	    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	
+	<!--Load the Google JS Client-->
+	<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+	
+	<!-- Load Google Analytics Embed API Library -->
+	<script>
+		(function(w,d,s,g,js,fs){
+		  g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(f){this.q.push(f);}};
+		  js=d.createElement(s);fs=d.getElementsByTagName(s)[0];
+		  js.src='https://apis.google.com/js/platform.js';
+		  fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
+		}(window,document,'script'));
+	</script>
+	
+	<script language="JavaScript" type="text/javascript">
 
-    <div id="waiting" style="display: none">
-      Please click
-      <a href="#" id="approvaldone">I've approved access</a>
-      once you've approved access to your data.
-    </div>
+		var token, ga_key, data;
 
-    <div id="error" style="display: none;background-color:yellow;font-size:xx-small;" title="An error occured processing your request">
-       <div id="error_code"><u>code:</u></div>
-       <div id="error_uri"><u>uri:</u></div>
-       <div id="error_description"><u>description:</u></div>
-       <div id="error_explanation"><u>explanation:</u></div>
-       <div id="error_trace"><u>trace:</u></div>
-    </div>
-    
-    <script type="text/javascript">
-      function getElement(x) {
-        return document.getElementById(x);
+        // Load the Visualization API and the column chart package.
+        google.load('visualization', '1.0', {'packages':['corechart']});
+
+		// Function that creates and populates a data table,
+	    // instantiates the chart, passes in the data and
+	    // draws it.
+		
+	    function drawChart() {
+			console.log("drawChart called")
+			
+			var view_count, view_count_start;
+			
+	        // Create the data table.
+	        var dataTable = new google.visualization.DataTable();
+	        dataTable.addColumn('string', 'Month');
+	        dataTable.addColumn('number', 'Sessions');
+			
+			view_count = 0;
+			view_count_start = data.rows[0][0].replace("-", " 20");
+			for (var i = 0; i < data.rows.length; i++) {
+	  		  	row = data.rows[i];
+				row[1] = row[1] + 1 - 1; // convert to number
+				view_count = view_count + row[1];
+				//console.log(row);
+				dataTable.addRow(row);
+				//console.log(dataTable);
+			}
+
+	        // Set chart options
+	        var options = {
+				legend: {position: 'none'}
+		    };
+
+	        // Instantiate and draw our chart, passing in some options.
+	        var chart = new google.visualization.ColumnChart(document.getElementById('chart_container'));
+	        chart.draw(dataTable, options);
+			
+			// Set view count text
+			var vcc = document.getElementById('view_count_container');
+			console.log("view_count before");
+			console.log(view_count);
+			view_count = view_count.toLocaleString();
+			console.log("view_count after");
+			console.log(view_count);
+			vcc.innerHTML = "Your profile has been viewed " + view_count + " times since " + view_count_start;
       }
+	  
+	  function getKey(callback) {
+	    var request = new XMLHttpRequest();
+	    request.open("GET", "./ga_key_ucsf.json", true);
+	    request.send(null);
+	    request.onreadystatechange = function() {
+	      if ( request.readyState === 4 && request.status === 200 ) {
+	        ga_key = JSON.parse(request.responseText);
+	        <!-- console.log("ga_key"); -->
+	        <!-- console.log(ga_key); -->
+			callback();
+	      }
+	    }
+	  }
+	  
 
-      function showOneSection(toshow) {
-        var sections = [ 'main', 'approval', 'waiting', 'error' ];
-        for (var i=0; i < sections.length; ++i) {
-          var s = sections[i];
-          var el = getElement(s);
-          if (s === toshow) {
-            el.style.display = "block";
-          } else {
-            el.style.display = "none";
-          }
-        }
-      }
+	  function getToken(callback) {
+		  	<!-- console.log ("KJUR:"); -->
+			<!-- console.log (KJUR); -->
 
-      function fetchData() {
-        url = "https://www.googleapis.com/analytics/v3/data/ga";
-        var params = {};
-        params[gadgets.io.RequestParameters.CONTENT_TYPE] =
-          gadgets.io.ContentType.TEXT;
-        params[gadgets.io.RequestParameters.AUTHORIZATION] =
-          gadgets.io.AuthorizationType.OAUTH2;
-        params[gadgets.io.RequestParameters.METHOD] =
-          gadgets.io.MethodType.GET;
-        params[gadgets.io.RequestParameters.OAUTH_SERVICE_NAME] = "googleAPI";
-        params[gadgets.io.RequestParameters.REFRESH_INTERVAL] = "0";
+			var pHeader = {"alg":"RS256","typ":"JWT"}
+			var sHeader = JSON.stringify(pHeader);
 
-        gadgets.io.makeRequest(url, function (response) {
-          if (response.oauthApprovalUrl) {
-            var onOpen = function() {
-              showOneSection('waiting');
-            };
-            var onClose = function() {
-              fetchData();
-            };
-            var popup = new gadgets.oauth.Popup(response.oauthApprovalUrl,
-                null, onOpen, onClose);
-            getElement('personalize').onclick = popup.createOpenerOnClick();
-            getElement('approvaldone').onclick = popup.createApprovedOnClick();
-            showOneSection('approval');
-          } else if (response.data) {
-            getElement('main').appendChild(document.createTextNode(response.data));
-            showOneSection('main');
-          } else {
-             getElement('error_code').appendChild(document.createTextNode(response.oauthError));
-             getElement('error_uri').appendChild(document.createTextNode(response.oauthErrorUri));
-             getElement('error_description').appendChild(document.createTextNode(response.oauthErrorText));
-             getElement('error_explanation').appendChild(document.createTextNode(response.oauthErrorExplanation));
-             getElement('error_trace').appendChild(document.createTextNode(response.oauthErrorTrace));
-            showOneSection('error');
-          }
-        }, params);
-      }
+			var pClaim = {};
+			pClaim.aud = "https://www.googleapis.com/oauth2/v3/token";
+			pClaim.scope = "https://www.googleapis.com/auth/analytics.readonly";
+			pClaim.iss = ga_key.client_email;
+			pClaim.exp = KJUR.jws.IntDate.get("now + 1hour");
+			pClaim.iat = KJUR.jws.IntDate.get("now");
 
-      gadgets.util.registerOnLoadHandler(fetchData);
+			var sClaim = JSON.stringify(pClaim);
+			var key = ga_key.private_key;
+
+			var sJWS = KJUR.jws.JWS.sign(null, sHeader, sClaim, key);
+
+			var XHR = new XMLHttpRequest();
+			var urlEncodedData = "";
+			var urlEncodedDataPairs = [];
+
+			urlEncodedDataPairs.push(encodeURIComponent("grant_type") + '=' + encodeURIComponent("urn:ietf:params:oauth:grant-type:jwt-bearer"));
+			urlEncodedDataPairs.push(encodeURIComponent("assertion") + '=' + encodeURIComponent(sJWS));
+			urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
+
+			// We define what will happen if the data are successfully sent
+			XHR.addEventListener('load', function(event) {
+			  	var response = JSON.parse(XHR.responseText);
+			  	token = response["access_token"]
+				<!-- console.log("token"); -->
+				<!-- console.log(token); -->
+				callback();
+			});
+
+			// We define what will happen in case of error
+			XHR.addEventListener('error', function(event) {
+			    console.log('Oops! Something went wrong.');
+			});
+
+			XHR.open('POST', 'https://www.googleapis.com/oauth2/v3/token');
+			XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			XHR.send(urlEncodedData)
+	  }
+		
+	function analyticsStuff() {
+		<!-- console.log("Do Analytics Stuff"); -->
+
+		gapi.analytics.auth.authorize({
+		 	serverAuth: {
+				access_token: token
+			}
+		});
+		
+		 var today = new Date();
+		 var month_numbers = new Array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
+		 var start_date = new Date(today.getFullYear() - 1, today.getMonth(), 1);
+		 var start_date_string = start_date.getFullYear() + "-" + month_numbers[start_date.getMonth()] + "-" + "01";
+		 console.log(start_date_string);
+		 
+		 var query = new gapi.analytics.report.Data({
+		 	query: {
+				'ids': 'ga:23439892',
+		    	'metrics': 'ga:sessions',
+		        'dimensions': 'ga:yearMonth',
+		        'start-date': start_date_string,
+		        'end-date': 'yesterday'
+		    }
+		 });
+		 
+		 query.execute();
+		 
+		 query.on('success', function(response) {
+		 	data = response;
+		    //console.log("query data");
+		    //console.log(data);
+			
+  		  	var months = new Array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'); 
+	  
+  		  	var row, old_value, new_value, year, month_number, month;
+  		  	for (var i = 0; i < data.rows.length; i++) {
+	  		  	row = data.rows[i];
+	  			old_value = row[0];
+	  			year = old_value.substring(2, 4);
+	  			month_number = old_value.substring(4, 6) - 1;
+	  			month = months[month_number];
+	  			new_value = month + "-" + year;
+	  			//console.log(new_value);
+	  			row[0] = new_value;
+	  		}
+			  
+  		    //console.log("updated data");
+  		    //console.log(data);
+			
+			drawChart();
+		 });
+	}
+	
+	function handleClientLoad() {
+		console.log("google client library loaded");
+	}
+		
+  	gapi.analytics.ready( function() {
+  		getKey( function () {
+  			getToken( function () {
+  				analyticsStuff();
+  			});
+  		})
+  	});
+	  
     </script>
-        ]]>
-  </Content>
+        ]]></Content>
 </Module>
