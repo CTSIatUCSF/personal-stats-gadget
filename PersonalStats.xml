@@ -10,8 +10,8 @@
 		<Require feature="osapi"/>
 		<!-- Require feature="minimessage" /-->
 		<!-- Require feature="dynamic-height" /-->
-		<!-- <Require feature="orng"/> -->
-		<!-- <Require feature="jsonld"/> -->
+		<Require feature="orng"/>
+		<Require feature="jsonld"/>
 		<!-- Require feature="start-hidden" /-->
 	</ModulePrefs>
 	<Content type="html" view="canvas, small"><![CDATA[<!--HTML-->
