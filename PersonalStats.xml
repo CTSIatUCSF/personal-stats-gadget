@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Module>
 	<ModulePrefs title="Personal Stats" author="Dan Hoffman">
-	    <OAuth2>
-	      <Service name="googleAPI" scope="https://www.googleapis.com/analytics/v3/data/ga">
-	      </Service>
-	    </OAuth2>
 		<Require feature="views"/>
 		<Require feature="settitle"/>
 		<Require feature="osapi"/>
