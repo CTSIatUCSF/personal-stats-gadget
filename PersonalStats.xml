@@ -1,220 +1,306 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Module>
-	<ModulePrefs title="Personal Stats Gadget">
+	<ModulePrefs title="Personal Stats" author="Dan Hoffman">
+	    <OAuth2>
+	      <Service name="googleAPI" scope="https://www.googleapis.com/analytics/v3/data/ga">
+	      </Service>
+	    </OAuth2>
+		<Require feature="views"/>
+		<Require feature="settitle"/>
+		<Require feature="osapi"/>
+		<!-- Require feature="minimessage" /-->
+		<!-- Require feature="dynamic-height" /-->
+		<!-- <Require feature="orng"/> -->
+		<!-- <Require feature="jsonld"/> -->
+		<!-- Require feature="start-hidden" /-->
 	</ModulePrefs>
-	<Content type="html"><![CDATA[
+	<Content type="html" view="canvas, small"><![CDATA[<!--HTML-->
+    <!DOCTYPE html>
+    
+        <!-- #includes -->
+        <link rel="stylesheet" href="css/gadget.css" type="text/css" media="screen, projection" >
+        <link rel="stylesheet" href="css/inst.css" type="text/css" media="screen, projection" >
+        <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css" media="screen, projection" >
+	    <script type="text/javascript" src="js/os.js" ></script>
+	    <script type="text/javascript" src="js/ontology.js" ></script>
+        <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="js/environment.js"></script>
+                
+        <style>
+            .tool_title {font-size:14px;}
+            .tool_title_orange {font-weight:bold; font-size:14px; color:#CA7C29;margin-top:-1px;}
+            .tool_body {font-size:12px;}
+            .tool_credit {font-size:10px;}
+            .tool_table_cell {ffont-size:12px; padding:0 20px 0 0;}
+            .tool_table_cell_small {font-size:11px;}
+            .tool_table_cell_small span a {font-size:11px;}
+            .tool_table_cell_small span {font-size:11px;display:inline-block;margin-right: -15px; }
+            .tool_toggle_button {font-size: 13px;padding:0 5px;}          
+    	</style>
 
-    <style>
-    #main {
-        margin: 0px;
-        padding: 0px;
-        font-size: small;
-    }
-    </style>
+        <script type="text/javascript">
+			                      
+        </script>]]></Content>
+	<Content type="html" view="small" preferred_height="75" preferred_width="190"><![CDATA[<!--HTML-->
+    <!DOCTYPE html>
+ 
+ 		<table id="button_and_help" cellspacing="2" cellpadding="0" style="display:block;">
+ 				<tr>
+ 						<td class="tool_table_cell_small" style="width:160px;padding:4px 0"><a href='javascript:gadgets.views.requestNavigateTo("canvas");'>Click here for canvas view.</a></td>
+ 				</tr>
+ 		</table>
+        
+        <img id="waiting" src="images/waiting.gif" style="display:none;">
+        
+        <script type="text/javascript">
+                gadgets.util.registerOnLoadHandler(init);
+        </script>]]></Content>
+	<Content type="html" view="canvas" preferred_height="620" preferred_width="800"><![CDATA[<!--HTML-->
+    <!DOCTYPE html>
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+           <script type="text/javascript" src="js/jquery.blockUI-2.66.0.js"></script>    
+           <style type="text/css">
+                 input#close {margin-left:10px;}
+                 div.message {margin-bottom:10px;}
+                 div.info {color:green;}
+                 div.error {color:red;}
+                 .hidden {display:none;}
+                 p { width: 640px; }
+            
+            
+                .list-info {font-weight:bold; font-size:14px; color:#CA7C29;}
+                .list-descr {margin-top: 10px;}
+                #more-info {color: #0088CC !important; cursor: pointer;}
+                .commands {margin-top: 20px;}
+                .commands .row{ margin-top: 10px;}
+                .commands label {width: 100px; text-align: right;font-weight: bold; font-size: 13px; margin-right: 10px;}
+                .list-content {margin-top: 30px; height: 300px; overflow-y: auto;}
+                .list-content th {text-align: left; padding-bottom: 5px;}                
+                .list-content th.name {width: 180px;}
+                .list-content th.title {width: 180px;}
+                .list-content th.email {width: 200px;}
+                .btn:hover{color:white;}
+                .btn-sm {background-color: lightgray;color: black;}
+                
+                .ui-tooltip {max-width: 500px;}
+                .help-content div {margin-bottom: 10px;}
+                .help-content ul {list-style-type: disc; margin-left: 30px;}
+                .help-content li {margin-bottom:5px;}
+                
+                .progress-msg {margin:5px;}
+                
+                .gadget-content {margin-left: 50px;margin-top: 20px;}
+                
+                #create-doodle-dlg .email-list {width: 410px;height: 130px;}
+                #create-doodle-dlg .instructions {margin-top: 10px; margin-bottom: 10px;}
+           </style>
+    
+        <div style="width:640px;" class="gadget-content">
+        		<div id="view_count_container" class="list-info">This is the Personal Stats Gadget's canvas page.</div>
+        		
+        		<div id="debug" style="display:none"></div>
 
-	<div id="wrapper">
-		<div id="view_count_container"><div>
-		<div id="chart_container"></div>
-	</div>
+				<div id="chart_container"></div>
+	    </div>
 
-	<!-- Include libraries for getting Auth token using JWS -->
-	<script type="text/javascript" src="http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js"></script>
-	<script type="text/javascript" src="js/json-sans-eval-min.js"></script>
-	<script type="text/javascript" src="js/jws-3.2.min.js"></script>
+		<!-- Include libraries for getting Auth token using JWS -->
+		<script type="text/javascript" src="http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js"></script>
+		<script type="text/javascript" src="js/json-sans-eval-min.js"></script>
+		<script type="text/javascript" src="js/jws-3.2.min.js"></script>
 	
-	<!--Load the AJAX API-->
-	    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<!--Load the AJAX API-->
+		    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	
-	<!--Load the Google JS Client-->
-	<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+		<!--Load the Google JS Client-->
+		<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
 	
-	<!-- Load Google Analytics Embed API Library -->
-	<script>
-		(function(w,d,s,g,js,fs){
-		  g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(f){this.q.push(f);}};
-		  js=d.createElement(s);fs=d.getElementsByTagName(s)[0];
-		  js.src='https://apis.google.com/js/platform.js';
-		  fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
-		}(window,document,'script'));
-	</script>
+		<!-- Load Google Analytics Embed API Library -->
+		<script>
+			(function(w,d,s,g,js,fs){
+			  g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(f){this.q.push(f);}};
+			  js=d.createElement(s);fs=d.getElementsByTagName(s)[0];
+			  js.src='https://apis.google.com/js/platform.js';
+			  fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
+			}(window,document,'script'));
+		</script>
 	
-	<script language="JavaScript" type="text/javascript">
+		<script language="JavaScript" type="text/javascript">
 
-		var token, ga_key, data;
+			var token, ga_key, data;
 
-        // Load the Visualization API and the column chart package.
-        google.load('visualization', '1.0', {'packages':['corechart']});
+	        // Load the Visualization API and the column chart package.
+	        google.load('visualization', '1.0', {'packages':['corechart']});
 
-		// Function that creates and populates a data table,
-	    // instantiates the chart, passes in the data and
-	    // draws it.
+			// Function that creates and populates a data table,
+		    // instantiates the chart, passes in the data and
+		    // draws it.
 		
-	    function drawChart() {
-			console.log("drawChart called")
+		    function drawChart() {
+				console.log("drawChart called")
 			
-			var view_count, view_count_start;
+				var view_count, view_count_start;
 			
-	        // Create the data table.
-	        var dataTable = new google.visualization.DataTable();
-	        dataTable.addColumn('string', 'Month');
-	        dataTable.addColumn('number', 'Sessions');
+		        // Create the data table.
+		        var dataTable = new google.visualization.DataTable();
+		        dataTable.addColumn('string', 'Month');
+		        dataTable.addColumn('number', 'Sessions');
 			
-			view_count = 0;
-			view_count_start = data.rows[0][0].replace("-", " 20");
-			for (var i = 0; i < data.rows.length; i++) {
-	  		  	row = data.rows[i];
-				row[1] = row[1] + 1 - 1; // convert to number
-				view_count = view_count + row[1];
-				//console.log(row);
-				dataTable.addRow(row);
-				//console.log(dataTable);
-			}
+				view_count = 0;
+				view_count_start = data.rows[0][0].replace("-", " 20");
+				for (var i = 0; i < data.rows.length; i++) {
+		  		  	row = data.rows[i];
+					row[1] = row[1] + 1 - 1; // convert to number
+					view_count = view_count + row[1];
+					//console.log(row);
+					dataTable.addRow(row);
+					//console.log(dataTable);
+				}
 
-	        // Set chart options
-	        var options = {
-				legend: {position: 'none'}
-		    };
+		        // Set chart options
+		        var options = {
+					legend: {position: 'none'}
+			    };
 
-	        // Instantiate and draw our chart, passing in some options.
-	        var chart = new google.visualization.ColumnChart(document.getElementById('chart_container'));
-	        chart.draw(dataTable, options);
+		        // Instantiate and draw our chart, passing in some options.
+		        var chart = new google.visualization.ColumnChart(document.getElementById('chart_container'));
+		        chart.draw(dataTable, options);
 			
-			// Set view count text
-			var vcc = document.getElementById('view_count_container');
-			console.log("view_count before");
-			console.log(view_count);
-			view_count = view_count.toLocaleString();
-			console.log("view_count after");
-			console.log(view_count);
-			vcc.innerHTML = "Your profile has been viewed " + view_count + " times since " + view_count_start;
-      }
-	  
-	  function getKey(callback) {
-	    var request = new XMLHttpRequest();
-	    request.open("GET", "./ga_key_ucsf.json", true);
-	    request.send(null);
-	    request.onreadystatechange = function() {
-	      if ( request.readyState === 4 && request.status === 200 ) {
-	        ga_key = JSON.parse(request.responseText);
-	        <!-- console.log("ga_key"); -->
-	        <!-- console.log(ga_key); -->
-			callback();
+				// Set view count text
+				var vcc = document.getElementById('view_count_container');
+				console.log("view_count before");
+				console.log(view_count);
+				view_count = view_count.toLocaleString();
+				console.log("view_count after");
+				console.log(view_count);
+				vcc.innerHTML = "Your profile has been viewed " + view_count + " times since " + view_count_start;
 	      }
-	    }
-	  }
 	  
-
-	  function getToken(callback) {
-		  	<!-- console.log ("KJUR:"); -->
-			<!-- console.log (KJUR); -->
-
-			var pHeader = {"alg":"RS256","typ":"JWT"}
-			var sHeader = JSON.stringify(pHeader);
-
-			var pClaim = {};
-			pClaim.aud = "https://www.googleapis.com/oauth2/v3/token";
-			pClaim.scope = "https://www.googleapis.com/auth/analytics.readonly";
-			pClaim.iss = ga_key.client_email;
-			pClaim.exp = KJUR.jws.IntDate.get("now + 1hour");
-			pClaim.iat = KJUR.jws.IntDate.get("now");
-
-			var sClaim = JSON.stringify(pClaim);
-			var key = ga_key.private_key;
-
-			var sJWS = KJUR.jws.JWS.sign(null, sHeader, sClaim, key);
-
-			var XHR = new XMLHttpRequest();
-			var urlEncodedData = "";
-			var urlEncodedDataPairs = [];
-
-			urlEncodedDataPairs.push(encodeURIComponent("grant_type") + '=' + encodeURIComponent("urn:ietf:params:oauth:grant-type:jwt-bearer"));
-			urlEncodedDataPairs.push(encodeURIComponent("assertion") + '=' + encodeURIComponent(sJWS));
-			urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
-
-			// We define what will happen if the data are successfully sent
-			XHR.addEventListener('load', function(event) {
-			  	var response = JSON.parse(XHR.responseText);
-			  	token = response["access_token"]
-				<!-- console.log("token"); -->
-				<!-- console.log(token); -->
+		  function getKey(callback) {
+		    var request = new XMLHttpRequest();
+		    request.open("GET", "./ga_key_ucsf.json", true);
+		    request.send(null);
+		    request.onreadystatechange = function() {
+		      if ( request.readyState === 4 && request.status === 200 ) {
+		        ga_key = JSON.parse(request.responseText);
+		        <!-- console.log("ga_key"); -->
+		        <!-- console.log(ga_key); -->
 				callback();
-			});
-
-			// We define what will happen in case of error
-			XHR.addEventListener('error', function(event) {
-			    console.log('Oops! Something went wrong.');
-			});
-
-			XHR.open('POST', 'https://www.googleapis.com/oauth2/v3/token');
-			XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-			XHR.send(urlEncodedData)
-	  }
-		
-	function analyticsStuff() {
-		<!-- console.log("Do Analytics Stuff"); -->
-
-		gapi.analytics.auth.authorize({
-		 	serverAuth: {
-				access_token: token
-			}
-		});
-		
-		 var today = new Date();
-		 var month_numbers = new Array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
-		 var start_date = new Date(today.getFullYear() - 1, today.getMonth(), 1);
-		 var start_date_string = start_date.getFullYear() + "-" + month_numbers[start_date.getMonth()] + "-" + "01";
-		 console.log(start_date_string);
-		 
-		 var query = new gapi.analytics.report.Data({
-		 	query: {
-				'ids': 'ga:23439892',
-		    	'metrics': 'ga:sessions',
-		        'dimensions': 'ga:yearMonth',
-		        'start-date': start_date_string,
-		        'end-date': 'yesterday'
+		      }
 		    }
-		 });
-		 
-		 query.execute();
-		 
-		 query.on('success', function(response) {
-		 	data = response;
-		    //console.log("query data");
-		    //console.log(data);
-			
-  		  	var months = new Array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'); 
+		  }
 	  
-  		  	var row, old_value, new_value, year, month_number, month;
-  		  	for (var i = 0; i < data.rows.length; i++) {
-	  		  	row = data.rows[i];
-	  			old_value = row[0];
-	  			year = old_value.substring(2, 4);
-	  			month_number = old_value.substring(4, 6) - 1;
-	  			month = months[month_number];
-	  			new_value = month + "-" + year;
-	  			//console.log(new_value);
-	  			row[0] = new_value;
-	  		}
-			  
-  		    //console.log("updated data");
-  		    //console.log(data);
-			
-			drawChart();
-		 });
-	}
-	
-	function handleClientLoad() {
-		console.log("google client library loaded");
-	}
+
+		  function getToken(callback) {
+			  	<!-- console.log ("KJUR:"); -->
+				<!-- console.log (KJUR); -->
+
+				var pHeader = {"alg":"RS256","typ":"JWT"}
+				var sHeader = JSON.stringify(pHeader);
+
+				var pClaim = {};
+				pClaim.aud = "https://www.googleapis.com/oauth2/v3/token";
+				pClaim.scope = "https://www.googleapis.com/auth/analytics.readonly";
+				pClaim.iss = ga_key.client_email;
+				pClaim.exp = KJUR.jws.IntDate.get("now + 1hour");
+				pClaim.iat = KJUR.jws.IntDate.get("now");
+
+				var sClaim = JSON.stringify(pClaim);
+				var key = ga_key.private_key;
+
+				var sJWS = KJUR.jws.JWS.sign(null, sHeader, sClaim, key);
+
+				var XHR = new XMLHttpRequest();
+				var urlEncodedData = "";
+				var urlEncodedDataPairs = [];
+
+				urlEncodedDataPairs.push(encodeURIComponent("grant_type") + '=' + encodeURIComponent("urn:ietf:params:oauth:grant-type:jwt-bearer"));
+				urlEncodedDataPairs.push(encodeURIComponent("assertion") + '=' + encodeURIComponent(sJWS));
+				urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
+
+				// We define what will happen if the data are successfully sent
+				XHR.addEventListener('load', function(event) {
+				  	var response = JSON.parse(XHR.responseText);
+				  	token = response["access_token"]
+					<!-- console.log("token"); -->
+					<!-- console.log(token); -->
+					callback();
+				});
+
+				// We define what will happen in case of error
+				XHR.addEventListener('error', function(event) {
+				    console.log('Oops! Something went wrong.');
+				});
+
+				XHR.open('POST', 'https://www.googleapis.com/oauth2/v3/token');
+				XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				XHR.send(urlEncodedData)
+		  }
 		
-  	gapi.analytics.ready( function() {
-  		getKey( function () {
-  			getToken( function () {
-  				analyticsStuff();
-  			});
-  		})
-  	});
+		function analyticsStuff() {
+			<!-- console.log("Do Analytics Stuff"); -->
+
+			gapi.analytics.auth.authorize({
+			 	serverAuth: {
+					access_token: token
+				}
+			});
+		
+			 var today = new Date();
+			 var month_numbers = new Array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
+			 var start_date = new Date(today.getFullYear() - 1, today.getMonth(), 1);
+			 var start_date_string = start_date.getFullYear() + "-" + month_numbers[start_date.getMonth()] + "-" + "01";
+			 console.log(start_date_string);
+		 
+			 var query = new gapi.analytics.report.Data({
+			 	query: {
+					'ids': 'ga:23439892',
+			    	'metrics': 'ga:sessions',
+			        'dimensions': 'ga:yearMonth',
+			        'start-date': start_date_string,
+			        'end-date': 'yesterday'
+			    }
+			 });
+		 
+			 query.execute();
+		 
+			 query.on('success', function(response) {
+			 	data = response;
+			    //console.log("query data");
+			    //console.log(data);
+			
+	  		  	var months = new Array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'); 
 	  
-    </script>
-        ]]></Content>
+	  		  	var row, old_value, new_value, year, month_number, month;
+	  		  	for (var i = 0; i < data.rows.length; i++) {
+		  		  	row = data.rows[i];
+		  			old_value = row[0];
+		  			year = old_value.substring(2, 4);
+		  			month_number = old_value.substring(4, 6) - 1;
+		  			month = months[month_number];
+		  			new_value = month + "-" + year;
+		  			//console.log(new_value);
+		  			row[0] = new_value;
+		  		}
+			  
+	  		    //console.log("updated data");
+	  		    //console.log(data);
+			
+				drawChart();
+			 });
+		}
+	
+		function handleClientLoad() {
+			console.log("google client library loaded");
+		}
+		
+	  	gapi.analytics.ready( function() {
+	  		getKey( function () {
+	  			getToken( function () {
+	  				analyticsStuff();
+	  			});
+	  		})
+	  	});
+	  
+	    </script>]]></Content>
 </Module>
