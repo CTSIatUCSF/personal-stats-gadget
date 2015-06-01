@@ -36,8 +36,8 @@
     	</style>
 
         <script type="text/javascript">
-			                      
-        </script>]]></Content>
+        </script>]]>
+	</Content>
 	<Content type="html" view="small" preferred_height="75" preferred_width="190"><![CDATA[<!--HTML-->
     <!DOCTYPE html>
  
@@ -50,6 +50,10 @@
         <img id="waiting" src="images/waiting.gif" style="display:none;">
         
         <script type="text/javascript">
+	            function init() {
+	            	console.log("init small gadget");
+	            } 
+			
                 gadgets.util.registerOnLoadHandler(init);
         </script>]]></Content>
 	<Content type="html" view="canvas" preferred_height="620" preferred_width="800"><![CDATA[<!--HTML-->
@@ -86,18 +90,38 @@
                 
                 .progress-msg {margin:5px;}
                 
-                .gadget-content {margin-left: 50px;margin-top: 20px;}
+                .gadget-content {margin-left: 50px;margin-top: 20px; background-color:#D6EBFF;}
                 
                 #create-doodle-dlg .email-list {width: 410px;height: 130px;}
                 #create-doodle-dlg .instructions {margin-top: 10px; margin-bottom: 10px;}
            </style>
     
         <div style="width:640px;" class="gadget-content">
-        		<div id="view_count_container" class="list-info">This is the Personal Stats Gadget's canvas page.</div>
+        		<div id="view_count_last_year" class="list-info">This is the Personal Stats Gadget's canvas page.</div>
         		
         		<div id="debug" style="display:none"></div>
 
 				<div id="chart_container"></div>
+				<table id="view_count_table" style="width:100%">
+					<tr>
+						<td>
+							<div>So far this month</div>
+							<div id="view_count_this_month"></div>
+							<div>Visitors</div>
+						</td>
+						<td>
+							<div>Best Month Ever</div>
+							<div id="view_count_best_month"></div>
+							<div>Visitors</div>
+						</td>
+						<td>
+							<div id="view_count_all_time_since"></div>
+							<div id="view_count_all_time"></div>
+							<div>Visitors</div>
+							<div>* First month data is available for your profile page</div>
+						</td>
+					</tr>
+				</table>
 	    </div>
 
 		<!-- Include libraries for getting Auth token using JWS -->
@@ -127,50 +151,6 @@
 
 	        // Load the Visualization API and the column chart package.
 	        google.load('visualization', '1.0', {'packages':['corechart']});
-
-			// Function that creates and populates a data table,
-		    // instantiates the chart, passes in the data and
-		    // draws it.
-		
-		    function drawChart() {
-				console.log("drawChart called")
-			
-				var view_count, view_count_start;
-			
-		        // Create the data table.
-		        var dataTable = new google.visualization.DataTable();
-		        dataTable.addColumn('string', 'Month');
-		        dataTable.addColumn('number', 'Sessions');
-			
-				view_count = 0;
-				view_count_start = data.rows[0][0].replace("-", " 20");
-				for (var i = 0; i < data.rows.length; i++) {
-		  		  	row = data.rows[i];
-					row[1] = row[1] + 1 - 1; // convert to number
-					view_count = view_count + row[1];
-					//console.log(row);
-					dataTable.addRow(row);
-					//console.log(dataTable);
-				}
-
-		        // Set chart options
-		        var options = {
-					legend: {position: 'none'}
-			    };
-
-		        // Instantiate and draw our chart, passing in some options.
-		        var chart = new google.visualization.ColumnChart(document.getElementById('chart_container'));
-		        chart.draw(dataTable, options);
-			
-				// Set view count text
-				var vcc = document.getElementById('view_count_container');
-				console.log("view_count before");
-				console.log(view_count);
-				view_count = view_count.toLocaleString();
-				console.log("view_count after");
-				console.log(view_count);
-				vcc.innerHTML = "Your profile has been viewed " + view_count + " times since " + view_count_start;
-	      }
 	  
 		  function getKey(callback) {
 		    var request = new XMLHttpRequest();
@@ -241,19 +221,15 @@
 					access_token: token
 				}
 			});
-		
-			 var today = new Date();
-			 var month_numbers = new Array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
-			 var start_date = new Date(today.getFullYear() - 1, today.getMonth(), 1);
-			 var start_date_string = start_date.getFullYear() + "-" + month_numbers[start_date.getMonth()] + "-" + "01";
-			 console.log(start_date_string);
-		 
-			 var query = new gapi.analytics.report.Data({
+
+			var earliest_start_date = "2009-12-01"
+		 	
+			var query = new gapi.analytics.report.Data({
 			 	query: {
 					'ids': 'ga:23439892',
 			    	'metrics': 'ga:sessions',
 			        'dimensions': 'ga:yearMonth',
-			        'start-date': start_date_string,
+			        'start-date': earliest_start_date,
 			        'end-date': 'yesterday'
 			    }
 			 });
@@ -262,41 +238,206 @@
 		 
 			 query.on('success', function(response) {
 			 	data = response;
-			    //console.log("query data");
-			    //console.log(data);
-			
-	  		  	var months = new Array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'); 
-	  
-	  		  	var row, old_value, new_value, year, month_number, month;
-	  		  	for (var i = 0; i < data.rows.length; i++) {
-		  		  	row = data.rows[i];
-		  			old_value = row[0];
-		  			year = old_value.substring(2, 4);
-		  			month_number = old_value.substring(4, 6) - 1;
-		  			month = months[month_number];
-		  			new_value = month + "-" + year;
-		  			//console.log(new_value);
-		  			row[0] = new_value;
-		  		}
-			  
-	  		    //console.log("updated data");
-	  		    //console.log(data);
-			
 				drawChart();
+				showVisitorCountStats();
 			 });
+		}
+		
+		// Format Google Analytics yearMonth string (ex: 201506) as Mmm-YYYY (ex: Jun-2015)
+		function formatMonthYear(yearMonthString) {
+		  	var months = new Array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'); 
+			var year, month_number, month;
+		
+			year = yearMonthString.substring(2, 4);
+			month_number = yearMonthString.substring(4, 6) - 1;
+			month = months[month_number];
+			new_value = month + "-" + year;
+			return new_value;
+		}
+
+		// Function that creates and populates a data table,
+	    // instantiates the chart, passes in the data and
+	    // draws it.
+	
+	    function drawChart() {
+			console.log("drawChart called")
+		
+	        // Create the data table.
+	        var data_table = new google.visualization.DataTable();
+	        data_table.addColumn('string', 'Month');
+	        data_table.addColumn('number', 'Sessions');
+			populateDataTable(data_table, data);
+
+	        // Set chart options
+	        var options = {
+				legend: {position: 'none'}
+		    };
+
+	        // Instantiate and draw our chart, passing in some options.
+	        var chart = new google.visualization.ColumnChart(document.getElementById('chart_container'));
+	        chart.draw(data_table, options);
+      }
+	  
+	  	function populateDataTable(dataTable, dataToAdd) {
+	  		var row, start;
+		
+			start = getYearMonthOneYearAgoMonthStart();;
+		
+			for (var i = 0; i < dataToAdd.rows.length; i++) {
+			  	row = dataToAdd.rows[i];
+				if (row[0] >= start) {
+					newRow = new Array();
+					newRow[0] = formatMonthYear(row[0]);
+					newRow[1] = parseInt(row[1]);
+					dataTable.addRow(newRow);
+				}
+			}
+		}
+	  
+	  function showVisitorCountStats() {
+
+			var vccLastYear = document.getElementById('view_count_last_year');
+			var vccLastYearCount = calculateViewCountLastYear(data);
+			console.log(vccLastYearCount);
+			vccLastYearCount.count = vccLastYearCount.count.toLocaleString(); // adds thousands separators
+			vccLastYear.innerHTML = "Your profile has been viewed " + vccLastYearCount.count + " times since " + vccLastYearCount.start;
+			
+			var vccThisMonth = document.getElementById("view_count_this_month");
+			vccThisMonthCount = calculateViewCountThisMonth(data);
+			vccThisMonthCount = vccThisMonthCount.toLocaleString(); // adds thousands separators
+			vccThisMonth.innerHTML = vccThisMonthCount;
+		
+			var vccBestMonth = document.getElementById("view_count_best_month");
+			vccBestMonthCount = calculateViewCountBestMonth(data);
+			vccBestMonthCount = vccBestMonthCount.toLocaleString(); // adds thousands separators
+			vccBestMonth.innerHTML = vccBestMonthCount;
+		
+			var vccAllTime = document.getElementById("view_count_all_time");
+			vccAllTimeCount = calculateViewCountAllTime(data);
+			vccAllTimeCount.count = vccAllTimeCount.count.toLocaleString(); // adds thousands separators
+			vccAllTime.innerHTML = vccAllTimeCount.count;
+		
+			var vccAllTimeSince = document.getElementById("view_count_all_time_since");
+			vccAllTimeSince.innerHTML = "Since " + vccAllTimeCount.start + "*";
+	  }
+
+		function getStartDateOneYearAgo() {
+	 		var today = new Date();
+		 	console.log("today");
+			console.log(today);
+		 	var month_numbers = new Array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
+		 	var start_date = new Date(today.getFullYear() - 1, today.getMonth(), 1);
+		 	console.log("start_date");
+			console.log(start_date);
+		 	var start_date_string = start_date.getFullYear() + "-" + month_numbers[start_date.getMonth()] + "-" + "01";
+		 	console.log(start_date_string);
+		 	return start_date_string;
+		}
+		
+		function getYearMonthOneYearAgoMonthStart() {
+	 		var today = new Date();
+		 	console.log("today");
+			console.log(today);
+		 	var month_numbers = new Array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
+		 	var start_date = new Date(today.getFullYear() - 1, today.getMonth(), 1);
+		 	console.log("start_date");
+			console.log(start_date);
+		 	var start_date_string = start_date.getFullYear() + month_numbers[start_date.getMonth()];
+			console.log("start_date_string");
+		 	console.log(start_date_string);
+		 	return start_date_string;
+		}
+	  
+	  	function calculateViewCountLastYear(data) {
+			var count = 0;
+			var start = "";
+			
+			start = getYearMonthOneYearAgoMonthStart();;
+			
+			for (var i = 0; i < data.rows.length; i++) {
+			  	row = data.rows[i];
+				if (row[0] >= start) {
+					count = count + parseInt(row[1]);
+				}
+			}
+
+			// Format for viewing after counting is done
+			start = formatMonthYear(start);
+			start = start.replace("-", " 20");
+			
+			var viewCount = {
+				count: count,
+				start: start
+			}
+			
+			return viewCount;
+	  	}
+		
+		function calculateViewCountThisMonth(data) {
+			var lastRowIndex = data.rows.length-1;
+			var lastRow = data.rows[lastRowIndex];
+			return parseInt(lastRow[1]);
+			//TODO: Need to handle 1st of month where there is no Analytics data yet.
+		}
+		
+		function calculateViewCountBestMonth(data) {
+			var row;
+			var highestCount = 0;
+			
+			for (var i = 0; i < data.rows.length; i++) {
+			  	row = data.rows[i];
+				if (parseInt(row[1]) > highestCount) {
+					highestCount = row[1];
+				}
+			}
+			return parseInt(highestCount);
+		}
+		
+		function calculateViewCountAllTime(data) {
+			var count = 0;
+			var start = "";
+			var checkStart = true;
+			var currentRowVal;
+	
+			for (var i = 0; i < data.rows.length; i++) {
+	  		  	row = data.rows[i];
+				currentRowVal = parseInt(row[1]);
+				count = count + currentRowVal;
+				
+				// find the first month with data
+				if (checkStart == true) {
+					start = row[0];
+					if (currentRowVal > 0) {
+						checkStart = false;
+					}
+				}
+			}
+
+			// Format for viewing after counting is done
+			start = formatMonthYear(start);
+			start = start.replace("-", " 20");
+			
+			var viewCount = {
+				count: count,
+				start: start
+			}
+			
+			return viewCount;
 		}
 	
 		function handleClientLoad() {
 			console.log("google client library loaded");
 		}
 		
-	  	gapi.analytics.ready( function() {
+		function init() {
 	  		getKey( function () {
 	  			getToken( function () {
 	  				analyticsStuff();
 	  			});
 	  		})
-	  	});
+		}
+	
+        gadgets.util.registerOnLoadHandler(init);
 	  
-	    </script>]]></Content>
+	</script>]]></Content>
 </Module>
