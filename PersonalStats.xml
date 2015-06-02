@@ -12,12 +12,8 @@
 		<Require feature="setprefs" />
 	</ModulePrefs>
 	<UserPref
-    	name="mainPageLocation"
-    	default_value="{}"
-    	datatype="hidden"/>
-	<UserPref
     	name="testPref"
-    	default_value=0
+    	default_value="0"
     	datatype="hidden"/>
 	<Content type="html" view="canvas, small"><![CDATA[<!--HTML-->
     <!DOCTYPE html>
@@ -70,7 +66,6 @@
 				
 				function linkToCanvasClicked() {
 					var prefs = new gadgets.Prefs();
-					prefs.set("mainPageLocation", Window.location);
 					prefs.set("testPref", 1);
 					gadgets.views.requestNavigateTo("canvas");
 				}
@@ -171,9 +166,6 @@
 			var token, ga_key, data;
 
 			var prefs = new gadgets.Prefs();
-			var loc = prefs.getString("mainPageLocation");
-			console.log("mainPageLocation:");
-			console.log(loc);
 			var test = prefs.getInt("testPref");
 			console.log("testPref:");
 			console.log(test);
