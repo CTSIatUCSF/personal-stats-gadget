@@ -63,7 +63,7 @@
 						linkToCanvasClicked();
 						return false;
 					});
-					prefs.set("testPref", 1);
+					prefs.set("testPref", "blah");
 					console.log("testPref:");
 					console.log(prefs.getString("testPref"));
 	            }
