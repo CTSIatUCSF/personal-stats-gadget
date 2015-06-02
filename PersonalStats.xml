@@ -6,8 +6,8 @@
 		<Require feature="osapi"/>
 		<!-- Require feature="minimessage" /-->
 		<!-- Require feature="dynamic-height" /-->
-		<Require feature="orng"/>
-		<Require feature="jsonld"/>
+		<!-- <Require feature="orng"/> -->
+		<!-- <Require feature="jsonld"/> -->
 		<!-- Require feature="start-hidden" /-->
 		<Require feature="setprefs" />
 	</ModulePrefs>
@@ -459,6 +459,17 @@
 			var bar = prefs["bar"];
 			console.log("bar:")
 			console.log(bar);
+
+			console.log("@viewer");
+			var viewer = osapi.appdata.get({'userId':'@viewer'})
+			console.log(viewer);
+
+			var options = {};
+			options.output = "full";
+			osapi.jsonld.getOwner(options).execute(function(data) {
+				console.log("owner");
+				console.log(data);
+			});
 
 	  		getKey( function () {
 	  			getToken( function () {
