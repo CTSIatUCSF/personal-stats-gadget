@@ -15,6 +15,10 @@
     	name="mainPageLocation"
     	default_value="{}"
     	datatype="hidden"/>
+	<UserPref
+    	name="testPref"
+    	default_value="0"
+    	datatype="hidden"/>
 	<Content type="html" view="canvas, small"><![CDATA[<!--HTML-->
     <!DOCTYPE html>
     
@@ -67,6 +71,7 @@
 				function linkToCanvasClicked() {
 					var prefs = new gadgets.Prefs();
 					prefs.set("mainPageLocation", Window.location);
+					prefs.set("testPref", 1);
 					gadgets.views.requestNavigateTo("canvas");
 				}
 			
@@ -167,8 +172,12 @@
 
 			var prefs = new gadgets.Prefs();
 			var loc = prefs.getString("mainPageLocation");
-			console.log("mainPageLocation");
+			console.log("mainPageLocation:");
 			console.log(loc);
+			var test = prefs.getInt("testPref");
+			console.log("testPref:");
+			console.log(test);
+
 
 	        // Load the Visualization API and the column chart package.
 	        google.load('visualization', '1.0', {'packages':['corechart']});
