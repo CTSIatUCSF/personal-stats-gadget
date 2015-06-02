@@ -66,8 +66,8 @@
   						foo : 12345,
 						bar : "Bar value"
 					};
-
-					gadgets.views.requestNavigateTo("canvas", my_params);
+					var canvas_view = new gadgets.views.View("canvas");
+					gadgets.views.requestNavigateTo(canvas_view, my_params);
 				}
 			
                 gadgets.util.registerOnLoadHandler(init);
