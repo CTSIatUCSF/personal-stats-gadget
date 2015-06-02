@@ -44,7 +44,7 @@
  		<table id="button_and_help" cellspacing="2" cellpadding="0" style="display:block;">
  				<tr>
  						<td class="tool_table_cell_small" style="width:160px;padding:4px 0">
-							<a href=linkClicked()>Click here for canvas view.</a>
+							<a id="linkToCanvas"href=linkClicked()>Click here for canvas view.</a>
 						</td>
  				</tr>
  		</table>
@@ -53,9 +53,13 @@
         
         <script type="text/javascript">
 	            function init() {
+					$('#linkToCanvas').click(function(){ 
+						linkToCanvasClicked();
+						return false;
+					});
 	            }
 				
-				function linkClicked() {
+				function linkToCanvasClicked() {
 					var params = {loc:window.location};
 					gadgets.views.requestNavigateTo("canvas", params);
 				}
