@@ -56,16 +56,19 @@
         <img id="waiting" src="images/waiting.gif" style="display:none;">
         
         <script type="text/javascript">
+				var prefs = new gadgets.Prefs();
+
 	            function init() {
 					$('#linkToCanvas').click(function(){ 
 						linkToCanvasClicked();
 						return false;
 					});
+					prefs.set("testPref", 1);
+					console.log(testPref:);
+					console.log(prefs.getString("testPref"));
 	            }
 				
 				function linkToCanvasClicked() {
-					var prefs = new gadgets.Prefs();
-					prefs.set("testPref", 1);
 					gadgets.views.requestNavigateTo("canvas");
 				}
 			
