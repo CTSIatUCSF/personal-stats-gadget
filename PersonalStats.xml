@@ -13,7 +13,7 @@
 	</ModulePrefs>
 	<UserPref
     	name="testPref"
-    	datatype="hidden"/>
+    	datatype="string"/>
 	<Content type="html" view="canvas, small"><![CDATA[<!--HTML-->
     <!DOCTYPE html>
     
