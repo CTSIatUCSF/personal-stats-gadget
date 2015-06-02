@@ -13,7 +13,6 @@
 	</ModulePrefs>
 	<UserPref
     	name="testPref"
-    	default_value="0"
     	datatype="hidden"/>
 	<Content type="html" view="canvas, small"><![CDATA[<!--HTML-->
     <!DOCTYPE html>
@@ -166,7 +165,7 @@
 			var token, ga_key, data;
 
 			var prefs = new gadgets.Prefs();
-			var test = prefs.getInt("testPref");
+			var test = prefs.getString("testPref");
 			console.log("testPref:");
 			console.log(test);
 
