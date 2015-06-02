@@ -9,7 +9,12 @@
 		<Require feature="orng"/>
 		<Require feature="jsonld"/>
 		<!-- Require feature="start-hidden" /-->
+		<Require feature="setprefs" />
 	</ModulePrefs>
+	<UserPref
+    	name="mainPageLocation"
+    	default_value="{}"
+    	datatype="hidden"/>
 	<Content type="html" view="canvas, small"><![CDATA[<!--HTML-->
     <!DOCTYPE html>
     
@@ -60,8 +65,9 @@
 	            }
 				
 				function linkToCanvasClicked() {
-					var params = {loc:window.location};
-					gadgets.views.requestNavigateTo("canvas", params);
+					var prefs = new gadgets.Prefs();
+					prefs.set("mainPageLocation", Window.location);
+					gadgets.views.requestNavigateTo("canvas");
 				}
 			
                 gadgets.util.registerOnLoadHandler(init);
@@ -158,9 +164,11 @@
 		<script language="JavaScript" type="text/javascript">
 
 			var token, ga_key, data;
-			
-			var params = gadgets.views.getParams();
-			console.log(params);
+
+			var prefs = new gadgets.Prefs();
+			var loc = prefs.getString("mainPageLocation");
+			console.log("mainPageLocation");
+			console.log(loc);
 
 	        // Load the Visualization API and the column chart package.
 	        google.load('visualization', '1.0', {'packages':['corechart']});
