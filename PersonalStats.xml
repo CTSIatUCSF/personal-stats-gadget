@@ -165,7 +165,7 @@
 			var token, ga_key, data;
 
 			var prefs = new gadgets.Prefs();
-			var test = prefs.getInt("testPref");
+			var test = prefs.getString("testPref");
 			console.log("testPref:");
 			console.log(test);
 
