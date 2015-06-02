@@ -17,7 +17,7 @@
     	datatype="hidden"/>
 	<UserPref
     	name="testPref"
-    	default_value="0"
+    	default_value=0
     	datatype="hidden"/>
 	<Content type="html" view="canvas, small"><![CDATA[<!--HTML-->
     <!DOCTYPE html>
