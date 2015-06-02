@@ -167,12 +167,6 @@
 
 			var token, ga_key, data;
 
-			var prefs = new gadgets.Prefs();
-			var test = prefs.getString("testPref");
-			console.log("testPref:");
-			console.log(test);
-
-
 	        // Load the Visualization API and the column chart package.
 	        google.load('visualization', '1.0', {'packages':['corechart']});
 	  
@@ -456,6 +450,11 @@
 		}
 		
 		function init() {
+			var prefs = new gadgets.Prefs();
+			var test = prefs.getString("testPref");
+			console.log("testPref:");
+			console.log(test);
+
 	  		getKey( function () {
 	  			getToken( function () {
 	  				analyticsStuff();
