@@ -6,15 +6,11 @@
 		<Require feature="osapi"/>
 		<!-- Require feature="minimessage" /-->
 		<!-- Require feature="dynamic-height" /-->
-		<Require feature="orng"/>
-		<Require feature="jsonld"/>
+		<!-- <Require feature="orng"/> -->
+		<!-- <Require feature="jsonld"/> -->
 		<!-- Require feature="start-hidden" /-->
 		<Require feature="setprefs" />
 	</ModulePrefs>
-	<UserPref
-    	name="testPref"
-    	default_value="default"
-    	datatype="string"/>
 	<Content type="html" view="canvas, small"><![CDATA[<!--HTML-->
     <!DOCTYPE html>
     
@@ -63,14 +59,15 @@
 						linkToCanvasClicked();
 						return false;
 					});
-					var prefs = new gadgets.Prefs();
-					prefs.set("testPref", "blah");
-					console.log("testPref:");
-					console.log(prefs.getString("testPref"));
 	            }
 				
 				function linkToCanvasClicked() {
-					gadgets.views.requestNavigateTo("canvas");
+					var my_params = {
+  						foo : 12345,
+						bar : "Bar value"
+					};
+
+					gadgets.views.requestNavigateTo("canvas", my_params);
 				}
 			
                 gadgets.util.registerOnLoadHandler(init);
@@ -149,7 +146,7 @@
 		<script type="text/javascript" src="js/jws-3.2.min.js"></script>
 	
 		<!--Load the AJAX API-->
-		    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	
 		<!--Load the Google JS Client-->
 		<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
@@ -451,9 +448,15 @@
 		}
 		
 		function init() {
-			var prefs = new gadgets.Prefs();
-			console.log("testPref:");
-			console.log(prefs.getString("testPref"));
+
+			var prefs = gadgets.views.getParams();
+			var foo = prefs["foo"];
+			console.log("foo:")
+			console.log(foo);
+
+			var bar = prefs["bar"];
+			console.log("bar:")
+			console.log(bar);
 
 	  		getKey( function () {
 	  			getToken( function () {
