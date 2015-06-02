@@ -13,6 +13,7 @@
 	</ModulePrefs>
 	<UserPref
     	name="testPref"
+    	default_value="default"
     	datatype="string"/>
 	<Content type="html" view="canvas, small"><![CDATA[<!--HTML-->
     <!DOCTYPE html>
@@ -56,13 +57,13 @@
         <img id="waiting" src="images/waiting.gif" style="display:none;">
         
         <script type="text/javascript">
-				var prefs = new gadgets.Prefs();
 
 	            function init() {
 					$('#linkToCanvas').click(function(){ 
 						linkToCanvasClicked();
 						return false;
 					});
+					var prefs = new gadgets.Prefs();
 					prefs.set("testPref", "blah");
 					console.log("testPref:");
 					console.log(prefs.getString("testPref"));
@@ -166,8 +167,6 @@
 		<script language="JavaScript" type="text/javascript">
 
 			var token, ga_key, data;
-
-			var prefs = new gadgets.Prefs();
 
 	        // Load the Visualization API and the column chart package.
 	        google.load('visualization', '1.0', {'packages':['corechart']});
@@ -452,6 +451,7 @@
 		}
 		
 		function init() {
+			var prefs = new gadgets.Prefs();
 			console.log("testPref:");
 			console.log(prefs.getString("testPref"));
 
