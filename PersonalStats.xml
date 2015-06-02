@@ -43,7 +43,9 @@
  
  		<table id="button_and_help" cellspacing="2" cellpadding="0" style="display:block;">
  				<tr>
- 						<td class="tool_table_cell_small" style="width:160px;padding:4px 0"><a href='javascript:gadgets.views.requestNavigateTo("canvas");'>Click here for canvas view.</a></td>
+ 						<td class="tool_table_cell_small" style="width:160px;padding:4px 0">
+							<a href=linkClicked()>Click here for canvas view.</a>
+						</td>
  				</tr>
  		</table>
         
@@ -51,8 +53,12 @@
         
         <script type="text/javascript">
 	            function init() {
-	            	console.log("init small gadget");
-	            } 
+	            }
+				
+				function linkClicked() {
+					var params = {loc:window.location};
+					gadgets.views.requestNavigateTo("canvas", params);
+				}
 			
                 gadgets.util.registerOnLoadHandler(init);
         </script>]]></Content>
@@ -148,6 +154,9 @@
 		<script language="JavaScript" type="text/javascript">
 
 			var token, ga_key, data;
+			
+			var params = gadgets.views.getParams();
+			console.log(params);
 
 	        // Load the Visualization API and the column chart package.
 	        google.load('visualization', '1.0', {'packages':['corechart']});
@@ -223,12 +232,14 @@
 			});
 
 			var earliest_start_date = "2009-12-01"
+			var pagePath = "~/jaime.sepulveda";
 		 	
 			var query = new gapi.analytics.report.Data({
 			 	query: {
 					'ids': 'ga:23439892',
 			    	'metrics': 'ga:sessions',
 			        'dimensions': 'ga:yearMonth',
+					'filters':'ga:pagePath=' + pagePath,
 			        'start-date': earliest_start_date,
 			        'end-date': 'yesterday'
 			    }
