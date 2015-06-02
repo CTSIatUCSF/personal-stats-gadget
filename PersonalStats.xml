@@ -6,8 +6,8 @@
 		<Require feature="osapi"/>
 		<!-- Require feature="minimessage" /-->
 		<!-- Require feature="dynamic-height" /-->
-		<!-- <Require feature="orng"/> -->
-		<!-- <Require feature="jsonld"/> -->
+		<Require feature="orng"/>
+		<Require feature="jsonld"/>
 		<!-- Require feature="start-hidden" /-->
 		<Require feature="setprefs" />
 	</ModulePrefs>
@@ -450,6 +450,8 @@
 		function init() {
 
 			var prefs = gadgets.views.getParams();
+			console.log("prefs:");
+			console.log(prefs);
 			var foo = prefs["foo"];
 			console.log("foo:")
 			console.log(foo);
