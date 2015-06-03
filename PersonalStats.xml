@@ -106,7 +106,7 @@
                 
                 .progress-msg {margin:5px;}
                 
-                .gadget-content {margin-left: 50px;margin-top: 20px; background-color:#D6EBFF;}
+                .gadget-content {background-color:#D6EBFF;}
                 .stats-title {
                 	font-weight:bold;
                 	font-size:20px;
@@ -377,6 +377,7 @@
 			    return new Array(month, count); 
 			});
 
+			// add a row for the current month if one doesn't exist
 			var today = new Date();
 			var thisYearMonth = convertDateToYearMonthString(today);
 
@@ -399,9 +400,11 @@
 				dataTableRow[1] = row[lastIndex];
 				dataTable.addRow(dataTableRow);
 			}
+			// remove the last row, which contains data for this month (we show this data elsewhere)
 			var lastItemIndex = dataTable.getNumberOfRows()-1;
 			dataTable.removeRow(lastItemIndex);
-			console.log(dataTable);
+			
+			//console.log(dataTable);
 		}
 	  
 	  function showVisitorCountStats() {
