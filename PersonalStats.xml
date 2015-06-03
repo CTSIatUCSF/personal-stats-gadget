@@ -6,8 +6,8 @@
 		<Require feature="osapi"/>
 		<!-- Require feature="minimessage" /-->
 		<!-- Require feature="dynamic-height" /-->
-		<Require feature="orng"/>
-		<Require feature="jsonld"/>
+		<!-- <Require feature="orng"/> -->
+		<!-- <Require feature="jsonld"/> -->
 		<!-- Require feature="start-hidden" /-->
 		<Require feature="setprefs" />
 	</ModulePrefs>
@@ -72,7 +72,7 @@
 			
                 gadgets.util.registerOnLoadHandler(init);
         </script>]]></Content>
-	<Content type="html" view="canvas" preferred_height="620" preferred_width="800"><![CDATA[<!--HTML-->
+	<Content type="html" view="canvas" preferred_height="620" preferred_width="967"><![CDATA[<!--HTML-->
     <!DOCTYPE html>
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
            <script type="text/javascript" src="js/jquery.blockUI-2.66.0.js"></script>    
@@ -107,34 +107,85 @@
                 .progress-msg {margin:5px;}
                 
                 .gadget-content {margin-left: 50px;margin-top: 20px; background-color:#D6EBFF;}
+                .stats-title {
+                	font-weight:bold;
+                	font-size:20px;
+                	color:#CA7C29;
+                	padding-top:40px;
+                	margin-bottom: 40px;
+				    text-align: center;
+                }
+                .stats-chart {
+                	width: 90%; 
+                	margin-top: 20px;
+                	margin-bottom: 20px;
+				    margin-left: auto;
+				    margin-right: auto;
+				    border-width: 1px;
+				    border-style: solid;
+				    border-color: black;
+                }
+                .stats-table {
+                	width = 100%;
+                	margin-top: 20px;
+                	margin-bottom: 20px;
+				    margin-left: auto;
+				    margin-right: auto;
+				    text-align: center;
+				    border-spacing: 10px;
+					border-collapse: separate;
+					table-layout: fixed;
+                }
+                .stats-table-item,
+                .stats-table-item-center {
+                	background-color: white;
+                	width: 26%;
+                	margin-top: 10px;
+                	margin-bottom: 10px;
+                }
+                .stats-table-item-center {
+                	width: 20%;
+                }
+                .stats-text,
+                .stats-text-small,
+                .stats-text-large {
+                	margin: 5px;
+                	font-size:14px;
+                }
+                .stats-text-small {
+                	font-size:10px;
+                }
+                .stats-text-large {
+                	font-size:20px;
+                }
                 
                 #create-doodle-dlg .email-list {width: 410px;height: 130px;}
                 #create-doodle-dlg .instructions {margin-top: 10px; margin-bottom: 10px;}
            </style>
     
-        <div style="width:640px;" class="gadget-content">
-        		<div id="view_count_last_year" class="list-info">This is the Personal Stats Gadget's canvas page.</div>
+        <div style="width:967px;" class="gadget-content">
+        		<div id="view_count_last_year" class="stats-title">This is the Personal Stats Gadget's canvas page.</div>
         		
         		<div id="debug" style="display:none"></div>
 
-				<div id="chart_container"></div>
-				<table id="view_count_table" style="width:100%">
+				<div id="chart_container" class="stats-chart"></div>
+				<table id="view_count_table" class="stats-table">
 					<tr>
-						<td>
-							<div>So far this month</div>
-							<div id="view_count_this_month"></div>
-							<div>Visitors</div>
+						<td class="stats-table-item">
+							<div class="stats-text">So far this month</div>
+							<div id="view_count_this_month" class="stats-text-large"></div>
+							<div class="stats-text">Visitors</div>
 						</td>
-						<td>
-							<div>Best Month Ever</div>
-							<div id="view_count_best_month"></div>
-							<div>Visitors</div>
+						<td class="stats-table-item-center">
+							<div class="stats-text">Best Month Ever</div>
+							<div id="view_count_best_month" class="stats-text-large"></div>
+							<div class="stats-text">Visitors</div>
 						</td>
-						<td>
-							<div id="view_count_all_time_since"></div>
-							<div id="view_count_all_time"></div>
-							<div>Visitors</div>
-							<div>* First month data is available for your profile page</div>
+						<td class="stats-table-item">
+							<div id="view_count_all_time_since" class="stats-text"></div>
+							<div id="view_count_all_time" class="stats-text-large"></div>
+							<div class="stats-text">Visitors</div>
+							<div class="stats-text-small">* First month data is available for your profile page</div>
 						</td>
 					</tr>
 				</table>
@@ -163,7 +214,7 @@
 	
 		<script language="JavaScript" type="text/javascript">
 
-			var token, ga_key, data;
+			var token, ga_key, transformedDataAll, transformedDataLastYear;
 
 	        // Load the Visualization API and the column chart package.
 	        google.load('visualization', '1.0', {'packages':['corechart']});
@@ -245,17 +296,20 @@
 			 	query: {
 					'ids': 'ga:23439892',
 			    	'metrics': 'ga:sessions',
-			        'dimensions': 'ga:yearMonth',
+			        'dimensions': 'ga:yearMonth, ga:country, ga:networkDomain',
 					'filters':'ga:pagePath=' + pagePath,
 			        'start-date': earliest_start_date,
-			        'end-date': 'yesterday'
+			        'end-date': 'today'
 			    }
 			 });
 		 
 			 query.execute();
 		 
 			 query.on('success', function(response) {
-			 	data = response;
+			 	var data = response;
+			 	console.log(data);
+			 	transformedDataAll = transformData(data.rows);
+			 	transformedDataLastYear = transformData(data.rows, getYearMonthOneYearAgoMonthStart());
 				drawChart();
 				showVisitorCountStats();
 			 });
@@ -284,7 +338,7 @@
 	        var data_table = new google.visualization.DataTable();
 	        data_table.addColumn('string', 'Month');
 	        data_table.addColumn('number', 'Sessions');
-			populateDataTable(data_table, data);
+			populateDataTable(data_table, transformedDataLastYear);
 
 	        // Set chart options
 	        var options = {
@@ -295,91 +349,115 @@
 	        var chart = new google.visualization.ColumnChart(document.getElementById('chart_container'));
 	        chart.draw(data_table, options);
       }
-	  
-	  	function populateDataTable(dataTable, dataToAdd) {
-	  		var row, start;
-		
-			start = getYearMonthOneYearAgoMonthStart();;
-		
-			for (var i = 0; i < dataToAdd.rows.length; i++) {
-			  	row = dataToAdd.rows[i];
-				if (row[0] >= start) {
-					newRow = new Array();
-					newRow[0] = formatMonthYear(row[0]);
-					newRow[1] = parseInt(row[1]);
-					dataTable.addRow(newRow);
-				}
+
+      	function transformData(data, yearMonthStart) {
+
+      		var start = yearMonthStart || 0;
+      		var lastItemIndex = data.length-1; 
+      		var lastIndex = data[0].length-1;
+
+			var monthArray = data.map(function(elem) {
+			    return elem[0];
+			});
+
+			var filteredMonthArray = monthArray.filter(function(elem, i, array) {
+			        return array.indexOf(elem) === i && elem >= start;
+			    }
+			);
+
+			var arrayToReturn = filteredMonthArray.map(function(month) {
+			    var count = data.reduce(function(prevVal, elem) {
+			        if(elem[0] == month) {
+			            return prevVal + parseInt(elem[lastIndex]);
+			        } 
+			        else {
+			            return prevVal;
+			        }
+			    }, 0);
+			    return new Array(month, count); 
+			});
+
+			var today = new Date();
+			var thisYearMonth = convertDateToYearMonthString(today);
+
+			var lastItem = data[lastItemIndex];
+			if (lastItem != thisYearMonth) {
+				var rowToAdd = new Array(thisYearMonth, 0);
+				arrayToReturn.push(rowToAdd);
 			}
+
+			return arrayToReturn;
+      	}
+
+      	function populateDataTable(dataTable, dataToAdd) {
+	  		console.log(dataToAdd);
+			for (idx in dataToAdd) {
+				row = dataToAdd[idx];
+				lastIndex = row.length-1;
+				dataTableRow = new Array();
+				dataTableRow[0] = formatMonthYear(row[0]);
+				dataTableRow[1] = row[lastIndex];
+				dataTable.addRow(dataTableRow);
+			}
+			var lastItemIndex = dataTable.getNumberOfRows()-1;
+			dataTable.removeRow(lastItemIndex);
+			console.log(dataTable);
 		}
 	  
 	  function showVisitorCountStats() {
 
 			var vccLastYear = document.getElementById('view_count_last_year');
-			var vccLastYearCount = calculateViewCountLastYear(data);
+			var vccLastYearCount = calculateViewCountLastYear(transformedDataLastYear);
 			console.log(vccLastYearCount);
 			vccLastYearCount.count = vccLastYearCount.count.toLocaleString(); // adds thousands separators
 			vccLastYear.innerHTML = "Your profile has been viewed " + vccLastYearCount.count + " times since " + vccLastYearCount.start;
 			
 			var vccThisMonth = document.getElementById("view_count_this_month");
-			vccThisMonthCount = calculateViewCountThisMonth(data);
+			vccThisMonthCount = calculateViewCountThisMonth(transformedDataAll);
 			vccThisMonthCount = vccThisMonthCount.toLocaleString(); // adds thousands separators
 			vccThisMonth.innerHTML = vccThisMonthCount;
 		
 			var vccBestMonth = document.getElementById("view_count_best_month");
-			vccBestMonthCount = calculateViewCountBestMonth(data);
+			vccBestMonthCount = calculateViewCountBestMonth(transformedDataAll);
 			vccBestMonthCount = vccBestMonthCount.toLocaleString(); // adds thousands separators
 			vccBestMonth.innerHTML = vccBestMonthCount;
 		
 			var vccAllTime = document.getElementById("view_count_all_time");
-			vccAllTimeCount = calculateViewCountAllTime(data);
+			vccAllTimeCount = calculateViewCountAllTime(transformedDataAll);
 			vccAllTimeCount.count = vccAllTimeCount.count.toLocaleString(); // adds thousands separators
 			vccAllTime.innerHTML = vccAllTimeCount.count;
 		
 			var vccAllTimeSince = document.getElementById("view_count_all_time_since");
 			vccAllTimeSince.innerHTML = "Since " + vccAllTimeCount.start + "*";
 	  }
-
-		function getStartDateOneYearAgo() {
-	 		var today = new Date();
-		 	console.log("today");
-			console.log(today);
-		 	var month_numbers = new Array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
-		 	var start_date = new Date(today.getFullYear() - 1, today.getMonth(), 1);
-		 	console.log("start_date");
-			console.log(start_date);
-		 	var start_date_string = start_date.getFullYear() + "-" + month_numbers[start_date.getMonth()] + "-" + "01";
-		 	console.log(start_date_string);
-		 	return start_date_string;
-		}
 		
 		function getYearMonthOneYearAgoMonthStart() {
 	 		var today = new Date();
-		 	console.log("today");
-			console.log(today);
-		 	var month_numbers = new Array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
 		 	var start_date = new Date(today.getFullYear() - 1, today.getMonth(), 1);
-		 	console.log("start_date");
-			console.log(start_date);
-		 	var start_date_string = start_date.getFullYear() + month_numbers[start_date.getMonth()];
-			console.log("start_date_string");
-		 	console.log(start_date_string);
-		 	return start_date_string;
+		 	var start_date_string = convertDateToYearMonthString(start_date);
+			return start_date_string;
+		}
+
+		function convertDateToYearMonthString(date) {
+			console.log("date");
+			console.log(date);
+		 	var month_numbers = new Array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
+		 	var date_string = date.getFullYear() + month_numbers[date.getMonth()];
+			console.log("date_string");
+		 	console.log(date_string);
+		 	return date_string;
 		}
 	  
 	  	function calculateViewCountLastYear(data) {
-			var count = 0;
-			var start = "";
+		  	var i, row, lastIndex;
 			
-			start = getYearMonthOneYearAgoMonthStart();;
-			
-			for (var i = 0; i < data.rows.length; i++) {
-			  	row = data.rows[i];
-				if (row[0] >= start) {
-					count = count + parseInt(row[1]);
-				}
-			}
+		  	var firstRow = data[0];
+  		  	var lastIndex = firstRow.length-1;
+			var count = data.reduce(function(prevVal, elem) {
+			    return prevVal + parseInt(elem[lastIndex]);
+			}, 0);
 
-			// Format for viewing after counting is done
+  		  	var start = firstRow[0];
 			start = formatMonthYear(start);
 			start = start.replace("-", " 20");
 			
@@ -392,34 +470,37 @@
 	  	}
 		
 		function calculateViewCountThisMonth(data) {
-			var lastRowIndex = data.rows.length-1;
-			var lastRow = data.rows[lastRowIndex];
-			return parseInt(lastRow[1]);
+			var lastRowIndex = data.length-1;
+			var lastRow = data[lastRowIndex];
+			var lastIndex = lastRow.length-1;
+			return parseInt(lastRow[lastIndex]);
 			//TODO: Need to handle 1st of month where there is no Analytics data yet.
 		}
 		
 		function calculateViewCountBestMonth(data) {
-			var row;
+			var i, row, lastIndex;
 			var highestCount = 0;
 			
-			for (var i = 0; i < data.rows.length; i++) {
-			  	row = data.rows[i];
-				if (parseInt(row[1]) > highestCount) {
-					highestCount = row[1];
+			for (i = 0; i < data.length; i++) {
+			  	row = data[i];
+			  	lastIndex = row.length-1;
+				if (parseInt(row[lastIndex]) > highestCount) {
+					highestCount = row[lastIndex];
 				}
 			}
 			return parseInt(highestCount);
 		}
 		
 		function calculateViewCountAllTime(data) {
+			var i, row, lastIndex, currentRowVal;
 			var count = 0;
 			var start = "";
 			var checkStart = true;
-			var currentRowVal;
 	
-			for (var i = 0; i < data.rows.length; i++) {
-	  		  	row = data.rows[i];
-				currentRowVal = parseInt(row[1]);
+			for (i = 0; i < data.length; i++) {
+	  		  	row = data[i];
+	  		  	lastIndex = row.length-1;
+				currentRowVal = parseInt(row[lastIndex]);
 				count = count + currentRowVal;
 				
 				// find the first month with data
@@ -464,12 +545,10 @@
 			var viewer = osapi.appdata.get({'userId':'@viewer'})
 			console.log(viewer);
 
-			var options = {};
-			options.output = "full";
-			osapi.jsonld.getOwner(options).execute(function(data) {
-				console.log("owner");
-				console.log(data);
-			});
+			//osapi.jsonld.getOwner().execute(function(data) {
+			//	console.log("owner");
+			//		console.log(data);
+			//});
 
 	  		getKey( function () {
 	  			getToken( function () {
