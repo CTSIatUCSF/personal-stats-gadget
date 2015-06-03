@@ -72,7 +72,7 @@
 			
                 gadgets.util.registerOnLoadHandler(init);
         </script>]]></Content>
-	<Content type="html" view="canvas" preferred_height="620" preferred_width="967"><![CDATA[<!--HTML-->
+	<Content type="html" view="canvas" preferred_height="620" preferred_width="940"><![CDATA[<!--HTML-->
     <!DOCTYPE html>
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
            <script type="text/javascript" src="js/jquery.blockUI-2.66.0.js"></script>    
