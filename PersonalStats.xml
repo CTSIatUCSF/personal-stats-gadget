@@ -77,35 +77,6 @@
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
            <script type="text/javascript" src="js/jquery.blockUI-2.66.0.js"></script>    
            <style type="text/css">
-                 input#close {margin-left:10px;}
-                 div.message {margin-bottom:10px;}
-                 div.info {color:green;}
-                 div.error {color:red;}
-                 .hidden {display:none;}
-                 p { width: 640px; }
-            
-            
-                .list-info {font-weight:bold; font-size:14px; color:#CA7C29;}
-                .list-descr {margin-top: 10px;}
-                #more-info {color: #0088CC !important; cursor: pointer;}
-                .commands {margin-top: 20px;}
-                .commands .row{ margin-top: 10px;}
-                .commands label {width: 100px; text-align: right;font-weight: bold; font-size: 13px; margin-right: 10px;}
-                .list-content {margin-top: 30px; height: 300px; overflow-y: auto;}
-                .list-content th {text-align: left; padding-bottom: 5px;}                
-                .list-content th.name {width: 180px;}
-                .list-content th.title {width: 180px;}
-                .list-content th.email {width: 200px;}
-                .btn:hover{color:white;}
-                .btn-sm {background-color: lightgray;color: black;}
-                
-                .ui-tooltip {max-width: 500px;}
-                .help-content div {margin-bottom: 10px;}
-                .help-content ul {list-style-type: disc; margin-left: 30px;}
-                .help-content li {margin-bottom:5px;}
-                
-                .progress-msg {margin:5px;}
-                
                 .gadget-content {background-color:#D6EBFF;}
                 .stats-title {
                 	font-weight:bold;
@@ -166,9 +137,8 @@
         <div style="width:967px;" class="gadget-content">
         		<div id="view_count_last_year" class="stats-title">This is the Personal Stats Gadget's canvas page.</div>
         		
-        		<div id="debug" style="display:none"></div>
-
 				<div id="chart_container" class="stats-chart"></div>
+
 				<table id="view_count_table" class="stats-table">
 					<tr>
 						<td class="stats-table-item">
