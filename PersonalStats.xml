@@ -6,8 +6,8 @@
 		<Require feature="osapi"/>
 		<!-- Require feature="minimessage" /-->
 		<!-- Require feature="dynamic-height" /-->
-		<!-- <Require feature="orng"/> -->
-		<!-- <Require feature="jsonld"/> -->
+		<Require feature="orng"/>
+		<Require feature="jsonld"/>
 		<!-- Require feature="start-hidden" /-->
 		<Require feature="setprefs" />
 	</ModulePrefs>
@@ -184,7 +184,7 @@
 	
 		<script language="JavaScript" type="text/javascript">
 
-			var token, ga_key, transformedDataAll, transformedDataLastYear;
+			var token, ga_key, aggregatedByMonthAll, aggregatedByMonthLastYear;
 
 	        // Load the Visualization API and the column chart package.
 	        google.load('visualization', '1.0', {'packages':['corechart']});
@@ -278,8 +278,9 @@
 			 query.on('success', function(response) {
 			 	var data = response;
 			 	console.log(data);
-			 	transformedDataAll = transformData(data.rows);
-			 	transformedDataLastYear = transformData(data.rows, getYearMonthOneYearAgoMonthStart());
+			 	aggregatedByMonthAll = aggregateDataByMonth(data.rows);
+			 	aggregatedByMonthLastYear = aggregateDataByMonth(data.rows, getYearMonthOneYearAgoMonthStart());
+			 	aggregatedByCountryLastYear = aggregateDataByCountry(data.rows, getYearMonthOneYearAgoMonthStart());
 				drawChart();
 				showVisitorCountStats();
 			 });
@@ -308,7 +309,7 @@
 	        var data_table = new google.visualization.DataTable();
 	        data_table.addColumn('string', 'Month');
 	        data_table.addColumn('number', 'Sessions');
-			populateDataTable(data_table, transformedDataLastYear);
+			populateDataTable(data_table, aggregatedByMonthLastYear);
 
 	        // Set chart options
 	        var options = {
@@ -320,7 +321,7 @@
 	        chart.draw(data_table, options);
       }
 
-      	function transformData(data, yearMonthStart) {
+      	function aggregateDataByMonth(data, yearMonthStart) {
 
       		var start = yearMonthStart || 0;
       		var lastItemIndex = data.length-1; 
@@ -377,32 +378,32 @@
 			//console.log(dataTable);
 		}
 	  
-	  function showVisitorCountStats() {
+	  	function showVisitorCountStats() {
 
 			var vccLastYear = document.getElementById('view_count_last_year');
-			var vccLastYearCount = calculateViewCountLastYear(transformedDataLastYear);
+			var vccLastYearCount = calculateViewCountLastYear(aggregatedByMonthLastYear);
 			console.log(vccLastYearCount);
 			vccLastYearCount.count = vccLastYearCount.count.toLocaleString(); // adds thousands separators
 			vccLastYear.innerHTML = "Your profile has been viewed " + vccLastYearCount.count + " times since " + vccLastYearCount.start;
 			
 			var vccThisMonth = document.getElementById("view_count_this_month");
-			vccThisMonthCount = calculateViewCountThisMonth(transformedDataAll);
+			vccThisMonthCount = calculateViewCountThisMonth(aggregatedByMonthAll);
 			vccThisMonthCount = vccThisMonthCount.toLocaleString(); // adds thousands separators
 			vccThisMonth.innerHTML = vccThisMonthCount;
 		
 			var vccBestMonth = document.getElementById("view_count_best_month");
-			vccBestMonthCount = calculateViewCountBestMonth(transformedDataAll);
+			vccBestMonthCount = calculateViewCountBestMonth(aggregatedByMonthAll);
 			vccBestMonthCount = vccBestMonthCount.toLocaleString(); // adds thousands separators
 			vccBestMonth.innerHTML = vccBestMonthCount;
 		
 			var vccAllTime = document.getElementById("view_count_all_time");
-			vccAllTimeCount = calculateViewCountAllTime(transformedDataAll);
+			vccAllTimeCount = calculateViewCountAllTime(aggregatedByMonthAll);
 			vccAllTimeCount.count = vccAllTimeCount.count.toLocaleString(); // adds thousands separators
 			vccAllTime.innerHTML = vccAllTimeCount.count;
 		
 			var vccAllTimeSince = document.getElementById("view_count_all_time_since");
 			vccAllTimeSince.innerHTML = "Since " + vccAllTimeCount.start + "*";
-	  }
+	  	}
 		
 		function getYearMonthOneYearAgoMonthStart() {
 	 		var today = new Date();
@@ -496,6 +497,51 @@
 			
 			return viewCount;
 		}
+
+		function calculateViewsByCountry(data) {
+			//
+		}
+
+      	function aggregateDataByCountry(data) {
+
+      		var lastIndex = data[0].length-1;
+
+			var countryArray = data.map(function(elem) {
+			    return elem[1];
+			});
+
+			var filteredCountryArray = countryArray.filter(function(elem, i, array) {
+			        return array.indexOf(elem) === i;
+			    }
+			);
+
+			console.log(filteredCountryArray);
+
+			var arrayToReturn = filteredCountryArray.map(function(country) {
+			    var count = data.reduce(function(prevVal, elem) {
+			        if(elem[1] == country) {
+			            return prevVal + parseInt(elem[lastIndex]);
+			        } 
+			        else {
+			            return prevVal;
+			        }
+			    }, 0);
+			    return new Array(country, count); 
+			});
+
+			// sort by sessions, descending
+			arrayToReturn.sort(function(a,b) {
+			    return b[1]-a[1]
+			});
+
+			console.log(arrayToReturn);
+		}
+
+			
+
+	    function showViewsByCountry(data) {
+	    	//
+	    }
 	
 		function handleClientLoad() {
 			console.log("google client library loaded");
@@ -518,10 +564,10 @@
 			var viewer = osapi.appdata.get({'userId':'@viewer'})
 			console.log(viewer);
 
-			//osapi.jsonld.getOwner().execute(function(data) {
-			//	console.log("owner");
-			//		console.log(data);
-			//});
+			osapi.jsonld.getOwner().execute(function(ownerData) {
+				console.log("ownerData");
+				console.log(ownerData);
+			});
 
 	  		getKey( function () {
 	  			getToken( function () {
