@@ -81,90 +81,46 @@
     <!DOCTYPE html>
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
            <script type="text/javascript" src="js/jquery.blockUI-2.66.0.js"></script>    
-           <style type="text/css">
-                .gadget-content {background-color:#D6EBFF;}
-                .stats-title {
-                	font-weight:bold;
-                	font-size:20px;
-                	color:#CA7C29;
-                	padding-top:40px;
-                	margin-bottom: 40px;
-				    text-align: center;
-                }
-                .stats-chart {
-                	width: 90%; 
-                	margin-top: 20px;
-                	margin-bottom: 20px;
-				    margin-left: auto;
-				    margin-right: auto;
-				    border-width: 1px;
-				    border-style: solid;
-				    border-color: black;
-                }
-                .stats-table {
-                	width = 100%;
-                	margin-top: 20px;
-                	margin-bottom: 20px;
-				    margin-left: auto;
-				    margin-right: auto;
-				    text-align: center;
-				    border-spacing: 10px;
-					border-collapse: separate;
-					table-layout: fixed;
-                }
-                .stats-table-item,
-                .stats-table-item-center {
-                	background-color: white;
-                	width: 26%;
-                	margin-top: 10px;
-                	margin-bottom: 10px;
-                }
-                .stats-table-item-center {
-                	width: 20%;
-                }
-                .stats-text,
-                .stats-text-small,
-                .stats-text-large {
-                	margin: 5px;
-                	font-size:14px;
-                }
-                .stats-text-small {
-                	font-size:10px;
-                }
-                .stats-text-large {
-                	font-size:20px;
-                }
-                
-                #create-doodle-dlg .email-list {width: 410px;height: 130px;}
-                #create-doodle-dlg .instructions {margin-top: 10px; margin-bottom: 10px;}
-           </style>
-    
-        <div class="gadget-content">
-        		<div id="view_count_last_year" class="stats-title">This is the Personal Stats Gadget's canvas page.</div>
-        		
-				<div id="chart_container" class="stats-chart"></div>
+           
 
-				<table id="view_count_table" class="stats-table">
-					<tr>
-						<td class="stats-table-item">
-							<div class="stats-text">So far this month</div>
-							<div id="view_count_this_month" class="stats-text-large"></div>
-							<div class="stats-text">Visitors</div>
-						</td>
-						<td class="stats-table-item-center">
-							<div class="stats-text">Best Month Ever</div>
-							<div id="view_count_best_month" class="stats-text-large"></div>
-							<div class="stats-text">Visitors</div>
-						</td>
-						<td class="stats-table-item">
-							<div id="view_count_all_time_since" class="stats-text"></div>
-							<div id="view_count_all_time" class="stats-text-large"></div>
-							<div class="stats-text">Visitors</div>
-							<div class="stats-text-small">* First month data is available for your profile page</div>
-						</td>
-					</tr>
-				</table>
-	    </div>
+        <style>
+        	#main {
+               	margin: 0px;
+               	padding: 0px;
+               	font-size: small;
+           	}
+        </style>
+    
+        <div id="main" style="display: none">
+        </div>
+
+        <div id="approval" style="display: none">
+          <a href="#" id="personalize">Personalize this gadget</a>
+          <ol>
+            <b><u>In order to use this Demo Gadget you must</u></b> 
+            <li>Have or create a Google account and know your userid and password</li>
+            <li>Register a new application at <a href="https://code.google.com/apis/console">https://code.google.com/apis/console</a></li>
+            <li>Make sure your app's "Redirect URIs" applies to your shindig environment (e.g. http://localhost:8080/gadgets/oauth2callback)</li>
+            <li>Update the Google client "Client ID" and "Client Secret" in the OAuth2 persistence (default is <code>config/oauth2.json</code>)</li>
+            <li>Restart the server</li>
+            <li>Click the link above to initiate the authorization process</li>
+          </ol>    
+         
+        </div>
+
+        <div id="waiting" style="display: none">
+          Please click
+          <a href="#" id="approvaldone">I've approved access</a>
+          once you've approved access to your data.
+        </div>
+
+        <div id="error" style="display: none;background-color:yellow;font-size:xx-small;" title="An error occured processing your request">
+           <div id="error_code"><u>code:</u></div>
+           <div id="error_uri"><u>uri:</u></div>
+           <div id="error_description"><u>description:</u></div>
+           <div id="error_explanation"><u>explanation:</u></div>
+           <div id="error_trace"><u>trace:</u></div>
+        </div>
 
 		<!-- Include libraries for getting Auth token using JWS -->
 		<script type="text/javascript" src="http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js"></script>
@@ -187,444 +143,65 @@
 			}(window,document,'script'));
 		</script>
 	
-		<script language="JavaScript" type="text/javascript">
+		  <script type="text/javascript">
+		    function getElement(x) {
+		      return document.getElementById(x);
+		    }
 
-			var token, ga_key, aggregatedByMonthAll, aggregatedByMonthLastYear;
-
-	        // Load the Visualization API and the column chart package.
-	        google.load('visualization', '1.0', {'packages':['corechart']});
-	  
-		  function getKey(callback) {
-		    var request = new XMLHttpRequest();
-		    request.open("GET", "./ga_key_ucsf.json", true);
-		    request.send(null);
-		    request.onreadystatechange = function() {
-		      if ( request.readyState === 4 && request.status === 200 ) {
-		        ga_key = JSON.parse(request.responseText);
-		        <!-- console.log("ga_key"); -->
-		        <!-- console.log(ga_key); -->
-				callback();
+		    function showOneSection(toshow) {
+		      var sections = [ 'main', 'approval', 'waiting', 'error' ];
+		      for (var i=0; i < sections.length; ++i) {
+		        var s = sections[i];
+		        var el = getElement(s);
+		        if (s === toshow) {
+		          el.style.display = "block";
+		        } else {
+		          el.style.display = "none";
+		        }
 		      }
 		    }
-		  }
-	  
 
-		  function getToken(callback) {
-			  	<!-- console.log ("KJUR:"); -->
-				<!-- console.log (KJUR); -->
+		    function fetchData() {
+		      url = "https://www.googleapis.com/analytics/v3/data/ga?ids=ga:23439892&start-date=2015-01-01&end-date=2015-01-31&metrics=ga:sessions,ga:bounces";
+		      var params = {};		
+		      params[gadgets.io.RequestParameters.CONTENT_TYPE] =
+		        gadgets.io.ContentType.TEXT;
+		      params[gadgets.io.RequestParameters.AUTHORIZATION] =
+		        gadgets.io.AuthorizationType.OAUTH2;
+		      params[gadgets.io.RequestParameters.METHOD] =
+		        gadgets.io.MethodType.GET;
+		      params[gadgets.io.RequestParameters.OAUTH_SERVICE_NAME] = "googleAPIv3";
+		      params[gadgets.io.RequestParameters.REFRESH_INTERVAL] = "0";
 
-				var pHeader = {"alg":"RS256","typ":"JWT"}
-				var sHeader = JSON.stringify(pHeader);
+		      gadgets.io.makeRequest(url, function (response) {
+		        if (response.oauthApprovalUrl) {
+		          var onOpen = function() {
+		            showOneSection('waiting');
+		          };
+		          var onClose = function() {
+		            fetchData();
+		          };
+		          var popup = new gadgets.oauth.Popup(response.oauthApprovalUrl,
+		              null, onOpen, onClose);
+		          getElement('personalize').onclick = popup.createOpenerOnClick();
+		          getElement('approvaldone').onclick = popup.createApprovedOnClick();
+		          showOneSection('approval');
+		        } else if (response.data) {
+		          getElement('main').appendChild(document.createTextNode(response.data));
+		          showOneSection('main');
+		        } else {
+		           getElement('error_code').appendChild(document.createTextNode(response.oauthError));
+		           getElement('error_uri').appendChild(document.createTextNode(response.oauthErrorUri));
+		           getElement('error_description').appendChild(document.createTextNode(response.oauthErrorText));
+		           getElement('error_explanation').appendChild(document.createTextNode(response.oauthErrorExplanation));
+		           getElement('error_trace').appendChild(document.createTextNode(response.oauthErrorTrace));
+		          showOneSection('error');
+		        }
+		      }, params);
+		    }
 
-				var pClaim = {};
-				pClaim.aud = "https://www.googleapis.com/oauth2/v3/token";
-				pClaim.scope = "https://www.googleapis.com/auth/analytics.readonly";
-				pClaim.iss = ga_key.client_email;
-				pClaim.exp = KJUR.jws.IntDate.get("now + 1hour");
-				pClaim.iat = KJUR.jws.IntDate.get("now");
-
-				var sClaim = JSON.stringify(pClaim);
-				var key = ga_key.private_key;
-
-				var sJWS = KJUR.jws.JWS.sign(null, sHeader, sClaim, key);
-
-				var XHR = new XMLHttpRequest();
-				var urlEncodedData = "";
-				var urlEncodedDataPairs = [];
-
-				urlEncodedDataPairs.push(encodeURIComponent("grant_type") + '=' + encodeURIComponent("urn:ietf:params:oauth:grant-type:jwt-bearer"));
-				urlEncodedDataPairs.push(encodeURIComponent("assertion") + '=' + encodeURIComponent(sJWS));
-				urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
-
-				// We define what will happen if the data are successfully sent
-				XHR.addEventListener('load', function(event) {
-				  	var response = JSON.parse(XHR.responseText);
-				  	token = response["access_token"]
-					<!-- console.log("token"); -->
-					<!-- console.log(token); -->
-					callback();
-				});
-
-				// We define what will happen in case of error
-				XHR.addEventListener('error', function(event) {
-				    console.log('Oops! Something went wrong.');
-				});
-
-				XHR.open('POST', 'https://www.googleapis.com/oauth2/v3/token');
-				XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-				XHR.send(urlEncodedData)
-		  }
-		
-		function analyticsStuff() {
-			<!-- console.log("Do Analytics Stuff"); -->
-
-			gapi.analytics.auth.authorize({
-			 	serverAuth: {
-					access_token: token
-				}
-			});
-
-			var earliest_start_date = "2009-12-01"
-			var pagePath = "~/jaime.sepulveda";
-		 	
-			var query = new gapi.analytics.report.Data({
-			 	query: {
-					'ids': 'ga:23439892',
-			    	'metrics': 'ga:sessions',
-			        'dimensions': 'ga:yearMonth, ga:country, ga:networkDomain',
-					'filters':'ga:pagePath=' + pagePath,
-			        'start-date': earliest_start_date,
-			        'end-date': 'today'
-			    }
-			 });
-		 
-			 query.execute();
-		 
-			 query.on('success', function(response) {
-			 	var data = response;
-			 	console.log(data);
-			 	aggregatedByMonthAll = aggregateDataByMonth(data.rows);
-			 	aggregatedByMonthLastYear = aggregateDataByMonth(data.rows, getYearMonthOneYearAgoMonthStart());
-			 	aggregatedByCountryLastYear = aggregateDataByCountry(data.rows, getYearMonthOneYearAgoMonthStart());
-				drawChart();
-				showVisitorCountStats();
-			 });
-		}
-
-		function fetchData() {
-	        url = "https://www.googleapis.com/analytics/v3/data/ga?ids=ga:23439892&start-date=2015-01-01&end-date=2015-01-31&metrics=ga:sessions,ga:bounces";
-	        var params = {};		
-	        params[gadgets.io.RequestParameters.CONTENT_TYPE] =
-	          gadgets.io.ContentType.TEXT;
-	        params[gadgets.io.RequestParameters.AUTHORIZATION] =
-	          gadgets.io.AuthorizationType.OAUTH2;
-	        params[gadgets.io.RequestParameters.METHOD] =
-	          gadgets.io.MethodType.GET;
-	        params[gadgets.io.RequestParameters.OAUTH_SERVICE_NAME] = "googleAPIv3";
-	        params[gadgets.io.RequestParameters.REFRESH_INTERVAL] = "0";
-
-	        gadgets.io.makeRequest(url, function (response) {
-	        	console.log("response via oauth2")
-	        	console.log(response);
-	          if (response.oauthApprovalUrl) {
-	        		console.log("OAuth Approval URL:")
-	        		console.log(response.oauthApprovalUrl);
-	          		getElement('gadget-content').appendChild(document.createTextNode(response.oauthApprovalUrl));
-	            
-	          } else if (response.data) {
-		      		console.log("Response Data:")
-		      		console.log(response.data);
-	         		getElement('gadget-content').appendChild(document.createTextNode(response.data));
-	          } else {
-		      		console.log("Error:")
-		      		console.log(response.data);
-		      		console.log(response.oauthError);
-		      		console.log(response.oauthErrorUri);
-		      		console.log(response.oauthErrorText);
-		      		console.log(response.oauthErrorExplanation);
-		      		console.log(response.oauthErrorTrace);
-	         		getElement('gadget-content').appendChild(document.createTextNode(response.data));
-	          		getElement('gadget-content').appendChild(document.createTextNode(response.oauthError));
-	          		getElement('gadget-content').appendChild(document.createTextNode(response.oauthErrorUri));
-	          		getElement('gadget-content').appendChild(document.createTextNode(response.oauthErrorText));
-	          		getElement('gadget-content').appendChild(document.createTextNode(response.oauthErrorExplanation));
-	          		getElement('gadget-content').appendChild(document.createTextNode(response.oauthErrorTrace));
-	          }
-	        }, params);
-      }
-		
-		// Format Google Analytics yearMonth string (ex: 201506) as Mmm-YYYY (ex: Jun-2015)
-		function formatMonthYear(yearMonthString) {
-		  	var months = new Array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'); 
-			var year, month_number, month;
-		
-			year = yearMonthString.substring(2, 4);
-			month_number = yearMonthString.substring(4, 6) - 1;
-			month = months[month_number];
-			new_value = month + "-" + year;
-			return new_value;
-		}
-
-		// Function that creates and populates a data table,
-	    // instantiates the chart, passes in the data and
-	    // draws it.
-	
-	    function drawChart() {
-			console.log("drawChart called")
-		
-	        // Create the data table.
-	        var data_table = new google.visualization.DataTable();
-	        data_table.addColumn('string', 'Month');
-	        data_table.addColumn('number', 'Sessions');
-			populateDataTable(data_table, aggregatedByMonthLastYear);
-
-	        // Set chart options
-	        var options = {
-				legend: {position: 'none'}
-		    };
-
-	        // Instantiate and draw our chart, passing in some options.
-	        var chart = new google.visualization.ColumnChart(document.getElementById('chart_container'));
-	        chart.draw(data_table, options);
-      }
-
-      	function aggregateDataByMonth(data, yearMonthStart) {
-
-      		var start = yearMonthStart || 0;
-      		var lastItemIndex = data.length-1; 
-      		var lastIndex = data[0].length-1;
-
-			var monthArray = data.map(function(elem) {
-			    return elem[0];
-			});
-
-			var filteredMonthArray = monthArray.filter(function(elem, i, array) {
-			        return array.indexOf(elem) === i && elem >= start;
-			    }
-			);
-
-			var arrayToReturn = filteredMonthArray.map(function(month) {
-			    var count = data.reduce(function(prevVal, elem) {
-			        if(elem[0] == month) {
-			            return prevVal + parseInt(elem[lastIndex]);
-			        } 
-			        else {
-			            return prevVal;
-			        }
-			    }, 0);
-			    return new Array(month, count); 
-			});
-
-			// add a row for the current month if one doesn't exist
-			var today = new Date();
-			var thisYearMonth = convertDateToYearMonthString(today);
-
-			var lastItem = data[lastItemIndex];
-			if (lastItem != thisYearMonth) {
-				var rowToAdd = new Array(thisYearMonth, 0);
-				arrayToReturn.push(rowToAdd);
-			}
-
-			return arrayToReturn;
-      	}
-
-      	function populateDataTable(dataTable, dataToAdd) {
-	  		console.log(dataToAdd);
-			for (idx in dataToAdd) {
-				row = dataToAdd[idx];
-				lastIndex = row.length-1;
-				dataTableRow = new Array();
-				dataTableRow[0] = formatMonthYear(row[0]);
-				dataTableRow[1] = row[lastIndex];
-				dataTable.addRow(dataTableRow);
-			}
-			// remove the last row, which contains data for this month (we show this data elsewhere)
-			var lastItemIndex = dataTable.getNumberOfRows()-1;
-			dataTable.removeRow(lastItemIndex);
-			
-			//console.log(dataTable);
-		}
-	  
-	  	function showVisitorCountStats() {
-
-			var vccLastYear = document.getElementById('view_count_last_year');
-			var vccLastYearCount = calculateViewCountLastYear(aggregatedByMonthLastYear);
-			console.log(vccLastYearCount);
-			vccLastYearCount.count = vccLastYearCount.count.toLocaleString(); // adds thousands separators
-			vccLastYear.innerHTML = "Your profile has been viewed " + vccLastYearCount.count + " times since " + vccLastYearCount.start;
-			
-			var vccThisMonth = document.getElementById("view_count_this_month");
-			vccThisMonthCount = calculateViewCountThisMonth(aggregatedByMonthAll);
-			vccThisMonthCount = vccThisMonthCount.toLocaleString(); // adds thousands separators
-			vccThisMonth.innerHTML = vccThisMonthCount;
-		
-			var vccBestMonth = document.getElementById("view_count_best_month");
-			vccBestMonthCount = calculateViewCountBestMonth(aggregatedByMonthAll);
-			vccBestMonthCount = vccBestMonthCount.toLocaleString(); // adds thousands separators
-			vccBestMonth.innerHTML = vccBestMonthCount;
-		
-			var vccAllTime = document.getElementById("view_count_all_time");
-			vccAllTimeCount = calculateViewCountAllTime(aggregatedByMonthAll);
-			vccAllTimeCount.count = vccAllTimeCount.count.toLocaleString(); // adds thousands separators
-			vccAllTime.innerHTML = vccAllTimeCount.count;
-		
-			var vccAllTimeSince = document.getElementById("view_count_all_time_since");
-			vccAllTimeSince.innerHTML = "Since " + vccAllTimeCount.start + "*";
-	  	}
-		
-		function getYearMonthOneYearAgoMonthStart() {
-	 		var today = new Date();
-		 	var start_date = new Date(today.getFullYear() - 1, today.getMonth(), 1);
-		 	var start_date_string = convertDateToYearMonthString(start_date);
-			return start_date_string;
-		}
-
-		function convertDateToYearMonthString(date) {
-			console.log("date");
-			console.log(date);
-		 	var month_numbers = new Array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
-		 	var date_string = date.getFullYear() + month_numbers[date.getMonth()];
-			console.log("date_string");
-		 	console.log(date_string);
-		 	return date_string;
-		}
-	  
-	  	function calculateViewCountLastYear(data) {
-		  	var i, row, lastIndex;
-			
-		  	var firstRow = data[0];
-  		  	var lastIndex = firstRow.length-1;
-			var count = data.reduce(function(prevVal, elem) {
-			    return prevVal + parseInt(elem[lastIndex]);
-			}, 0);
-
-  		  	var start = firstRow[0];
-			start = formatMonthYear(start);
-			start = start.replace("-", " 20");
-			
-			var viewCount = {
-				count: count,
-				start: start
-			}
-			
-			return viewCount;
-	  	}
-		
-		function calculateViewCountThisMonth(data) {
-			var lastRowIndex = data.length-1;
-			var lastRow = data[lastRowIndex];
-			var lastIndex = lastRow.length-1;
-			return parseInt(lastRow[lastIndex]);
-			//TODO: Need to handle 1st of month where there is no Analytics data yet.
-		}
-		
-		function calculateViewCountBestMonth(data) {
-			var i, row, lastIndex;
-			var highestCount = 0;
-			
-			for (i = 0; i < data.length; i++) {
-			  	row = data[i];
-			  	lastIndex = row.length-1;
-				if (parseInt(row[lastIndex]) > highestCount) {
-					highestCount = row[lastIndex];
-				}
-			}
-			return parseInt(highestCount);
-		}
-		
-		function calculateViewCountAllTime(data) {
-			var i, row, lastIndex, currentRowVal;
-			var count = 0;
-			var start = "";
-			var checkStart = true;
-	
-			for (i = 0; i < data.length; i++) {
-	  		  	row = data[i];
-	  		  	lastIndex = row.length-1;
-				currentRowVal = parseInt(row[lastIndex]);
-				count = count + currentRowVal;
-				
-				// find the first month with data
-				if (checkStart == true) {
-					start = row[0];
-					if (currentRowVal > 0) {
-						checkStart = false;
-					}
-				}
-			}
-
-			// Format for viewing after counting is done
-			start = formatMonthYear(start);
-			start = start.replace("-", " 20");
-			
-			var viewCount = {
-				count: count,
-				start: start
-			}
-			
-			return viewCount;
-		}
-
-		function calculateViewsByCountry(data) {
-			//
-		}
-
-      	function aggregateDataByCountry(data) {
-
-      		var lastIndex = data[0].length-1;
-
-			var countryArray = data.map(function(elem) {
-			    return elem[1];
-			});
-
-			var filteredCountryArray = countryArray.filter(function(elem, i, array) {
-			        return array.indexOf(elem) === i;
-			    }
-			);
-
-			console.log(filteredCountryArray);
-
-			var arrayToReturn = filteredCountryArray.map(function(country) {
-			    var count = data.reduce(function(prevVal, elem) {
-			        if(elem[1] == country) {
-			            return prevVal + parseInt(elem[lastIndex]);
-			        } 
-			        else {
-			            return prevVal;
-			        }
-			    }, 0);
-			    return new Array(country, count); 
-			});
-
-			// sort by sessions, descending
-			arrayToReturn.sort(function(a,b) {
-			    return b[1]-a[1]
-			});
-
-			console.log(arrayToReturn);
-		}
-
-			
-
-	    function showViewsByCountry(data) {
-	    	//
-	    }
-	
-		function handleClientLoad() {
-			console.log("google client library loaded");
-		}
-		
-		function init() {
-
-			var prefs = gadgets.views.getParams();
-			console.log("prefs:");
-			console.log(prefs);
-			var foo = prefs["foo"];
-			console.log("foo:")
-			console.log(foo);
-
-			var bar = prefs["bar"];
-			console.log("bar:")
-			console.log(bar);
-
-			console.log("@viewer");
-			var viewer = osapi.appdata.get({'userId':'@viewer'})
-			console.log(viewer);
-
-			//osapi.jsonld.getOwner().execute(function(ownerData) {
-			//	console.log("ownerData");
-			//	console.log(ownerData);
-			//});
-
-	  		//getKey( function () {
-	  		//	getToken( function () {
-	  		//		analyticsStuff();
-	  		//	});
-	  		//})
-	  		fetchData();
-		}
-	
-        gadgets.util.registerOnLoadHandler(init);
-	  
-	</script>]]></Content>
+		    gadgets.util.registerOnLoadHandler(fetchData);
+		  </script>
+		      ]]>
+		</Content>
 </Module>
