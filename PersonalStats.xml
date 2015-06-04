@@ -307,7 +307,7 @@
 	        	console.log("response via oauth2")
 	        	console.log(reponse);
 	          if (response.oauthApprovalUrl) {
-	        		console.log("OAuth Approval URL:)
+	        		console.log("OAuth Approval URL:")
 	        		console.log(response.oauthApprovalUrl);
 	          		getElement('gadget-content').appendChild(document.createTextNode(response.oauthApprovalUrl));
 	            
