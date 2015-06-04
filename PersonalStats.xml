@@ -297,7 +297,7 @@
 
 		function fetchData() {
 
-			var pagePath = "~/jaime.sepulveda";
+			var pagePath = encodeURIComponent("=~/jaime.sepulveda");
 
 			var earliest_start_date = "2009-12-01"
 			var today = new Date().yyyymmdd;
@@ -306,7 +306,7 @@
 				'ids': 'ga:23439892',
 		    	'metrics': 'ga:sessions',
 		        'dimensions': 'ga:yearMonth,ga:country,ga:networkDomain',
-				'filters':'ga:pagePath=' + pagePath,
+				'filters': 'ga:pagePath' + pagePath,
 		        'start-date': earliest_start_date,
 		        'end-date': today
 		    }
