@@ -308,7 +308,7 @@
 		        'dimensions': 'ga:yearMonth,ga:country,ga:networkDomain',
 				'filters':'ga:pagePath=' + pagePath,
 		        'start-date': earliest_start_date,
-		        'end-date': 'today'
+		        'end-date': today
 		    }
 
 			var query_string = "";
