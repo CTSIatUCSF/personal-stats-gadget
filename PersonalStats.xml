@@ -405,6 +405,7 @@
 	          } else if (response.data) {
 		      		console.log("Response Data:")
 		      		console.log(response.data);
+		      		drawChart();
 	          } else {
 		      		console.log("Error:")
 		      		console.log(response.data);
