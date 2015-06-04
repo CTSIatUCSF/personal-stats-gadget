@@ -316,9 +316,9 @@
 			   if (query.hasOwnProperty(key)) {
 			      query_string = query_string + key + "=" + query[key] + "&"; 
 			   }
-			   query_string.slice(0,-1); // remove the "&" at the end of query_string
 			}
-		   console.log(query_string);
+			query_string.slice(0,-1); // remove the "&" at the end of query_string
+		 	console.log(query_string);
 
 	        url = "https://www.googleapis.com/analytics/v3/data/ga?" + query_string;
 
