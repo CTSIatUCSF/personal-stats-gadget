@@ -67,12 +67,8 @@
 	            }
 				
 				function linkToCanvasClicked() {
-					var my_params = {
-  						foo : 12345,
-						bar : "Bar value"
-					};
 					var canvas_view = new gadgets.views.View("canvas");
-					gadgets.views.requestNavigateTo(canvas_view, my_params);
+					gadgets.views.requestNavigateTo(canvas_view);
 				}
 			
                 gadgets.util.registerOnLoadHandler(init);
