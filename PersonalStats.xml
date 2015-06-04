@@ -405,7 +405,15 @@
 	          } else if (response.data) {
 		      		console.log("Response Data:")
 		      		console.log(response.data);
-		      		drawChart();
+
+	      		 	var data = response.data;
+	      		 	console.log(data);
+	      		 	aggregatedByMonthAll = aggregateDataByMonth(data.rows);
+	      		 	aggregatedByMonthLastYear = aggregateDataByMonth(data.rows, getYearMonthOneYearAgoMonthStart());
+	      		 	aggregatedByCountryLastYear = aggregateDataByCountry(data.rows, getYearMonthOneYearAgoMonthStart());
+	      			drawChart();
+	      			showVisitorCountStats();
+
 	          } else {
 		      		console.log("Error:")
 		      		console.log(response.data);
