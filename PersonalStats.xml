@@ -287,8 +287,40 @@
 			 });
 		}
 
+		Date.prototype.yyyymmdd = function() {
+			var yyyy = this.getFullYear().toString();
+		    var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
+		    var dd  = this.getDate().toString();
+		    return yyyy + "-" + (mm[1]?mm:"0"+mm[0]) + "=" + (dd.length===2?dd:"0"+dd[0]); // padding
+		};
+
+
 		function fetchData() {
-	        url = "https://www.googleapis.com/analytics/v3/data/ga?ids=ga:23439892&start-date=2015-01-01&end-date=2015-01-31&metrics=ga:sessions,ga:bounces";
+
+			var pagePath = "~/jaime.sepulveda";
+
+			var earliest_start_date = "2009-12-01"
+			var today = new Date().yyyymmdd;
+
+			var query: {
+				'ids': 'ga:23439892',
+		    	'metrics': 'ga:sessions',
+		        'dimensions': 'ga:yearMonth,ga:country,ga:networkDomain',
+				'filters':'ga:pagePath=' + pagePath,
+		        'start-date': earliest_start_date,
+		        'end-date': 'today'
+		    }
+
+			var query_string = "";
+			for (var key in query) {
+			   if (query.hasOwnProperty(key)) {
+			      query_string = query_string + key + "=" + query[key]; 
+			   }
+			   console.log(query_string);
+			}
+
+	        url = "https://www.googleapis.com/analytics/v3/data/ga?" + query_string;
+	        
 	        var params = {};		
 	        params[gadgets.io.RequestParameters.CONTENT_TYPE] =
 	          gadgets.io.ContentType.TEXT;
