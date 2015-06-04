@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Module>
 	<ModulePrefs title="Personal Stats" author="Dan Hoffman">
+		<OAuth2>
+		  <Service name="googleAPIv3" scope="https://www.googleapis.com/auth/analytics.readonly">
+		  </Service>
+		</OAuth2>
 		<Require feature="views"/>
 		<Require feature="settitle"/>
 		<Require feature="osapi"/>
@@ -286,6 +290,48 @@
 				showVisitorCountStats();
 			 });
 		}
+
+		function fetchData() {
+	        url = "https://www.googleapis.com/analytics/v3/data/ga?ids=ga:23439892&start-date=2015-01-01&end-date=2015-01-31&metrics=ga:sessions,ga:bounces";
+	        var params = {};		
+	        params[gadgets.io.RequestParameters.CONTENT_TYPE] =
+	          gadgets.io.ContentType.TEXT;
+	        params[gadgets.io.RequestParameters.AUTHORIZATION] =
+	          gadgets.io.AuthorizationType.OAUTH2;
+	        params[gadgets.io.RequestParameters.METHOD] =
+	          gadgets.io.MethodType.GET;
+	        params[gadgets.io.RequestParameters.OAUTH_SERVICE_NAME] = "googleAPIv3";
+	        params[gadgets.io.RequestParameters.REFRESH_INTERVAL] = "0";
+
+	        gadgets.io.makeRequest(url, function (response) {
+	        	console.log("response via oauth2")
+	        	console.log(reponse);
+	          if (response.oauthApprovalUrl) {
+	        		console.log("OAuth Approval URL:)
+	        		console.log(response.oauthApprovalUrl);
+	          		getElement('gadget-content').appendChild(document.createTextNode(response.oauthApprovalUrl));
+	            
+	          } else if (response.data) {
+		      		console.log("Reponse Data:")
+		      		console.log(response.data);
+	         		getElement('gadget-content').appendChild(document.createTextNode(response.data));
+	          } else {
+		      		console.log("Error:")
+		      		console.log(response.data);
+		      		console.log(response.oauthError);
+		      		console.log(response.oauthErrorUri);
+		      		console.log(response.oauthErrorText);
+		      		console.log(response.oauthErrorExplanation);
+		      		console.log(response.oauthErrorTrace);
+	         		getElement('gadget-content').appendChild(document.createTextNode(response.data));
+	          		getElement('gadget-content').appendChild(document.createTextNode(response.oauthError));
+	          		getElement('gadget-content').appendChild(document.createTextNode(response.oauthErrorUri));
+	          		getElement('gadget-content').appendChild(document.createTextNode(response.oauthErrorText));
+	          		getElement('gadget-content').appendChild(document.createTextNode(response.oauthErrorExplanation));
+	          		getElement('gadget-content').appendChild(document.createTextNode(response.oauthErrorTrace));
+	          }
+	        }, params);
+      }
 		
 		// Format Google Analytics yearMonth string (ex: 201506) as Mmm-YYYY (ex: Jun-2015)
 		function formatMonthYear(yearMonthString) {
@@ -565,16 +611,17 @@
 			var viewer = osapi.appdata.get({'userId':'@viewer'})
 			console.log(viewer);
 
-			osapi.jsonld.getOwner().execute(function(ownerData) {
-				console.log("ownerData");
-				console.log(ownerData);
-			});
+			//osapi.jsonld.getOwner().execute(function(ownerData) {
+			//	console.log("ownerData");
+			//	console.log(ownerData);
+			//});
 
-	  		getKey( function () {
-	  			getToken( function () {
-	  				analyticsStuff();
-	  			});
-	  		})
+	  		//getKey( function () {
+	  		//	getToken( function () {
+	  		//		analyticsStuff();
+	  		//	});
+	  		//})
+	  		fetchData();
 		}
 	
         gadgets.util.registerOnLoadHandler(init);
