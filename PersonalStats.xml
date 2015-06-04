@@ -325,37 +325,37 @@
 			function analyticsStuff() {
 				<!-- console.log("Do Analytics Stuff"); -->
 
-			gapi.analytics.auth.authorize({
-			 	serverAuth: {
-					access_token: token
-				}
-			});
+				gapi.analytics.auth.authorize({
+				 	serverAuth: {
+						access_token: token
+					}
+				});
 
-			var earliest_start_date = "2009-12-01"
-			var pagePath = "~/jaime.sepulveda";
-		 	
-			var query = new gapi.analytics.report.Data({
-			 	query: {
-					'ids': 'ga:23439892',
-			    	'metrics': 'ga:sessions',
-			        'dimensions': 'ga:yearMonth, ga:country, ga:networkDomain',
-					'filters':'ga:pagePath=' + pagePath,
-			        'start-date': earliest_start_date,
-			        'end-date': 'today'
-			    }
-			 });
-		 
-			 query.execute();
-		 
-			 query.on('success', function(response) {
-			 	var data = response;
-			 	console.log(data);
-			 	aggregatedByMonthAll = aggregateDataByMonth(data.rows);
-			 	aggregatedByMonthLastYear = aggregateDataByMonth(data.rows, getYearMonthOneYearAgoMonthStart());
-			 	aggregatedByCountryLastYear = aggregateDataByCountry(data.rows, getYearMonthOneYearAgoMonthStart());
-			 	drawChart();
-				showVisitorCountStats();
-			 });
+				var earliest_start_date = "2009-12-01"
+				var pagePath = "~/jaime.sepulveda";
+			 	
+				var query = new gapi.analytics.report.Data({
+				 	query: {
+						'ids': 'ga:23439892',
+				    	'metrics': 'ga:sessions',
+				        'dimensions': 'ga:yearMonth, ga:country, ga:networkDomain',
+						'filters':'ga:pagePath=' + pagePath,
+				        'start-date': earliest_start_date,
+				        'end-date': 'today'
+				    }
+				 });
+			 
+				 query.execute();
+			 
+				 query.on('success', function(response) {
+				 	var data = response;
+				 	console.log(data);
+				 	aggregatedByMonthAll = aggregateDataByMonth(data.rows);
+				 	aggregatedByMonthLastYear = aggregateDataByMonth(data.rows, getYearMonthOneYearAgoMonthStart());
+				 	aggregatedByCountryLastYear = aggregateDataByCountry(data.rows, getYearMonthOneYearAgoMonthStart());
+				 	drawChart();
+					showVisitorCountStats();
+				 });
 		}
 
 		function fetchData() {
@@ -406,6 +406,8 @@
 					var data = response.data;
 		      		console.log("Response Data:")
 	      		 	console.log(data);
+		      		console.log("Data Rows:")
+	      		 	console.log(data.rows);
 	      		 	aggregatedByMonthAll = aggregateDataByMonth(data.rows);
 	      		 	console.log("aggregatedByMonthAll");
 	      		 	console.log(aggregatedByMonthAll);
