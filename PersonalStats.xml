@@ -406,8 +406,8 @@
 					var data = response.data;
 		      		console.log("Response Data:")
 	      		 	console.log(data);
-	      		 	console.log("data.totalResults");
-	      		 	console.log(data.totalResults);
+	      		 	console.log("response.data.totalResults");
+	      		 	console.log(response.data.totalResults);
 		      		console.log("data.rows:")
 	      		 	console.log(data.rows);
 	      		 	aggregatedByMonthAll = aggregateDataByMonth(data.rows);
