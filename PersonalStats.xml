@@ -59,6 +59,65 @@
         
         <script type="text/javascript">
 
+				function fetchData() {
+
+					var pagePath = encodeURIComponent("=~/jaime.sepulveda");
+
+					var earliest_start_date = "2009-12-01"
+					var today = new Date().yyyymmdd();
+
+					var query = {
+						'ids': 'ga:23439892',
+				    	'metrics': 'ga:sessions',
+				        'dimensions': 'ga:yearMonth,ga:country,ga:networkDomain',
+						'filters': 'ga:pagePath' + pagePath,
+				        'start-date': earliest_start_date,
+				        'end-date': today
+				    }
+
+					var query_string = "";
+					for (var key in query) {
+					   if (query.hasOwnProperty(key)) {
+					      query_string = query_string + key + "=" + query[key] + "&"; 
+					   }
+					}
+					query_string = query_string.slice(0,-1); // remove the "&" at the end of query_string
+				 	console.log(query_string);
+
+			        //url = "https://www.googleapis.com/analytics/v3/data/ga?" + query_string;
+			        url = "https://www.googleapis.com/analytics/v3/data/ga?ids=ga:23439892&start-date=2015-01-01&end-date=2015-01-31&metrics=ga:sessions,ga:bounces";
+			        var params = {};		
+			        params[gadgets.io.RequestParameters.CONTENT_TYPE] =
+			          gadgets.io.ContentType.TEXT;
+			        params[gadgets.io.RequestParameters.AUTHORIZATION] =
+			          gadgets.io.AuthorizationType.OAUTH2;
+			        params[gadgets.io.RequestParameters.METHOD] =
+			          gadgets.io.MethodType.GET;
+			        params[gadgets.io.RequestParameters.OAUTH_SERVICE_NAME] = "googleAPIv3";
+			        params[gadgets.io.RequestParameters.REFRESH_INTERVAL] = "0";
+
+			        gadgets.io.makeRequest(url, function (response) {
+			        	console.log("response via oauth2")
+			        	console.log(response);
+			          if (response.oauthApprovalUrl) {
+			        		console.log("OAuth Approval URL:")
+			        		console.log(response.oauthApprovalUrl);
+			            
+			          } else if (response.data) {
+				      		console.log("Response Data:")
+				      		console.log(response.data);
+			          } else {
+				      		console.log("Error:")
+				      		console.log(response.data);
+				      		console.log(response.oauthError);
+				      		console.log(response.oauthErrorUri);
+				      		console.log(response.oauthErrorText);
+				      		console.log(response.oauthErrorExplanation);
+				      		console.log(response.oauthErrorTrace);
+			          }
+			        }, params);
+		      	}
+
 	            function init() {
 					$('#linkToCanvas').click(function(){ 
 						linkToCanvasClicked();
@@ -69,6 +128,8 @@
 						console.log("ownerData");
 						console.log(ownerData);
 					});
+
+					fetchData();
 	            }
 				
 				function linkToCanvasClicked() {
