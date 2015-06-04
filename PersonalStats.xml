@@ -441,7 +441,7 @@
 			var thisYearMonth = convertDateToYearMonthString(today);
 
 			var lastItem = data[lastItemIndex];
-			if (lastItem != thisYearMonth) {
+			if (lastItem[0] != thisYearMonth) {
 				var rowToAdd = new Array(thisYearMonth, 0);
 				arrayToReturn.push(rowToAdd);
 			}
