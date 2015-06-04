@@ -199,7 +199,7 @@
 	
 		<script language="JavaScript" type="text/javascript">
 
-			var token, ga_key, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCountryLastYear;
+			var ownerData, token, ga_key, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCountryLastYear;
 
 	        // Load the Visualization API and the column chart package.
 	        google.load('visualization', '1.0', {'packages':['corechart']});
@@ -302,7 +302,11 @@
 
 		function fetchData() {
 
-			var pagePath = encodeURIComponent("=~/jaime.sepulveda");
+			var ownerUrlParts = ownerData.jsonld.workplaceHomepage.split("/");
+			var ownerId = ownerUrlParts[ownerUrlParts.length-1];
+			var pagePath = encodeURIComponent("=~/" + ownerId);
+			
+			//var pagePath = encodeURIComponent("=~/jaime.sepulveda");
 			//var pagePath = encodeURIComponent("=~/profile/368366");
 
 			//var pagePath = encodeURIComponent("=~/eric.meeks");
@@ -643,7 +647,8 @@
 		
 		function init() {
 
-			osapi.jsonld.getOwner().execute(function(ownerData) {
+			osapi.jsonld.getOwner().execute(function(owner_data) {
+				ownerData = owner_data;
 				console.log("ownerData");
 				console.log(ownerData);
 			});
