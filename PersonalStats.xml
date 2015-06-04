@@ -64,6 +64,7 @@
         <img id="waiting" src="images/waiting.gif" style="display:none;">
         
         <script type="text/javascript">
+        	var ownerURI;
 
         	function getProductionURI(uri) {
 				if (uri.indexOf("http://stage-profiles.ucsf.edu/profiles200") !== -1) {
@@ -147,13 +148,14 @@
 					osapi.jsonld.getOwner().execute(function(ownerData) {
 						console.log("ownerData");
 						console.log(ownerData);
+						ownerURI = ownerData.uris[0];
 					});
 
 					fetchData();
 	            }
 				
 				function linkToCanvasClicked() {
-			    	gadgets.views.requestNavigateTo("canvas");
+			    	gadgets.views.requestNavigateTo("canvas", {}, ownerURI);
 				}
 			
                 gadgets.util.registerOnLoadHandler(init);
