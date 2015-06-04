@@ -76,15 +76,7 @@
 					return "http://profiles.ucsf.edu/profile/368698";
 				}
 				return uri;
-			}
-
-			
-			osapi.jsonld.getOwnerProperties([PRNS('fullName')]).execute(function(result) {
-				if (!result.error) {
-					console.log("osapit.jsonld.getOwnerProperties result:")
-					console.log(result);
-				}
-			}); /* end osapi.appdata.get */			
+			}		
 			
 
 				function fetchData() {
