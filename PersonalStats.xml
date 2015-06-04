@@ -64,6 +64,11 @@
 						linkToCanvasClicked();
 						return false;
 					});
+
+					osapi.jsonld.getOwner().execute(function(ownerData) {
+						console.log("ownerData");
+						console.log(ownerData);
+					});
 	            }
 				
 				function linkToCanvasClicked() {
@@ -203,7 +208,6 @@
 		      }
 		    }
 		  }
-	  
 
 		  function getToken(callback) {
 			  	<!-- console.log ("KJUR:"); -->
@@ -616,21 +620,6 @@
 		}
 		
 		function init() {
-
-			var prefs = gadgets.views.getParams();
-			console.log("prefs:");
-			console.log(prefs);
-			var foo = prefs["foo"];
-			console.log("foo:")
-			console.log(foo);
-
-			var bar = prefs["bar"];
-			console.log("bar:")
-			console.log(bar);
-
-			console.log("@viewer");
-			var viewer = osapi.appdata.get({'userId':'@viewer'})
-			console.log(viewer);
 
 			osapi.jsonld.getOwner().execute(function(ownerData) {
 				console.log("ownerData");
