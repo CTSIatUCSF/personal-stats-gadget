@@ -64,7 +64,28 @@
         <img id="waiting" src="images/waiting.gif" style="display:none;">
         
         <script type="text/javascript">
-        		var ownerData;
+
+        	function getProductionURI(uri) {
+				if (uri.indexOf("http://stage-profiles.ucsf.edu/profiles200") !== -1) {
+					return uri.replace("http://stage-profiles.ucsf.edu/profiles200", "http://profiles.ucsf.edu");
+				}
+				else if (uri.indexOf("http://profilesstage.sc-ctsi.org") !== -1) {
+					return uri.replace("http://profilesstage.sc-ctsi.org", "http://profiles.sc-ctsi.org");
+				}
+				else if (uri == "http://stage-profiles.ucsf.edu/profiles260/profile/190731") {
+					return "http://profiles.ucsf.edu/profile/368698";
+				}
+				return uri;
+			}
+
+			
+			osapi.jsonld.getOwnerProperties([PRNS('fullName')]).execute(function(result) {
+				if (!result.error) {
+					console.log("osapit.jsonld.getOwnerProperties result:")
+					console.log(result);
+				}
+			}); /* end osapi.appdata.get */			
+			
 
 				function fetchData() {
 
@@ -131,8 +152,7 @@
 						return false;
 					});
 
-					osapi.jsonld.getOwner().execute(function(result) {
-						ownerData = result;
+					osapi.jsonld.getOwner().execute(function(ownerData) {
 						console.log("ownerData");
 						console.log(ownerData);
 					});
@@ -141,7 +161,7 @@
 	            }
 				
 				function linkToCanvasClicked() {
-			    	gadgets.views.requestNavigateTo('canvas', {}, ownerData);
+			    	gadgets.views.requestNavigateTo("canvas");
 				}
 			
                 gadgets.util.registerOnLoadHandler(init);
