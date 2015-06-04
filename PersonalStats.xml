@@ -351,12 +351,9 @@
 			 	var data = response;
 			 	console.log(data);
 			 	aggregatedByMonthAll = aggregateDataByMonth(data.rows);
-			 	console.log(aggregatedByMonthAll);
 			 	aggregatedByMonthLastYear = aggregateDataByMonth(data.rows, getYearMonthOneYearAgoMonthStart());
-			 	console.log(aggregatedByMonthLastYear);
 			 	aggregatedByCountryLastYear = aggregateDataByCountry(data.rows, getYearMonthOneYearAgoMonthStart());
-			 	console.log(aggregatedByCountryLastYear);
-				drawChart();
+			 	drawChart();
 				showVisitorCountStats();
 			 });
 		}
@@ -412,9 +409,12 @@
 	      		 	var data = response.data;
 	      		 	console.log(data);
 	      		 	aggregatedByMonthAll = aggregateDataByMonth(data.rows);
-	      		 	aggregatedByMonthLastYear = aggregateDataByMonth(data.rows, getYearMonthOneYearAgoMonthStart());
-	      		 	aggregatedByCountryLastYear = aggregateDataByCountry(data.rows, getYearMonthOneYearAgoMonthStart());
-	      			drawChart();
+	      		 	console.log(aggregatedByMonthAll);
+			 		aggregatedByMonthLastYear = aggregateDataByMonth(data.rows, getYearMonthOneYearAgoMonthStart());
+	      		 	console.log(aggregatedByMonthLastYear);
+			 		aggregatedByCountryLastYear = aggregateDataByCountry(data.rows, getYearMonthOneYearAgoMonthStart());
+	      			console.log(aggregatedByCountryLastYear);
+					drawChart();
 	      			showVisitorCountStats();
 
 	          } else {
