@@ -257,26 +257,26 @@
 	
 		<script language="JavaScript" type="text/javascript">
 
-			var token, ga_key, aggregatedByMonthAll, aggregatedByMonthLastYear;
+			var token, ga_key, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCountryLastYear;
 
 	        // Load the Visualization API and the column chart package.
 	        google.load('visualization', '1.0', {'packages':['corechart']});
 	  
-		  function getKey(callback) {
-		    var request = new XMLHttpRequest();
-		    request.open("GET", "./ga_key_ucsf.json", true);
-		    request.send(null);
-		    request.onreadystatechange = function() {
-		      if ( request.readyState === 4 && request.status === 200 ) {
-		        ga_key = JSON.parse(request.responseText);
-		        <!-- console.log("ga_key"); -->
-		        <!-- console.log(ga_key); -->
-				callback();
-		      }
-		    }
-		  }
+		  	function getKey(callback) {
+		    	var request = new XMLHttpRequest();
+		    	request.open("GET", "./ga_key_ucsf.json", true);
+		    	request.send(null);
+		    	request.onreadystatechange = function() {
+		        if ( request.readyState === 4 && request.status === 200 ) {
+		        	ga_key = JSON.parse(request.responseText);
+		        	<!-- console.log("ga_key"); -->
+		        	<!-- console.log(ga_key); -->
+					callback();
+		      		}
+		    	}
+		  	}
 
-		  function getToken(callback) {
+		  	function getToken(callback) {
 			  	<!-- console.log ("KJUR:"); -->
 				<!-- console.log (KJUR); -->
 
@@ -320,10 +320,10 @@
 				XHR.open('POST', 'https://www.googleapis.com/oauth2/v3/token');
 				XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 				XHR.send(urlEncodedData)
-		  }
+		  	}
 		
-		function analyticsStuff() {
-			<!-- console.log("Do Analytics Stuff"); -->
+			function analyticsStuff() {
+				<!-- console.log("Do Analytics Stuff"); -->
 
 			gapi.analytics.auth.authorize({
 			 	serverAuth: {
@@ -351,8 +351,11 @@
 			 	var data = response;
 			 	console.log(data);
 			 	aggregatedByMonthAll = aggregateDataByMonth(data.rows);
+			 	console.log(aggregatedByMonthAll);
 			 	aggregatedByMonthLastYear = aggregateDataByMonth(data.rows, getYearMonthOneYearAgoMonthStart());
+			 	console.log(aggregatedByMonthLastYear);
 			 	aggregatedByCountryLastYear = aggregateDataByCountry(data.rows, getYearMonthOneYearAgoMonthStart());
+			 	console.log(aggregatedByCountryLastYear);
 				drawChart();
 				showVisitorCountStats();
 			 });
@@ -515,7 +518,7 @@
 			var lastItemIndex = dataTable.getNumberOfRows()-1;
 			dataTable.removeRow(lastItemIndex);
 			
-			//console.log(dataTable);
+			console.log(dataTable);
 		}
 	  
 	  	function showVisitorCountStats() {
