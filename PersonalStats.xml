@@ -300,7 +300,7 @@
 			var pagePath = encodeURIComponent("=~/jaime.sepulveda");
 
 			var earliest_start_date = "2009-12-01"
-			var today = new Date().yyyymmdd;
+			var today = new Date().yyyymmdd();
 
 			var query = {
 				'ids': 'ga:23439892',
@@ -317,8 +317,8 @@
 			      query_string = query_string + key + "=" + query[key] + "&"; 
 			   }
 			   query_string.slice(0,-1); // remove the "&" at the end of query_string
-			   console.log(query_string);
 			}
+		   console.log(query_string);
 
 	        url = "https://www.googleapis.com/analytics/v3/data/ga?" + query_string;
 
