@@ -403,16 +403,17 @@
 	        		console.log(response.oauthApprovalUrl);
 	            
 	          } else if (response.data) {
+					var data = response.data;
 		      		console.log("Response Data:")
-		      		console.log(response.data);
-
-	      		 	var data = response.data;
 	      		 	console.log(data);
 	      		 	aggregatedByMonthAll = aggregateDataByMonth(data.rows);
+	      		 	console.log("aggregatedByMonthAll");
 	      		 	console.log(aggregatedByMonthAll);
 			 		aggregatedByMonthLastYear = aggregateDataByMonth(data.rows, getYearMonthOneYearAgoMonthStart());
+	      		 	console.log("aggregatedByMonthLastYear");
 	      		 	console.log(aggregatedByMonthLastYear);
 			 		aggregatedByCountryLastYear = aggregateDataByCountry(data.rows, getYearMonthOneYearAgoMonthStart());
+	      			console.log("aggregatedByCountryLastYear");
 	      			console.log(aggregatedByCountryLastYear);
 					drawChart();
 	      			showVisitorCountStats();
