@@ -305,7 +305,7 @@
 			var ownerUrlParts = ownerData.jsonld.workplaceHomepage.split("/");
 			var ownerId = ownerUrlParts[ownerUrlParts.length-1];
 			var pagePath = encodeURIComponent("=~/" + ownerId);
-			
+
 			//var pagePath = encodeURIComponent("=~/jaime.sepulveda");
 			//var pagePath = encodeURIComponent("=~/profile/368366");
 
@@ -651,14 +651,9 @@
 				ownerData = owner_data;
 				console.log("ownerData");
 				console.log(ownerData);
-			});
 
-	  		//getKey( function () {
-	  		//	getToken( function () {
-	  		//		analyticsStuff();
-	  		//	});
-	  		//})
-	  		fetchData();
+		  		fetchData();
+			});
 		}
 	
         gadgets.util.registerOnLoadHandler(init);
