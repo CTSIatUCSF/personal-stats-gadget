@@ -406,8 +406,10 @@
 					var data = response.data;
 		      		console.log("Response Data:")
 	      		 	console.log(data);
-		      		console.log("Data Rows:")
+		      		console.log("data.rows:")
 	      		 	console.log(data.rows);
+		      		console.log("data[rows]:")
+	      		 	console.log(data[rows]);
 	      		 	aggregatedByMonthAll = aggregateDataByMonth(data.rows);
 	      		 	console.log("aggregatedByMonthAll");
 	      		 	console.log(aggregatedByMonthAll);
