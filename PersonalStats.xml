@@ -300,7 +300,8 @@
 
 		function fetchData() {
 
-			var pagePath = encodeURIComponent("=~/jaime.sepulveda");
+			//var pagePath = encodeURIComponent("=~/jaime.sepulveda");
+			var pagePath = encodeURIComponent("=~/profile/368366");
 
 			var earliest_start_date = "2009-12-01"
 			var today = new Date().yyyymmdd();
