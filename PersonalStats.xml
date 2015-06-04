@@ -18,7 +18,7 @@
  * under the License.
 -->
 <Module>
-  <ModulePrefs title="Demo OAuth2 Authorization Code Gadget (Simple pull from Google Contacts)">
+  <ModulePrefs title="Personal Stats" author="Dan Hoffman">
     <OAuth2>
       <Service name="googleAPIv3" scope="https://www.googleapis.com/auth/analytics.readonly">
       </Service>
