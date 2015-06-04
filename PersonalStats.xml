@@ -25,7 +25,7 @@
     </OAuth2>
     <Require feature="views" />
   </ModulePrefs>
-  <Content type="html" view="small">
+  <Content type="html" view="canvas">
       <![CDATA[
 
     <style>
