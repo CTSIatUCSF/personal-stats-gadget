@@ -320,8 +320,8 @@
 			query_string = query_string.slice(0,-1); // remove the "&" at the end of query_string
 		 	console.log(query_string);
 
-	        url = "https://www.googleapis.com/analytics/v3/data/ga?" + query_string;
-
+	        //url = "https://www.googleapis.com/analytics/v3/data/ga?" + query_string;
+	        url = "https://www.googleapis.com/analytics/v3/data/ga?ids=ga:23439892&start-date=2015-01-01&end-date=2015-01-31&metrics=ga:sessions,ga:bounces";
 	        var params = {};		
 	        params[gadgets.io.RequestParameters.CONTENT_TYPE] =
 	          gadgets.io.ContentType.TEXT;
