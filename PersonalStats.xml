@@ -302,7 +302,7 @@
 			var earliest_start_date = "2009-12-01"
 			var today = new Date().yyyymmdd;
 
-			var query: {
+			var query = {
 				'ids': 'ga:23439892',
 		    	'metrics': 'ga:sessions',
 		        'dimensions': 'ga:yearMonth,ga:country,ga:networkDomain',
@@ -320,7 +320,7 @@
 			}
 
 	        url = "https://www.googleapis.com/analytics/v3/data/ga?" + query_string;
-	        
+
 	        var params = {};		
 	        params[gadgets.io.RequestParameters.CONTENT_TYPE] =
 	          gadgets.io.ContentType.TEXT;
