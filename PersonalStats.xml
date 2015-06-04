@@ -69,6 +69,8 @@
             function init() {
 
 				osapi.jsonld.getOwner().execute(function(ownerData) {
+					console.log("ownerData:");
+					console.log(ownerData);
 					ownerURI = ownerData.uris[0];
 
 					//don't enable the link until we have the owner data
@@ -300,10 +302,10 @@
 
 		function fetchData() {
 
-			//var pagePath = encodeURIComponent("=~/jaime.sepulveda");
+			var pagePath = encodeURIComponent("=~/jaime.sepulveda");
 			//var pagePath = encodeURIComponent("=~/profile/368366");
 
-			var pagePath = encodeURIComponent("=~/eric.meeks");
+			//var pagePath = encodeURIComponent("=~/eric.meeks");
 			//var pagePath = encodeURIComponent("=~/profile/368698");
 
 			var earliest_start_date = "2009-12-01"
