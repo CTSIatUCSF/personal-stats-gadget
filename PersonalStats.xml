@@ -403,11 +403,11 @@
 	        		console.log(response.oauthApprovalUrl);
 	            
 	          } else if (response.data) {
-					var data = response.data;
+					var data = JSON.parse(response.data);
 		      		console.log("Response Data:")
 	      		 	console.log(data);
-	      		 	console.log("response.data.totalResults");
-	      		 	console.log(response.data.totalResults);
+	      		 	console.log("data.totalResults");
+	      		 	console.log(data.totalResults);
 		      		console.log("data.rows:")
 	      		 	console.log(data.rows);
 	      		 	aggregatedByMonthAll = aggregateDataByMonth(data.rows);
