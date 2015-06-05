@@ -169,7 +169,7 @@
 
                 }
                 .geo-list-row {
-                	font-size:20px;
+                	font-size:40px;
                 }
                 #geo-panel {
 
