@@ -478,6 +478,8 @@
 		  		$("#geo-list tr td:last-child").each(function() {
 		  		  $(this).addClass("panel-list-count");
 		  		});
+
+		  		console.log($(".panel-list-count").length);
 		  	}
 			
 			function getYearMonthOneYearAgoMonthStart() {
