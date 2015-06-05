@@ -461,11 +461,16 @@
 		  	}
 
 		  	function showViewsByCountry(data) {
-		  		var index, item
+		  		var index, item;
+		  		var table = document.getElementById("geo_list");
 
 		  		for (index in data) {
 		  			item = data[index];
-		  			$('#geo_list').append("<tr><td>" +item[0] + "</td><td>" + item[1] + "</td></tr>");
+		  			var row = table.insertRow(0);
+		  			var cell0 = row.insertCell(0);
+			  		var cell1 = row.insertCell(1);
+			  		cell0.innerHTML = item[0];
+			  		cell1.innerHTML = item[1];
 		  			console.log("added row");
 		  		}
 		  	}
