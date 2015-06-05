@@ -537,7 +537,7 @@
 			}
 
 	      	function aggregateDataByCountry(data, dateStart) {
-				var start = yearMonthStart || 0
+				var start = dateStart || 0
 	      		var lastIndex = data[0].length-1;
 
 				var dataFilteredByDate = data.filter(function(elem, i, array) {
