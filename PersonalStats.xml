@@ -329,8 +329,10 @@
 	      		var lastIndex = data[0].length-1;
 
 				var monthArray = data.map(function(elem) {
-				    return elem[0];
+				    return elem[0].slice(0, -2);
 				});
+				console.log("monthArray:");
+				console.log(monthArray);
 
 				var filteredMonthArray = monthArray.filter(function(elem, i, array) {
 				        return array.indexOf(elem) === i && elem >= start;
