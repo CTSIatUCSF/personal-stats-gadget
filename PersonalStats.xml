@@ -462,7 +462,7 @@
 
 		  	function showViewsByCountry(data) {
 		  		var index, item;
-		  		var table = document.getElementById("geo_list");
+		  		var table = document.getElementById("geo-list");
 
 		  		for (index in data) {
 		  			item = data[index];
