@@ -153,12 +153,16 @@
                 	font-size:20px;
                 }
                 .panel {
-                	width: 50%;
+                	width: 45%;
+                	margin: 10px;
                 }
                 .panel-title {
+                	margin: 5px;
                 	font-size:12px;
                 }
-                .panel-list {
+                .panel-list,
+                .panel-button-area {
+                	margin: 5px;
                 	width: 35%;
                 }
                 .panel-list-row,
@@ -215,10 +219,11 @@
 				</table>
 				<div id="geo-panel" class="panel">
 					<div class="panel-title">Views By Country</div>
+					<div class="panel-button-area">Buttons Go Here</div>
 					<table id="geo-list" class="panel-list">
 						<tr class="panel-list-row">
 							<th class="panel-list-header">Country</th>
-							<th class="panel-list-header">Views</th>
+							<th class="panel-list-header panel-list-count">Views</th>
 						</tr>
 					</table>
 				</div>
