@@ -152,9 +152,27 @@
                 .stats-text-large {
                 	font-size:20px;
                 }
-                
-                #create-doodle-dlg .email-list {width: 410px;height: 130px;}
-                #create-doodle-dlg .instructions {margin-top: 10px; margin-bottom: 10px;}
+                .panel {
+
+                }
+                .panel-title {
+
+                }
+                .panel-list {
+
+                }
+                .panel-list-row {
+
+                }
+                .panel-list-header {
+
+                }
+                #geo-panel {
+
+                }
+                #geo-list {
+
+                }
            </style>
     
         <div class="gadget-content">
@@ -182,13 +200,15 @@
 						</td>
 					</tr>
 				</table>
-
-				<table id="geo_list">
-					<tr>
-						<th>Country</th>
-						<th>Views</th>
-					</tr>
-				</table>
+				<div id="geo-panel" class="panel">
+					<div class="panel-title">Views By Country</div>
+					<table id="geo_list" class="panel-list">
+						<tr class="panel-list-row">
+							<th class="panel-list-header">Country</th>
+							<th class="panel-list-header">Views</th>
+						</tr>
+					</table>
+				</div>
 	    </div>
 
 		<!-- Include libraries for getting Auth token using JWS -->
@@ -214,7 +234,7 @@
 	
 		<script language="JavaScript" type="text/javascript">
 
-			var ownerData, token, ga_key, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCountryLastYear;
+			var ownerData, token, ga_key, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCountryLastYear, aggregatedByCountryLastMonth;
 
 	        // Load the Visualization API and the column chart package.
 	        google.load('visualization', '1.0', {'packages':['corechart']});
@@ -284,9 +304,12 @@
 				 		aggregatedByCountryLastYear = aggregateDataByCountry(data.rows, dateOneYearAgo().yyyymmdd());
 		      			console.log("aggregatedByCountryLastYear");
 		      			console.log(aggregatedByCountryLastYear);
+				 		aggregatedByCountryLastMonth = aggregateDataByCountry(data.rows, dateThirtyDaysAgo().yyyymmdd());
+		      			console.log("aggregatedByCountryLastMonth");
+		      			console.log(aggregatedByCountryLastMonth);
 						drawChart();
 		      			showVisitorCountStats();
-		      			showViewsByCountry(aggregatedByCountryLastYear);
+		      			showViewsByCountry(aggregatedByCountryLastMonth);
 
 		          	} else {
 			      		console.log("Error:")
@@ -429,17 +452,10 @@
 
 		  	function showViewsByCountry(data) {
 		  		var index, item
-		  		var geo_list = $('#geo_list')[0];
+		  		var geo_list = $('#geo_list');
 		  		for (index in data) {
 		  			item = data[index];
-
-					var row = geo_list.insertRow(-1); //add row to bottom of table
-
-					var cell0 = row.insertCell(0);
-					var cell1 = row.insertCell(1);
-
-					cell0.innerHTML = item[0];
-					cell1.innerHTML = item[1];
+		  			geo_list.append("<tr><td>item[0]</td><td>item[1]</td></tr>").addClass("panel-list-row");
 		  		}
 		  	}
 			
