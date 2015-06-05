@@ -177,7 +177,7 @@
                 #geo-list {
 
                 }
-                #geo-list td{
+                #geo-list td {
                 	font-size:40px;
                 }
            </style>
@@ -209,7 +209,7 @@
 				</table>
 				<div id="geo-panel" class="panel">
 					<div class="panel-title">Views By Country</div>
-					<table id="geo_list" class="panel-list">
+					<table id="geo-list" class="panel-list">
 						<tr class="panel-list-row">
 							<th class="panel-list-header">Country</th>
 							<th class="panel-list-header">Views</th>
@@ -466,7 +466,7 @@
 
 		  		for (index in data) {
 		  			item = data[index];
-		  			var row = table.insertRow(0);
+		  			var row = table.insertRow(-1);
 		  			var cell0 = row.insertCell(0);
 			  		var cell1 = row.insertCell(1);
 			  		cell0.innerHTML = item[0];
