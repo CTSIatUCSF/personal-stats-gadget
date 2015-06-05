@@ -345,7 +345,7 @@
 	    	function dateThirtyDaysAgo() {
 				var today = new Date();
 				console.log(today.getDate()-30);
-			 	var thirtyDaysAgo = new Date().setDate(today.getDate()-30);
+				var thirtyDaysAgo = new Date(today.setDate(today.getDate()-30));
 			 	console.log(thirtyDaysAgo);
 			 	return thirtyDaysAgo;
 	    	}
