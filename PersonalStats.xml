@@ -42,11 +42,19 @@
     	</style>
 
         <script type="text/javascript">
-        	Date.prototype.yyyymmdd = function() {
+        	
+        	Date.prototype.yyyy_mm_dd = function() {
         		var yyyy = this.getFullYear().toString();
         	    var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
         	    var dd  = this.getDate().toString();
         	    return yyyy + "-" + (mm[1]?mm:"0"+mm[0]) + "-" + (dd.length===2?dd:"0"+dd[0]); // padding
+        	};
+
+        	Date.prototype.yyyymmdd = function() {
+        		var yyyy = this.getFullYear().toString();
+        	    var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
+        	    var dd  = this.getDate().toString();
+        	    return yyyy + (mm[1]?mm:"0"+mm[0]) + (dd.length===2?dd:"0"+dd[0]); // padding
         	};
         </script>]]>
 	</Content>
@@ -220,7 +228,7 @@
 				var pagePath = encodeURIComponent("=~/" + ownerId);
 
 				var earliest_start_date = "2009-12-01"
-				var today = new Date().yyyymmdd();
+				var today = new Date().yyyy_mm_dd();
 
 				var query = {
 					'ids': 'ga:23439892',
@@ -273,7 +281,7 @@
 				 		aggregatedByMonthLastYear = aggregateDataByMonth(data.rows, getYearMonthOneYearAgoMonthStart());
 		      		 	console.log("aggregatedByMonthLastYear");
 		      		 	console.log(aggregatedByMonthLastYear);
-				 		aggregatedByCountryLastYear = aggregateDataByCountry(data.rows, getYearMonthOneYearAgoMonthStart());
+				 		aggregatedByCountryLastYear = aggregateDataByCountry(data.rows, dateOneYearAgo().yyyymmdd);
 		      			console.log("aggregatedByCountryLastYear");
 		      			console.log(aggregatedByCountryLastYear);
 						drawChart();
@@ -291,18 +299,18 @@
 		          	}
 		        }, params);
 	    	}
-		
-			// Format Google Analytics yearMonth string (ex: 201506) as Mmm-YYYY (ex: Jun-2015)
-			function formatMonthYear(yearMonthString) {
-			  	var months = new Array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'); 
-				var year, month_number, month;
-			
-				year = yearMonthString.substring(2, 4);
-				month_number = yearMonthString.substring(4, 6) - 1;
-				month = months[month_number];
-				new_value = month + "-" + year;
-				return new_value;
-			}
+
+	    	function dateOneYearAgo() {
+				var today = new Date();
+			 	var oneYearAgo = new Date(today.getFullYear() - 1, today.getMonth(), today.getDay());
+			 	return oneYearAgo;
+	    	}
+
+	    	function dateThirtyDaysAgo() {
+				var today = new Date();
+			 	var thirtyDaysAgo = new Date().setDate(today.getDate()-30)
+			 	return thirtyDaysAgo;
+	    	}
 
 		    function drawChart() {
 				console.log("drawChart called")
@@ -516,7 +524,7 @@
 				return viewCount;
 			}
 
-	      	function aggregateDataByCountry(data) {
+	      	function aggregateDataByCountry(data, startDate) {
 
 	      		var lastIndex = data[0].length-1;
 
