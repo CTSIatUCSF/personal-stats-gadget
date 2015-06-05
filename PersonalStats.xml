@@ -281,7 +281,7 @@
 				 		aggregatedByMonthLastYear = aggregateDataByMonth(data.rows, getYearMonthOneYearAgoMonthStart());
 		      		 	console.log("aggregatedByMonthLastYear");
 		      		 	console.log(aggregatedByMonthLastYear);
-				 		aggregatedByCountryLastYear = aggregateDataByCountry(data.rows, dateOneYearAgo().yyyymmdd);
+				 		aggregatedByCountryLastYear = aggregateDataByCountry(data.rows, dateOneYearAgo().yyyymmdd());
 		      			console.log("aggregatedByCountryLastYear");
 		      			console.log(aggregatedByCountryLastYear);
 						drawChart();
