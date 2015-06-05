@@ -169,13 +169,16 @@
 
                 }
                 .geo-list-row {
-                	font-size:40px;
+
                 }
                 #geo-panel {
 
                 }
                 #geo-list {
 
+                }
+                #geo-list td{
+                	font-size:40px;
                 }
            </style>
     
@@ -459,27 +462,12 @@
 
 		  	function showViewsByCountry(data) {
 		  		var index, item
-		  		var geo_list = $('#geo_list');
-
-		  		var numItems;
-		  		numItems = $('.geo-list-row').length
-		  		console.log("number of geo-list-rows before:");
-		  		console.log(numItems);
 
 		  		for (index in data) {
 		  			item = data[index];
-		  			geo_list.append("<tr><td>" +item[0] + "</td><td>" + item[1] + "</td></tr>");
+		  			$('#geo_list').append("<tr><td>" +item[0] + "</td><td>" + item[1] + "</td></tr>");
 		  			console.log("added row");
 		  		}
-		  		
-		  		// add CSS class
-		  		$('#geo_list tr').each(function(){
-		  		    $(this).addClass("geo-list-row");
-		  		});
-
-		  		numItems = $(".geo-list-row").length
-		  		console.log("number of geo-list-rows after:");
-		  		console.log(numItems);
 		  	}
 			
 			function getYearMonthOneYearAgoMonthStart() {
