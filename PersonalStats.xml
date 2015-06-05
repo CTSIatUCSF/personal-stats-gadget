@@ -299,6 +299,18 @@
 		          	}
 		        }, params);
 	    	}
+	    			
+			// Format Google Analytics yearMonth string (ex: 201506) as Mmm-YYYY (ex: Jun-2015)
+			function formatMonthYear(yearMonthString) {
+			  	var months = new Array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'); 
+				var year, month_number, month;
+			
+				year = yearMonthString.substring(2, 4);
+				month_number = yearMonthString.substring(4, 6) - 1;
+				month = months[month_number];
+				new_value = month + "-" + year;
+				return new_value;
+			}
 
 	    	function dateOneYearAgo() {
 				var today = new Date();
@@ -524,11 +536,16 @@
 				return viewCount;
 			}
 
-	      	function aggregateDataByCountry(data, startDate) {
-
+	      	function aggregateDataByCountry(data, dateStart) {
+				var start = yearMonthStart || 0
 	      		var lastIndex = data[0].length-1;
 
-				var countryArray = data.map(function(elem) {
+				var dataFilteredByDate = data.filter(function(elem, i, array) {
+				        return array.indexOf(elem) === i && elem >= start;
+				    }
+				);
+
+				var countryArray = dataFilteredByDate.map(function(elem) {
 				    return elem[1];
 				});
 
@@ -540,7 +557,7 @@
 				console.log(filteredCountryArray);
 
 				var arrayToReturn = filteredCountryArray.map(function(country) {
-				    var count = data.reduce(function(prevVal, elem) {
+				    var count = dataFilteredByDate.reduce(function(prevVal, elem) {
 				        if(elem[1] == country) {
 				            return prevVal + parseInt(elem[lastIndex]);
 				        } 
