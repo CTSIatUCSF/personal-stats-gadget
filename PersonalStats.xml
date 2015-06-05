@@ -283,7 +283,7 @@
 					<div class="panel-title">Views By Country</div>
 					<div class="panel-button-area">
 						<div class="toggle-btn-grp joint-toggle">
-						    <label onclick="" class="toggle-btn"><input type="radio" name="group3"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="group3"/>Last Year</label>
+						    <label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last Year</label>
 						</div>
 					</div>
 					<!-- <img src="images/flag_icons/US.gif"></img> -->
@@ -324,15 +324,27 @@
 	        // Load the Visualization API and the column chart package.
 	        google.load('visualization', '1.0', {'packages':['corechart']});
 
-	        // Toggle Buttons
-	        $(".toggle-btn:not('.noscript') input[type=radio]").addClass("visuallyhidden");
-	        $(".toggle-btn:not('.noscript') input[type=radio]").change(function() {
+	        // Set up the toggle buttons
+	        $(".toggle-btn input[type=radio]").addClass("visuallyhidden");
+	        $(".toggle-btn input[type=radio]").change(function() {
 	            if( $(this).attr("name") ) {
 	                $(this).parent().addClass("success").siblings().removeClass("success")
 	            } else {
 	                $(this).parent().toggleClass("success");
 	            }
 	        });
+	        $(".toggle-btn input[type=radio]").first().click(function() {
+	            console.log("month selected");
+	            showViewsByCountry(aggregatedByCountryLastMonth);
+	        });
+
+	        $(".toggle-btn input[type=radio]").last().click(function() {
+	            console.log("year selected");
+	            showViewsByCountry(aggregatedByCountryLastYear);
+	        });
+
+	        // Turn on the first toggle button
+	        $(".toggle-btn input[type=radio]").first().parent.addClass("success");
 	  
 		  	function fetchData() {
 
