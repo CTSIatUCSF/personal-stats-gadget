@@ -223,6 +223,7 @@
 				<div id="geo-panel" class="panel">
 					<div class="panel-title">Views By Country</div>
 					<div class="panel-button-area">Buttons Go Here</div>
+					<img src="images/US.gif"></img>
 					<table id="geo-list" class="panel-list">
 						<tr class="panel-list-row">
 							<th class="panel-list-header">Country</th>
@@ -260,9 +261,7 @@
 	        // Load the Visualization API and the column chart package.
 	        google.load('visualization', '1.0', {'packages':['corechart']});
 	  
-		  	
-
-			function fetchData() {
+		  	function fetchData() {
 
 				var ownerUrlParts = ownerData.jsonld.workplaceHomepage.split("/");
 				var ownerId = ownerUrlParts[ownerUrlParts.length-1];
