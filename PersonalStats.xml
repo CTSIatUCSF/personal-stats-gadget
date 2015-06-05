@@ -100,7 +100,10 @@
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
            <script type="text/javascript" src="js/jquery.blockUI-2.66.0.js"></script>    
            <style type="text/css">
-                .gadget-content {background-color:#D6EBFF;}
+                .gadget-content {
+                	height: 100%
+                	background-color: #D6EBFF;
+                }
                 .stats-title {
                 	font-weight:bold;
                 	font-size:20px;
