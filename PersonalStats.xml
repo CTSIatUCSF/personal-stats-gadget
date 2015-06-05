@@ -450,6 +450,7 @@
 		        var data_table = new google.visualization.DataTable();
 		        data_table.addColumn('string', 'Month');
 		        data_table.addColumn('number', 'Sessions');
+			    data_table.addColumn('string', 'style');
 				populateDataTable(data_table, aggregatedByMonthLastYear);
 
 		        // Set chart options
