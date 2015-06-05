@@ -331,17 +331,17 @@
 				var monthArray = data.map(function(elem) {
 				    return elem[0].slice(0, -2);
 				});
-				console.log("monthArray:");
-				console.log(monthArray);
 
 				var filteredMonthArray = monthArray.filter(function(elem, i, array) {
 				        return array.indexOf(elem) === i && elem >= start;
 				    }
 				);
+				console.log("filteredMonthArray:");
+				console.log(filteredMonthArray);
 
 				var arrayToReturn = filteredMonthArray.map(function(month) {
 				    var count = data.reduce(function(prevVal, elem) {
-				        if(elem[0] == month) {
+				        if(elem[0].slice(0, -2) == month) {
 				            return prevVal + parseInt(elem[lastIndex]);
 				        } 
 				        else {
@@ -356,7 +356,7 @@
 				var thisYearMonth = convertDateToYearMonthString(today);
 
 				var lastItem = data[lastItemIndex];
-				if (lastItem[0] != thisYearMonth) {
+				if (lastItem[0].slice(0, -2) != thisYearMonth) {
 					var rowToAdd = new Array(thisYearMonth, 0);
 					arrayToReturn.push(rowToAdd);
 				}
