@@ -286,7 +286,7 @@
 						    <label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last Year</label>
 						</div>
 					</div>
-					<img src="images/flag_icons/us.gif"></img>
+					<!-- <img src="images/flag_icons/us.gif"></img> -->
 					<table id="geo-list" class="panel-list">
 						<tr class="panel-list-row">
 							<th class="panel-list-header">Country</th>
@@ -319,7 +319,7 @@
 	
 		<script language="JavaScript" type="text/javascript">
 
-			var ownerData, token, ga_key, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCountryLastYear, aggregatedByCountryLastMonth;
+			var ownerData, token, ga_key, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCountryLastYear, aggregatedByCountryLastMonth, countryCodeList;
 
 	        // Load the Visualization API and the column chart package.
 	        google.load('visualization', '1.0', {'packages':['corechart']});
@@ -561,13 +561,16 @@
 		  	}
 
 		  	function showViewsByCountry(data) {
-		  		var index, item;
+		  		var index, item, countryName, countryCode, count;
 
 		  		$("#geo-list tr").remove(); //remove any existing rows before adding new ones
 
 		  		for (index in data) {
 		  			item = data[index];
-			  		$("#geo-list").append("<tr><td>" +item[0] + "</td><td>" + item[1] + "</td></tr>");
+		  			countryName = item[0];
+		  			countryCode = getCountryCode(countryName);
+		  			count = item[1];
+			  		$("#geo-list").append("<tr><td><img src=images/flag_icons/"+ countryCode + ".gif</img></td><td>" + countryName + "</td><td>" + count + "</td></tr>");
 		  		}
 
 		  		// add CSS class to the last item in the row
@@ -576,6 +579,13 @@
 		  		});
 
 		  		console.log($(".panel-list-count").length);
+		  	}
+
+		  	function getCountryCode(countryName) {
+		  		var filteredList = countryCodeList.filter(function(item) { 
+		  		    return item.name === countryName;
+		  		});
+		  		return filteredList[0].code.toLowerCase() || "";
 		  	}
 			
 			function getYearMonthOneYearAgoMonthStart() {
@@ -726,7 +736,11 @@
 					console.log("ownerData");
 					console.log(ownerData);
 
-			  		fetchData();
+					$.getJSON('countries.json', function(response){
+					    countryCodeList = response;
+					    console.log(countryCodeList);
+				  		fetchData();
+					})
 				});
 			}
 	
