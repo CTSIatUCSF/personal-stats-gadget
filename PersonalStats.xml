@@ -193,6 +193,68 @@
                 #geo-list td {
                 	font-size:10px;
                 }
+
+
+                // Toggle Button Stuff
+                .toggle-btn-grp { 
+                    margin:3px 0; 
+                }
+                .toggle-btn { 
+                    text-align:centre; 
+                    margin:5px 2px;
+                    padding:0.4em 3em; 
+                    color:#000; 
+                    background-color:#FFF; 
+                    border-radius:10px; 
+                    display:inline-block; 
+                    border:solid 1px #CCC; 
+                    cursor:pointer;
+                }
+
+                .toggle-btn-grp.joint-toggle .toggle-btn { 
+                    margin:5px 0; 
+                    padding:0.4em 2em; 
+                    border-radius:0;
+                    border-right-color:white;
+                }
+                .toggle-btn-grp.joint-toggle .toggle-btn:first-child { 
+                    margin-left:2px; 
+                    border-radius: 10px 0px 0px 10px; 
+                }
+                .toggle-btn-grp.joint-toggle .toggle-btn:last-child { 
+                    margin-right:2px;  
+                    border-radius: 0px 10px 10px 0px;
+                    border-right:solid 1px #CCC;
+                }
+
+                .toggle-btn:hover { 
+                    border:solid 1px #a0d5dc !important; 
+                    background:#f1fdfe;
+                }
+
+                .toggle-btn.success { 
+                    background:lightgreen;
+                    border:solid 1px green !important; 
+                }
+
+                .visuallyhidden { 
+                    border: 0; 
+                    clip: rect(0 0 0 0); 
+                    height: 1px; 
+                    margin: -1px; 
+                    overflow: hidden; 
+                    padding: 0; 
+                    position: absolute; 
+                    width: 1px; 
+                }
+                .visuallyhidden.focusable:active, .visuallyhidden.focusable:focus { 
+                    clip: auto; 
+                    height: auto; 
+                    margin: 0; 
+                    overflow: visible; 
+                    position: static; 
+                    width: auto; 
+                }
            </style>
     
         <div class="gadget-content">
@@ -222,8 +284,12 @@
 				</table>
 				<div id="geo-panel" class="panel">
 					<div class="panel-title">Views By Country</div>
-					<div class="panel-button-area">Buttons Go Here</div>
-					<img src="images/flag_icons/US.gif"></img>
+					<div class="panel-button-area">
+						<div class="toggle-btn-grp joint-toggle">
+						    <label onclick="" class="toggle-btn"><input type="radio" name="group3"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="group3"/>Last Year</label>
+						</div>
+					</div>
+					//<img src="images/flag_icons/US.gif"></img>
 					<table id="geo-list" class="panel-list">
 						<tr class="panel-list-row">
 							<th class="panel-list-header">Country</th>
@@ -260,6 +326,16 @@
 
 	        // Load the Visualization API and the column chart package.
 	        google.load('visualization', '1.0', {'packages':['corechart']});
+
+	        // Toggle Buttons
+	        $(".toggle-btn:not('.noscript') input[type=radio]").addClass("visuallyhidden");
+	        $(".toggle-btn:not('.noscript') input[type=radio]").change(function() {
+	            if( $(this).attr("name") ) {
+	                $(this).parent().addClass("success").siblings().removeClass("success")
+	            } else {
+	                $(this).parent().toggleClass("success");
+	            }
+	        });
 	  
 		  	function fetchData() {
 
