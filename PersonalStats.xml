@@ -464,6 +464,9 @@
 		  			item = data[index];
 		  			geo_list.append("<tr><td>" +item[0] + "</td><td>" + item[1] + "</td></tr>").addClass("geo-list-row");
 		  		}
+		  		var numItems = $('.geo-list-row').length
+		  		console.log("number of feo-list-rows:");
+		  		console.log(numItems);
 
 		  		//$('#geo_list tr').each(function(){
 		  		//    $(this).addClass("geo-list-row");
