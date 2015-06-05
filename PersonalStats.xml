@@ -344,7 +344,7 @@
 	        });
 
 	        // Turn on the first toggle button
-	        $(".toggle-btn input[type=radio]").first().parent.addClass("success");
+	        $(".toggle-btn input[type=radio]").first().parent().addClass("success");
 	  
 		  	function fetchData() {
 
