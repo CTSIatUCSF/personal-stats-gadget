@@ -168,6 +168,9 @@
                 .panel-list-header {
 
                 }
+                .panel-list-count {
+                	text-align: right;
+                }
                 .geo-list-row {
 
                 }
@@ -468,9 +471,13 @@
 
 		  		for (index in data) {
 		  			item = data[index];
-			  		$('#geo-list').append("<tr><td>" +item[0] + "</td><td>" + item[1] + "</td></tr>");
-		  			console.log("added row");
+			  		$("#geo-list").append("<tr><td>" +item[0] + "</td><td>" + item[1] + "</td></tr>");
 		  		}
+
+		  		// add CSS class to the last item in the row
+		  		$("#geo-list tr td:last-child").each(function() {
+		  		  $(this).addClass("panel-list-count");
+		  		});
 		  	}
 			
 			function getYearMonthOneYearAgoMonthStart() {
