@@ -413,7 +413,7 @@
 		  		for (index in data) {
 		  			item = data[index];
 
-					var row = table.insertRow(-1); //add row to bottom of table
+					var row = geo_list.insertRow(-1); //add row to bottom of table
 
 					var cell0 = row.insertCell(0);
 					var cell1 = row.insertCell(1);
