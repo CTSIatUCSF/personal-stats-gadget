@@ -202,7 +202,6 @@
                 .toggle-btn { 
                     text-align:centre; 
                     margin:5px 2px;
-                    padding:0.4em 3em; 
                     color:#000; 
                     background-color:#FFF; 
                     border-radius:10px; 
