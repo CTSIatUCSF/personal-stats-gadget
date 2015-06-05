@@ -278,6 +278,7 @@
 		      			console.log(aggregatedByCountryLastYear);
 						drawChart();
 		      			showVisitorCountStats();
+		      			showViewsByCountry(aggregatedByCountryLastYear);
 
 		          	} else {
 			      		console.log("Error:")
@@ -336,8 +337,6 @@
 				        return array.indexOf(elem) === i && elem >= start;
 				    }
 				);
-				console.log("filteredMonthArray:");
-				console.log(filteredMonthArray);
 
 				var arrayToReturn = filteredMonthArray.map(function(month) {
 				    var count = data.reduce(function(prevVal, elem) {
@@ -406,6 +405,22 @@
 			
 				var vccAllTimeSince = document.getElementById("view_count_all_time_since");
 				vccAllTimeSince.innerHTML = "Since " + vccAllTimeCount.start + "*";
+		  	}
+
+		  	function showViewsByCountry(data) {
+		  		var index, item
+		  		var geo_list = $('#geo_list')[0];
+		  		for (index in data) {
+		  			item = data[index];
+
+					var row = table.insertRow(-1); //add row to bottom of table
+
+					var cell0 = row.insertCell(0);
+					var cell1 = row.insertCell(1);
+
+					cell0.innerHTML = item[0];
+					cell1.innerHTML = item[1];
+		  		}
 		  	}
 			
 			function getYearMonthOneYearAgoMonthStart() {
