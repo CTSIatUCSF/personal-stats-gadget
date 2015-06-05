@@ -468,16 +468,18 @@
 
 		  		for (index in data) {
 		  			item = data[index];
-		  			geo_list.append("<tr><td>" +item[0] + "</td><td>" + item[1] + "</td></tr>").addClass("geo-list-row");
+		  			geo_list.append("<tr><td>" +item[0] + "</td><td>" + item[1] + "</td></tr>");
+		  			console.log("added row");
 		  		}
 		  		
-		  		numItems = $('.geo-list-row').length
+		  		// add CSS class
+		  		$('#geo_list tr').each(function(){
+		  		    $(this).addClass("geo-list-row");
+		  		});
+
+		  		numItems = $(".geo-list-row").length
 		  		console.log("number of geo-list-rows after:");
 		  		console.log(numItems);
-
-		  		//$('#geo_list tr').each(function(){
-		  		//    $(this).addClass("geo-list-row");
-		  		//});
 		  	}
 			
 			function getYearMonthOneYearAgoMonthStart() {
