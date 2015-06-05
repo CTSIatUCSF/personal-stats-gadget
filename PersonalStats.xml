@@ -212,8 +212,7 @@
                 }
 
                 .toggle-btn-grp.joint-toggle .toggle-btn { 
-                    margin:5px 0; 
-                    padding:0.4em 2em; 
+                    margin:5px 0;  
                     border-radius:0;
                     border-right-color:white;
                 }
@@ -289,7 +288,7 @@
 						    <label onclick="" class="toggle-btn"><input type="radio" name="group3"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="group3"/>Last Year</label>
 						</div>
 					</div>
-					//<img src="images/flag_icons/US.gif"></img>
+					<!-- <img src="images/flag_icons/US.gif"></img> -->
 					<table id="geo-list" class="panel-list">
 						<tr class="panel-list-row">
 							<th class="panel-list-header">Country</th>
