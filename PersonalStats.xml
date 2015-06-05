@@ -286,7 +286,7 @@
 						    <label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last Year</label>
 						</div>
 					</div>
-					<!-- <img src="images/flag_icons/US.gif"></img> -->
+					<img src="images/flag_icons/us.gif"></img>
 					<table id="geo-list" class="panel-list">
 						<tr class="panel-list-row">
 							<th class="panel-list-header">Country</th>
