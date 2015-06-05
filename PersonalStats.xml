@@ -460,12 +460,19 @@
 		  	function showViewsByCountry(data) {
 		  		var index, item
 		  		var geo_list = $('#geo_list');
+
+		  		var numItems;
+		  		numItems = $('.geo-list-row').length
+		  		console.log("number of geo-list-rows before:");
+		  		console.log(numItems);
+
 		  		for (index in data) {
 		  			item = data[index];
 		  			geo_list.append("<tr><td>" +item[0] + "</td><td>" + item[1] + "</td></tr>").addClass("geo-list-row");
 		  		}
-		  		var numItems = $('.geo-list-row').length
-		  		console.log("number of feo-list-rows:");
+		  		
+		  		numItems = $('.geo-list-row').length
+		  		console.log("number of geo-list-rows after:");
 		  		console.log(numItems);
 
 		  		//$('#geo_list tr').each(function(){
