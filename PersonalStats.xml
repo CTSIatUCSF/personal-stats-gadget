@@ -563,6 +563,8 @@
 		  	function showViewsByCountry(data) {
 		  		var index, item;
 
+		  		$("#geo-list tr").remove(); //remove any existing rows before adding new ones
+
 		  		for (index in data) {
 		  			item = data[index];
 			  		$("#geo-list").append("<tr><td>" +item[0] + "</td><td>" + item[1] + "</td></tr>");
