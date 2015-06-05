@@ -304,6 +304,7 @@
 				 		aggregatedByCountryLastYear = aggregateDataByCountry(data.rows, dateOneYearAgo().yyyymmdd());
 		      			console.log("aggregatedByCountryLastYear");
 		      			console.log(aggregatedByCountryLastYear);
+		      			console.log(dateThirtyDaysAgo());
 				 		aggregatedByCountryLastMonth = aggregateDataByCountry(data.rows, dateThirtyDaysAgo().yyyymmdd());
 		      			console.log("aggregatedByCountryLastMonth");
 		      			console.log(aggregatedByCountryLastMonth);
