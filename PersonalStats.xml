@@ -163,8 +163,7 @@
                 	margin: 5px;
                 	font-size:12px;
                 }
-                .panel-list,
-                .panel-button-area {
+                .panel-list {
                 	margin: 5px;
                 	width: 35%;
                 }
@@ -202,7 +201,7 @@
                 .toggle-btn { 
                     text-align:centre; 
                     margin:5px 2px;
-                    padding:0.4em 1em; 
+                    padding:0.4em 1.5em; 
                     color:#000; 
                     background-color:#FFF; 
                     border-radius:10px; 
@@ -232,8 +231,8 @@
                 }
 
                 .toggle-btn.success { 
-                    background:lightgreen;
-                    border:solid 1px green !important; 
+                    background:lightblue;
+                    border:solid 1px blue !important; 
                 }
 
                 .visuallyhidden { 
