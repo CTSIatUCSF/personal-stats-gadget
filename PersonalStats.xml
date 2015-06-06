@@ -570,7 +570,8 @@
 		  			countryName = item[0];
 		  			countryCode = getCountryCode(countryName);
 		  			count = item[1];
-			  		$("#geo-list").append("<tr><td><img src=images/flag_icons/"+ countryCode + ".gif</img></td><td>" + countryName + "</td><td>" + count + "</td></tr>");
+		  			//TODO: Fix this image path
+			  		$("#geo-list").append("<tr><td><img src=http://cranestylelabs.github.io/personal-stats-gadget/images/flag_icons/"+ countryCode + ".gif</img></td><td>" + countryName + "</td><td>" + count + "</td></tr>");
 		  		}
 
 		  		// add CSS class to the last item in the row
@@ -736,7 +737,8 @@
 					console.log("ownerData");
 					console.log(ownerData);
 
-					$.getJSON('countries.json', function(response){
+					//TODO: Fix this path
+					$.getJSON("http://cranestylelabs.github.io/personal-stats-gadget/countries.json", function(response){
 					    countryCodeList = response;
 					    console.log(countryCodeList);
 				  		fetchData();
