@@ -286,7 +286,7 @@
 						    <label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last Year</label>
 						</div>
 					</div>
-					<!-- <img src="images/flag_icons/us.gif"></img> -->
+					<img src="images/flag_icons/us.gif"></img>
 					<table id="geo-list" class="panel-list">
 						<tr class="panel-list-row">
 							<th class="panel-list-header">Country</th>
@@ -295,11 +295,6 @@
 					</table>
 				</div>
 	    </div>
-
-		<!-- Include libraries for getting Auth token using JWS -->
-		<script type="text/javascript" src="http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js"></script>
-		<script type="text/javascript" src="js/json-sans-eval-min.js"></script>
-		<script type="text/javascript" src="js/jws-3.2.min.js"></script>
 	
 		<!--Load the AJAX API-->
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
