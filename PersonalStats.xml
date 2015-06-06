@@ -295,6 +295,11 @@
 					</table>
 				</div>
 	    </div>
+
+		<!-- Include libraries for getting Auth token using JWS -->
+		<script type="text/javascript" src="http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js"></script>
+		<script type="text/javascript" src="js/json-sans-eval-min.js"></script>
+		<script type="text/javascript" src="js/jws-3.2.min.js"></script>
 	
 		<!--Load the AJAX API-->
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -565,7 +570,9 @@
 		  			countryName = item[0];
 		  			countryCode = getCountryCode(countryName);
 		  			count = item[1];
-			  		$("#geo-list").append("<tr><td><img src=images/flag_icons/"+ countryCode + ".gif</img></td><td>" + countryName + "</td><td>" + count + "</td></tr>");
+
+					//TODO: Fix this path
+			  		$("#geo-list").append("<tr><td><img src=http://cranestylelabs.github.io/personal-stats-gadget/images/flag_icons/"+ countryCode + ".gif</img></td><td>" + countryName + "</td><td>" + count + "</td></tr>");
 		  		}
 
 		  		// add CSS class to the last item in the row
