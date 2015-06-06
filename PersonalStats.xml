@@ -286,7 +286,7 @@
 						    <label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last Year</label>
 						</div>
 					</div>
-					<img src="images/flag_icons/us.gif"></img>
+					<!-- <img src="images/flag_icons/us.gif"></img> -->
 					<table id="geo-list" class="panel-list">
 						<tr class="panel-list-row">
 							<th class="panel-list-header">Country</th>
@@ -572,7 +572,7 @@
 		  			count = item[1];
 
 					//TODO: Fix this path
-			  		$("#geo-list").append("<tr><td><img src=images/flag_icons/"+ countryCode + ".gif></img></td><td>" + countryName + "</td><td>" + count + "</td></tr>");
+			  		$("#geo-list").append("<tr><td><img src=http://cranestylelabs.github.io/personal-stats-gadget/images/flag_icons/"+ countryCode + ".gif></img></td><td>" + countryName + "</td><td>" + count + "</td></tr>");
 		  		}
 
 		  		// add CSS class to the last item in the row
