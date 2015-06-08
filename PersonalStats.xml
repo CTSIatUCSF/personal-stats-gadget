@@ -156,7 +156,7 @@
                 	font-size:20px;
                 }
                 .panel {
-                	width: 45%;
+                	width: 440px;
                 	margin: 10px;
                 }
                 .panel-title {
@@ -177,6 +177,7 @@
                 .panel-list-count {
                 	text-align: right;
                 	float: right;
+                	margin-right: 0px;
                 }
                 .geo-list-row {
 
@@ -188,7 +189,7 @@
 
                 }
                 #geo-list {
-                	width: 35%;
+                	width: 150px;
                 	display: inline-block;
                 	vertical-align: top;
                 }
@@ -207,7 +208,7 @@
                 #geo-chart {
                 	margin: 5px;
                 	display: inline-block;
-                	width: 55%;
+                	width: 250px;
                 	vertical-align: top;
                 }
 
