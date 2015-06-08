@@ -189,8 +189,8 @@
                 	display: inline-block;
                 	vertical-align: top;
                 }
-                #geo-list tr:nth-child(even) {
-                	background: #CCC
+                #geo-list tr:nth-child(odd) {
+                	background: #e3e3e3 
                 }
                 #geo-list th {
                 	font-size:8px;
