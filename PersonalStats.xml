@@ -181,6 +181,9 @@
                 .geo-list-row {
 
                 }
+                .geo-list-spacer {
+                	width: 16px;
+                }
                 #geo-panel {
 
                 }
@@ -196,7 +199,7 @@
                 	font-size:8px;
                 }
                 #geo-list td {
-                	margin: 5px;
+                	margin: 5px 0;
                 	font-size:10px;
                 }
                 #geo-list img {
@@ -615,12 +618,23 @@
 
 		  		// add the table headers
 		  		$("#geo-list").append("<tr></tr>");
+		  		$("#geo-list tr").append("<th></th>");
 		  		$("#geo-list tr").append("<th>Country</th>");
 		  		$("#geo-list tr").append("<th>Views</th>");
 
 		  		// add CSS class to the table headers
 		  		$("#geo-list tr th").each(function() {
 		  		  $(this).addClass("panel-list-header");
+		  		});
+
+		  		// add CSS class to the first item in the header
+		  		$("#geo-list tr th:last-child").each(function() {
+		  		  $(this).addClass("geo-list-spacer");
+		  		});
+
+		  		// add CSS class to the last item in the header
+		  		$("#geo-list tr th:last-child").each(function() {
+		  		  $(this).addClass("panel-list-count");
 		  		});
 
 		  		// add table data rows
@@ -637,11 +651,6 @@
 		  		// add CSS class to the table rows
 		  		$("#geo-list tr").each(function() {
 		  		  $(this).addClass("panel-list-row");
-		  		});
-
-		  		// add CSS class to the last item in the header
-		  		$("#geo-list tr th:last-child").each(function() {
-		  		  $(this).addClass("panel-list-count");
 		  		});
 
 		  		// add CSS class to the last item in the row
