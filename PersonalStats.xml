@@ -623,6 +623,7 @@
 
 		  	function getCountryCode(countryName) {
 		  		var returnValue = "";
+		  		countryName.replace("ô", "o");
 		  		var filteredList = countryCodeList.filter(function(item) { 
 		  		    return item.name === countryName;
 		  		});
