@@ -183,13 +183,13 @@
 
                 }
                 .geo-list-spacer {
-                	padding-left: 19px;
+                	width: 100px;
                 }
                 #geo-panel {
 
                 }
                 #geo-list {
-                	width: 180px;
+                	width: 170px;
                 	display: inline-block;
                 	vertical-align: top;
                 }
@@ -197,6 +197,7 @@
                 	background: #e3e3e3 
                 }
                 #geo-list th {
+                	width: 70px;
                 	font-size:8px;
                 }
                 #geo-list td {
