@@ -169,7 +169,6 @@
                 .panel-list-row,
                 .geo-list-row {
                 	background-color: white;
-                	margin: 2px;
                 }
                 .panel-list-header {
 
@@ -191,13 +190,9 @@
                 #geo-list tr:nth-child(odd) {
                 	background: #e3e3e3 
                 }
-                #geo-list th {
-                	width: 80px;
-                	font-size:8px;
-                }
                 #geo-list td {
                 	font-size:10px;
-                	width: 100px;
+                	width: 90px;
                 }
                 .panel-list-count {
                 	text-align: right;
@@ -207,6 +202,10 @@
                 }
                 #geo-list img {
                 	width 20px;
+                }
+                #geo-list th {
+                	width: 80px;
+                	font-size:8px;
                 }
                 #geo-chart {
                 	margin: 5px;
