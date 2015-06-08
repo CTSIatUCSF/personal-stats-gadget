@@ -625,14 +625,10 @@
 		  		  $(this).addClass("panel-list-header");
 		  		});
 
-		  		// add CSS class to the first item in the header
-		  		$("#geo-list tr th:last-child").each(function() {
-		  		  $(this).addClass("geo-list-spacer");
-		  		});
-
-		  		// add CSS class to the last item in the header
+		  		// add CSS classes to the last item in the header
 		  		$("#geo-list tr th:last-child").each(function() {
 		  		  $(this).addClass("panel-list-count");
+		  		  $(this).addClass("geo-list-spacer");
 		  		});
 
 		  		// add table data rows
