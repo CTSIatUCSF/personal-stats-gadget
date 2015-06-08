@@ -170,6 +170,7 @@
                 .panel-list-row,
                 .geo-list-row {
                 	background-color: white;
+                	margin: 2px;
                 }
                 .panel-list-header {
 
@@ -191,6 +192,9 @@
                 }
                 #geo-list td {
                 	font-size:10px;
+                }
+                #geo-chart {
+
                 }
 
                 // Toggle Button Stuff
@@ -286,13 +290,14 @@
 						    <label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last Year</label>
 						</div>
 					</div>
-					<!-- <img src="images/flag_icons/us.gif"></img> -->
 					<table id="geo-list" class="panel-list">
 						<tr class="panel-list-row">
 							<th class="panel-list-header">Country</th>
 							<th class="panel-list-header panel-list-count">Views</th>
 						</tr>
 					</table>
+					<div id="geo-chart">
+					</div>
 				</div>
 	    </div>
 
@@ -322,7 +327,7 @@
 			var ownerData, token, ga_key, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCountryLastYear, aggregatedByCountryLastMonth, countryCodeList;
 
 	        // Load the Visualization API and the column chart package.
-	        google.load('visualization', '1.0', {'packages':['corechart']});
+	        google.load("visualization", "1.0", {"packages":["corechart", "geochart"]});
 
 	        // Set up the toggle buttons
 	        $(".toggle-btn input[type=radio]").addClass("visuallyhidden");
@@ -336,11 +341,13 @@
 	        $(".toggle-btn input[type=radio]").first().click(function() {
 	            console.log("month selected");
 	            showViewsByCountry(aggregatedByCountryLastMonth);
+	            drawGeoChart(aggregatedByCountryLastMonth);
 	        });
 
 	        $(".toggle-btn input[type=radio]").last().click(function() {
 	            console.log("year selected");
 	            showViewsByCountry(aggregatedByCountryLastYear);
+	            drawGeoChart(aggregatedByCountryLastYear);
 	        });
 
 	        // Turn on the first toggle button
@@ -413,9 +420,11 @@
 				 		aggregatedByCountryLastMonth = aggregateDataByCountry(data.rows, dateThirtyDaysAgo().yyyymmdd());
 		      			console.log("aggregatedByCountryLastMonth");
 		      			console.log(aggregatedByCountryLastMonth);
-						drawChart();
+
+						drawColumnChart(aggregatedByMonthLastYear);
 		      			showVisitorCountStats();
 		      			showViewsByCountry(aggregatedByCountryLastMonth);
+		      			drawGeoChart(aggregatedByCountryLastMonth);
 
 		          	} else {
 			      		console.log("Error:")
@@ -455,15 +464,15 @@
 			 	return thirtyDaysAgo;
 	    	}
 
-		    function drawChart() {
-				console.log("drawChart called")
+		    function drawColumnChart(data) {
+				console.log("drawColumnChart called")
 			
 		        // Create the data table.
 		        var data_table = new google.visualization.DataTable();
 		        data_table.addColumn('string', 'Month');
 		        data_table.addColumn('number', 'Sessions');
 			    data_table.addColumn({type: 'string', role: 'style'});
-				populateDataTable(data_table, aggregatedByMonthLastYear);
+				populateDataTable(data_table, data);
 
 		        // Set chart options
 		        var options = {
@@ -472,6 +481,21 @@
 
 		        // Instantiate and draw our chart, passing in some options.
 		        var chart = new google.visualization.ColumnChart(document.getElementById('chart_container'));
+		        chart.draw(data_table, options);
+	      	}
+
+		    function drawGeoChart(data) {
+				console.log("drawGeoChart called")
+			
+		        // Create the data table.
+		        var data_table = new google.visualization.DataTable();
+		        data_table.addColumn('string', 'Country');
+		        data_table.addColumn('number', 'Sessions');
+			    //data_table.addColumn({type: 'string', role: 'style'});
+				populateDataTable(data_table, data);
+
+        		var options = {};
+        		var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 		        chart.draw(data_table, options);
 	      	}
 
