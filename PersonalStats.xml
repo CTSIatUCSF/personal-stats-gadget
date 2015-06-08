@@ -193,6 +193,7 @@
                 }
                 #geo-list td {
                 	font-size:10px;
+                	margin-left: 5px;
                 }
                 #geo-chart {
                 	margin: 5px;
@@ -301,8 +302,8 @@
 							<th class="panel-list-header panel-list-count">Views</th>
 						</tr>
 					</table>
-					<div id="geo-chart"></div>
 				</div>
+				<div id="geo-chart"></div>
 			</div>
 	    </div>
 
