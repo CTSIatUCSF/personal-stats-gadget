@@ -299,9 +299,7 @@
 					</div>
 				</div>
 				<div class="panel-data-area">
-					<table id="geo-list" class="panel-list">
-						<tr class="panel-list-row"></tr>
-					</table>
+					<table id="geo-list" class="panel-list"></table>
 					<div id="geo-chart"></div>
 				</div>
 			</div>
@@ -631,6 +629,11 @@
 					//TODO: Fix this path
 			  		$("#geo-list").append("<tr><td><img src=http://cranestylelabs.github.io/personal-stats-gadget/images/flag_icons/"+ countryCode + ".gif></img></td><td>" + countryName + "</td><td>" + count + "</td></tr>");
 		  		}
+
+		  		// add CSS class to the table rows
+		  		$("#geo-list tr").each(function() {
+		  		  $(this).addClass("panel-list-row");
+		  		});
 
 		  		// add CSS class to the last item in the row
 		  		$("#geo-list tr td:last-child").each(function() {
