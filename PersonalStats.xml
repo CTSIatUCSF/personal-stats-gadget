@@ -564,7 +564,7 @@
 					row = dataToAdd[idx];
 					lastIndex = row.length-1;
 					dataTableRow = new Array();
-					dataTableRow[0] = row[0]);
+					dataTableRow[0] = row[0];
 					dataTableRow[1] = row[lastIndex];
 					dataTable.addRow(dataTableRow);
 				}
