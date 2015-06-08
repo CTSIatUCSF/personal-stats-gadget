@@ -612,8 +612,9 @@
 		  		$("#geo-list tr").remove();
 
 		  		// add the table headers
-		  		$("#geo-list").append("<th>Country</th>");
-		  		$("#geo-list").append("<th>Views</th>");
+		  		$("#geo-list").append("<tr></tr>");
+		  		$("#geo-list tr").append("<th>Country</th>");
+		  		$("#geo-list tr").append("<th>Views</th>");
 
 		  		// add CSS class to the table headers
 		  		$("#geo-list tr th").each(function() {
