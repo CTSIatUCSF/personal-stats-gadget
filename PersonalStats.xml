@@ -197,7 +197,7 @@
                 #geo-chart {
                 	margin: 5px;
                 	display: inline-block;
-                	width: 60%;
+                	width: 55%;
                 	vertical-align: top;
                 }
 
