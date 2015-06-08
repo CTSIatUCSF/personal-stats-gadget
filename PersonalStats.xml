@@ -302,8 +302,8 @@
 							<th class="panel-list-header panel-list-count">Views</th>
 						</tr>
 					</table>
+					<div id="geo-chart"></div>
 				</div>
-				<div id="geo-chart"></div>
 			</div>
 	    </div>
 
