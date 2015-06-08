@@ -189,7 +189,7 @@
 
                 }
                 #geo-list {
-                	width: 150px;
+                	width: 180px;
                 	display: inline-block;
                 	vertical-align: top;
                 }
