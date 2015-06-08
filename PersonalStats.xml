@@ -186,6 +186,7 @@
                 #geo-list {
                 	width: 35%;
                 	display: inline-block;
+                	vertical-align: top;
                 }
                 #geo-list th {
                 	font-size:8px;
@@ -196,7 +197,8 @@
                 #geo-chart {
                 	margin: 5px;
                 	display: inline-block;
-                	width: 55%;
+                	width: 60%;
+                	vertical-align: top;
                 }
 
                 // Toggle Button Stuff
