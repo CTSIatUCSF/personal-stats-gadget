@@ -569,6 +569,7 @@
 					{
 						console.log("found an ô!!!");
 			  			countryName.replace("ô", "o"); // fix for Ivory Coast
+			  			console.log(countryName);
 					}
 					dataTableRow[0] = countryName;
 
