@@ -194,7 +194,8 @@
                 	font-size:10px;
                 }
                 #geo-chart {
-
+                	margin: 5px;
+                	width: 65%
                 }
 
                 // Toggle Button Stuff
