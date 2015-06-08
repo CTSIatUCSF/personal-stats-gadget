@@ -182,7 +182,7 @@
 
                 }
                 .geo-list-spacer {
-                	width: 16px;
+                	padding-left: 19px;
                 }
                 #geo-panel {
 
@@ -617,7 +617,6 @@
 
 		  		// add the table headers
 		  		$("#geo-list").append("<tr></tr>");
-		  		$("#geo-list tr").append("<th></th>");
 		  		$("#geo-list tr").append("<th>Country</th>");
 		  		$("#geo-list tr").append("<th>Views</th>");
 
