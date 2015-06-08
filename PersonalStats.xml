@@ -775,11 +775,12 @@
 
 			function fixCountryNames(arr) {
 				var idx, item;
-
+				console.log("fixCountryNames");
 				for (idx in arr) {
 					item = arr[idx];
 					if(item[0] === "Côte d’Ivoire") {
 						item[0] = "Cote d’Ivoire";
+						console.log(item[0]);
 					}
 				}
 			}
