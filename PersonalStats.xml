@@ -473,7 +473,7 @@
 		        data_table.addColumn('string', 'Month');
 		        data_table.addColumn('number', 'Sessions');
 			    data_table.addColumn({type: 'string', role: 'style'});
-				populateDataTable(data_table, data);
+				populateDataTable(data_table, data, true);
 
 		        // Set chart options
 		        var options = {
@@ -493,7 +493,7 @@
 		        data_table.addColumn('string', 'Country');
 		        data_table.addColumn('number', 'Sessions');
 			    data_table.addColumn({type: 'string', role: 'style'});
-				populateDataTable(data_table, data);
+				populateDataTable(data_table, data, false);
 
         		var options = {};
         		var chart = new google.visualization.GeoChart(document.getElementById('geo-chart'));
@@ -540,7 +540,7 @@
 				return arrayToReturn;
 	      	}
 
-	      	function populateDataTable(dataTable, dataToAdd) {
+	      	function populateDataTable(dataTable, dataToAdd, addStyle) {
 		  		console.log(dataToAdd);
 				for (idx in dataToAdd) {
 					row = dataToAdd[idx];
@@ -548,7 +548,9 @@
 					dataTableRow = new Array();
 					dataTableRow[0] = formatMonthYear(row[0]);
 					dataTableRow[1] = row[lastIndex];
-					dataTableRow[2] = "color: #CA7C29";
+					if (addStyle) {
+						dataTableRow[2] = "color: #CA7C29";
+					}
 					dataTable.addRow(dataTableRow);
 				}
 				// remove the last row, which contains data for this month (we show this data elsewhere)
