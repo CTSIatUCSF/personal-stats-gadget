@@ -196,6 +196,7 @@
                 	font-size:8px;
                 }
                 #geo-list td {
+                	margin: 5px;
                 	font-size:10px;
                 }
                 #geo-list img {
@@ -636,6 +637,11 @@
 		  		// add CSS class to the table rows
 		  		$("#geo-list tr").each(function() {
 		  		  $(this).addClass("panel-list-row");
+		  		});
+
+		  		// add CSS class to the last item in the header
+		  		$("#geo-list tr th:last-child").each(function() {
+		  		  $(this).addClass("panel-list-count");
 		  		});
 
 		  		// add CSS class to the last item in the row
