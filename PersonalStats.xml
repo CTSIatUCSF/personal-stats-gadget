@@ -174,13 +174,8 @@
                 .panel-list-header {
 
                 }
-                .panel-list-count {
-                	text-align: right;
-                	float: right;
-                	margin-right: 0px;
-                }
                 .geo-list-row {
-
+                	width: 160px;
                 }
                 .geo-list-spacer {
                 	
@@ -202,9 +197,16 @@
                 }
                 #geo-list td {
                 	font-size:10px;
+                	width: 100px;
+                }
+                .panel-list-count {
+                	text-align: right;
+                	float: right;
+                	margin-right: 0px;
+                	width: 40px;
                 }
                 #geo-list img {
-                	margin-right: 3px;
+                	width 20px;
                 }
                 #geo-chart {
                 	margin: 5px;
