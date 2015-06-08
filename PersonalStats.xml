@@ -564,6 +564,7 @@
 					lastIndex = row.length-1;
 					dataTableRow = new Array();
 					dataTableRow[0] = row[0];
+		  			dataTableRow[0].replace("ô", "o"); // fix for Ivory Coast
 					dataTableRow[1] = row[lastIndex];
 					dataTable.addRow(dataTableRow);
 				}
@@ -623,7 +624,7 @@
 
 		  	function getCountryCode(countryName) {
 		  		var returnValue = "";
-		  		countryName.replace("ô", "o");
+		  		countryName.replace("ô", "o"); // fix for Ivory Coast
 		  		var filteredList = countryCodeList.filter(function(item) { 
 		  		    return item.name === countryName;
 		  		});
