@@ -778,7 +778,8 @@
 				console.log("fixCountryNames");
 				for (idx in arr) {
 					item = arr[idx];
-					console.log(item[0]);
+					console.log("item");
+					console.log(item);
 					if(item[0] == "Côte d’Ivoire") {
 						item[0] = "Cote d’Ivoire";
 						console.log(item[0]);
