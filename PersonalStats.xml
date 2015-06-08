@@ -564,7 +564,12 @@
 					lastIndex = row.length-1;
 					dataTableRow = new Array();
 					dataTableRow[0] = row[0];
-		  			dataTableRow[0].replace("ô", "o"); // fix for Ivory Coast
+					if(dataTableRow[0].indexOf('ô') > 0)
+					{
+						console.log("found an ô!!!");
+			  			dataTableRow[0].replace("ô", "o"); // fix for Ivory Coast
+					}
+
 					dataTableRow[1] = row[lastIndex];
 					dataTable.addRow(dataTableRow);
 				}
