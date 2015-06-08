@@ -558,17 +558,19 @@
 			}
 
 	      	function populateDataTable_GeoChart(dataTable, dataToAdd) {
+		  		var countryName;
 		  		console.log(dataToAdd);
 				for (idx in dataToAdd) {
 					row = dataToAdd[idx];
 					lastIndex = row.length-1;
 					dataTableRow = new Array();
-					dataTableRow[0] = row[0];
-					if(dataTableRow[0].indexOf('ô') > 0)
+					countryName = row[0];
+					if(countryName.indexOf('ô') > 0)
 					{
 						console.log("found an ô!!!");
-			  			dataTableRow[0].replace("ô", "o"); // fix for Ivory Coast
+			  			countryName.replace("ô", "o"); // fix for Ivory Coast
 					}
+					dataTableRow[0] = countryName;
 
 					dataTableRow[1] = row[lastIndex];
 					dataTable.addRow(dataTableRow);
