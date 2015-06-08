@@ -473,7 +473,7 @@
 		        data_table.addColumn('string', 'Month');
 		        data_table.addColumn('number', 'Sessions');
 			    data_table.addColumn({type: 'string', role: 'style'});
-				populateDataTable(data_table, data, true);
+				populateDataTable_ColumnChart(data_table, data);
 
 		        // Set chart options
 		        var options = {
@@ -492,10 +492,11 @@
 		        var data_table = new google.visualization.DataTable();
 		        data_table.addColumn('string', 'Country');
 		        data_table.addColumn('number', 'Sessions');
-				populateDataTable(data_table, data, false);
+			    data_table.addColumn({type: 'string', role: 'style'});
+				populateDataTable_GeoChart(data_table, data);
 
         		var options = {};
-        		var chart = new google.visualization.GeoChart(document.getElementById('geo-chart'));
+        		var chart = new google.visualization.GeoChart(document.getElementById('geo-ch'));
 		        chart.draw(data_table, options);
 	      	}
 
@@ -539,7 +540,7 @@
 				return arrayToReturn;
 	      	}
 
-	      	function populateDataTable(dataTable, dataToAdd, addStyle) {
+	      	function populateDataTable_ColumnChart(dataTable, dataToAdd) {
 		  		console.log(dataToAdd);
 				for (idx in dataToAdd) {
 					row = dataToAdd[idx];
@@ -547,14 +548,26 @@
 					dataTableRow = new Array();
 					dataTableRow[0] = formatMonthYear(row[0]);
 					dataTableRow[1] = row[lastIndex];
-					if (addStyle) {
-						dataTableRow[2] = "color: #CA7C29";
-					}
+					dataTableRow[2] = "color: #CA7C29";
 					dataTable.addRow(dataTableRow);
 				}
 				// remove the last row, which contains data for this month (we show this data elsewhere)
 				var lastItemIndex = dataTable.getNumberOfRows()-1;
 				dataTable.removeRow(lastItemIndex);
+				
+				console.log(dataTable);
+			}
+
+	      	function populateDataTable_GeoChart(dataTable, dataToAdd) {
+		  		console.log(dataToAdd);
+				for (idx in dataToAdd) {
+					row = dataToAdd[idx];
+					lastIndex = row.length-1;
+					dataTableRow = new Array();
+					dataTableRow[0] = row[0]);
+					dataTableRow[1] = row[lastIndex];
+					dataTable.addRow(dataTableRow);
+				}
 				
 				console.log(dataTable);
 			}
