@@ -564,15 +564,7 @@
 					row = dataToAdd[idx];
 					lastIndex = row.length-1;
 					dataTableRow = new Array();
-					countryName = row[0];
-					if(countryName === "Côte d’Ivoire")
-					{
-						console.log("found an ô!!!");
-						countryName = "Ivory Coast";
-			  			console.log(countryName);
-					}
-					dataTableRow[0] = countryName;
-
+					dataTableRow[0] = row[0];
 					dataTableRow[1] = row[lastIndex];
 					dataTable.addRow(dataTableRow);
 				}
@@ -632,7 +624,6 @@
 
 		  	function getCountryCode(countryName) {
 		  		var returnValue = "";
-		  		countryName.replace("ô", "o"); // fix for Ivory Coast
 		  		var filteredList = countryCodeList.filter(function(item) { 
 		  		    return item.name === countryName;
 		  		});
@@ -777,7 +768,20 @@
 				    return b[1]-a[1]
 				});
 
+				fixCountryNames(arrayToReturn);
+
 				return arrayToReturn;
+			}
+
+			function fixCountryNames(arr) {
+				var idx, item;
+
+				for (idx in arr) {
+					item = arr[idx];
+					if(item[0] === "Côte d’Ivoire") {
+						item[0] = "Cote d’Ivoire";
+					}
+				}
 			}
 	
 			function handleClientLoad() {
