@@ -189,6 +189,9 @@
                 	display: inline-block;
                 	vertical-align: top;
                 }
+                #geo-list tr:nth-child(even) {
+                	background: #CCC
+                }
                 #geo-list th {
                 	font-size:8px;
                 }
@@ -196,7 +199,7 @@
                 	font-size:10px;
                 }
                 #geo-list img {
-                	margin-right: 5px;
+                	margin-right: 3px;
                 }
                 #geo-chart {
                 	margin: 5px;
