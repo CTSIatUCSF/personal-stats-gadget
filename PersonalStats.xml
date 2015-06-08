@@ -492,7 +492,6 @@
 		        var data_table = new google.visualization.DataTable();
 		        data_table.addColumn('string', 'Country');
 		        data_table.addColumn('number', 'Sessions');
-			    data_table.addColumn({type: 'string', role: 'style'});
 				populateDataTable(data_table, data, false);
 
         		var options = {};
