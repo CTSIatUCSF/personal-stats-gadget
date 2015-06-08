@@ -196,7 +196,7 @@
                 #geo-chart {
                 	margin: 5px;
                 	float: right;
-                	width: 60%
+                	width: 55%;
                 }
 
                 // Toggle Button Stuff
