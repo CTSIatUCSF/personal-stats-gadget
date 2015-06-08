@@ -565,10 +565,10 @@
 					lastIndex = row.length-1;
 					dataTableRow = new Array();
 					countryName = row[0];
-					if(countryName.indexOf('ô') > 0)
+					if(countryName === "Côte d’Ivoire")
 					{
 						console.log("found an ô!!!");
-			  			countryName.replace("ô", "o"); // fix for Ivory Coast
+						countryName = "Ivory Coast";
 			  			console.log(countryName);
 					}
 					dataTableRow[0] = countryName;
