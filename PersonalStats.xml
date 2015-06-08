@@ -341,12 +341,14 @@
 	        $(".toggle-btn input[type=radio]").first().click(function() {
 	            console.log("month selected");
 	            showViewsByCountry(aggregatedByCountryLastMonth);
+	            $("#geo-chart").empty();
 	            drawGeoChart(aggregatedByCountryLastMonth);
 	        });
 
 	        $(".toggle-btn input[type=radio]").last().click(function() {
 	            console.log("year selected");
 	            showViewsByCountry(aggregatedByCountryLastYear);
+	            $("#geo-chart").empty();
 	            drawGeoChart(aggregatedByCountryLastYear);
 	        });
 
