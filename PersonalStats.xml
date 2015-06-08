@@ -261,46 +261,47 @@
            </style>
     
         <div class="gadget-content">
-        		<div id="view_count_last_year" class="stats-title">This is the Personal Stats Gadget's canvas page.</div>
-        		
-				<div id="chart_container" class="stats-chart"></div>
+    		<div id="view_count_last_year" class="stats-title">This is the Personal Stats Gadget's canvas page.</div>
+    		
+			<div id="chart_container" class="stats-chart"></div>
 
-				<table id="view_count_table" class="stats-table">
-					<tr>
-						<td class="stats-table-item">
-							<div class="stats-text">So far this month</div>
-							<div id="view_count_this_month" class="stats-text-large"></div>
-							<div class="stats-text">Visitors</div>
-						</td>
-						<td class="stats-table-item-center">
-							<div class="stats-text">Best Month Ever</div>
-							<div id="view_count_best_month" class="stats-text-large"></div>
-							<div class="stats-text">Visitors</div>
-						</td>
-						<td class="stats-table-item">
-							<div id="view_count_all_time_since" class="stats-text"></div>
-							<div id="view_count_all_time" class="stats-text-large"></div>
-							<div class="stats-text">Visitors</div>
-							<div class="stats-text-small">* First month data is available for your profile page</div>
-						</td>
-					</tr>
-				</table>
-				<div id="geo-panel" class="panel">
-					<div class="panel-title">Views By Country</div>
-					<div class="panel-button-area">
-						<div class="toggle-btn-grp joint-toggle">
-						    <label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last Year</label>
-						</div>
+			<table id="view_count_table" class="stats-table">
+				<tr>
+					<td class="stats-table-item">
+						<div class="stats-text">So far this month</div>
+						<div id="view_count_this_month" class="stats-text-large"></div>
+						<div class="stats-text">Visitors</div>
+					</td>
+					<td class="stats-table-item-center">
+						<div class="stats-text">Best Month Ever</div>
+						<div id="view_count_best_month" class="stats-text-large"></div>
+						<div class="stats-text">Visitors</div>
+					</td>
+					<td class="stats-table-item">
+						<div id="view_count_all_time_since" class="stats-text"></div>
+						<div id="view_count_all_time" class="stats-text-large"></div>
+						<div class="stats-text">Visitors</div>
+						<div class="stats-text-small">* First month data is available for your profile page</div>
+					</td>
+				</tr>
+			</table>
+			<div id="geo-panel" class="panel">
+				<div class="panel-title">Views By Country</div>
+				<div class="panel-button-area">
+					<div class="toggle-btn-grp joint-toggle">
+					    <label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last Year</label>
 					</div>
+				</div>
+				<div class="panel-data-area">
 					<table id="geo-list" class="panel-list">
 						<tr class="panel-list-row">
 							<th class="panel-list-header">Country</th>
 							<th class="panel-list-header panel-list-count">Views</th>
 						</tr>
 					</table>
-					<div id="geo-chart">
-					</div>
+					<div id="geo-chart"></div>
 				</div>
+			</div>
 	    </div>
 
 		<!-- Include libraries for getting Auth token using JWS -->
