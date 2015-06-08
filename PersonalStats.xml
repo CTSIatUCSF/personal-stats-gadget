@@ -165,7 +165,6 @@
                 }
                 .panel-list {
                 	margin: 5px;
-                	width: 35%;
                 }
                 .panel-list-row,
                 .geo-list-row {
@@ -185,7 +184,8 @@
 
                 }
                 #geo-list {
-
+                	width: 35%;
+                	display: inline-block;
                 }
                 #geo-list th {
                 	font-size:8px;
@@ -195,7 +195,7 @@
                 }
                 #geo-chart {
                 	margin: 5px;
-                	float: right;
+                	display: inline-block;
                 	width: 55%;
                 }
 
