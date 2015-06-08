@@ -176,6 +176,7 @@
                 }
                 .panel-list-count {
                 	text-align: right;
+                	float: right;
                 }
                 .geo-list-row {
 
@@ -195,7 +196,7 @@
                 	font-size:10px;
                 }
                 #geo-list img {
-                	margin-right: 10px;
+                	margin-right: 5px;
                 }
                 #geo-chart {
                 	margin: 5px;
@@ -299,10 +300,7 @@
 				</div>
 				<div class="panel-data-area">
 					<table id="geo-list" class="panel-list">
-						<tr class="panel-list-row">
-							<th class="panel-list-header">Country</th>
-							<th class="panel-list-header panel-list-count">Views</th>
-						</tr>
+						<tr class="panel-list-row"></tr>
 					</table>
 					<div id="geo-chart"></div>
 				</div>
@@ -610,8 +608,14 @@
 		  	function showViewsByCountry(data) {
 		  		var index, item, countryName, countryCode, count;
 
-		  		$("#geo-list tr").remove(); //remove any existing rows before adding new ones
+				// remove any existing rows before adding new ones
+		  		$("#geo-list tr").remove();
 
+		  		// add the table headers
+		  		$("#geo-list tr").append("<th class="panel-list-header">Country</th>");
+		  		$("#geo-list tr").append("<th class="panel-list-header panel-list-count">Views</th>");
+
+		  		// add table data rows
 		  		for (index in data) {
 		  			item = data[index];
 		  			countryName = item[0];
