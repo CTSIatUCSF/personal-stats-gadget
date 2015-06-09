@@ -221,10 +221,10 @@
                 .toggle-btn { 
                     text-align:centre; 
                     margin:5px 2px;
-                    padding:0.4em 1.2em; 
+                    padding:0.3em 1.2em; 
                     color:#000; 
                     background-color:#FFF; 
-                    border-radius:10px; 
+                    border-radius:5px; 
                     display:inline-block; 
                     border:solid 1px #CCC; 
                     cursor:pointer;
@@ -237,11 +237,11 @@
                 }
                 .toggle-btn-grp.joint-toggle .toggle-btn:first-child { 
                     margin-left:2px; 
-                    border-radius: 10px 0px 0px 10px; 
+                    border-radius: 5px 0px 0px 5px; 
                 }
                 .toggle-btn-grp.joint-toggle .toggle-btn:last-child { 
                     margin-right:2px;  
-                    border-radius: 0px 10px 10px 0px;
+                    border-radius: 0px 5px 5px 0px;
                     border-right:solid 1px #CCC;
                 }
 
@@ -699,7 +699,7 @@
 		  		if (onlyShowN > 0) {
 		  			dataToShow = data.slice(0, onlyShowN);
 		  			if (data.length > dataToShow.length) {
-		  			
+
 		  				// unhide the See All button 
 						$("#see-all-btn").each(function() {
 		  					$(this).removeClass("visuallyhidden");
