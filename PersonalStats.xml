@@ -165,7 +165,8 @@
 				    margin: 5px;
 				    font-size:12px;
 				}
-				.panel-list {
+				.panel-list th{
+				    font-size:8px;
 				}
 				.panel-list-row, .geo-list-row {
 				    background-color: white;
@@ -207,7 +208,6 @@
 				}
 				#geo-list th {
 				    width: 80px;
-				    font-size:8px;
 				}
 				#geo-chart {
 				    margin: 5px;
