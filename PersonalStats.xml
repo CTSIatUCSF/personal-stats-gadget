@@ -206,7 +206,7 @@
 				    vertical-align: top;
 				}
 				#panel-button-area {
-                    width: 160px;
+                    width: 155px;
 				}
 				#geo-list-area {
 				    width: 160px;
