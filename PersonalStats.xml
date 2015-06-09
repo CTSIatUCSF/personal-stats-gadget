@@ -321,16 +321,11 @@
 				<div class="panel-title">Views By Company/Domain</div>
 				<div class="panel-button-area">
 					<div id="domain-toggle" class="toggle-btn-grp joint-toggle">
-					    <label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last Year</label>
+					    <label onclick="" class="toggle-btn"><input type="radio" name="domainToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="domainToggle"/>Last Year</label>
 					</div>
 				</div>
 			</div>
 	    </div>
-
-		<!-- Include libraries for getting Auth token using JWS -->
-		<script type="text/javascript" src="http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js"></script>
-		<script type="text/javascript" src="js/json-sans-eval-min.js"></script>
-		<script type="text/javascript" src="js/jws-3.2.min.js"></script>
 	
 		<!--Load the AJAX API-->
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -350,7 +345,7 @@
 	
 		<script language="JavaScript" type="text/javascript">
 
-			var ownerData, token, ga_key, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCountryLastYear, aggregatedByCountryLastMonth, countryCodeList
+			var ownerData, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCountryLastYear, aggregatedByCountryLastMonth, countryCodeList
 			var onlyShow = 10;
 
 	        // Load the Visualization API and the column chart package.
