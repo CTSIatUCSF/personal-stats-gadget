@@ -841,8 +841,9 @@
 
 				osapi.jsonld.getOwner().execute(function(owner_data) {
 					framePerson(owner_data, function(ownerObj) {
-						console.log("ownerObj:");
-						console.log(ownerObj);
+						ownerData = ownerObj;
+						console.log("ownerData:");
+						console.log(ownerData);
 					});
 
 					//TODO: Fix this path
