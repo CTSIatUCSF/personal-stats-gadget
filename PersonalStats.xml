@@ -362,7 +362,11 @@
 	  
 		  	function fetchData() {
 
-				var ownerUrlParts = ownerData.jsonld.workplaceHomepage.split("/");
+				var ownerHomePage = ownerObj[FOAF("workplaceHomepage")];
+				console.log("ownerHomePage:");
+				console.log(ownerHomePage);
+
+				var ownerUrlParts = ownerHomePage.split("/");
 				var ownerId = ownerUrlParts[ownerUrlParts.length-1];
 				var pagePath = encodeURIComponent("=~/" + ownerId);
 
@@ -839,14 +843,7 @@
 					framePerson(owner_data, function(ownerObj) {
 						console.log("ownerObj:");
 						console.log(ownerObj);
-						var ownerHomePage = ownerObj[FOAF('workplaceHomepage')];
-						console.log("ownerHomePage:");
-						console.log(ownerHomePage);
 					});
-                 
-					ownerData = owner_data;
-					console.log("ownerData");
-					console.log(ownerData);
 
 					//TODO: Fix this path
 					$.getJSON("http://cranestylelabs.github.io/personal-stats-gadget/countries.json", function(response){
