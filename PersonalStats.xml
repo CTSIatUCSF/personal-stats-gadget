@@ -360,17 +360,23 @@
 	                $(this).parent().toggleClass("success");
 	            }
 	        });
-	        $(".toggle-btn input[type=radio]").first().click(function() {
-	        	console.log("month selected");
+	        $("#geo-toggle .toggle-btn input[type=radio]").first().click(function() {
+	        	console.log("country-month selected");
 	            showViewsByCountry(aggregatedByCountryLastMonth, onlyShow);
 	            drawGeoChart(aggregatedByCountryLastMonth);
 	        });
 
-	        $(".toggle-btn input[type=radio]").last().click(function() {
-	            console.log("year selected");
-
+	        $("#geo-toggle .toggle-btn input[type=radio]").last().click(function() {
+	            console.log("country-year selected");
 	            showViewsByCountry(aggregatedByCountryLastYear, onlyShow);
 	            drawGeoChart(aggregatedByCountryLastYear);
+	        });
+	        $("#domain-toggle .toggle-btn input[type=radio]").first().click(function() {
+	        	console.log("domain-month selected");
+	        });
+
+	        $("#domain-toggle .toggle-btn input[type=radio]").last().click(function() {
+	            console.log("domain-year selected");
 	        });
 
 	        // Turn on the first toggle button
