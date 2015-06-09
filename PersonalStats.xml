@@ -843,10 +843,10 @@
 						console.log("ownerHomePage:");
 						console.log(ownerHomePage);
 					});
-                });     
-				ownerData = owner_data;
-				console.log("ownerData");
-				console.log(ownerData);
+                 
+					ownerData = owner_data;
+					console.log("ownerData");
+					console.log(ownerData);
 
 					//TODO: Fix this path
 					$.getJSON("http://cranestylelabs.github.io/personal-stats-gadget/countries.json", function(response){
