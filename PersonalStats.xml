@@ -387,13 +387,13 @@
 
 	        // See Fewer button shows fewer results for Month or Year (based on current selection)
 	        $("#see-all-btn").click(function() {
-	        	console.log("see all button clicked");
+	        	console.log("see fewer button clicked");
 	        	
 	        	if ($(".toggle-btn input[type=radio]").first().parent().hasClass("success")) {
-		        	console.log("see all button clicked - last month");
+		        	console.log("see fewer button clicked - last month");
 		            showViewsByCountry(aggregatedByCountryLastMonth, onlyShow);
 	        	} else {
-		        	console.log("see all button clicked - last year");
+		        	console.log("see fewer button clicked - last year");
 		            showViewsByCountry(aggregatedByCountryLastYear, onlyShow);
 	        	}
   				// hide the See Fewer button 
