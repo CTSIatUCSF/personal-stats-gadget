@@ -304,7 +304,7 @@
 			<div id="geo-panel" class="panel">
 				<div class="panel-title">Views By Country</div>
 				<div class="panel-button-area">
-					<div class="toggle-btn-grp joint-toggle">
+					<div id="geo-toggle" class="toggle-btn-grp joint-toggle">
 					    <label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last Year</label>
 					</div>
 				</div>
@@ -315,6 +315,14 @@
 						<label id="see-fewer-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See Fewer</label>
 					</div>
 					<div id="geo-chart"></div>
+				</div>
+			</div>
+			<div id="domain-panel" class="panel">
+				<div class="panel-title">Views By Company/Domain</div>
+				<div class="panel-button-area">
+					<div id="domain-toggle" class="toggle-btn-grp joint-toggle">
+					    <label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last Year</label>
+					</div>
 				</div>
 			</div>
 	    </div>
@@ -371,7 +379,8 @@
 	        });
 
 	        // Turn on the first toggle button
-	        $(".toggle-btn input[type=radio]").first().parent().addClass("success");
+	        $("#geo-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
+	        $("#domain-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
 
 	        // See All button shows all for Month or Year (based on current selection)
 	        $("#see-all-btn").click(function() {
