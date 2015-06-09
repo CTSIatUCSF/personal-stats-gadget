@@ -311,9 +311,9 @@
 				</div>
 				<div class="panel-data-area">
 					<table id="geo-list" class="panel-list"></table>
-					<div id="geo-chart"></div>
 					<label id="see-all-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See All</label>
 					<label id="see-fewer-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See Fewer</label>
+					<div id="geo-chart"></div>
 				</div>
 			</div>
 	    </div>
