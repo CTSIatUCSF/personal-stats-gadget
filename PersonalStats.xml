@@ -160,14 +160,10 @@
                 .panel {
 				    width: 440px;
 				    margin: 10px;
-				    border-style: solid;
-				    border-width: 1px;
 				}
 				.panel-title {
 				    margin: 5px;
 				    font-size:12px;
-				    border-style: solid;
-				    border-width: 1px;
 				}
 				.panel-list {
 				    margin: 5px;
@@ -200,7 +196,6 @@
 				}
 				#geo-list img {
 				    vertical-align: middle;
-				    margin: 2px !important;
 				}
 				#geo-list th {
 				    width: 80px;
