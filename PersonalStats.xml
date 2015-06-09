@@ -334,6 +334,14 @@
 					    <label onclick="" class="toggle-btn"><input type="radio" name="domainToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="domainToggle"/>Last Year</label>
 					</div>
 				</div>
+				<div class="panel-data-area">
+					<div id="domain-list-area">
+						<table id="domain-list" class="panel-list"></table>
+						<label id="see-all-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See All</label>
+						<label id="see-fewer-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See Fewer</label>
+					</div>
+					<div id="geo-chart"></div>
+				</div>
 			</div>
 	    </div>
 	
@@ -355,7 +363,7 @@
 	
 		<script language="JavaScript" type="text/javascript">
 
-			var ownerData, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCountryLastYear, aggregatedByCountryLastMonth, countryCodeList
+			var ownerData, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCountryLastYear, aggregatedByCountryLastMonth, countryCodeList, aggregatedByDomainLastYear, aggregatedByDomainLastMonth;
 			var onlyShow = 10;
 
 	        // Load the Visualization API and the column chart package.
@@ -383,10 +391,12 @@
 	        });
 	        $("#domain-toggle .toggle-btn input[type=radio]").first().click(function() {
 	        	console.log("domain-month selected");
+	            showViewsByDomain(aggregatedByDomainLastMonth, onlyShow);
 	        });
 
 	        $("#domain-toggle .toggle-btn input[type=radio]").last().click(function() {
 	            console.log("domain-year selected");
+	            showViewsByDomain(aggregatedByDomainLastYear, onlyShow);
 	        });
 
 	        // Turn on the first toggle button
@@ -506,12 +516,21 @@
 				 		aggregatedByCountryLastMonth = aggregateDataByCountry(data.rows, dateThirtyDaysAgo().yyyymmdd());
 		      			console.log("aggregatedByCountryLastMonth");
 		      			console.log(aggregatedByCountryLastMonth);
+				 		aggregatedByDomainLastYear = aggregateDataByDomain(data.rows, dateOneYearAgo().yyyymmdd());
+		      			console.log("aggregatedByDomainLastYear");
+		      			console.log(aggregatedByDomainLastYear);
+		      			console.log(dateThirtyDaysAgo());
+				 		aggregatedByDomainLastMonth = aggregateDataByDomain(data.rows, dateThirtyDaysAgo().yyyymmdd());
+		      			console.log("aggregatedByDomainLastMonth");
+		      			console.log(aggregatedByDomainLastMonth);
 
 		      			showVisitorCountStats();
 						drawColumnChart(aggregatedByMonthLastYear);
 
 		      			showViewsByCountry(aggregatedByCountryLastMonth);
 		      			drawGeoChart(aggregatedByCountryLastMonth);
+
+		      			showViewsByDomain(aggregatedByDomainLastMonth);
 
 		          	} else {
 			      		console.log("Error:")
@@ -774,6 +793,90 @@
 			    console.log("panel-list-count count = " + $(".panel-list-count").length);
 		  	}
 
+		  	function showViewsByDomain(data, onlyShowN) {
+		  		var dataToShow, index, item, domainName, count;
+
+				// remove any existing rows before adding new ones
+		  		$("#domain-list tr").remove();
+
+		  		// add the table headers
+		  		$("#domain-list").append("<tr></tr>");
+		  		$("#domain-list tr").append("<th>Domain</th>");
+		  		$("#domain-list tr").append("<th>Views</th>");
+
+		  		// add CSS class to the table headers
+		  		$("#domain-list tr th").each(function() {
+		  		  $(this).addClass("panel-list-header");
+		  		});
+
+			    // add CSS class to the first item in the header
+			    $("#domain-list tr th:first-child").each(function () {
+			        $(this).addClass("panel-list-image");
+			    });
+
+		  		// add CSS classes to the last item in the header
+		  		$("#domain-list tr th:last-child").each(function() {
+		  		  $(this).addClass("panel-list-count");
+		  		  $(this).addClass("domain-list-spacer");
+		  		});
+
+  				// hide the See Fewer button 
+				$("#see-fewer-btn").each(function() {
+  					$(this).addClass("visuallyhidden");
+  				});
+
+		  		// filter out data that we don't want to display
+		  		if (onlyShowN > 0) {
+		  			dataToShow = data.slice(0, onlyShowN);
+		  			if (data.length > dataToShow.length) {
+
+		  				// unhide the See All button 
+						$("#see-all-btn").each(function() {
+		  					$(this).removeClass("visuallyhidden");
+		  				});
+		  			} else {
+			  			dataToShow = data;
+
+		  				// hide the See All button 
+						$("#see-all-btn").each(function() {
+		  					$(this).addClass("visuallyhidden");
+		  				});
+		  			}
+		  		} else {
+		  			dataToShow = data;
+
+	  				// hide the See All button 
+					$("#see-all-btn").each(function() {
+	  					$(this).addClass("visuallyhidden");
+	  				});
+		  		}
+
+		  		// add table dataToShow rows
+		  		for (index in dataToShow) {
+		  			item = dataToShow[index];
+		  			domainName = item[0];
+		  			count = item[1];
+		  		}
+
+		  		// add CSS class to the table rows
+		  		$("#domain-list tr").each(function() {
+		  		  $(this).addClass("panel-list-row");
+		  		});
+
+			    // add CSS class to the first item in each row
+			    $("#domain-list tr td:first-child").each(function () {
+			        $(this).addClass("panel-list-image");
+			    });
+
+		  		// add CSS class to the last item in each row
+		  		$("#domain-list tr td:last-child").each(function() {
+		  		  $(this).addClass("panel-list-count");
+		  		});
+
+			    console.log("panel-list-image count = " + $(".panel-list-image").length);
+			    console.log("panel-list-count count = " + $(".panel-list-count").length);
+		  	}
+
 		  	function getCountryCode(countryName) {
 		  		var returnValue = "";
 		  		var filteredList = countryCodeList.filter(function(item) { 
@@ -937,6 +1040,51 @@
 						console.log(item[0]);
 					}
 				}
+			}
+
+
+	      	function aggregateDataByDomain(data, dateStart) {
+	      		console.log(data);
+	      		console.log(dateStart);
+
+				var start = dateStart || 0
+	      		var lastIndex = data[0].length-1;
+
+				var dataFilteredByDate = data.filter(function(elem, i, array) {
+				        return array.indexOf(elem) === i && elem >= start;
+				    }
+				);
+				console.log(dataFilteredByDate);
+
+				var domainArray = dataFilteredByDate.map(function(elem) {
+				    return elem[1];
+				});
+
+				var filteredDomainArray = domainArray.filter(function(elem, i, array) {
+				        return array.indexOf(elem) === i;
+				    }
+				);
+
+				console.log(filteredDomainArray);
+
+				var arrayToReturn = filteredDomainArray.map(function(country) {
+				    var count = dataFilteredByDate.reduce(function(prevVal, elem) {
+				        if(elem[1] == country) {
+				            return prevVal + parseInt(elem[lastIndex]);
+				        } 
+				        else {
+				            return prevVal;
+				        }
+				    }, 0);
+				    return new Array(country, count); 
+				});
+
+				// sort by sessions, descending
+				arrayToReturn.sort(function(a,b) {
+				    return b[1]-a[1]
+				});
+
+				return arrayToReturn;
 			}
 	
 			function handleClientLoad() {
