@@ -175,6 +175,10 @@
 				.geo-list-btn {
 				}
 				#geo-panel {
+				    display: inline-block;
+				}
+				#domain-panel {
+				    display: inline-block;
 				}
 				#geo-list {
 				}
