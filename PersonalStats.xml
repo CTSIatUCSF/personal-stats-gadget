@@ -304,6 +304,8 @@
 				<div class="panel-data-area">
 					<table id="geo-list" class="panel-list"></table>
 					<div id="geo-chart"></div>
+					<div id="see-all-btn" class="visuallyhidden">See All</div>
+					<div id="see-fewer-btn" class="visuallyhidden">See Fewer</div>
 				</div>
 			</div>
 	    </div>
@@ -640,7 +642,13 @@
 
 		  		// filter out data that we don't want to display
 		  		if (onlyShowN > 0) {
-		  			dataToShow = data.slice(0, onlyShowN - 1);
+		  			dataToShow = data.slice(0, onlyShowN);
+		  			if (data.length > dataToShow.length) {
+		  				// unhide the See All button 
+						$("#see-all-btn").each(function() {
+		  					$(this).removeClass("visuallyhidden");
+		  				});
+		  			}
 		  		} else {
 		  			dataToShow = data;
 		  		}
