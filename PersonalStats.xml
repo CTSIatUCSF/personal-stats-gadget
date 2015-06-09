@@ -844,14 +844,14 @@
 						ownerData = ownerObj;
 						console.log("ownerData:");
 						console.log(ownerData);
-					});
 
-					//TODO: Fix this path
-					$.getJSON("http://cranestylelabs.github.io/personal-stats-gadget/countries.json", function(response){
-					    countryCodeList = response;
-					    console.log(countryCodeList);
-				  		fetchData();
-					})
+						//TODO: Fix this path
+						$.getJSON("http://cranestylelabs.github.io/personal-stats-gadget/countries.json", function(response){
+						    countryCodeList = response;
+						    console.log(countryCodeList);
+					  		fetchData();
+						});
+					});
 				});
 			}
 	
