@@ -168,6 +168,9 @@
 				.panel-list th{
 				    font-size:8px;
 				}
+				.panel-list td{
+				    font-size:10px;
+				}
 				.panel-list-row, .geo-list-row {
 				    background-color: white;
 				}
@@ -193,7 +196,6 @@
 				    background: #e3e3e3
 				}
 				#geo-list td {
-				    font-size:10px;
 				    width: 70%;
 				}
 				.panel-list-count {
@@ -223,6 +225,9 @@
 				    display: inline-block;
 				    vertical-align: top;
 				    margin: 5px;
+				}
+				#domain-list {
+
 				}
 
                 // Toggle Button Stuff
@@ -729,7 +734,6 @@
 		  		// add CSS classes to the last item in the header
 		  		$("#geo-list tr th:last-child").each(function() {
 		  		  $(this).addClass("panel-list-count");
-		  		  $(this).addClass("geo-list-spacer");
 		  		});
 
   				// hide the See Fewer button 
@@ -789,8 +793,8 @@
 		  		  $(this).addClass("panel-list-count");
 		  		});
 
-			    console.log("panel-list-image count = " + $(".panel-list-image").length);
-			    console.log("panel-list-count count = " + $(".panel-list-count").length);
+			    console.log("country panel-list-image count = " + $("#geo-list .panel-list-image").length);
+			    console.log("country panel-list-count count = " + $("#geo-list .panel-list-count").length);
 		  	}
 
 		  	function showViewsByDomain(data, onlyShowN) {
@@ -809,15 +813,9 @@
 		  		  $(this).addClass("panel-list-header");
 		  		});
 
-			    // add CSS class to the first item in the header
-			    $("#domain-list tr th:first-child").each(function () {
-			        $(this).addClass("panel-list-image");
-			    });
-
 		  		// add CSS classes to the last item in the header
 		  		$("#domain-list tr th:last-child").each(function() {
 		  		  $(this).addClass("panel-list-count");
-		  		  $(this).addClass("domain-list-spacer");
 		  		});
 
   				// hide the See Fewer button 
@@ -863,18 +861,13 @@
 		  		  $(this).addClass("panel-list-row");
 		  		});
 
-			    // add CSS class to the first item in each row
-			    $("#domain-list tr td:first-child").each(function () {
-			        $(this).addClass("panel-list-image");
-			    });
-
 		  		// add CSS class to the last item in each row
 		  		$("#domain-list tr td:last-child").each(function() {
 		  		  $(this).addClass("panel-list-count");
 		  		});
 
-			    console.log("panel-list-image count = " + $(".panel-list-image").length);
-			    console.log("panel-list-count count = " + $(".panel-list-count").length);
+			    console.log("domain panel-list-image count = " + $("#domain-list .panel-list-image").length);
+			    console.log("domain panel-list-count count = " + $("#domain-list .panel-list-count").length);
 		  	}
 
 		  	function getCountryCode(countryName) {
