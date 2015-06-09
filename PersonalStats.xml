@@ -704,6 +704,13 @@
 						$("#see-all-btn").each(function() {
 		  					$(this).removeClass("visuallyhidden");
 		  				});
+		  			} else {
+			  			dataToShow = data;
+
+		  				// hide the See All button 
+						$("#see-all-btn").each(function() {
+		  					$(this).addClass("visuallyhidden");
+		  				});
 		  			}
 		  		} else {
 		  			dataToShow = data;
