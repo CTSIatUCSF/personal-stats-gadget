@@ -217,10 +217,11 @@
 
                 // Toggle Button Stuff
                 .toggle-btn-grp { 
+                	margin: 0px !important;
                 }
                 .toggle-btn { 
                     text-align:centre; 
-                    margin:5px 2px;
+                    margin: 5px;
                     padding:0.3em 1.2em; 
                     color:#000; 
                     background-color:#FFF; 
