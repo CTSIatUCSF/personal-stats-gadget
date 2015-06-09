@@ -192,7 +192,7 @@
 				}
 				#geo-list {
 				}
-				#geo-list tr:nth-child(odd) {
+				.panel-list tr:nth-child(odd) {
 				    background: #e3e3e3
 				}
 				#geo-list td {
@@ -1050,7 +1050,7 @@
 				console.log(dataFilteredByDate);
 
 				var domainArray = dataFilteredByDate.map(function(elem) {
-				    return elem[1];
+				    return elem[2];
 				});
 
 				var filteredDomainArray = domainArray.filter(function(elem, i, array) {
@@ -1060,16 +1060,16 @@
 
 				console.log(filteredDomainArray);
 
-				var arrayToReturn = filteredDomainArray.map(function(country) {
+				var arrayToReturn = filteredDomainArray.map(function(domain) {
 				    var count = dataFilteredByDate.reduce(function(prevVal, elem) {
-				        if(elem[1] == country) {
+				        if(elem[2] == domain) {
 				            return prevVal + parseInt(elem[lastIndex]);
 				        } 
 				        else {
 				            return prevVal;
 				        }
 				    }, 0);
-				    return new Array(country, count); 
+				    return new Array(domain, count); 
 				});
 
 				// sort by sessions, descending
