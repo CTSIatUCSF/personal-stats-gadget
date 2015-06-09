@@ -362,7 +362,7 @@
 	  
 		  	function fetchData() {
 
-				var ownerHomePage = ownerObj[FOAF("workplaceHomepage")];
+				var ownerHomePage = ownerData[FOAF("workplaceHomepage")];
 				console.log("ownerHomePage:");
 				console.log(ownerHomePage);
 
