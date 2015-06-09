@@ -333,7 +333,8 @@
 	
 		<script language="JavaScript" type="text/javascript">
 
-			var ownerData, token, ga_key, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCountryLastYear, aggregatedByCountryLastMonth, countryCodeList;
+			var ownerData, token, ga_key, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCountryLastYear, aggregatedByCountryLastMonth, countryCodeList
+			var onlyShow = 10;
 
 	        // Load the Visualization API and the column chart package.
 	        google.load("visualization", "1.0", {"packages":["corechart", "geochart"]});
@@ -349,13 +350,14 @@
 	        });
 	        $(".toggle-btn input[type=radio]").first().click(function() {
 	        	console.log("month selected");
-	            showViewsByCountry(aggregatedByCountryLastMonth);
+	            showViewsByCountry(aggregatedByCountryLastMonth, onlyShow);
 	            drawGeoChart(aggregatedByCountryLastMonth);
 	        });
 
 	        $(".toggle-btn input[type=radio]").last().click(function() {
 	            console.log("year selected");
-	            showViewsByCountry(aggregatedByCountryLastYear, 10);
+
+	            showViewsByCountry(aggregatedByCountryLastYear, onlyShow);
 	            drawGeoChart(aggregatedByCountryLastYear);
 	        });
 
@@ -365,13 +367,43 @@
 	        // See All button shows all for Month or Year (based on current selection)
 	        $("#see-all-btn").click(function() {
 	        	console.log("see all button clicked");
+	        	
 	        	if ($(".toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 		        	console.log("see all button clicked - last month");
 		            showViewsByCountry(aggregatedByCountryLastMonth);
-	        	} else if ($(".toggle-btn input[type=radio]").last().parent().hasClass("success")) {
-		            showViewsByCountry(aggregatedByCountryLastYear);
+	        	} else {
 		        	console.log("see all button clicked - last year");
+		            showViewsByCountry(aggregatedByCountryLastYear);
 	        	}
+  				// hide the See All button 
+				$("#see-all-btn").each(function() {
+  					$(this).addClass("visuallyhidden");
+  				});
+  				// unhide the See Fewer button 
+				$("#see-fewer-btn").each(function() {
+  					$(this).removeClass("visuallyhidden");
+  				});
+	        });
+
+	        // See Fewer button shows fewer results for Month or Year (based on current selection)
+	        $("#see-all-btn").click(function() {
+	        	console.log("see all button clicked");
+	        	
+	        	if ($(".toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+		        	console.log("see all button clicked - last month");
+		            showViewsByCountry(aggregatedByCountryLastMonth, onlyShow);
+	        	} else {
+		        	console.log("see all button clicked - last year");
+		            showViewsByCountry(aggregatedByCountryLastYear, onlyShow);
+	        	}
+  				// hide the See Fewer button 
+				$("#see-fewer-btn").each(function() {
+  					$(this).addClass("visuallyhidden");
+  				});
+  				// unhide the See All button 
+				$("#see-all-btn").each(function() {
+  					$(this).removeClass("visuallyhidden");
+  				});
 	        });
 	  
 		  	function fetchData() {
@@ -651,6 +683,11 @@
 		  		  $(this).addClass("panel-list-count");
 		  		  $(this).addClass("geo-list-spacer");
 		  		});
+
+  				// hide the See Fewer button 
+				$("#see-fewer-btn").each(function() {
+  					$(this).addClass("visuallyhidden");
+  				});
 
 		  		// filter out data that we don't want to display
 		  		if (onlyShowN > 0) {
