@@ -210,11 +210,13 @@
 				    width: 250px;
 				    vertical-align: top;
 				}
+				#panel-button-area {
+                    width: 160px;
+				}
 
                 // Toggle Button Stuff
                 .toggle-btn-grp { 
                     margin: 5px;
-                    width: 160px;
                 }
                 .toggle-btn { 
                     text-align:centre; 
