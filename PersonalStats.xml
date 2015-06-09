@@ -176,9 +176,13 @@
 				}
 				#geo-panel {
 				    display: inline-block;
+				    vertical-align: top;
+				    horizontal-align: left;
 				}
 				#domain-panel {
 				    display: inline-block;
+				    vertical-align: top;
+				    horizontal-align: right;
 				}
 				#geo-list {
 				}
