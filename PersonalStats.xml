@@ -348,7 +348,7 @@
 	            }
 	        });
 	        $(".toggle-btn input[type=radio]").first().click(function() {
-	            console.log("month selected");
+	        	console.log("month selected");
 	            showViewsByCountry(aggregatedByCountryLastMonth);
 	            drawGeoChart(aggregatedByCountryLastMonth);
 	        });
@@ -361,6 +361,15 @@
 
 	        // Turn on the first toggle button
 	        $(".toggle-btn input[type=radio]").first().parent().addClass("success");
+
+	        // See All button shows all for Month or Year (based on current selection)
+	        $("see-all-btn").click(function() {
+	        	if ($(".toggle-btn input[type=radio]").first().hasClass("success")) {
+		            showViewsByCountry(aggregatedByCountryLastMonth);
+	        	} else if ($(".toggle-btn input[type=radio]").last().hasClass("success")) {
+		            showViewsByCountry(aggregatedByCountryLastYear);
+	        	}
+	        });
 	  
 		  	function fetchData() {
 
