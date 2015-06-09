@@ -182,6 +182,7 @@
 				    width: 160px;
 				    display: inline-block;
 				    vertical-align: top;
+                    border:solid 1px #CCC; 
 				}
 				#geo-list tr:nth-child(odd) {
 				    background: #e3e3e3
