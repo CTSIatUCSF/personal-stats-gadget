@@ -173,7 +173,6 @@
 				.panel-list-header {
 				}
 				.geo-list-btn {
-					margin: 5px;
 				}
 				#geo-panel {
 				}
@@ -205,7 +204,6 @@
 				    display: inline-block;
 				    width: 250px;
 				    vertical-align: top;
-                    border:solid 1px #CCC; 
 				}
 				#panel-button-area {
                     width: 160px;
@@ -214,7 +212,6 @@
 				    width: 160px;
 				    display: inline-block;
 				    vertical-align: top;
-                    border:solid 1px #CCC; 
 				    margin: 5px;
 				}
 
