@@ -641,6 +641,8 @@
 		  		// filter out data that we don't want to display
 		  		if (onlyShowN > 0) {
 		  			dataToShow = data.slice(0, onlyShowN - 1);
+		  		} else {
+		  			dataToShow = data;
 		  		}
 
 		  		// add table dataToShow rows
