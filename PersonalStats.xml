@@ -179,10 +179,6 @@
 				#geo-panel {
 				}
 				#geo-list {
-				    width: 160px;
-				    display: inline-block;
-				    vertical-align: top;
-                    border:solid 1px #CCC; 
 				}
 				#geo-list tr:nth-child(odd) {
 				    background: #e3e3e3
@@ -214,6 +210,12 @@
 				}
 				#panel-button-area {
                     width: 160px;
+				}
+				#geo-list-area {
+				    width: 160px;
+				    display: inline-block;
+				    vertical-align: top;
+                    border:solid 1px #CCC; 
 				}
 
                 // Toggle Button Stuff
@@ -310,7 +312,7 @@
 					</div>
 				</div>
 				<div class="panel-data-area">
-					<div>
+					<div id="geo-list-area">
 						<table id="geo-list" class="panel-list"></table>
 						<label id="see-all-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See All</label>
 						<label id="see-fewer-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See Fewer</label>
