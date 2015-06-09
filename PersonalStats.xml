@@ -158,7 +158,7 @@
 
                 // Lower Panel Stuff
                 .panel {
-				    width: 445px;
+				    width: 440px;
 				    margin: 10px;
 				}
 				.panel-title {
