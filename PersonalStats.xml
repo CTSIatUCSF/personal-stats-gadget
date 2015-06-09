@@ -155,64 +155,63 @@
                 .stats-text-large {
                 	font-size:20px;
                 }
+
+                // Lower Panel Stuff
                 .panel {
-                	width: 440px;
-                	margin: 10px;
-                }
-                .panel-title {
-                	margin: 5px;
-                	font-size:12px;
-                }
-                .panel-list {
-                	margin: 5px;
-                }
-                .panel-list-row,
-                .geo-list-row {
-                	background-color: white;
-                }
-                .panel-list-header {
-
-                }
-                .geo-list-row {
-                	width: 160px;
-                }
-                .geo-list-spacer {
-                	
-                }
-                #geo-panel {
-
-                }
-                #geo-list {
-                	width: 160px;
-                	display: inline-block;
-                	vertical-align: top;
-                }
-                #geo-list tr:nth-child(odd) {
-                	background: #e3e3e3 
-                }
-                #geo-list td {
-                	font-size:10px;
-                	width: 90px;
-                }
-                .panel-list-count {
-                	text-align: right;
-                	float: right;
-                	margin-right: 0px;
-                	width: 40px;
-                }
-                #geo-list img {
-                	width 20px;
-                }
-                #geo-list th {
-                	width: 80px;
-                	font-size:8px;
-                }
-                #geo-chart {
-                	margin: 5px;
-                	display: inline-block;
-                	width: 250px;
-                	vertical-align: top;
-                }
+				    width: 440px;
+				    margin: 10px;
+				    border-style: solid;
+				    border-width: 1px;
+				}
+				.panel-title {
+				    margin: 5px;
+				    font-size:12px;
+				    border-style: solid;
+				    border-width: 1px;
+				}
+				.panel-list {
+				    margin: 5px;
+				}
+				.panel-list-row, .geo-list-row {
+				    background-color: white;
+				}
+				.panel-list-header {
+				}
+				#geo-panel {
+				}
+				#geo-list {
+				    width: 160px;
+				    display: inline-block;
+				    vertical-align: top;
+				}
+				#geo-list tr:nth-child(odd) {
+				    background: #e3e3e3
+				}
+				#geo-list td {
+				    font-size:10px;
+				    width: 70%;
+				}
+				.panel-list-count {
+				    text-align: right !important;
+				    width: 20% !important;
+				}
+				.panel-list-image {
+				    width: 10% !important;
+				}
+				#geo-list img {
+				    vertical-align: middle;
+				    margin: 2px !important;
+				}
+				#geo-list th {
+				    width: 80px;
+				    font-size:8px;
+				}
+				#geo-chart {
+				    margin: 5px;
+				    display: inline-block;
+				    width: 250px;
+				    vertical-align: top;
+				}
 
                 // Toggle Button Stuff
                 .toggle-btn-grp { 
@@ -621,12 +620,18 @@
 		  		// add the table headers
 		  		$("#geo-list").append("<tr></tr>");
 		  		$("#geo-list tr").append("<th>Country</th>");
+			    $("#geo-list tr").append("<th></th>");
 		  		$("#geo-list tr").append("<th>Views</th>");
 
 		  		// add CSS class to the table headers
 		  		$("#geo-list tr th").each(function() {
 		  		  $(this).addClass("panel-list-header");
 		  		});
+
+			    // add CSS class to the first item in the header
+			    $("#geo-list tr th:first-child").each(function () {
+			        $(this).addClass("panel-list-image");
+			    });
 
 		  		// add CSS classes to the last item in the header
 		  		$("#geo-list tr th:last-child").each(function() {
@@ -650,12 +655,18 @@
 		  		  $(this).addClass("panel-list-row");
 		  		});
 
-		  		// add CSS class to the last item in the row
+			    // add CSS class to the first item in each row
+			    $("#geo-list tr td:first-child").each(function () {
+			        $(this).addClass("panel-list-image");
+			    });
+
+		  		// add CSS class to the last item in each row
 		  		$("#geo-list tr td:last-child").each(function() {
 		  		  $(this).addClass("panel-list-count");
 		  		});
 
-		  		console.log($(".panel-list-count").length);
+			    console.log("panel-list-image count = " + $(".panel-list-image").length);
+			    console.log("panel-list-count count = " + $(".panel-list-count").length);
 		  	}
 
 		  	function getCountryCode(countryName) {
