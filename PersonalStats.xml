@@ -976,9 +976,7 @@
 			}
 
 	      	function aggregateDataByCountry(data, dateStart) {
-	      		console.log(data);
-	      		console.log(dateStart);
-
+	      		
 				var start = dateStart || 0
 	      		var lastIndex = data[0].length-1;
 
@@ -986,7 +984,6 @@
 				        return array.indexOf(elem) === i && elem >= start;
 				    }
 				);
-				console.log(dataFilteredByDate);
 
 				var countryArray = dataFilteredByDate.map(function(elem) {
 				    return elem[1];
@@ -996,8 +993,6 @@
 				        return array.indexOf(elem) === i;
 				    }
 				);
-
-				console.log(filteredCountryArray);
 
 				var arrayToReturn = filteredCountryArray.map(function(country) {
 				    var count = dataFilteredByDate.reduce(function(prevVal, elem) {
