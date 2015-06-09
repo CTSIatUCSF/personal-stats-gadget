@@ -363,7 +363,7 @@
 	        $(".toggle-btn input[type=radio]").first().parent().addClass("success");
 
 	        // See All button shows all for Month or Year (based on current selection)
-	        $("see-all-btn").click(function() {
+	        $("#see-all-btn").click(function() {
 	        	console.log("see all button clicked");
 	        	if ($(".toggle-btn input[type=radio]").first().hasClass("success")) {
 		            showViewsByCountry(aggregatedByCountryLastMonth);
