@@ -231,7 +231,6 @@
                 }
 
                 .toggle-btn-grp.joint-toggle .toggle-btn { 
-                    margin:5px 0;  
                     border-radius:0;
                     border-right-color:white;
                 }
