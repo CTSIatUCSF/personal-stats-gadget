@@ -386,7 +386,7 @@
 	        });
 
 	        // See Fewer button shows fewer results for Month or Year (based on current selection)
-	        $("#see-all-btn").click(function() {
+	        $("#see-fewer-btn").click(function() {
 	        	console.log("see fewer button clicked");
 	        	
 	        	if ($(".toggle-btn input[type=radio]").first().parent().hasClass("success")) {
