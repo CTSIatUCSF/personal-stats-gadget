@@ -353,7 +353,7 @@
 
 	        $(".toggle-btn input[type=radio]").last().click(function() {
 	            console.log("year selected");
-	            showViewsByCountry(aggregatedByCountryLastYear);
+	            showViewsByCountry(aggregatedByCountryLastYear, 10);
 	            drawGeoChart(aggregatedByCountryLastYear);
 	        });
 
@@ -610,8 +610,8 @@
 				vccAllTimeSince.innerHTML = "Since " + vccAllTimeCount.start + "*";
 		  	}
 
-		  	function showViewsByCountry(data) {
-		  		var index, item, countryName, countryCode, count;
+		  	function showViewsByCountry(data, onlyShowN) {
+		  		var dataToShow, index, item, countryName, countryCode, count;
 
 				// remove any existing rows before adding new ones
 		  		$("#geo-list tr").remove();
@@ -638,9 +638,14 @@
 		  		  $(this).addClass("geo-list-spacer");
 		  		});
 
-		  		// add table data rows
-		  		for (index in data) {
-		  			item = data[index];
+		  		// filter out data that we don't want to display
+		  		if (onlyShowN > 0) {
+		  			dataToShow = data.slice(0, onlyShowN - 1);
+		  		}
+
+		  		// add table dataToShow rows
+		  		for (index in dataToShow) {
+		  			item = dataToShow[index];
 		  			countryName = item[0];
 		  			countryCode = getCountryCode(countryName);
 		  			count = item[1];
