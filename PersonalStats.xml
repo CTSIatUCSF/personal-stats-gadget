@@ -213,7 +213,8 @@
 
                 // Toggle Button Stuff
                 .toggle-btn-grp { 
-                    margin: 5px; 
+                    margin: 5px;
+                    width: 160px;
                 }
                 .toggle-btn { 
                     text-align:centre; 
