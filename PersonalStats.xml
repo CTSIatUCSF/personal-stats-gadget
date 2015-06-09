@@ -166,7 +166,6 @@
 				    font-size:12px;
 				}
 				.panel-list {
-				    margin: 5px;
 				}
 				.panel-list-row, .geo-list-row {
 				    background-color: white;
@@ -216,11 +215,11 @@
 				    display: inline-block;
 				    vertical-align: top;
                     border:solid 1px #CCC; 
+				    margin: 5px;
 				}
 
                 // Toggle Button Stuff
                 .toggle-btn-grp { 
-                    margin: 0px;
                 }
                 .toggle-btn { 
                     text-align:centre; 
