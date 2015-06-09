@@ -159,7 +159,7 @@
                 // Lower Panel Stuff
                 .panel {
 				    width: 440px;
-				    margin: 10px !important;
+				    margin: 10px;
 				}
 				.panel-title {
 				    margin: 5px;
@@ -177,12 +177,12 @@
 				#geo-panel {
 				    display: inline-block;
 				    vertical-align: top;
-				    horizontal-align: left;
+				    float: left;
 				}
 				#domain-panel {
 				    display: inline-block;
 				    vertical-align: top;
-				    horizontal-align: right;
+				    float: right;
 				}
 				#geo-list {
 				}
