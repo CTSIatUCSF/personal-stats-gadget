@@ -216,7 +216,7 @@
 
                 // Toggle Button Stuff
                 .toggle-btn-grp { 
-                    margin: 5px;
+                    margin: 0px;
                 }
                 .toggle-btn { 
                     text-align:centre; 
@@ -231,6 +231,7 @@
                 }
 
                 .toggle-btn-grp.joint-toggle .toggle-btn { 
+                    margin:5px 0;  
                     border-radius:0;
                     border-right-color:white;
                 }
@@ -698,6 +699,7 @@
 		  		if (onlyShowN > 0) {
 		  			dataToShow = data.slice(0, onlyShowN);
 		  			if (data.length > dataToShow.length) {
+		  			
 		  				// unhide the See All button 
 						$("#see-all-btn").each(function() {
 		  					$(this).removeClass("visuallyhidden");
@@ -705,6 +707,11 @@
 		  			}
 		  		} else {
 		  			dataToShow = data;
+
+	  				// hide the See All button 
+					$("#see-all-btn").each(function() {
+	  					$(this).addClass("visuallyhidden");
+	  				});
 		  		}
 
 		  		// add table dataToShow rows
