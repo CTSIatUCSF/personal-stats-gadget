@@ -151,7 +151,7 @@
 					<div id="domain-list-area">
 						<table id="domain-list" class="panel-list"></table>
 						<div id="domain-see-more-less" class="toggle-btn-grp">
-					    	<label onclick="" class="toggle-btn"><input type="radio" name="domainShow"/>See All</label><label onclick="" class="toggle-btn"><input type="radio" name="domainShow"/>See Fewer</label>
+					    	<label onclick="" class="toggle-btn"><input type="radio" name="domainSee"/>See All</label><label onclick="" class="toggle-btn"><input type="radio" name="domainSee"/>See Fewer</label>
 						</div>
 						<!-- <label id="domain-see-all-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See All</label> -->
 						<!-- <label id="domain-see-fewer-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See Fewer</label> -->
@@ -169,9 +169,6 @@
 		<script language="JavaScript" type="text/javascript">
 
 			window.personalStats = window.personalStats || { };
-
-			var button = new window.personalStats.Button();
-			console.log(button.name);
 
 			var ownerData, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCountryLastYear, aggregatedByCountryLastMonth, countryCodeList, aggregatedByDomainLastYear, aggregatedByDomainLastMonth;
 			var onlyShow = 10;
@@ -268,6 +265,8 @@
 
 	        // See All/Fewer (domain) button shows all for Month or Year (based on current selection)
 	        $("#domain-see-more-less .toggle-btn input[type=radio]").click(function() {
+	        	console.log:("jquery object is:");
+	        	console.log($(this));
 
 	        	if ($(this).is(':first-child')) { // See All Button 
 		        	console.log("see all button clicked");
