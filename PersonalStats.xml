@@ -150,8 +150,11 @@
 				<div class="panel-data-area">
 					<div id="domain-list-area">
 						<table id="domain-list" class="panel-list"></table>
-						<label id="domain-see-all-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See All</label>
-						<label id="domain-see-fewer-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See Fewer</label>
+						<div id="domain-toggle" class="toggle-btn-grp joint-toggle">
+					    	<label onclick="" class="toggle-btn"><input type="radio" name="domainShow"/>See All</label><label onclick="" class="toggle-btn"><input type="radio" name="domainShow"/>See Fewer</label>
+						</div>
+						<!-- <label id="domain-see-all-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See All</label> -->
+						<!-- <label id="domain-see-fewer-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See Fewer</label> -->
 					</div>
 					<div id="geo-chart"></div>
 				</div>
