@@ -265,8 +265,6 @@
 
 	        // See All/Fewer (domain) button shows all for Month or Year (based on current selection)
 	        $("#domain-see-more-less .toggle-btn input[type=radio]").click(function() {
-	        	console.log("this jquery object's parent is:");
-	        	console.log($(this).parent());
 
 	        	if ($(this).parent().is(':first-child')) { // See All Button 
 		        	console.log("see all button clicked");
@@ -528,8 +526,7 @@
 		  	function showViewsByCountry(data, onlyShowN) {
 		  		var dataToShow, index, item, countryName, countryCode, count;
 
-				// remove any existing rows before adding new ones
-		  		$("#geo-list tr").remove();
+				$("#geo-list tr").remove(); //Remove any existing rows before adding new ones
 
 		  		// add the table headers
 		  		$("#geo-list").append("<tr></tr>");
@@ -537,39 +534,30 @@
 			    $("#geo-list tr").append("<th></th>");
 		  		$("#geo-list tr").append("<th>Views</th>");
 
-		  		// add CSS class to the table headers
-		  		$("#geo-list tr th").addClass("panel-list-header");
+		  		$("#geo-list tr th").addClass("panel-list-header"); //Add CSS class to the table headers
 
-			    // add CSS class to the first item in the header
-			    $("#geo-list tr th:first-child").addClass("panel-list-image");
-
-		  		// add CSS classes to the last item in the header
-		  		$("#geo-list tr th:last-child").addClass("panel-list-count");
-
-  				// hide the See Fewer button 
-				$("#geo-see-fewer-btn").addClass("visuallyhidden");
+			    $("#geo-list tr th:first-child").addClass("panel-list-image"); //Add CSS class to the first item in the header
+			    
+		  		$("#geo-list tr th:last-child").addClass("panel-list-count"); //Add CSS classes to the last item in the header
+		  		
+  				$("#geo-see-fewer-btn").addClass("visuallyhidden"); //Hide the See Fewer button 
 
 		  		// filter out data that we don't want to display
 		  		if (onlyShowN > 0) {
 		  			dataToShow = data.slice(0, onlyShowN);
 		  			if (data.length > dataToShow.length) {
-
-		  				// unhide the See All button 
-						$("#geo-see-all-btn").removeClass("visuallyhidden");
+		  				$("#geo-see-all-btn").removeClass("visuallyhidden"); //Unhide the See All button 
 		  			} else {
 			  			dataToShow = data;
-
-		  				// hide the See All button 
-						$("#geo-see-all-btn").addClass("visuallyhidden");
+		  				$("#geo-see-all-btn").addClass("visuallyhidden"); //Hide the See All button 
 		  			}
 		  		} else {
 		  			dataToShow = data;
 
-	  				// hide the See All button 
-					$("#geo-see-all-btn").addClass("visuallyhidden");
+	  				$("#geo-see-all-btn").addClass("visuallyhidden"); //Hide the See All button 
 		  		}
 
-		  		// add table dataToShow rows
+		  		// add table rows for dataToShow
 		  		for (index in dataToShow) {
 		  			item = dataToShow[index];
 		  			countryName = item[0];
@@ -580,61 +568,45 @@
 			  		$("#geo-list").append("<tr><td><img src=http://cranestylelabs.github.io/personal-stats-gadget/images/flag_icons/"+ countryCode + ".gif></img></td><td>" + countryName + "</td><td>" + count + "</td></tr>");
 		  		}
 
-		  		// add CSS class to the table rows
-		  		$("#geo-list tr").addClass("panel-list-row");
-
-			    // add CSS class to the first item in each row
-			    $("#geo-list tr td:first-child").addClass("panel-list-image");
-
-		  		// add CSS class to the last item in each row
-		  		$("#geo-list tr td:last-child").addClass("panel-list-count");
+		  		$("#geo-list tr").addClass("panel-list-row"); //Add CSS class to the table rows
+		  		
+			    $("#geo-list tr td:first-child").addClass("panel-list-image"); //Add CSS class to the first item in each row
+			    
+				$("#geo-list tr td:last-child").addClass("panel-list-count"); //Add CSS class to the last item in each row
 		  	}
 
 		  	function showViewsByDomain(data, onlyShowN) {
-		  		console.log("show views by domain data:");
-		  		console.log(data);
-		  		console.log("show views by domain onlyShowN:");
-		  		console.log(onlyShowN);
 
 		  		var dataToShow, index, item, domainName, count;
 
-				// remove any existing rows before adding new ones
-		  		$("#domain-list tr").remove();
-
+				$("#domain-list tr").remove(); //Remove any existing rows before adding new ones
+		  		
 		  		// add the table headers
 		  		$("#domain-list").append("<tr></tr>");
 		  		$("#domain-list tr").append("<th>Domain</th>");
 		  		$("#domain-list tr").append("<th>Views</th>");
 
-		  		// add CSS class to the table headers
-		  		$("#domain-list tr th").addClass("panel-list-header");
-
-		  		// add CSS classes to the last item in the header
-		  		$("#domain-list tr th:last-child").addClass("panel-list-count");
-
-  				// hide the See Fewer button 
-				$("#domain-see-fewer-btn").addClass("visuallyhidden");
-
+		  		$("#domain-list tr th").addClass("panel-list-header"); //Add CSS class to the table headers
+		  		
+		  		$("#domain-list tr th:last-child").addClass("panel-list-count"); //Add CSS classes to the last item in the header
+		  		
+  				$("#domain-see-more-less .toggle-btn input[type=radio]").second().parent().addClass("visuallyhidden"); //Hide the See Fewer button 
+				
 		  		// filter out data that we don't want to display
 		  		if (onlyShowN > 0) {
 		  			dataToShow = data.slice(0, onlyShowN);
 		  			if (data.length > dataToShow.length) {
-						$("#domain-see-all-btn").removeClass("visuallyhidden"); // unhide the See All button
+		  				$("#domain-see-more-less .toggle-btn input[type=radio]").first().parent().removeClass("visuallyhidden"); //Unhide the See All button 
 		  			} else {
 			  			dataToShow = data;
 
-		  				// hide the See All button 
-						$("#domain-see-all-btn").addClass("visuallyhidden");
+		  				$("#domain-see-more-less .toggle-btn input[type=radio]").first().parent().addClass("visuallyhidden"); //Hide the See All button 
 		  			}
 		  		} else {
 		  			dataToShow = data;
 		  		}
 
-		  		console.log("show views by domain dataToShow:");
-		  		console.log(dataToShow);
-
-
-		  		// add table dataToShow rows
+		  		// add table rows for dataToShow
 		  		for (index in dataToShow) {
 		  			item = dataToShow[index];
 		  			domainName = item[0];
@@ -643,13 +615,9 @@
 			  		$("#domain-list").append("<tr><td>" + domainName + "</td><td>" + count + "</td></tr>");
 		  		}
 
-		  		// add CSS class to the table rows
-		  		$("#domain-list tr").addClass("panel-list-row");
+		  		$("#domain-list tr").addClass("panel-list-row"); //Add CSS class to the table rows
 
-		  		// add CSS class to the last item in each row
-		  		$("#domain-list tr td:last-child").addClass("panel-list-count");
-
-			    console.log("domain panel-list-count count = " + $("#domain-list .panel-list-count").length);
+		  		$("#domain-list tr td:last-child").addClass("panel-list-count"); //Add CSS class to the last item in each row
 		  	}
 
 		  	function getCountryCode(countryName) {
