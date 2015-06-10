@@ -374,15 +374,8 @@
 
 	        // Set up the toggle buttons
 	        $(".toggle-btn input[type=radio]").addClass("visuallyhidden");
-	        $("#geo-toggle .toggle-btn input[type=radio]").change(function() {
-	            if( $(this).attr("name") === "countryToggle") {
-	                $(this).parent().addClass("success").siblings().removeClass("success")
-	            } else {
-	                $(this).parent().toggleClass("success");
-	            }
-	        });
-	        $("domain-toggle .toggle-btn input[type=radio]").change(function() {
-	            if( $(this).attr("name") === "domainToggle") {
+	        $(".toggle-btn input[type=radio]").change(function() {
+	            if( $(this).attr("name")) {
 	                $(this).parent().addClass("success").siblings().removeClass("success")
 	            } else {
 	                $(this).parent().toggleClass("success");
