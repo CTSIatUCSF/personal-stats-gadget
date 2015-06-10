@@ -531,7 +531,15 @@
 			    
 		  		$("#geo-list tr th:last-child").addClass("panel-list-count"); //Add CSS classes to the last item in the header
 		  		
-  				$("#geo-see-more-less .toggle-btn input[type=radio]").first().parent().siblings().addClass("visuallyhidden"); //Hide the See Fewer button 
+  				//$("#geo-see-more-less .toggle-btn input[type=radio]").second().parent().addClass("visuallyhidden"); //Hide the See Fewer button
+				console.log("geo input:");
+				console.log($("#geo-see-more-less .toggle-btn input[type=radio]"));
+				console.log("geo input parent:");
+				console.log($("#geo-see-more-less .toggle-btn input[type=radio]").parent());
+				console.log("geo input first:");
+				console.log($("#geo-see-more-less .toggle-btn input[type=radio]").first());
+				console.log("geo input second:");
+				console.log($("#geo-see-more-less .toggle-btn input[type=radio]").second());
 
 		  		// filter out data that we don't want to display
 		  		if (onlyShowN > 0) {
@@ -580,8 +588,16 @@
 		  		
 		  		$("#domain-list tr th:last-child").addClass("panel-list-count"); //Add CSS classes to the last item in the header
 		  		
-  				$("#domain-see-more-less .toggle-btn input[type=radio]").first().parent().siblings().addClass("visuallyhidden"); //Hide the See Fewer button 
-				
+  				//$("#domain-see-more-less .toggle-btn input[type=radio]").second().parent().addClass("visuallyhidden"); //Hide the See Fewer button
+				console.log("domain input:");
+				console.log($("#domain-see-more-less .toggle-btn input[type=radio]"));
+				console.log("domain input parent:");
+				console.log($("#domain-see-more-less .toggle-btn input[type=radio]").parent());
+				console.log("domain input first:");
+				console.log($("#domain-see-more-less .toggle-btn input[type=radio]").first());
+				console.log("domain input second:");
+				console.log($("#domain-see-more-less .toggle-btn input[type=radio]").second());
+
 		  		// filter out data that we don't want to display
 		  		if (onlyShowN > 0) {
 		  			dataToShow = data.slice(0, onlyShowN);
