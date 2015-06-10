@@ -176,11 +176,8 @@
 	        google.load("visualization", "1.0", {"packages":["corechart", "geochart"]});
 
 	        // Set up the toggle buttons
-	        $(".toggle-btn input[type=radio]").addClass("visuallyhidden"); // hide the radio button circle
-
-			$(".domain .see-more-less .toggle-btn input[type=radio]").parent().addClass("visuallyhidden"); 	// hide all buttons in button group
-			$(".geo .see-more-less .toggle-btn input[type=radio]").parent().addClass("visuallyhidden"); 	// hide all buttons in button group
-
+	        $(".toggle-btn input[type=radio]").addClass("visuallyhidden"); 							// hide the radio button circle on all buttons
+			$(".see-more-less .toggle-btn input[type=radio]").parent().addClass("visuallyhidden"); 	// hide all buttons in see-more-less button groups
 
 	        $(".date-toggle .toggle-btn input[type=radio]").change(function() {
 	            if( $(this).attr("name")) {
