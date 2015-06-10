@@ -192,6 +192,14 @@
 	            }
 	        });
 
+	        $("#geo-see-more-less .toggle-btn input[type=radio]").change(function() {
+	            if( $(this).attr("name")) {
+	                $(this).parent().addClass("visuallyhidden").siblings().removeClass("visuallyhidden")
+	            } else {
+	                $(this).parent().toggleClass("visuallyhidden");
+	            }
+	        });
+
 	        $("#domain-see-more-less .toggle-btn input[type=radio]").change(function() {
 	            if( $(this).attr("name")) {
 	                $(this).parent().addClass("visuallyhidden").siblings().removeClass("visuallyhidden")
@@ -525,21 +533,11 @@
 			    $("#geo-list tr").append("<th></th>");
 		  		$("#geo-list tr").append("<th>Views</th>");
 
-		  		$("#geo-list tr th").addClass("panel-list-header"); //Add CSS class to the table headers
-
-			    $("#geo-list tr th:first-child").addClass("panel-list-image"); //Add CSS class to the first item in the header
-			    
-		  		$("#geo-list tr th:last-child").addClass("panel-list-count"); //Add CSS classes to the last item in the header
+		  		$("#geo-list tr th").addClass("panel-list-header"); 			//Add CSS class to the table headers
+			    $("#geo-list tr th:first-child").addClass("panel-list-image"); 	//Add CSS class to the first item in the header
+		  		$("#geo-list tr th:last-child").addClass("panel-list-count"); 	//Add CSS classes to the last item in the header
 		  		
-  				//$("#geo-see-more-less .toggle-btn input[type=radio]").last().parent().addClass("visuallyhidden"); //Hide the See Fewer button
-				console.log("geo input:");
-				console.log($("#geo-see-more-less .toggle-btn input[type=radio]"));
-				console.log("geo input parent:");
-				console.log($("#geo-see-more-less .toggle-btn input[type=radio]").parent());
-				console.log("geo input first:");
-				console.log($("#geo-see-more-less .toggle-btn input[type=radio]").first());
-				console.log("geo input last:");
-				console.log($("#geo-see-more-less .toggle-btn input[type=radio]").last());
+  				$("#geo-see-more-less .toggle-btn input[type=radio]").last().parent().addClass("visuallyhidden"); //Hide the See Fewer button
 
 		  		// filter out data that we don't want to display
 		  		if (onlyShowN > 0) {
@@ -566,11 +564,9 @@
 			  		$("#geo-list").append("<tr><td><img src=http://cranestylelabs.github.io/personal-stats-gadget/images/flag_icons/"+ countryCode + ".gif></img></td><td>" + countryName + "</td><td>" + count + "</td></tr>");
 		  		}
 
-		  		$("#geo-list tr").addClass("panel-list-row"); //Add CSS class to the table rows
-		  		
-			    $("#geo-list tr td:first-child").addClass("panel-list-image"); //Add CSS class to the first item in each row
-			    
-				$("#geo-list tr td:last-child").addClass("panel-list-count"); //Add CSS class to the last item in each row
+		  		$("#geo-list tr").addClass("panel-list-row"); 					//Add CSS class to the table rows
+			    $("#geo-list tr td:first-child").addClass("panel-list-image"); 	//Add CSS class to the first item in each row
+				$("#geo-list tr td:last-child").addClass("panel-list-count");  	//Add CSS class to the last item in each row
 		  	}
 
 		  	function showViewsByDomain(data, onlyShowN) {
@@ -589,14 +585,6 @@
 		  		$("#domain-list tr th:last-child").addClass("panel-list-count"); //Add CSS classes to the last item in the header
 		  		
   				$("#domain-see-more-less .toggle-btn input[type=radio]").last().parent().addClass("visuallyhidden"); //Hide the See Fewer button
-				console.log("domain input:");
-				console.log($("#domain-see-more-less .toggle-btn input[type=radio]"));
-				console.log("domain input parent:");
-				console.log($("#domain-see-more-less .toggle-btn input[type=radio]").parent());
-				console.log("domain input first:");
-				console.log($("#domain-see-more-less .toggle-btn input[type=radio]").first());
-				console.log("domain input last:");
-				console.log($("#domain-see-more-less .toggle-btn input[type=radio]").last());
 
 		  		// filter out data that we don't want to display
 		  		if (onlyShowN > 0) {
