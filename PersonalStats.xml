@@ -604,7 +604,9 @@
 		        data_table.addColumn('number', 'Sessions');
 				populateDataTable_GeoChart(data_table, data);
 
-        		var options = {};
+        		var options = {
+		            colorAxis: {colors: ["yellow", "red"]},
+        		};
         		var chart = new google.visualization.GeoChart(document.getElementById("geo-chart"));
 		        chart.draw(data_table, options);
 	      	}
@@ -866,7 +868,6 @@
 		  		  $(this).addClass("panel-list-count");
 		  		});
 
-			    console.log("domain panel-list-image count = " + $("#domain-list .panel-list-image").length);
 			    console.log("domain panel-list-count count = " + $("#domain-list .panel-list-count").length);
 		  	}
 
