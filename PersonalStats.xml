@@ -161,17 +161,14 @@
 		<!--Load the Google AJAX API-->
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
-		<script type="text/javascript" src="js/ps-personal-stats.js" ></script>
 		<script type="text/javascript" src="js/ps-button.js" ></script>
 	
 		<script language="JavaScript" type="text/javascript">
 
-			var personalStats = new PERSONALSTATS();
-			var button1 = new PERSONALSTATS.Button();
+			window.personalStats = window.personalStats || { };
 
-			personalStats.identifyYourself();
-			button1.setName("Dizzle");
-			button1.click();
+			var button = new window.personalStats.Button();
+			consold.log(button.name);
 
 			var ownerData, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCountryLastYear, aggregatedByCountryLastMonth, countryCodeList, aggregatedByDomainLastYear, aggregatedByDomainLastMonth;
 			var onlyShow = 10;
