@@ -77,8 +77,6 @@
             function init() {
 
 				osapi.jsonld.getOwner().execute(function(ownerData) {
-					console.log("ownerData:");
-					console.log(ownerData);
 					ownerURI = ownerData.uris[0];
 
 					//don't enable the link until we have the owner data
@@ -453,8 +451,6 @@
 		  	function fetchData() {
 
 				var ownerHomePage = ownerData[FOAF("workplaceHomepage")];
-				console.log("ownerHomePage:");
-				console.log(ownerHomePage);
 
 				var ownerUrlParts = ownerHomePage.split("/");
 				var ownerId = ownerUrlParts[ownerUrlParts.length-1];
@@ -479,7 +475,6 @@
 				   }
 				}
 				query_string = query_string.slice(0,-1); // remove the "&" at the end of query_string
-			 	console.log(query_string);
 
 		        url = "https://www.googleapis.com/analytics/v3/data/ga?" + query_string;
 		        
@@ -502,25 +497,10 @@
 		            
 		          	} else if (response.data) {
 						var data = JSON.parse(response.data);
-			      		console.log("Response Data:")
-		      		 	console.log(data);
-		      		 	console.log("data.totalResults");
-		      		 	console.log(data.totalResults);
-			      		console.log("data.rows:")
-		      		 	console.log(data.rows);
 		      		 	aggregatedByMonthAll = aggregateDataByMonth(data.rows);
-		      		 	console.log("aggregatedByMonthAll");
-		      		 	console.log(aggregatedByMonthAll);
 				 		aggregatedByMonthLastYear = aggregateDataByMonth(data.rows, getYearMonthOneYearAgoMonthStart());
-		      		 	console.log("aggregatedByMonthLastYear");
-		      		 	console.log(aggregatedByMonthLastYear);
 				 		aggregatedByCountryLastYear = aggregateDataByCountry(data.rows, dateOneYearAgo().yyyymmdd());
-		      			console.log("aggregatedByCountryLastYear");
-		      			console.log(aggregatedByCountryLastYear);
-		      			console.log(dateThirtyDaysAgo());
 				 		aggregatedByCountryLastMonth = aggregateDataByCountry(data.rows, dateThirtyDaysAgo().yyyymmdd());
-		      			console.log("aggregatedByCountryLastMonth");
-		      			console.log(aggregatedByCountryLastMonth);
 				 		aggregatedByDomainLastYear = aggregateDataByDomain(data.rows, dateOneYearAgo().yyyymmdd());
 		      			console.log("aggregatedByDomainLastYear");
 		      			console.log(aggregatedByDomainLastYear);
@@ -569,9 +549,7 @@
 
 	    	function dateThirtyDaysAgo() {
 				var today = new Date();
-				console.log(today.getDate()-30);
 				var thirtyDaysAgo = new Date(today.setDate(today.getDate()-30));
-			 	console.log(thirtyDaysAgo);
 			 	return thirtyDaysAgo;
 	    	}
 
@@ -652,7 +630,6 @@
 	      	}
 
 	      	function populateDataTable_ColumnChart(dataTable, dataToAdd) {
-		  		console.log(dataToAdd);
 				for (idx in dataToAdd) {
 					row = dataToAdd[idx];
 					lastIndex = row.length-1;
@@ -665,13 +642,10 @@
 				// remove the last row, which contains data for this month (we show this data elsewhere)
 				var lastItemIndex = dataTable.getNumberOfRows()-1;
 				dataTable.removeRow(lastItemIndex);
-				
-				console.log(dataTable);
 			}
 
 	      	function populateDataTable_GeoChart(dataTable, dataToAdd) {
 		  		var countryName;
-		  		console.log(dataToAdd);
 				for (idx in dataToAdd) {
 					row = dataToAdd[idx];
 					lastIndex = row.length-1;
@@ -680,15 +654,12 @@
 					dataTableRow[1] = row[lastIndex];
 					dataTable.addRow(dataTableRow);
 				}
-				
-				console.log(dataTable);
 			}
 	  
 		  	function showVisitorCountStats() {
 
 				var vccLastYear = document.getElementById('view_count_last_year');
 				var vccLastYearCount = calculateViewCountLastYear(aggregatedByMonthLastYear);
-				console.log(vccLastYearCount);
 				vccLastYearCount.count = vccLastYearCount.count.toLocaleString(); // adds thousands separators
 				vccLastYear.innerHTML = "Your profile has been viewed " + vccLastYearCount.count + " times since " + vccLastYearCount.start;
 				
@@ -794,9 +765,6 @@
 		  		$("#geo-list tr td:last-child").each(function() {
 		  		  $(this).addClass("panel-list-count");
 		  		});
-
-			    console.log("country panel-list-image count = " + $("#geo-list .panel-list-image").length);
-			    console.log("country panel-list-count count = " + $("#geo-list .panel-list-count").length);
 		  	}
 
 		  	function showViewsByDomain(data, onlyShowN) {
@@ -879,7 +847,6 @@
 		  		if (filteredList[0]) {
 		  			return filteredList[0].code.toLowerCase()
 		  		}
-		  		console.log(returnValue);
 		  		return returnValue;
 		  	}
 			
@@ -891,12 +858,8 @@
 			}
 
 			function convertDateToYearMonthString(date) {
-				console.log("date");
-				console.log(date);
 			 	var month_numbers = new Array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
 			 	var date_string = date.getFullYear() + month_numbers[date.getMonth()];
-				console.log("date_string");
-			 	console.log(date_string);
 			 	return date_string;
 			}
 		  
@@ -1019,14 +982,10 @@
 
 			function fixCountryNames(arr) {
 				var idx, item;
-				console.log("fixCountryNames");
 				for (idx in arr) {
 					item = arr[idx];
-					console.log("item");
-					console.log(item);
 					if(item[0] == "Côte d’Ivoire" || item[0] == "Côte d'Ivoire") {
 						item[0] = "Cote d'Ivoire";
-						console.log(item[0]);
 					}
 				}
 			}
@@ -1085,13 +1044,10 @@
 				osapi.jsonld.getOwner().execute(function(owner_data) {
 					framePerson(owner_data, function(ownerObj) {
 						ownerData = ownerObj;
-						console.log("ownerData:");
-						console.log(ownerData);
 
 						//TODO: Fix this path
 						$.getJSON("http://cranestylelabs.github.io/personal-stats-gadget/countries.json", function(response){
 						    countryCodeList = response;
-						    console.log(countryCodeList);
 					  		fetchData();
 						});
 					});
