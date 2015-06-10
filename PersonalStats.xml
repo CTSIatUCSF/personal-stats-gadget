@@ -605,7 +605,7 @@
 				populateDataTable_GeoChart(data_table, data);
 
         		var options = {
-		            colorAxis: {colors: ["yellow", "red"]},
+		            colorAxis: {colors: ["orange", "red"]},
         		};
         		var chart = new google.visualization.GeoChart(document.getElementById("geo-chart"));
 		        chart.draw(data_table, options);
