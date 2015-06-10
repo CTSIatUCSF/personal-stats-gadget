@@ -182,11 +182,6 @@
 	        // Set up the toggle buttons
 	        $(".toggle-btn input[type=radio]").addClass("visuallyhidden"); // hide the radio button circle
 
-
-			//$("#domain-see-more-less .toggle-btn input[type=radio]").parent().each(function() {
-			//	$(this).addClass("visuallyhidden");
-			//});
-
 			$("#domain-see-more-less .toggle-btn input[type=radio]").parent().addClass("visuallyhidden"); // hide all buttons in domain-see-more-less
 
 
@@ -247,13 +242,10 @@
 		            showViewsByCountry(aggregatedByCountryLastYear);
 	        	}
   				// hide the See All button 
-				$("#geo-see-all-btn").each(function() {
-  					$(this).addClass("visuallyhidden");
-  				});
+				$("#geo-see-all-btn").addClass("visuallyhidden");
+  				
   				// unhide the See Fewer button 
-				$("#geo-see-fewer-btn").each(function() {
-  					$(this).removeClass("visuallyhidden");
-  				});
+				$("#geo-see-fewer-btn").removeClass("visuallyhidden");
 	        });
 
 	        // See Fewer (geo) button shows fewer results for Month or Year (based on current selection)
@@ -268,13 +260,10 @@
 		            showViewsByCountry(aggregatedByCountryLastYear, onlyShow);
 	        	}
   				// hide the See Fewer button 
-				$("#geo-see-fewer-btn").each(function() {
-  					$(this).addClass("visuallyhidden");
-  				});
+				$("#geo-see-fewer-btn").addClass("visuallyhidden");
+  				
   				// unhide the See All button 
-				$("#geo-see-all-btn").each(function() {
-  					$(this).removeClass("visuallyhidden");
-  				});
+				$("#geo-see-all-btn").removeClass("visuallyhidden");
 	        });
 
 	        // See All (domain) button shows all for Month or Year (based on current selection)
@@ -550,24 +539,16 @@
 		  		$("#geo-list tr").append("<th>Views</th>");
 
 		  		// add CSS class to the table headers
-		  		$("#geo-list tr th").each(function() {
-		  		  $(this).addClass("panel-list-header");
-		  		});
+		  		$("#geo-list tr th").addClass("panel-list-header");
 
 			    // add CSS class to the first item in the header
-			    $("#geo-list tr th:first-child").each(function () {
-			        $(this).addClass("panel-list-image");
-			    });
+			    $("#geo-list tr th:first-child").addClass("panel-list-image");
 
 		  		// add CSS classes to the last item in the header
-		  		$("#geo-list tr th:last-child").each(function() {
-		  		  $(this).addClass("panel-list-count");
-		  		});
+		  		$("#geo-list tr th:last-child").addClass("panel-list-count");
 
   				// hide the See Fewer button 
-				$("#geo-see-fewer-btn").each(function() {
-  					$(this).addClass("visuallyhidden");
-  				});
+				$("#geo-see-fewer-btn").addClass("visuallyhidden");
 
 		  		// filter out data that we don't want to display
 		  		if (onlyShowN > 0) {
@@ -575,24 +556,18 @@
 		  			if (data.length > dataToShow.length) {
 
 		  				// unhide the See All button 
-						$("#geo-see-all-btn").each(function() {
-		  					$(this).removeClass("visuallyhidden");
-		  				});
+						$("#geo-see-all-btn").removeClass("visuallyhidden");
 		  			} else {
 			  			dataToShow = data;
 
 		  				// hide the See All button 
-						$("#geo-see-all-btn").each(function() {
-		  					$(this).addClass("visuallyhidden");
-		  				});
+						$("#geo-see-all-btn").addClass("visuallyhidden");
 		  			}
 		  		} else {
 		  			dataToShow = data;
 
 	  				// hide the See All button 
-					$("#geo-see-all-btn").each(function() {
-	  					$(this).addClass("visuallyhidden");
-	  				});
+					$("#geo-see-all-btn").addClass("visuallyhidden");
 		  		}
 
 		  		// add table dataToShow rows
@@ -607,19 +582,13 @@
 		  		}
 
 		  		// add CSS class to the table rows
-		  		$("#geo-list tr").each(function() {
-		  		  $(this).addClass("panel-list-row");
-		  		});
+		  		$("#geo-list tr".addClass("panel-list-row");
 
 			    // add CSS class to the first item in each row
-			    $("#geo-list tr td:first-child").each(function () {
-			        $(this).addClass("panel-list-image");
-			    });
+			    $("#geo-list tr td:first-child").addClass("panel-list-image");
 
 		  		// add CSS class to the last item in each row
-		  		$("#geo-list tr td:last-child").each(function() {
-		  		  $(this).addClass("panel-list-count");
-		  		});
+		  		$("#geo-list tr td:last-child").addClass("panel-list-count");
 		  	}
 
 		  	function showViewsByDomain(data, onlyShowN) {
@@ -639,36 +608,24 @@
 		  		$("#domain-list tr").append("<th>Views</th>");
 
 		  		// add CSS class to the table headers
-		  		$("#domain-list tr th").each(function() {
-		  		  $(this).addClass("panel-list-header");
-		  		});
+		  		$("#domain-list tr th").addClass("panel-list-header");
 
 		  		// add CSS classes to the last item in the header
-		  		$("#domain-list tr th:last-child").each(function() {
-		  		  $(this).addClass("panel-list-count");
-		  		});
+		  		$("#domain-list tr th:last-child").addClass("panel-list-count");
 
   				// hide the See Fewer button 
-				$("#domain-see-fewer-btn").each(function() {
-  					$(this).addClass("visuallyhidden");
-  				});
+				$("#domain-see-fewer-btn").addClass("visuallyhidden");
 
 		  		// filter out data that we don't want to display
 		  		if (onlyShowN > 0) {
 		  			dataToShow = data.slice(0, onlyShowN);
 		  			if (data.length > dataToShow.length) {
-
-		  				// unhide the See All button 
-						$("#domain-see-all-btn").each(function() {
-		  					$(this).removeClass("visuallyhidden");
-		  				});
+						$("#domain-see-all-btn").removeClass("visuallyhidden"); // unhide the See All button
 		  			} else {
 			  			dataToShow = data;
 
 		  				// hide the See All button 
-						$("#domain-see-all-btn").each(function() {
-		  					$(this).addClass("visuallyhidden");
-		  				});
+						$("#domain-see-all-btn").addClass("visuallyhidden");
 		  			}
 		  		} else {
 		  			dataToShow = data;
@@ -688,14 +645,10 @@
 		  		}
 
 		  		// add CSS class to the table rows
-		  		$("#domain-list tr").each(function() {
-		  		  $(this).addClass("panel-list-row");
-		  		});
+		  		$("#domain-list tr").addClass("panel-list-row");
 
 		  		// add CSS class to the last item in each row
-		  		$("#domain-list tr td:last-child").each(function() {
-		  		  $(this).addClass("panel-list-count");
-		  		});
+		  		$("#domain-list tr td:last-child").addClass("panel-list-count");
 
 			    console.log("domain panel-list-count count = " + $("#domain-list .panel-list-count").length);
 		  	}
