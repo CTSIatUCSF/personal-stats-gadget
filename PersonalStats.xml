@@ -524,7 +524,7 @@
 			    $("#geo-list tr th:first-child").addClass("panel-list-image"); 	//Add CSS class to the first item in the header
 		  		$("#geo-list tr th:last-child").addClass("panel-list-count"); 	//Add CSS classes to the last item in the header
 		  		
-  				$(".geo.see-more-less .toggle-btn input[type=radio]").last().parent().addClass("visuallyhidden"); //Hide the See Fewer button
+  				//$(".geo.see-more-less .toggle-btn input[type=radio]").last().parent().addClass("visuallyhidden"); //Hide the See Fewer button
 
 		  		// filter out data that we don't want to display
 		  		if (onlyShowN > 0) {
@@ -571,7 +571,7 @@
 		  		
 		  		$("#domain-list tr th:last-child").addClass("panel-list-count"); //Add CSS classes to the last item in the header
 		  		
-  				$(".domain.see-more-less .toggle-btn input[type=radio]").last().parent().addClass("visuallyhidden"); //Hide the See Fewer button
+  				//$(".domain.see-more-less .toggle-btn input[type=radio]").last().parent().addClass("visuallyhidden"); //Hide the See Fewer button
 
 		  		// filter out data that we don't want to display
 		  		if (onlyShowN > 0) {
