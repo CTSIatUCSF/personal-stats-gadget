@@ -768,6 +768,11 @@
 		  	}
 
 		  	function showViewsByDomain(data, onlyShowN) {
+		  		console.log("show views by domain data:");
+		  		console.log(data);
+		  		console.log("show views by domain onlyShowN:");
+		  		console.log(onlyShowN);
+
 		  		var dataToShow, index, item, domainName, count;
 
 				// remove any existing rows before adding new ones
@@ -818,6 +823,10 @@
 	  					$(this).addClass("visuallyhidden");
 	  				});
 		  		}
+
+		  		console.log("show views by domain dataToShow:");
+		  		console.log(dataToShow);
+
 
 		  		// add table dataToShow rows
 		  		for (index in dataToShow) {
