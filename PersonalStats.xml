@@ -137,8 +137,8 @@
 						<div id="geo-see-more-less" class="toggle-btn-grp">
 					    	<label onclick="" class="toggle-btn"><input type="radio" name="geoSee"/>See All</label><label onclick="" class="toggle-btn"><input type="radio" name="geoSee"/>See Fewer</label>
 						</div>
-						//<label id="geo-see-all-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See All</label>
-						//<label id="geo-see-fewer-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See Fewer</label>
+						<!-- <label id="geo-see-all-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See All</label> -->
+						<!-- <label id="geo-see-fewer-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See Fewer</label> -->
 					</div>
 					<div id="geo-chart"></div>
 				</div>
@@ -181,6 +181,7 @@
 	        $(".toggle-btn input[type=radio]").addClass("visuallyhidden"); // hide the radio button circle
 
 			$("#domain-see-more-less .toggle-btn input[type=radio]").parent().addClass("visuallyhidden"); // hide all buttons in domain-see-more-less
+			$("#geo-see-more-less .toggle-btn input[type=radio]").parent().addClass("visuallyhidden"); // hide all buttons in geo-see-more-less
 
 
 	        $(".toggle-btn input[type=radio]").change(function() {
