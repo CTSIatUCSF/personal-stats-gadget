@@ -582,7 +582,7 @@
 		  		}
 
 		  		// add CSS class to the table rows
-		  		$("#geo-list tr".addClass("panel-list-row");
+		  		$("#geo-list tr").addClass("panel-list-row");
 
 			    // add CSS class to the first item in each row
 			    $("#geo-list tr td:first-child").addClass("panel-list-image");
