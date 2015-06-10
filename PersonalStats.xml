@@ -375,7 +375,9 @@
 	        // Set up the toggle buttons
 	        $(".toggle-btn input[type=radio]").addClass("visuallyhidden");
 	        $(".toggle-btn input[type=radio]").change(function() {
+	        	console.log("toggle button");
 	            if( $(this).attr("name")) {
+		            console.log($(this).attr("name"));
 	                $(this).parent().addClass("success").siblings().removeClass("success")
 	            } else {
 	                $(this).parent().toggleClass("success");
@@ -403,9 +405,11 @@
 	            showViewsByDomain(aggregatedByDomainLastYear, onlyShow);
 	        });
 
-	        // Turn on the first toggle button
+	        // Turn on the first toggle button for each panel
 	        $("#geo-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
 	        $("#domain-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
+
+
 
 	        // See All (geo) button shows all for Month or Year (based on current selection)
 	        $("#geo-see-all-btn").click(function() {
