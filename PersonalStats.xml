@@ -166,8 +166,10 @@
 	
 		<script language="JavaScript" type="text/javascript">
 
-			PERSONALSTATS.identifyYourself();
-			var button1 = PERSOANLSTATS.Button();
+			var personalStats = new PERSONALSTATS();
+			var button1 = new PERSONALSTATS.Button();
+
+			personalStats.identifyYourself();
 			button1.setName("Dizzle");
 			button1.click();
 
