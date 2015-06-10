@@ -150,7 +150,7 @@
 				<div class="panel-data-area">
 					<div id="domain-list-area">
 						<table id="domain-list" class="panel-list"></table>
-						<div id="domain-show" class="toggle-btn-grp">
+						<div id="domain-see-more-less" class="toggle-btn-grp">
 					    	<label onclick="" class="toggle-btn"><input type="radio" name="domainShow"/>See All</label><label onclick="" class="toggle-btn"><input type="radio" name="domainShow"/>See Fewer</label>
 						</div>
 						<!-- <label id="domain-see-all-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See All</label> -->
@@ -183,7 +183,7 @@
 	        $(".toggle-btn input[type=radio]").addClass("visuallyhidden");
 
 
-			$("#domain-show .toggle-btn input[type=radio]").parent().each(function() {
+			$("#domain-see-more-less .toggle-btn input[type=radio]").parent().each(function() {
 				$(this).addClass("visuallyhidden");
 			});
 
@@ -195,7 +195,7 @@
 	            }
 	        });
 
-	        $("#domain-show .toggle-btn input[type=radio]").change(function() {
+	        $("#domain-see-more-less .toggle-btn input[type=radio]").change(function() {
 	            if( $(this).attr("name")) {
 	                $(this).parent().addClass("visuallyhidden").siblings().removeClass("visuallyhidden")
 	            } else {
@@ -228,7 +228,7 @@
 	        $("#geo-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
 	        $("#domain-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
 
-	        $("#domain-show .toggle-btn input[type=radio]").first().parent().removeClass("visuallyhidden");
+	        $("#domain-see-more-less .toggle-btn input[type=radio]").first().parent().removeClass("visuallyhidden");
 
 
 
@@ -275,7 +275,7 @@
 	        });
 
 	        // See All (domain) button shows all for Month or Year (based on current selection)
-	        $("#domain-see-all-btn").click(function() {
+	        $("#domain-see-more-less .toggle-btn input[type=radio]").click(function() {
 	        	console.log("see all button clicked");
 	        	
 	        	if ($("domain-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
@@ -285,18 +285,10 @@
 		        	console.log("see all button clicked - last year");
 		            showViewsByDomain(aggregatedByDomainLastYear);
 	        	}
-  				// hide the See All button 
-				$("#domain-see-all-btn").each(function() {
-  					$(this).addClass("visuallyhidden");
-  				});
-  				// unhide the See Fewer button 
-				$("#domain-see-fewer-btn").each(function() {
-  					$(this).removeClass("visuallyhidden");
-  				});
 	        });
 
 	        // See Fewer (domain) button shows fewer results for Month or Year (based on current selection)
-	        $("#domain-see-fewer-btn").click(function() {
+	        $("#domain-see-more-less .toggle-btn input[type=radio]").click(function() {
 	        	console.log("see fewer button clicked");
 	        	
 	        	if ($("domain-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
@@ -306,14 +298,6 @@
 		        	console.log("see fewer button clicked - last year");
 		            showViewsByDomain(aggregatedByDomainLastYear, onlyShow);
 	        	}
-  				// hide the See Fewer button 
-				$("#domain-see-fewer-btn").each(function() {
-  					$(this).addClass("visuallyhidden");
-  				});
-  				// unhide the See All button 
-				$("#domain-see-all-btn").each(function() {
-  					$(this).removeClass("visuallyhidden");
-  				});
 	        });
 	  
 		  	function fetchData() {
