@@ -265,10 +265,10 @@
 
 	        // See All/Fewer (domain) button shows all for Month or Year (based on current selection)
 	        $("#domain-see-more-less .toggle-btn input[type=radio]").click(function() {
-	        	console.log("jquery object is:");
-	        	console.log($(this));
+	        	console.log("this jquery object's parent is:");
+	        	console.log($(this.parent()));
 
-	        	if ($(this).is(':first-child')) { // See All Button 
+	        	if ($(this).parent().is(':first-child')) { // See All Button 
 		        	console.log("see all button clicked");
 		        	
 		        	if ($("#domain-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
