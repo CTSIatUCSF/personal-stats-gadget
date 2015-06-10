@@ -180,10 +180,10 @@
 	        google.load("visualization", "1.0", {"packages":["corechart", "geochart"]});
 
 	        // Set up the toggle buttons
-	        <!-- $(".toggle-btn input[type=radio]").addClass("visuallyhidden"); -->
+	        $(".toggle-btn input[type=radio]").addClass("visuallyhidden");
 
 
-			$(".toggle-btn input[type=radio]").parent().each(function() {
+			$("#domain-show .toggle-btn input[type=radio]").parent().each(function() {
 				$(this).addClass("visuallyhidden");
 			});
 
