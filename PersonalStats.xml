@@ -158,21 +158,8 @@
 			</div>
 	    </div>
 	
-		<!--Load the AJAX API-->
+		<!--Load the Google AJAX API-->
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-	
-		<!--Load the Google JS Client-->
-		<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
-	
-		<!-- Load Google Analytics Embed API Library -->
-		<script>
-			(function(w,d,s,g,js,fs){
-			  g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(f){this.q.push(f);}};
-			  js=d.createElement(s);fs=d.getElementsByTagName(s)[0];
-			  js.src='https://apis.google.com/js/platform.js';
-			  fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
-			}(window,document,'script'));
-		</script>
 	
 		<script language="JavaScript" type="text/javascript">
 
@@ -899,10 +886,6 @@
 				});
 
 				return arrayToReturn;
-			}
-	
-			function handleClientLoad() {
-				console.log("google client library loaded");
 			}
 		
 			function init() {
