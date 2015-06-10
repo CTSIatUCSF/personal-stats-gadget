@@ -183,7 +183,7 @@
 	        <!-- $(".toggle-btn input[type=radio]").addClass("visuallyhidden"); -->
 
 
-			$(".toggle-btn input[type=radio]").each(function() {
+			$(".toggle-btn input[type=radio]").parent().each(function() {
 				$(this).addClass("visuallyhidden");
 			});
 
@@ -227,7 +227,7 @@
 	        // Turn on the first toggle button for each panel
 	        $("#geo-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
 	        $("#domain-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
-	        
+
 	        $("#domain-show .toggle-btn input[type=radio]").first().parent().removeClass("visuallyhidden");
 
 
