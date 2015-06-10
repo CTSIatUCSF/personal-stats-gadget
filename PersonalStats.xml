@@ -183,9 +183,9 @@
 	        $(".toggle-btn input[type=radio]").addClass("visuallyhidden"); // hide the radio button circle
 
 
-			$("#domain-see-more-less .toggle-btn input[type=radio]").parent().each(function() {
-				$(this).addClass("visuallyhidden");
-			});
+			//$("#domain-see-more-less .toggle-btn input[type=radio]").parent().each(function() {
+			//	$(this).addClass("visuallyhidden");
+			//});
 
 			$("#domain-see-more-less .toggle-btn input[type=radio]").parent().addClass("visuallyhidden"); // hide all buttons in domain-see-more-less
 
