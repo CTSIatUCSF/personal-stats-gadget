@@ -168,7 +168,7 @@
 			window.personalStats = window.personalStats || { };
 
 			var button = new window.personalStats.Button();
-			consold.log(button.name);
+			console.log(button.name);
 
 			var ownerData, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCountryLastYear, aggregatedByCountryLastMonth, countryCodeList, aggregatedByDomainLastYear, aggregatedByDomainLastMonth;
 			var onlyShow = 10;
