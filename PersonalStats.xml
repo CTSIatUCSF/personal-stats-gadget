@@ -224,8 +224,8 @@
 				    vertical-align: top;
 				    margin: 5px;
 				}
-				#domain-list {
-
+				#domain-list-area {
+					margin: 5px;
 				}
 
                 // Toggle Button Stuff
@@ -410,7 +410,7 @@
 	        $("#geo-see-all-btn").click(function() {
 	        	console.log("see all button clicked");
 	        	
-	        	if ($(".toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+	        	if ($("#geo-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 		        	console.log("see all button clicked - last month");
 		            showViewsByCountry(aggregatedByCountryLastMonth);
 	        	} else {
@@ -431,7 +431,7 @@
 	        $("#geo-see-fewer-btn").click(function() {
 	        	console.log("see fewer button clicked");
 	        	
-	        	if ($(".toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+	        	if ($("geo-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 		        	console.log("see fewer button clicked - last month");
 		            showViewsByCountry(aggregatedByCountryLastMonth, onlyShow);
 	        	} else {
@@ -452,7 +452,7 @@
 	        $("#domain-see-all-btn").click(function() {
 	        	console.log("see all button clicked");
 	        	
-	        	if ($(".toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+	        	if ($("domain-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 		        	console.log("see all button clicked - last month");
 		            showViewsByCountry(aggregatedByCountryLastMonth);
 	        	} else {
@@ -473,7 +473,7 @@
 	        $("#domain-see-fewer-btn").click(function() {
 	        	console.log("see fewer button clicked");
 	        	
-	        	if ($(".toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+	        	if ($("domain-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 		        	console.log("see fewer button clicked - last month");
 		            showViewsByCountry(aggregatedByCountryLastMonth, onlyShow);
 	        	} else {
