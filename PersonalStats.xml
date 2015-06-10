@@ -195,41 +195,41 @@
 	            }
 	        });
 
-	        $(".geo .date-toggle .toggle-btn input[type=radio]").first().click(function() {
+	        $(".geo.date-toggle .toggle-btn input[type=radio]").first().click(function() {
 	        	console.log("country-month selected");
 	            showViewsByCountry(aggregatedByCountryLastMonth, onlyShow);
 	            drawGeoChart(aggregatedByCountryLastMonth);
 	        });
 
-	        $(".geo .date-toggle .toggle-btn input[type=radio]").last().click(function() {
+	        $(".geo.date-toggle .toggle-btn input[type=radio]").last().click(function() {
 	            console.log("country-year selected");
 	            showViewsByCountry(aggregatedByCountryLastYear, onlyShow);
 	            drawGeoChart(aggregatedByCountryLastYear);
 	        });
-	        $(".domain .date-toggle .toggle-btn input[type=radio]").first().click(function() {
+	        $(".domain.date-toggle .toggle-btn input[type=radio]").first().click(function() {
 	        	console.log("domain-month selected");
 	            showViewsByDomain(aggregatedByDomainLastMonth, onlyShow);
 	        });
 
-	        $(".domain .date-toggle .toggle-btn input[type=radio]").last().click(function() {
+	        $(".domain.date-toggle .toggle-btn input[type=radio]").last().click(function() {
 	            console.log("domain-year selected");
 	            showViewsByDomain(aggregatedByDomainLastYear, onlyShow);
 	        });
 
 	        // Turn on the first toggle button for each panel
-	        $(".geo .date-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
-	        $(".domain .date-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
+	        $(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
+	        $(".domain.date-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
 
-	        //$(".geo .see-more-less .toggle-btn input[type=radio]").first().parent().removeClass("visuallyhidden");
-	        //$(".domain .see-more-less .toggle-btn input[type=radio]").first().parent().removeClass("visuallyhidden");
+	        //$(".geo.see-more-less .toggle-btn input[type=radio]").first().parent().removeClass("visuallyhidden");
+	        //$(".domain.see-more-less .toggle-btn input[type=radio]").first().parent().removeClass("visuallyhidden");
 
 	        // See All/Fewer (geo) button shows all for Month or Year (based on current selection)
-	        $(".geo .see-more-less .toggle-btn input[type=radio]").click(function() {
+	        $(".geo.see-more-less .toggle-btn input[type=radio]").click(function() {
 
 	        	if ($(this).parent().is(':first-child')) { // See All Button 
 		        	console.log("see all button clicked");
 		        	
-		        	if ($(".geo .date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+		        	if ($(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 			        	console.log("see all button clicked - last month");
 			            showViewsByCountry(aggregatedByCountryLastMonth);
 		        	} else {
@@ -239,7 +239,7 @@
 	        	} else { // See Fewer Button
 		        	console.log("see fewer button clicked");
 		        	
-		        	if ($(".geo .date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+		        	if ($(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 			        	console.log("see fewer button clicked - last month");
 			            showViewsByCountry(aggregatedByCountryLastMonth, onlyShow);
 		        	} else {
@@ -250,12 +250,12 @@
 	        });
 
 	        // See All/Fewer (domain) button shows all for Month or Year (based on current selection)
-	        $(".domain .see-more-less .toggle-btn input[type=radio]").click(function() {
+	        $(".domain.see-more-less .toggle-btn input[type=radio]").click(function() {
 
 	        	if ($(this).parent().is(':first-child')) { // See All Button 
 		        	console.log("see all button clicked");
 		        	
-		        	if ($(".domain .date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+		        	if ($(".domain.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 			        	console.log("see all button clicked - last month");
 			            showViewsByDomain(aggregatedByDomainLastMonth);
 		        	} else {
@@ -265,7 +265,7 @@
 	        	} else { // See Fewer Button
 		        	console.log("see fewer button clicked");
 		        	
-		        	if ($(".domain .date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+		        	if ($(".domain.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 			        	console.log("see fewer button clicked - last month");
 			            showViewsByDomain(aggregatedByDomainLastMonth, onlyShow);
 		        	} else {
@@ -524,20 +524,20 @@
 			    $("#geo-list tr th:first-child").addClass("panel-list-image"); 	//Add CSS class to the first item in the header
 		  		$("#geo-list tr th:last-child").addClass("panel-list-count"); 	//Add CSS classes to the last item in the header
 		  		
-  				$(".geo .see-more-less .toggle-btn input[type=radio]").last().parent().addClass("visuallyhidden"); //Hide the See Fewer button
+  				$(".geo.see-more-less .toggle-btn input[type=radio]").last().parent().addClass("visuallyhidden"); //Hide the See Fewer button
 
 		  		// filter out data that we don't want to display
 		  		if (onlyShowN > 0) {
 		  			dataToShow = data.slice(0, onlyShowN);
 		  			if (data.length > dataToShow.length) {
-		  				$(".geo .see-more-less .toggle-btn input[type=radio]").first().parent().removeClass("visuallyhidden"); //Unhide the See All button 
+		  				$(".geo.see-more-less .toggle-btn input[type=radio]").first().parent().removeClass("visuallyhidden"); //Unhide the See All button 
 		  			} else {
 			  			dataToShow = data;
-		  				$(".geo .see-more-less .toggle-btn input[type=radio]").first().parent().addClass("visuallyhidden"); //Hide the See All button 
+		  				$(".geo.see-more-less .toggle-btn input[type=radio]").first().parent().addClass("visuallyhidden"); //Hide the See All button 
 		  			}
 		  		} else {
 		  			dataToShow = data;
-	  				$(".geo .see-more-less .toggle-btn input[type=radio]").first().parent().addClass("visuallyhidden"); //Hide the See All button 
+	  				$(".geo.see-more-less .toggle-btn input[type=radio]").first().parent().addClass("visuallyhidden"); //Hide the See All button 
 		  		}
 
 		  		// add table rows for dataToShow
@@ -571,20 +571,20 @@
 		  		
 		  		$("#domain-list tr th:last-child").addClass("panel-list-count"); //Add CSS classes to the last item in the header
 		  		
-  				$(".domain .see-more-less .toggle-btn input[type=radio]").last().parent().addClass("visuallyhidden"); //Hide the See Fewer button
+  				$(".domain.see-more-less .toggle-btn input[type=radio]").last().parent().addClass("visuallyhidden"); //Hide the See Fewer button
 
 		  		// filter out data that we don't want to display
 		  		if (onlyShowN > 0) {
 		  			dataToShow = data.slice(0, onlyShowN);
 		  			if (data.length > dataToShow.length) {
-		  				$(".domain .see-more-less .toggle-btn input[type=radio]").first().parent().removeClass("visuallyhidden"); //Unhide the See All button 
+		  				$(".domain.see-more-less .toggle-btn input[type=radio]").first().parent().removeClass("visuallyhidden"); //Unhide the See All button 
 		  			} else {
 			  			dataToShow = data;
-		  				$(".domain .see-more-less .toggle-btn input[type=radio]").first().parent().addClass("visuallyhidden"); //Hide the See All button 
+		  				$(".domain.see-more-less .toggle-btn input[type=radio]").first().parent().addClass("visuallyhidden"); //Hide the See All button 
 		  			}
 		  		} else {
 		  			dataToShow = data;
-	  				$(".domain .see-more-less .toggle-btn input[type=radio]").first().parent().addClass("visuallyhidden"); //Hide the See All button 
+	  				$(".domain.see-more-less .toggle-btn input[type=radio]").first().parent().addClass("visuallyhidden"); //Hide the See All button 
 		  		}
 
 		  		// add table rows for dataToShow
