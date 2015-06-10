@@ -160,8 +160,16 @@
 	
 		<!--Load the Google AJAX API-->
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+		<script type="text/javascript" src="js/ps-personal-stats.js" ></script>
+		<script type="text/javascript" src="js/ps-button.js" ></script>
 	
 		<script language="JavaScript" type="text/javascript">
+
+			PERSONALSTATS.identifyYourself();
+			var button1 = PERSOANLSTATS.Button();
+			button1.setName("Dizzle");
+			button1.click();
 
 			var ownerData, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCountryLastYear, aggregatedByCountryLastMonth, countryCodeList, aggregatedByDomainLastYear, aggregatedByDomainLastMonth;
 			var onlyShow = 10;
