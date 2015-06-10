@@ -180,12 +180,15 @@
 	        google.load("visualization", "1.0", {"packages":["corechart", "geochart"]});
 
 	        // Set up the toggle buttons
-	        $(".toggle-btn input[type=radio]").addClass("visuallyhidden");
+	        $(".toggle-btn input[type=radio]").addClass("visuallyhidden"); // hide the radio button circle
 
 
 			$("#domain-see-more-less .toggle-btn input[type=radio]").parent().each(function() {
 				$(this).addClass("visuallyhidden");
 			});
+
+			$("#domain-see-more-less .toggle-btn input[type=radio]").parent().addClass("visuallyhidden"); // hide all buttons in domain-see-more-less
+
 
 	        $(".toggle-btn input[type=radio]").change(function() {
 	            if( $(this).attr("name")) {
@@ -669,11 +672,6 @@
 		  			}
 		  		} else {
 		  			dataToShow = data;
-
-	  				// hide the See All button 
-					$("#domain-see-all-btn").each(function() {
-	  					$(this).addClass("visuallyhidden");
-	  				});
 		  		}
 
 		  		console.log("show views by domain dataToShow:");
