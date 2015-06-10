@@ -462,10 +462,10 @@
 	        	
 	        	if ($("domain-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 		        	console.log("see all button clicked - last month");
-		            showViewsByCountry(aggregatedByCountryLastMonth);
+		            showViewsByDomain(aggregatedByDomainLastMonth);
 	        	} else {
 		        	console.log("see all button clicked - last year");
-		            showViewsByCountry(aggregatedByCountryLastYear);
+		            showViewsByDomain(aggregatedByDomainLastYear);
 	        	}
   				// hide the See All button 
 				$("#domain-see-all-btn").each(function() {
@@ -483,10 +483,10 @@
 	        	
 	        	if ($("domain-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 		        	console.log("see fewer button clicked - last month");
-		            showViewsByCountry(aggregatedByCountryLastMonth, onlyShow);
+		            showViewsByDomain(aggregatedByDomainLastMonth, onlyShow);
 	        	} else {
 		        	console.log("see fewer button clicked - last year");
-		            showViewsByCountry(aggregatedByCountryLastYear, onlyShow);
+		            showViewsByDomain(aggregatedByDomainLastYear, onlyShow);
 	        	}
   				// hide the See Fewer button 
 				$("#domain-see-fewer-btn").each(function() {
