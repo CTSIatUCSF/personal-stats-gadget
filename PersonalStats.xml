@@ -266,29 +266,29 @@
 				$("#geo-see-all-btn").removeClass("visuallyhidden");
 	        });
 
-	        // See All (domain) button shows all for Month or Year (based on current selection)
+	        // See All/Fewer (domain) button shows all for Month or Year (based on current selection)
 	        $("#domain-see-more-less .toggle-btn input[type=radio]").click(function() {
-	        	console.log("see all button clicked");
-	        	
-	        	if ($("domain-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
-		        	console.log("see all button clicked - last month");
-		            showViewsByDomain(aggregatedByDomainLastMonth);
-	        	} else {
-		        	console.log("see all button clicked - last year");
-		            showViewsByDomain(aggregatedByDomainLastYear);
-	        	}
-	        });
 
-	        // See Fewer (domain) button shows fewer results for Month or Year (based on current selection)
-	        $("#domain-see-more-less .toggle-btn input[type=radio]").click(function() {
-	        	console.log("see fewer button clicked");
-	        	
-	        	if ($("domain-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
-		        	console.log("see fewer button clicked - last month");
-		            showViewsByDomain(aggregatedByDomainLastMonth, onlyShow);
-	        	} else {
-		        	console.log("see fewer button clicked - last year");
-		            showViewsByDomain(aggregatedByDomainLastYear, onlyShow);
+	        	if ($(this).is(':first-child')) { // See All Button 
+		        	console.log("see all button clicked");
+		        	
+		        	if ($("#domain-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+			        	console.log("see all button clicked - last month");
+			            showViewsByDomain(aggregatedByDomainLastMonth);
+		        	} else {
+			        	console.log("see all button clicked - last year");
+			            showViewsByDomain(aggregatedByDomainLastYear);
+		        	}
+	        	} else { // See Fewer Button
+		        	console.log("see fewer button clicked");
+		        	
+		        	if ($("#domain-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+			        	console.log("see fewer button clicked - last month");
+			            showViewsByDomain(aggregatedByDomainLastMonth, onlyShow);
+		        	} else {
+			        	console.log("see fewer button clicked - last year");
+			            showViewsByDomain(aggregatedByDomainLastYear, onlyShow);
+		        	}
 	        	}
 	        });
 	  
