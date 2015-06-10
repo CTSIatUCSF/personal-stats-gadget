@@ -191,7 +191,7 @@
 
 	        $("#domain-show .toggle-btn input[type=radio]").change(function() {
 	            if( $(this).attr("name")) {
-	                $(this).parent().removeClass("visuallyhidden").siblings().addClass("visuallyhidden")
+	                $(this).parent().addClass("visuallyhidden").siblings().removeClass("visuallyhidden")
 	            } else {
 	                $(this).parent().toggleClass("visuallyhidden");
 	            }
