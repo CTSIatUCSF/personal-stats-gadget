@@ -554,10 +554,10 @@
 		      			showVisitorCountStats();
 						drawColumnChart(aggregatedByMonthLastYear);
 
-		      			showViewsByCountry(aggregatedByCountryLastMonth);
+		      			showViewsByCountry(aggregatedByCountryLastMonth, 10);
 		      			drawGeoChart(aggregatedByCountryLastMonth);
 
-		      			showViewsByDomain(aggregatedByDomainLastMonth);
+		      			showViewsByDomain(aggregatedByDomainLastMonth, 10);
 
 		          	} else {
 			      		console.log("Error:")
