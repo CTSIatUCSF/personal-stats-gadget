@@ -1,7 +1,6 @@
 window.personalStats = window.personalStats || { };
 
-personalStats.buttons.setupToggleButtons() {
-    // Set up the toggle buttons
+personalStats.buttons.setupToggleButtons = function() {
     $(".toggle-btn input[type=radio]").addClass("visuallyhidden");                          // hide the radio button circle on all buttons
     $(".see-more-less .toggle-btn input[type=radio]").parent().addClass("visuallyhidden");  // hide all buttons in see-more-less button groups
 
