@@ -324,8 +324,8 @@
 				<div class="panel-data-area">
 					<div id="geo-list-area">
 						<table id="geo-list" class="panel-list"></table>
-						<label id="see-all-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See All</label>
-						<label id="see-fewer-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See Fewer</label>
+						<label id="geo-see-all-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See All</label>
+						<label id="geo-see-fewer-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See Fewer</label>
 					</div>
 					<div id="geo-chart"></div>
 				</div>
@@ -340,8 +340,8 @@
 				<div class="panel-data-area">
 					<div id="domain-list-area">
 						<table id="domain-list" class="panel-list"></table>
-						<label id="see-all-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See All</label>
-						<label id="see-fewer-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See Fewer</label>
+						<label id="domain-see-all-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See All</label>
+						<label id="domain-see-fewer-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See Fewer</label>
 					</div>
 					<div id="geo-chart"></div>
 				</div>
@@ -406,8 +406,8 @@
 	        $("#geo-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
 	        $("#domain-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
 
-	        // See All button shows all for Month or Year (based on current selection)
-	        $("#see-all-btn").click(function() {
+	        // See All (geo) button shows all for Month or Year (based on current selection)
+	        $("#geo-see-all-btn").click(function() {
 	        	console.log("see all button clicked");
 	        	
 	        	if ($(".toggle-btn input[type=radio]").first().parent().hasClass("success")) {
@@ -418,17 +418,17 @@
 		            showViewsByCountry(aggregatedByCountryLastYear);
 	        	}
   				// hide the See All button 
-				$("#see-all-btn").each(function() {
+				$("#geo-see-all-btn").each(function() {
   					$(this).addClass("visuallyhidden");
   				});
   				// unhide the See Fewer button 
-				$("#see-fewer-btn").each(function() {
+				$("#geo-see-fewer-btn").each(function() {
   					$(this).removeClass("visuallyhidden");
   				});
 	        });
 
-	        // See Fewer button shows fewer results for Month or Year (based on current selection)
-	        $("#see-fewer-btn").click(function() {
+	        // See Fewer (geo) button shows fewer results for Month or Year (based on current selection)
+	        $("#geo-see-fewer-btn").click(function() {
 	        	console.log("see fewer button clicked");
 	        	
 	        	if ($(".toggle-btn input[type=radio]").first().parent().hasClass("success")) {
@@ -439,11 +439,53 @@
 		            showViewsByCountry(aggregatedByCountryLastYear, onlyShow);
 	        	}
   				// hide the See Fewer button 
-				$("#see-fewer-btn").each(function() {
+				$("#geo-see-fewer-btn").each(function() {
   					$(this).addClass("visuallyhidden");
   				});
   				// unhide the See All button 
-				$("#see-all-btn").each(function() {
+				$("#geo-see-all-btn").each(function() {
+  					$(this).removeClass("visuallyhidden");
+  				});
+	        });
+
+	        // See All (domain) button shows all for Month or Year (based on current selection)
+	        $("#domain-see-all-btn").click(function() {
+	        	console.log("see all button clicked");
+	        	
+	        	if ($(".toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+		        	console.log("see all button clicked - last month");
+		            showViewsByCountry(aggregatedByCountryLastMonth);
+	        	} else {
+		        	console.log("see all button clicked - last year");
+		            showViewsByCountry(aggregatedByCountryLastYear);
+	        	}
+  				// hide the See All button 
+				$("#domain-see-all-btn").each(function() {
+  					$(this).addClass("visuallyhidden");
+  				});
+  				// unhide the See Fewer button 
+				$("#domain-see-fewer-btn").each(function() {
+  					$(this).removeClass("visuallyhidden");
+  				});
+	        });
+
+	        // See Fewer (domain) button shows fewer results for Month or Year (based on current selection)
+	        $("#domain-see-fewer-btn").click(function() {
+	        	console.log("see fewer button clicked");
+	        	
+	        	if ($(".toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+		        	console.log("see fewer button clicked - last month");
+		            showViewsByCountry(aggregatedByCountryLastMonth, onlyShow);
+	        	} else {
+		        	console.log("see fewer button clicked - last year");
+		            showViewsByCountry(aggregatedByCountryLastYear, onlyShow);
+	        	}
+  				// hide the See Fewer button 
+				$("#domain-see-fewer-btn").each(function() {
+  					$(this).addClass("visuallyhidden");
+  				});
+  				// unhide the See All button 
+				$("#domain-see-all-btn").each(function() {
   					$(this).removeClass("visuallyhidden");
   				});
 	        });
@@ -710,7 +752,7 @@
 		  		});
 
   				// hide the See Fewer button 
-				$("#see-fewer-btn").each(function() {
+				$("#geo-see-fewer-btn").each(function() {
   					$(this).addClass("visuallyhidden");
   				});
 
@@ -720,14 +762,14 @@
 		  			if (data.length > dataToShow.length) {
 
 		  				// unhide the See All button 
-						$("#see-all-btn").each(function() {
+						$("#geo-see-all-btn").each(function() {
 		  					$(this).removeClass("visuallyhidden");
 		  				});
 		  			} else {
 			  			dataToShow = data;
 
 		  				// hide the See All button 
-						$("#see-all-btn").each(function() {
+						$("#geo-see-all-btn").each(function() {
 		  					$(this).addClass("visuallyhidden");
 		  				});
 		  			}
@@ -735,7 +777,7 @@
 		  			dataToShow = data;
 
 	  				// hide the See All button 
-					$("#see-all-btn").each(function() {
+					$("#geo-see-all-btn").each(function() {
 	  					$(this).addClass("visuallyhidden");
 	  				});
 		  		}
@@ -794,7 +836,7 @@
 		  		});
 
   				// hide the See Fewer button 
-				$("#see-fewer-btn").each(function() {
+				$("#domain-see-fewer-btn").each(function() {
   					$(this).addClass("visuallyhidden");
   				});
 
@@ -804,14 +846,14 @@
 		  			if (data.length > dataToShow.length) {
 
 		  				// unhide the See All button 
-						$("#see-all-btn").each(function() {
+						$("#domain-see-all-btn").each(function() {
 		  					$(this).removeClass("visuallyhidden");
 		  				});
 		  			} else {
 			  			dataToShow = data;
 
 		  				// hide the See All button 
-						$("#see-all-btn").each(function() {
+						$("#domain-see-all-btn").each(function() {
 		  					$(this).addClass("visuallyhidden");
 		  				});
 		  			}
@@ -819,7 +861,7 @@
 		  			dataToShow = data;
 
 	  				// hide the See All button 
-					$("#see-all-btn").each(function() {
+					$("#domain-see-all-btn").each(function() {
 	  					$(this).addClass("visuallyhidden");
 	  				});
 		  		}
