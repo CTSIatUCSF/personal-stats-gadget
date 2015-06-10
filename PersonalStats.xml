@@ -127,18 +127,16 @@
 			<div id="geo-panel" class="panel">
 				<div class="panel-title">Views By Country</div>
 				<div class="panel-button-area">
-					<div id="geo-toggle" class="toggle-btn-grp joint-toggle">
+					<div class="geo date-toggle toggle-btn-grp joint-toggle">
 					    <label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last Year</label>
 					</div>
 				</div>
 				<div class="panel-data-area">
 					<div id="geo-list-area">
 						<table id="geo-list" class="panel-list"></table>
-						<div id="geo-see-more-less" class="toggle-btn-grp">
+						<div class="geo see-more-less toggle-btn-grp">
 					    	<label onclick="" class="toggle-btn"><input type="radio" name="geoSee"/>See All</label><label onclick="" class="toggle-btn"><input type="radio" name="geoSee"/>See Fewer</label>
 						</div>
-						<!-- <label id="geo-see-all-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See All</label> -->
-						<!-- <label id="geo-see-fewer-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See Fewer</label> -->
 					</div>
 					<div id="geo-chart"></div>
 				</div>
@@ -146,14 +144,14 @@
 			<div id="domain-panel" class="panel">
 				<div class="panel-title">Views By Company/Domain</div>
 				<div class="panel-button-area">
-					<div id="domain-toggle" class="toggle-btn-grp joint-toggle">
+					<div class="domain date-toggle toggle-btn-grp joint-toggle">
 					    <label onclick="" class="toggle-btn"><input type="radio" name="domainToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="domainToggle"/>Last Year</label>
 					</div>
 				</div>
 				<div class="panel-data-area">
 					<div id="domain-list-area">
 						<table id="domain-list" class="panel-list"></table>
-						<div id="domain-see-more-less" class="toggle-btn-grp">
+						<div class="domain see-more-less toggle-btn-grp">
 					    	<label onclick="" class="toggle-btn"><input type="radio" name="domainSee"/>See All</label><label onclick="" class="toggle-btn"><input type="radio" name="domainSee"/>See Fewer</label>
 						</div>
 					</div>
@@ -180,11 +178,11 @@
 	        // Set up the toggle buttons
 	        $(".toggle-btn input[type=radio]").addClass("visuallyhidden"); // hide the radio button circle
 
-			$("#domain-see-more-less .toggle-btn input[type=radio]").parent().addClass("visuallyhidden"); // hide all buttons in domain-see-more-less
-			$("#geo-see-more-less .toggle-btn input[type=radio]").parent().addClass("visuallyhidden"); // hide all buttons in geo-see-more-less
+			$(".domain .see-more-less .toggle-btn input[type=radio]").parent().addClass("visuallyhidden"); 	// hide all buttons in button group
+			$(".geo .see-more-less .toggle-btn input[type=radio]").parent().addClass("visuallyhidden"); 	// hide all buttons in button group
 
 
-	        $(".toggle-btn input[type=radio]").change(function() {
+	        $(".date-toggle .toggle-btn input[type=radio]").change(function() {
 	            if( $(this).attr("name")) {
 	                $(this).parent().addClass("success").siblings().removeClass("success")
 	            } else {
@@ -192,7 +190,7 @@
 	            }
 	        });
 
-	        $("#geo-see-more-less .toggle-btn input[type=radio]").change(function() {
+	        $(".see-more-less .toggle-btn input[type=radio]").change(function() {
 	            if( $(this).attr("name")) {
 	                $(this).parent().addClass("visuallyhidden").siblings().removeClass("visuallyhidden")
 	            } else {
@@ -200,49 +198,41 @@
 	            }
 	        });
 
-	        $("#domain-see-more-less .toggle-btn input[type=radio]").change(function() {
-	            if( $(this).attr("name")) {
-	                $(this).parent().addClass("visuallyhidden").siblings().removeClass("visuallyhidden")
-	            } else {
-	                $(this).parent().toggleClass("visuallyhidden");
-	            }
-	        });
-
-	        $("#geo-toggle .toggle-btn input[type=radio]").first().click(function() {
+	        $(".geo .date-toggle .toggle-btn input[type=radio]").first().click(function() {
 	        	console.log("country-month selected");
 	            showViewsByCountry(aggregatedByCountryLastMonth, onlyShow);
 	            drawGeoChart(aggregatedByCountryLastMonth);
 	        });
 
-	        $("#geo-toggle .toggle-btn input[type=radio]").last().click(function() {
+	        $(".geo .date-toggle .toggle-btn input[type=radio]").last().click(function() {
 	            console.log("country-year selected");
 	            showViewsByCountry(aggregatedByCountryLastYear, onlyShow);
 	            drawGeoChart(aggregatedByCountryLastYear);
 	        });
-	        $("#domain-toggle .toggle-btn input[type=radio]").first().click(function() {
+	        $(".domain .date-toggle .toggle-btn input[type=radio]").first().click(function() {
 	        	console.log("domain-month selected");
 	            showViewsByDomain(aggregatedByDomainLastMonth, onlyShow);
 	        });
 
-	        $("#domain-toggle .toggle-btn input[type=radio]").last().click(function() {
+	        $(".domain .date-toggle .toggle-btn input[type=radio]").last().click(function() {
 	            console.log("domain-year selected");
 	            showViewsByDomain(aggregatedByDomainLastYear, onlyShow);
 	        });
 
 	        // Turn on the first toggle button for each panel
-	        $("#geo-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
-	        $("#domain-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
+	        $(".geo .date-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
+	        $(".domain .date-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
 
-	        //$("#geo-see-more-less .toggle-btn input[type=radio]").first().parent().removeClass("visuallyhidden");
-	        //$("#domain-see-more-less .toggle-btn input[type=radio]").first().parent().removeClass("visuallyhidden");
+	        //$(".geo .see-more-less .toggle-btn input[type=radio]").first().parent().removeClass("visuallyhidden");
+	        //$(".domain .see-more-less .toggle-btn input[type=radio]").first().parent().removeClass("visuallyhidden");
 
 	        // See All/Fewer (geo) button shows all for Month or Year (based on current selection)
-	        $("#geo-see-more-less .toggle-btn input[type=radio]").click(function() {
+	        $(".geo .see-more-less .toggle-btn input[type=radio]").click(function() {
 
 	        	if ($(this).parent().is(':first-child')) { // See All Button 
 		        	console.log("see all button clicked");
 		        	
-		        	if ($("#geo-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+		        	if ($(".geo .date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 			        	console.log("see all button clicked - last month");
 			            showViewsByCountry(aggregatedByCountryLastMonth);
 		        	} else {
@@ -252,7 +242,7 @@
 	        	} else { // See Fewer Button
 		        	console.log("see fewer button clicked");
 		        	
-		        	if ($("#geo-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+		        	if ($(".geo .date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 			        	console.log("see fewer button clicked - last month");
 			            showViewsByCountry(aggregatedByCountryLastMonth, onlyShow);
 		        	} else {
@@ -263,12 +253,12 @@
 	        });
 
 	        // See All/Fewer (domain) button shows all for Month or Year (based on current selection)
-	        $("#domain-see-more-less .toggle-btn input[type=radio]").click(function() {
+	        $(".domain .see-more-less .toggle-btn input[type=radio]").click(function() {
 
 	        	if ($(this).parent().is(':first-child')) { // See All Button 
 		        	console.log("see all button clicked");
 		        	
-		        	if ($("#domain-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+		        	if ($(".domain .date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 			        	console.log("see all button clicked - last month");
 			            showViewsByDomain(aggregatedByDomainLastMonth);
 		        	} else {
@@ -278,7 +268,7 @@
 	        	} else { // See Fewer Button
 		        	console.log("see fewer button clicked");
 		        	
-		        	if ($("#domain-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+		        	if ($(".domain .date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 			        	console.log("see fewer button clicked - last month");
 			            showViewsByDomain(aggregatedByDomainLastMonth, onlyShow);
 		        	} else {
@@ -537,20 +527,20 @@
 			    $("#geo-list tr th:first-child").addClass("panel-list-image"); 	//Add CSS class to the first item in the header
 		  		$("#geo-list tr th:last-child").addClass("panel-list-count"); 	//Add CSS classes to the last item in the header
 		  		
-  				$("#geo-see-more-less .toggle-btn input[type=radio]").last().parent().addClass("visuallyhidden"); //Hide the See Fewer button
+  				$(".geo .see-more-less .toggle-btn input[type=radio]").last().parent().addClass("visuallyhidden"); //Hide the See Fewer button
 
 		  		// filter out data that we don't want to display
 		  		if (onlyShowN > 0) {
 		  			dataToShow = data.slice(0, onlyShowN);
 		  			if (data.length > dataToShow.length) {
-		  				$("#geo-see-more-less .toggle-btn input[type=radio]").first().parent().removeClass("visuallyhidden"); //Unhide the See All button 
+		  				$(".geo .see-more-less .toggle-btn input[type=radio]").first().parent().removeClass("visuallyhidden"); //Unhide the See All button 
 		  			} else {
 			  			dataToShow = data;
-		  				$("#geo-see-more-less .toggle-btn input[type=radio]").first().parent().addClass("visuallyhidden"); //Hide the See All button 
+		  				$(".geo .see-more-less .toggle-btn input[type=radio]").first().parent().addClass("visuallyhidden"); //Hide the See All button 
 		  			}
 		  		} else {
 		  			dataToShow = data;
-	  				$("#geo-see-more-less .toggle-btn input[type=radio]").first().parent().addClass("visuallyhidden"); //Hide the See All button 
+	  				$(".geo .see-more-less .toggle-btn input[type=radio]").first().parent().addClass("visuallyhidden"); //Hide the See All button 
 		  		}
 
 		  		// add table rows for dataToShow
@@ -584,20 +574,20 @@
 		  		
 		  		$("#domain-list tr th:last-child").addClass("panel-list-count"); //Add CSS classes to the last item in the header
 		  		
-  				$("#domain-see-more-less .toggle-btn input[type=radio]").last().parent().addClass("visuallyhidden"); //Hide the See Fewer button
+  				$(".domain .see-more-less .toggle-btn input[type=radio]").last().parent().addClass("visuallyhidden"); //Hide the See Fewer button
 
 		  		// filter out data that we don't want to display
 		  		if (onlyShowN > 0) {
 		  			dataToShow = data.slice(0, onlyShowN);
 		  			if (data.length > dataToShow.length) {
-		  				$("#domain-see-more-less .toggle-btn input[type=radio]").first().parent().removeClass("visuallyhidden"); //Unhide the See All button 
+		  				$(".domain .see-more-less .toggle-btn input[type=radio]").first().parent().removeClass("visuallyhidden"); //Unhide the See All button 
 		  			} else {
 			  			dataToShow = data;
-		  				$("#domain-see-more-less .toggle-btn input[type=radio]").first().parent().addClass("visuallyhidden"); //Hide the See All button 
+		  				$(".domain .see-more-less .toggle-btn input[type=radio]").first().parent().addClass("visuallyhidden"); //Hide the See All button 
 		  			}
 		  		} else {
 		  			dataToShow = data;
-	  				$("#domain-see-more-less .toggle-btn input[type=radio]").first().parent().addClass("visuallyhidden"); //Hide the See All button 
+	  				$(".domain .see-more-less .toggle-btn input[type=radio]").first().parent().addClass("visuallyhidden"); //Hide the See All button 
 		  		}
 
 		  		// add table rows for dataToShow
