@@ -150,7 +150,7 @@
 				<div class="panel-data-area">
 					<div id="domain-list-area">
 						<table id="domain-list" class="panel-list"></table>
-						<div id="domain-show" class="toggle-btn-grp joint-toggle">
+						<div id="domain-show" class="toggle-btn-grp">
 					    	<label onclick="" class="toggle-btn"><input type="radio" name="domainShow"/>See All</label><label onclick="" class="toggle-btn"><input type="radio" name="domainShow"/>See Fewer</label>
 						</div>
 						<!-- <label id="domain-see-all-btn" class="toggle-btn toggle-btn-grp geo-list-btn visuallyhidden">See All</label> -->
