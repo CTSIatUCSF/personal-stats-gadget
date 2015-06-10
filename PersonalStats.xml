@@ -374,13 +374,21 @@
 
 	        // Set up the toggle buttons
 	        $(".toggle-btn input[type=radio]").addClass("visuallyhidden");
-	        $(".toggle-btn input[type=radio]").change(function() {
-	            if( $(this).attr("name") ) {
+	        $("#geo-toggle .toggle-btn input[type=radio]").change(function() {
+	            if( $(this).attr("name") === "countryToggle") {
 	                $(this).parent().addClass("success").siblings().removeClass("success")
 	            } else {
 	                $(this).parent().toggleClass("success");
 	            }
 	        });
+	        $("domain-toggle .toggle-btn input[type=radio]").change(function() {
+	            if( $(this).attr("name") === "domainToggle") {
+	                $(this).parent().addClass("success").siblings().removeClass("success")
+	            } else {
+	                $(this).parent().toggleClass("success");
+	            }
+	        });
+
 	        $("#geo-toggle .toggle-btn input[type=radio]").first().click(function() {
 	        	console.log("country-month selected");
 	            showViewsByCountry(aggregatedByCountryLastMonth, onlyShow);
