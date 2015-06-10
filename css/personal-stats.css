@@ -1,0 +1,189 @@
+.gadget-content {
+	height: 100%;
+	background-color: #D6EBFF;
+}
+.stats-title {
+	font-weight:bold;
+	font-size:20px;
+	color:#CA7C29;
+	padding-top:40px;
+	margin-bottom: 40px;
+    text-align: center;
+}
+.stats-chart {
+	width: 90%; 
+	margin-top: 20px;
+	margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+}
+.stats-table {
+	width = 100%;
+	margin-top: 20px;
+	margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-spacing: 10px;
+	border-collapse: separate;
+	table-layout: fixed;
+}
+.stats-table-item,
+.stats-table-item-center {
+	background-color: white;
+	width: 26%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.stats-table-item-center {
+	width: 20%;
+}
+.stats-text,
+.stats-text-small,
+.stats-text-large {
+	margin: 5px;
+	font-size:14px;
+}
+.stats-text-small {
+	font-size:10px;
+}
+.stats-text-large {
+	font-size:20px;
+}
+
+// Lower Panel Stuff
+.panel {
+    width: 440px;
+    margin: 10px 0px;
+}
+.panel-title {
+    margin: 5px;
+    font-size:12px;
+}
+.panel-list th{
+    font-size:8px;
+}
+.panel-list td{
+    font-size:10px;
+}
+.panel-list-row, .geo-list-row {
+    background-color: white;
+}
+.panel-list-header {
+}
+.geo-list-btn {
+}
+#geo-panel {
+    display: inline-block;
+    vertical-align: top;
+    float: left;
+    margin-left: 10px;
+}
+#domain-panel {
+    display: inline-block;
+    vertical-align: top;
+    float: right;
+    margin-right: 10px;
+}
+#geo-list {
+}
+.panel-list tr:nth-child(odd) {
+    background: #e3e3e3
+}
+#geo-list td {
+    width: 70%;
+}
+.panel-list-count {
+    text-align: right !important;
+    width: 20% !important;
+}
+.panel-list-image {
+    width: 10% !important;
+}
+#geo-list img {
+    vertical-align: middle;
+}
+#geo-list th {
+    width: 80px;
+}
+#geo-chart {
+    margin: 5px;
+    display: inline-block;
+    width: 250px;
+    vertical-align: top;
+}
+#panel-button-area {
+    width: 155px;
+}
+#geo-list-area {
+    width: 160px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px;
+}
+#domain-list-area {
+	margin: 5px;
+}
+
+// Toggle Button Stuff
+.toggle-btn-grp { 
+	margin: 5px 0px 0px !important;
+}
+.toggle-btn { 
+    text-align:centre; 
+    margin: 5px;
+    padding:0.3em 1.2em; 
+    color:#000; 
+    background-color:#FFF; 
+    border-radius:5px; 
+    display:inline-block; 
+    border:solid 1px #CCC; 
+    cursor:pointer;
+}
+
+.toggle-btn-grp.joint-toggle .toggle-btn { 
+    margin:5px 0;  
+    border-radius:0;
+    border-right-color:white;
+}
+.toggle-btn-grp.joint-toggle .toggle-btn:first-child { 
+    margin-left:5px; 
+    border-radius: 5px 0px 0px 5px; 
+}
+.toggle-btn-grp.joint-toggle .toggle-btn:last-child { 
+    margin-right:5px;  
+    border-radius: 0px 5px 5px 0px;
+    border-right:solid 1px #CCC;
+}
+
+.toggle-btn:hover { 
+    border:solid 1px #a0d5dc !important; 
+    background:#f1fdfe;
+}
+
+.toggle-btn.success { 
+    background:lightblue;
+    border:solid 1px blue !important; 
+}
+
+.visuallyhidden { 
+    border: 0; 
+    clip: rect(0 0 0 0); 
+    height: 1px; 
+    margin: -1px; 
+    overflow: hidden; 
+    padding: 0; 
+    position: absolute; 
+    width: 1px; 
+}
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus { 
+    clip: auto; 
+    height: auto; 
+    margin: 0; 
+    overflow: visible; 
+    position: static; 
+    width: auto; 
+}
