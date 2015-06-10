@@ -833,6 +833,8 @@
 		  			item = dataToShow[index];
 		  			domainName = item[0];
 		  			count = item[1];
+
+			  		$("#domain-list").append("<tr><td>" + domainName + "</td><td>" + count + "</td></tr>");
 		  		}
 
 		  		// add CSS class to the table rows
