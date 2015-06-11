@@ -195,7 +195,7 @@
 
 	        $(".geo.date-toggle .toggle-btn input[type=radio]").first().click(function() {
 	        	console.log("country-month selected");
-	            showViewsByCityy(aggregatedByCityLastMonth, onlyShow);
+	            showViewsByCity(aggregatedByCityLastMonth, onlyShow);
 	            drawGeoChart(aggregatedByCountryLastMonth);
 	        });
 
