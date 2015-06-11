@@ -173,6 +173,14 @@
 		        <p>Domain Data</p>
 		        <button class="close-btn">Close</button>
 		    </div>
+		    <div class="overlay-content overlay-map-usa">
+		        <p>USA Map</p>
+		        <button class="close-btn">Close</button>
+		    </div>
+		    <div class="overlay-content overlay-map-world">
+		        <p>World Map</p>
+		        <button class="close-btn">Close</button>
+		    </div>
 	    </div>
 	
 		<!--Load the Google AJAX API-->
@@ -233,6 +241,14 @@
 	        $(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
 	        $(".domain.date-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
 
+	        $("#map-world").click(function() {
+	        	showOverlay("map-world");
+	        });
+
+	        $("#map-usa").click(function() {
+	        	showOverlay("map-usa");
+	        });
+
 	        // See All/Fewer (geo) button shows all for Month or Year (based on current selection)
 	        $(".geo.see-more-less .toggle-btn input[type=radio]").click(function() {
 	        	showOverlay("geo-list");
@@ -240,28 +256,7 @@
 
 	        // See All/Fewer (domain) button shows all for Month or Year (based on current selection)
 	        $(".domain.see-more-less .toggle-btn input[type=radio]").click(function() {
-
-	        	if ($(this).parent().is(':first-child')) { // See All Button 
-		        	console.log("see all button clicked");
-		        	
-		        	if ($(".domain.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
-			        	console.log("see all button clicked - last month");
-			            showViewsByDomain(aggregatedByDomainLastMonth);
-		        	} else {
-			        	console.log("see all button clicked - last year");
-			            showViewsByDomain(aggregatedByDomainLastYear);
-		        	}
-	        	} else { // See Fewer Button
-		        	console.log("see fewer button clicked");
-		        	
-		        	if ($(".domain.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
-			        	console.log("see fewer button clicked - last month");
-			            showViewsByDomain(aggregatedByDomainLastMonth, onlyShow);
-		        	} else {
-			        	console.log("see fewer button clicked - last year");
-			            showViewsByDomain(aggregatedByDomainLastYear, onlyShow);
-		        	}
-	        	}
+		        showOverlay("domain-list");
 	        });
 	  
 		  	function fetchData() {
