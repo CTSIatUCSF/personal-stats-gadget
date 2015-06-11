@@ -30,19 +30,23 @@
 .stats-table-item-center,
 .stats-table-item-right {
 	background-color: white;
-	margin: 10px;
+	margin: 10px 0px;
     display: inline-block;
 }
 .stats-table-item-left {
     width: 330px;    
     float: left;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 .stats-table-item-center {
-	width: 200px;
+	width: 220px;
 }
 .stats-table-item-right {
     width: 330px;    
     float: right;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 .stats-text,
 .stats-text-small,
