@@ -741,6 +741,9 @@
 
 				fixCountryNames(arrayToReturn);
 
+				console.log("arrayToReturn");
+				console.log(arrayToReturn);
+
 				return arrayToReturn;
 			}
 
