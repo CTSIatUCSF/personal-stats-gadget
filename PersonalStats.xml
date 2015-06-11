@@ -283,7 +283,7 @@
 
 				var query = {
 					'ids': 'ga:23439892',
-			    	'metrics': 'ga:sessions',
+			    	'metrics': 'ga:uniquePageviews',
 			        'dimensions': 'ga:date,ga:country,ga:networkDomain',
 					'filters': 'ga:pagePath' + pagePath,
 			        'start-date': earliest_start_date,
