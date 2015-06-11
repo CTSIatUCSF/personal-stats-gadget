@@ -512,7 +512,7 @@
 		  	}
 
 		  	function showViewsByCountry(data, onlyShowN) {
-		  		var dataToShow, index, item, countryName, countryCode, count;
+		  		var dataToShow, index, item, countryName, countryCode, regionName, cityName, geoString, count;
 
 				$("#geo-list tr").remove(); //Remove any existing rows before adding new ones
 
@@ -547,6 +547,11 @@
 		  			countryCode = getCountryCode(countryName);
 		  			regionName = item[1];
 		  			cityName = item[2];
+		  			geoString = cityName  + ", " + regionName;
+		  			if (geoString.indexOf("(not set)") > -1) {
+		  				geoString.replace("(not set, )", "");
+		  				geoString.replace("(, not set)", "");
+		  			}
 		  			count = item[3];
 
 					//TODO: Fix this path
