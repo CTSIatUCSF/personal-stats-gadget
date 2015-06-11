@@ -556,6 +556,9 @@
 		  				if (geoString.indexOf("(not set), ") > -1) {
 		  					console.log("really found it. why won't it go away?");
 		  				}
+		  				console.log(geoString.replace("(not set), ", ""));
+						console.log(geoString.replace(", (not set)", ""));
+
 		  				geoString = geoString.replace("(not set), ", "");
 		  				geoString = geoString.replace(", (not set)", "");
 		  			}
