@@ -479,8 +479,14 @@
 			}
 	  
 		  	function showVisitorCountStats() {
-
-			  	console.log(viewerData);
+			  	var viewerFirstName, firstNameToDisplay;
+			  	
+			  	viewerFirstName = viewerData[FOAF("firstName")];
+			  	viewerFirstName = "James";
+			  	firstNameToDisplay = viewerFirstName + "'s";
+			  	if (viewerFirstName.slice(-1) == "s") {
+			  		firstNameToDisplay.slice(0, -1);
+			  	}
 
 				var vccLastYear = document.getElementById('view_count_last_year');
 				var vccLastYearCount = calculateViewCountLastYear(aggregatedByMonthLastYear);
