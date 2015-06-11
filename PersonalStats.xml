@@ -76,7 +76,7 @@
 
             function init() {
 
-				osapi.jsonld.getOwner().execute(function(ownerData) {
+				osapi.jsonld.getViewer().execute(function(ownerData) {
 					ownerURI = ownerData.uris[0];
 
 					//don't enable the link until we have the owner data
@@ -787,7 +787,7 @@
 		
 			function init() {
 
-				osapi.jsonld.getOwner().execute(function(owner_data) {
+				osapi.jsonld.getViewer().execute(function(owner_data) {
 					framePerson(owner_data, function(ownerObj) {
 						ownerData = ownerObj;
 
