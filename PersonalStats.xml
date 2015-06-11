@@ -785,7 +785,7 @@
 			function init() {
 
 				osapi.jsonld.getViewer().execute(function(viewer_data) {
-					framePerson(viewer, function(viewerObj) {
+					framePerson(viewer_data, function(viewerObj) {
 						viewerData = viewerObj;
 
 						//TODO: Fix this path
