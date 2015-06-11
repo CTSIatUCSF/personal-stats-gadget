@@ -71,7 +71,7 @@
 
 			<table id="view_count_table" class="stats-table">
 				<tr>
-					<td class="stats-table-item">
+					<td class="stats-table-item-left">
 						<div class="stats-text">So Far This Month</div>
 						<div id="view_count_this_month" class="stats-text-large"></div>
 						<div class="stats-text">Visitors</div>
@@ -81,7 +81,7 @@
 						<div id="view_count_best_month" class="stats-text-large"></div>
 						<div class="stats-text">Visitors</div>
 					</td>
-					<td class="stats-table-item">
+					<td class="stats-table-item-right">
 						<div id="view_count_all_time_since" class="stats-text"></div>
 						<div id="view_count_all_time" class="stats-text-large"></div>
 						<div class="stats-text">Visitors</div>
