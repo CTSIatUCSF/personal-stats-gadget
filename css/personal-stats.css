@@ -24,8 +24,6 @@
 	width: 100%;
 	margin-top: 20px;
 	margin-bottom: 0px;
-    margin-left: auto;
-    margin-right: auto;
     text-align: center;
     display: inline-block;
 }
@@ -33,13 +31,11 @@
 .stats-table-item-center,
 .stats-table-item-right {
 	background-color: white;
-	margin-top: 10px;
-	margin-bottom: 10px;
+	margin: 10px;
 }
 .stats-table-item-left {
     width: 35%;    
     float: left;
-    margin-right: 10px;
 }
 .stats-table-item-center {
 	width: 26%;
@@ -47,7 +43,6 @@
 .stats-table-item-right {
     width: 35%;    
     float: right;
-    margin-left: 10px;
 }
 .stats-text,
 .stats-text-small,
