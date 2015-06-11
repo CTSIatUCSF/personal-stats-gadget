@@ -101,75 +101,78 @@
            <script type="text/javascript" src="js/jquery.blockUI-2.66.0.js"></script>
     
         <div class="gadget-content">
-    		<div id="view_count_last_year" class="stats-title">This is the Personal Stats Gadget's canvas page.</div>
-    		
-			<div id="chart_container" class="stats-chart"></div>
+        	<div>
+	    		<div id="view_count_last_year" class="stats-title">This is the Personal Stats Gadget's canvas page.</div>
+	    		
+				<div id="chart_container" class="stats-chart"></div>
 
-			<div id="view_count_table" class="stats-table">
-					<div class="stats-table-item-left">
-						<div class="stats-text">So Far This Month</div>
-						<div id="view_count_this_month" class="stats-text-large"></div>
-						<div class="stats-text">Visitors</div>
+				<div id="view_count_table" class="stats-table">
+						<div class="stats-table-item-left">
+							<div class="stats-text">So Far This Month</div>
+							<div id="view_count_this_month" class="stats-text-large"></div>
+							<div class="stats-text">Visitors</div>
+						</div>
+						<div class="stats-table-item-center">
+							<div class="stats-text">Best Month Ever</div>
+							<div id="view_count_best_month" class="stats-text-large"></div>
+							<div class="stats-text">Visitors</div>
+						</div>
+						<div class="stats-table-item-right">
+							<div id="view_count_all_time_since" class="stats-text"></div>
+							<div id="view_count_all_time" class="stats-text-large"></div>
+							<div class="stats-text">Visitors</div>
+							<div class="stats-text-small">* First month data is available for your profile page</div>
+						</div>
+				</div>
+				<div id="geo-panel" class="panel">
+					<div id="geo-panel-header">
+						<div class="panel-title">Views By Country</div>
+						<div class="panel-button-area">
+							<div class="geo date-toggle toggle-btn-grp joint-toggle">
+							    <label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last Year</label>
+							</div>
+						</div>
 					</div>
-					<div class="stats-table-item-center">
-						<div class="stats-text">Best Month Ever</div>
-						<div id="view_count_best_month" class="stats-text-large"></div>
-						<div class="stats-text">Visitors</div>
+					<img id="map-usa" class="map toggle-btn" src="http://cranestylelabs.github.io/personal-stats-gadget/images/map-usa.png"></img>
+					<img id="map-world" class="map toggle-btn" src="http://cranestylelabs.github.io/personal-stats-gadget/images/map-world.png"></img>
+					<div class="panel-data-area">
+						<div id="geo-list-area">
+							<table id="geo-list" class="panel-list"></table>
+							<div class="geo see-more-less toggle-btn-grp">
+						    	<label onclick="" class="toggle-btn"><input type="radio" name="geoSee"/>See All</label><label onclick="" class="toggle-btn"><input type="radio" name="geoSee"/>See Fewer</label>
+							</div>
+						</div>
+						<!-- <div id="geo-chart"></div> -->
 					</div>
-					<div class="stats-table-item-right">
-						<div id="view_count_all_time_since" class="stats-text"></div>
-						<div id="view_count_all_time" class="stats-text-large"></div>
-						<div class="stats-text">Visitors</div>
-						<div class="stats-text-small">* First month data is available for your profile page</div>
-					</div>
-			</div>
-			<div id="geo-panel" class="panel">
-				<div id="geo-panel-header">
-					<div class="panel-title">Views By Country</div>
+				</div>
+				<div id="domain-panel" class="panel">
+					<div class="panel-title">Views By Company/Domain</div>
 					<div class="panel-button-area">
-						<div class="geo date-toggle toggle-btn-grp joint-toggle">
-						    <label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last Year</label>
+						<div class="domain date-toggle toggle-btn-grp joint-toggle">
+						    <label onclick="" class="toggle-btn"><input type="radio" name="domainToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="domainToggle"/>Last Year</label>
+						</div>
+					</div>
+					<div class="panel-data-area">
+						<div id="domain-list-area">
+							<table id="domain-list" class="panel-list"></table>
+							<div class="domain see-more-less toggle-btn-grp">
+						    	<label onclick="" class="toggle-btn"><input type="radio" name="domainSee"/>See All</label><label onclick="" class="toggle-btn"><input type="radio" name="domainSee"/>See Fewer</label>
+							</div>
 						</div>
 					</div>
 				</div>
-				<img id="map-usa" class="map toggle-btn" src="http://cranestylelabs.github.io/personal-stats-gadget/images/map-usa.png"></img>
-				<img id="map-world" class="map toggle-btn" src="http://cranestylelabs.github.io/personal-stats-gadget/images/map-world.png"></img>
-				<div class="panel-data-area">
-					<div id="geo-list-area">
-						<table id="geo-list" class="panel-list"></table>
-						<div class="geo see-more-less toggle-btn-grp">
-					    	<label onclick="" class="toggle-btn"><input type="radio" name="geoSee"/>See All</label><label onclick="" class="toggle-btn"><input type="radio" name="geoSee"/>See Fewer</label>
-						</div>
-					</div>
-					<!-- <div id="geo-chart"></div> -->
-				</div>
-			</div>
-			<div id="domain-panel" class="panel">
-				<div class="panel-title">Views By Company/Domain</div>
-				<div class="panel-button-area">
-					<div class="domain date-toggle toggle-btn-grp joint-toggle">
-					    <label onclick="" class="toggle-btn"><input type="radio" name="domainToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="domainToggle"/>Last Year</label>
-					</div>
-				</div>
-				<div class="panel-data-area">
-					<div id="domain-list-area">
-						<table id="domain-list" class="panel-list"></table>
-						<div class="domain see-more-less toggle-btn-grp">
-					    	<label onclick="" class="toggle-btn"><input type="radio" name="domainSee"/>See All</label><label onclick="" class="toggle-btn"><input type="radio" name="domainSee"/>See Fewer</label>
-						</div>
-					</div>
-				</div>
-			</div>
-	    </div>
-	    <div class="overlay-bg">
-	    </div>
-	    <div class="overlay-content overlay-geo-list">
-	        <p>Geo Data</p>
-	        <button class="close-btn">Close</button>
-	    </div>
-	    <div class="overlay-content overlay-domain-list">
-	        <p>Domain Data</p>
-	        <button class="close-btn">Close</button>
+		    </div>
+
+		    <div class="overlay-bg">
+		    </div>
+		    <div class="overlay-content overlay-geo-list">
+		        <p>Geo Data</p>
+		        <button class="close-btn">Close</button>
+		    </div>
+		    <div class="overlay-content overlay-domain-list">
+		        <p>Domain Data</p>
+		        <button class="close-btn">Close</button>
+		    </div>
 	    </div>
 	
 		<!--Load the Google AJAX API-->
