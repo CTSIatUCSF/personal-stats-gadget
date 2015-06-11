@@ -107,7 +107,7 @@
 			<table id="view_count_table" class="stats-table">
 				<tr>
 					<td class="stats-table-item">
-						<div class="stats-text">So far this month</div>
+						<div class="stats-text">So Far This Month</div>
 						<div id="view_count_this_month" class="stats-text-large"></div>
 						<div class="stats-text">Visitors</div>
 					</td>
