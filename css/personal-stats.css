@@ -76,6 +76,8 @@
 }
 #world-map {
     display: inline-block;
+    width: 70%;
+    height: 70%;
 }
 .panel-list th{
     font-size:10px;
