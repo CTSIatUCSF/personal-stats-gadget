@@ -545,10 +545,12 @@
 		  			item = dataToShow[index];
 		  			countryName = item[0];
 		  			countryCode = getCountryCode(countryName);
-		  			count = item[1];
+		  			regionName = item[1];
+		  			cityName = item[2];
+		  			count = item[3];
 
 					//TODO: Fix this path
-			  		$("#geo-list").append("<tr><td><img src=http://cranestylelabs.github.io/personal-stats-gadget/images/flag_icons/"+ countryCode + ".gif></img></td><td>" + countryName + "</td><td>" + count + "</td></tr>");
+			  		$("#geo-list").append("<tr><td><img src=http://cranestylelabs.github.io/personal-stats-gadget/images/flag_icons/"+ countryCode + ".gif></img></td><td>" + cityName  + ", " + regionName + "</td><td>" + count + "</td></tr>");
 		  		}
 
 		  		$("#geo-list tr").addClass("panel-list-row"); 					//Add CSS class to the table rows
