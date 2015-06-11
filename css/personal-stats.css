@@ -27,8 +27,7 @@
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    border-spacing: 10px;
-	border-collapse: separate;
+    display: inline-block;
 }
 .stats-table-item-left,
 .stats-table-item-center,
@@ -40,7 +39,7 @@
 .stats-table-item-left {
     width: 35%;    
     float: left;
-    margin-left: 10px;
+    margin-right: 10px;
 }
 .stats-table-item-center {
 	width: 26%;
@@ -48,7 +47,7 @@
 .stats-table-item-right {
     width: 35%;    
     float: right;
-    margin-right: 10px;
+    margin-left: 10px;
 }
 .stats-text,
 .stats-text-small,
