@@ -710,20 +710,14 @@
 				    return elem[0] + "_" + elem[1] + "_" + elem[2];
 				});
 
-				console.log("uniques");
-				console.log(uniques.length);
-
 				var filteredArray = uniques.filter(function(elem, i, array) {
 				        return array.indexOf(elem) === i;
 				    }
 				);
 
-				console.log("filteredArray");
-				console.log(filteredArray.length);
-
 				var arrayToReturn = filteredArray.map(function(unique_value) {
 				    var count = dataFilteredByDate.reduce(function(prevVal, elem) {
-				        if(elem[1]+elem[2]+elem[3] == unique_value) {
+				        if(elem[0]+elem[1]+elem[2] == unique_value) {
 				            return prevVal + parseInt(elem[lastIndex]);
 				        } 
 				        else {
@@ -731,7 +725,7 @@
 				        }
 				    }, 0);
 				    var splits = unique_value.split("_");
-				    return new Array(splits[1], splits[2], splits[3], count); 
+				    return new Array(splits[0], splits[1], splits[2], count); 
 				});
 
 				// sort by views, descending
