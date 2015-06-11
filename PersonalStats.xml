@@ -707,11 +707,11 @@
 				);
 
 				var uniques = dataFilteredByDate.map(function(elem) {
-				    return elem[1] + elem[2] + elem[3];
+				    return elem[1] + "_" + elem[2] + "_" + elem[3];
 				});
 
 				console.log("uniques");
-				console.log(uniques);
+				console.log(uniques.length);
 
 				var filteredArray = uniques.filter(function(elem, i, array) {
 				        return array.indexOf(elem) === i;
@@ -719,7 +719,7 @@
 				);
 
 				console.log("filteredArray");
-				console.log(filteredArray);
+				console.log(filteredArray.length);
 
 				var arrayToReturn = filteredArray.map(function(unique_value) {
 				    var count = dataFilteredByDate.reduce(function(prevVal, elem) {
@@ -730,7 +730,8 @@
 				            return prevVal;
 				        }
 				    }, 0);
-				    return new Array(elem[1], elem[2], elem[3], count); 
+				    var splits = unique_value.split("_");
+				    return new Array(splits[1], splits[2], splits[3], count); 
 				});
 
 				// sort by views, descending
