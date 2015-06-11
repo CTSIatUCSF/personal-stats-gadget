@@ -29,7 +29,6 @@
     text-align: center;
     border-spacing: 10px;
 	border-collapse: separate;
-	table-layout: fixed;
 }
 .stats-table-item,
 .stats-table-item-center {
