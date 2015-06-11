@@ -729,8 +729,6 @@
 
 				var arrayToReturn = filteredArray.map(function(unique_value) {
 				    var count = dataFilteredByDate.reduce(function(prevVal, elem) {
-				    	console.log("elem = " + elem);
-				    	//var elemSplits = elem.split(",");
 				        if(elem[1] + "_" +elem[2] + "_" +elem[3] == unique_value) {
 				            return prevVal + parseInt(elem[lastIndex]);
 				        } 
@@ -744,7 +742,7 @@
 
 				// sort by views, descending
 				arrayToReturn.sort(function(a,b) {
-				    return b[1]-a[1]
+				    return b[3]-a[3]
 				});
 
 				fixCountryNames(arrayToReturn);
