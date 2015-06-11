@@ -482,7 +482,6 @@
 			  	var viewerFirstName, firstNameToDisplay;
 			  	
 			  	viewerFirstName = viewerData[FOAF("firstName")];
-			  	viewerFirstName = "James";
 			  	firstNameToDisplay = viewerFirstName + "'s";
 			  	if (viewerFirstName.slice(-1) == "s") {
 			  		firstNameToDisplay = firstNameToDisplay.slice(0, -1);
