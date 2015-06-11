@@ -34,14 +34,14 @@
 	margin: 10px;
 }
 .stats-table-item-left {
-    width: 35%;    
+    width: 330px;    
     float: left;
 }
 .stats-table-item-center {
-	width: 26%;
+	width: 240px;
 }
 .stats-table-item-right {
-    width: 35%;    
+    width: 330px;    
     float: right;
 }
 .stats-text,
@@ -80,14 +80,14 @@
 .geo-list-btn {
 }
 #geo-panel {
-    width: 62%;
+    width: 580px;
     display: inline-block;
     vertical-align: top;
     float: left;
     margin-left: 10px;
 }
 #domain-panel {
-    width: 35%;
+    width: 330px;
     display: inline-block;
     vertical-align: top;
     float: right;
