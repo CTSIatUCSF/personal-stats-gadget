@@ -232,7 +232,7 @@
 
 	        // See All/Fewer (geo) button shows all for Month or Year (based on current selection)
 	        $(".geo.see-more-less .toggle-btn input[type=radio]").click(function() {
-	        	showOverlay(geo-list);
+	        	showOverlay("geo-list");
 	        });
 
 	        // See All/Fewer (domain) button shows all for Month or Year (based on current selection)
