@@ -130,7 +130,7 @@
     width: 155px;
 }
 #geo-list-area {
-    width: 160px;
+    /*width: 160px;*/
     display: inline-block;
     vertical-align: top;
     margin: 5px;
