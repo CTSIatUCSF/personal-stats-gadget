@@ -97,6 +97,7 @@
     <!DOCTYPE html>
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
            <link rel="stylesheet" href="css/personal-stats.css" type="text/css" />
+		   <link type="text/css" rel="stylesheet" href="overlay.css" />
            <script type="text/javascript" src="js/jquery.blockUI-2.66.0.js"></script>
     
         <div class="gadget-content">
@@ -160,6 +161,16 @@
 				</div>
 			</div>
 	    </div>
+	    <div class="overlay-bg">
+	    </div>
+	    <div class="overlay-content overlay-geo">
+	        <p>Geo Data</p>
+	        <button class="close-btn">Close</button>
+	    </div>
+	    <div class="overlay-content overlay-domain">
+	        <p>Domain Data</p>
+	        <button class="close-btn">Close</button>
+	    </div>
 	
 		<!--Load the Google AJAX API-->
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -221,28 +232,7 @@
 
 	        // See All/Fewer (geo) button shows all for Month or Year (based on current selection)
 	        $(".geo.see-more-less .toggle-btn input[type=radio]").click(function() {
-
-	        	if ($(this).parent().is(':first-child')) { // See All Button 
-		        	console.log("see all button clicked");
-		        	
-		        	if ($(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
-			        	console.log("see all button clicked - last month");
-			            showViewsByCity(aggregatedByCityLastMonth);
-		        	} else {
-			        	console.log("see all button clicked - last year");
-			            showViewsByCity(aggregatedByCityLastYear);
-		        	}
-	        	} else { // See Fewer Button
-		        	console.log("see fewer button clicked");
-		        	
-		        	if ($(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
-			        	console.log("see fewer button clicked - last month");
-			            showViewsByCity(aggregatedByCityLastMonth, onlyShow);
-		        	} else {
-			        	console.log("see fewer button clicked - last year");
-			            showViewsByCity(aggregatedByCityLastYear, onlyShow);
-		        	}
-	        	}
+	        	showOverlay(geo-list);
 	        });
 
 	        // See All/Fewer (domain) button shows all for Month or Year (based on current selection)
@@ -844,6 +834,31 @@
 
 				return arrayToReturn;
 			}
+
+			// function to show our overlays
+			function showOverlay(whichoverlay){
+			    var docHeight = $(document).height(); //grab the height of the page
+			    var scrollTop = $(window).scrollTop(); //grab the px value from the top of the page to where you're scrolling
+			    $('.overlay-bg').show().css({'height' : docHeight}); //display your overlay background and set height to the page height
+			    $('.overlay'+whichoverlay).show().css({'top': scrollTop+20+'px'}); //show the appropriate overlay and set the content 20px from the window top
+			}
+
+			// function to close our overlays
+			function closeOverlay(){
+			    $('.overlay-bg, .overlay-content').hide(); //hide the overlay
+			}
+			
+			// hide overlay when user clicks on close button or if user clicks anywhere outside the container
+			$('.close-btn, .overlay-bg').click(function(){
+			    closeOverlay();
+			});
+			
+			// hide the overlay when user presses the esc key
+			$(document).keyup(function(e) {
+			    if (e.keyCode == 27) { // if user presses esc key
+			        closeOverlay();
+			    }
+			});
 		
 			function init() {
 
