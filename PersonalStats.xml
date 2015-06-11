@@ -487,8 +487,10 @@
 			  	console.log("last letter of first name:")
 			  	console.log(viewerFirstName.slice(-1));
 			  	if (viewerFirstName.slice(-1) == "s") {
+			  		console.log("firstNameToDisplay before:");
+			  		console.log(firstNameToDisplay);
 			  		firstNameToDisplay.slice(0, -1);
-			  		console.log("firstNameToDisplay:");
+			  		console.log("firstNameToDisplay after:");
 			  		console.log(firstNameToDisplay);
 			  	}
 
