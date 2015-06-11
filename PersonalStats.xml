@@ -167,7 +167,7 @@
 
 			window.personalStats = window.personalStats || { };
 
-			var viewerData, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCountryLastYear, aggregatedByCountryLastMonth, countryCodeList, aggregatedByDomainLastYear, aggregatedByDomainLastMonth;
+			var viewerData, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCityLastYear, aggregatedByCityLastMonth, aggregatedByCountryLastYear, aggregatedByCountryLastMonth, countryCodeList, aggregatedByDomainLastYear, aggregatedByDomainLastMonth;
 			var onlyShow = 10;
 
 	        // Load the Visualization API and the column chart package.
@@ -195,13 +195,13 @@
 
 	        $(".geo.date-toggle .toggle-btn input[type=radio]").first().click(function() {
 	        	console.log("country-month selected");
-	            showViewsByCountry(aggregatedByCountryLastMonth, onlyShow);
+	            showViewsByCityy(aggregatedByCityLastMonth, onlyShow);
 	            drawGeoChart(aggregatedByCountryLastMonth);
 	        });
 
 	        $(".geo.date-toggle .toggle-btn input[type=radio]").last().click(function() {
 	            console.log("country-year selected");
-	            showViewsByCountry(aggregatedByCountryLastYear, onlyShow);
+	            showViewsByCity(aggregatedByCityLastYear, onlyShow);
 	            drawGeoChart(aggregatedByCountryLastYear);
 	        });
 	        $(".domain.date-toggle .toggle-btn input[type=radio]").first().click(function() {
@@ -226,20 +226,20 @@
 		        	
 		        	if ($(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 			        	console.log("see all button clicked - last month");
-			            showViewsByCountry(aggregatedByCountryLastMonth);
+			            showViewsByCity(aggregatedByCountryLastMonth);
 		        	} else {
 			        	console.log("see all button clicked - last year");
-			            showViewsByCountry(aggregatedByCountryLastYear);
+			            showViewsByCity(aggregatedByCountryLastYear);
 		        	}
 	        	} else { // See Fewer Button
 		        	console.log("see fewer button clicked");
 		        	
 		        	if ($(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 			        	console.log("see fewer button clicked - last month");
-			            showViewsByCountry(aggregatedByCountryLastMonth, onlyShow);
+			            showViewsByCity(aggregatedByCountryLastMonth, onlyShow);
 		        	} else {
 			        	console.log("see fewer button clicked - last year");
-			            showViewsByCountry(aggregatedByCountryLastYear, onlyShow);
+			            showViewsByCity(aggregatedByCountryLastYear, onlyShow);
 		        	}
 	        	}
 	        });
@@ -321,8 +321,10 @@
 						var data = JSON.parse(response.data);
 		      		 	aggregatedByMonthAll = aggregateDataByMonth(data.rows);
 				 		aggregatedByMonthLastYear = aggregateDataByMonth(data.rows, getYearMonthOneYearAgoMonthStart());
-				 		aggregatedByCountryLastYear = aggregateDataByCity(data.rows, dateOneYearAgo().yyyymmdd());
-				 		aggregatedByCountryLastMonth = aggregateDataByCity(data.rows, dateThirtyDaysAgo().yyyymmdd());
+				 		aggregatedByCityLastYear = aggregateDataByCity(data.rows, dateOneYearAgo().yyyymmdd());
+				 		aggregatedByCityLastMonth = aggregateDataByCity(data.rows, dateThirtyDaysAgo().yyyymmdd());
+				 		aggregatedByCountryLastYear = aggregateDataByCountry(data.rows, dateOneYearAgo().yyyymmdd());
+				 		aggregatedByCountryLastMonth = aggregateDataByCountry(data.rows, dateThirtyDaysAgo().yyyymmdd());
 				 		aggregatedByDomainLastYear = aggregateDataByDomain(data.rows, dateOneYearAgo().yyyymmdd());
 		      			console.log("aggregatedByDomainLastYear");
 		      			console.log(aggregatedByDomainLastYear);
@@ -334,7 +336,7 @@
 		      			showVisitorCountStats();
 						drawColumnChart(aggregatedByMonthLastYear);
 
-		      			showViewsByCountry(aggregatedByCountryLastMonth, 10);
+		      			showViewsByCity(aggregatedByCityLastMonth, 10);
 		      			drawGeoChart(aggregatedByCountryLastMonth);
 
 		      			showViewsByDomain(aggregatedByDomainLastMonth, 10);
@@ -511,7 +513,7 @@
 				vccAllTimeSince.innerHTML = "Since " + vccAllTimeCount.start + "*";
 		  	}
 
-		  	function showViewsByCountry(data, onlyShowN) {
+		  	function showViewsByCity(data, onlyShowN) {
 		  		var dataToShow, index, item, countryName, countryCode, regionName, cityName, geoString, count;
 
 				$("#geo-list tr").remove(); //Remove any existing rows before adding new ones
