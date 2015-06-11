@@ -130,17 +130,17 @@
 						    <label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last Year</label>
 						</div>
 					</div>
-					<div class="panel-data-area">
-						<div id="geo-list-area">
-							<table id="geo-list" class="panel-list"></table>
-							<div class="geo see-more-less toggle-btn-grp">
-						    	<label onclick="" class="toggle-btn"><input type="radio" name="geoSee"/>See All</label><label onclick="" class="toggle-btn"><input type="radio" name="geoSee"/>See Fewer</label>
-							</div>
-						</div>
-						<!-- <div id="geo-chart"></div> -->
-					</div>
 				</div>
 				<img id="world-map" src="http://cranestylelabs.github.io/personal-stats-gadget/images/world-map-th.png"></img>
+				<div class="panel-data-area">
+					<div id="geo-list-area">
+						<table id="geo-list" class="panel-list"></table>
+						<div class="geo see-more-less toggle-btn-grp">
+					    	<label onclick="" class="toggle-btn"><input type="radio" name="geoSee"/>See All</label><label onclick="" class="toggle-btn"><input type="radio" name="geoSee"/>See Fewer</label>
+						</div>
+					</div>
+					<!-- <div id="geo-chart"></div> -->
+				</div>
 			</div>
 			<div id="domain-panel" class="panel">
 				<div class="panel-title">Views By Company/Domain</div>
