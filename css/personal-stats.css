@@ -78,11 +78,14 @@
     display: inline-block;
     vertical-align: bottom;
     margin-left:30px !important;
-    width: 83px;
     height: 45px;
 }
+#map-world {
+    width: 83px;
+}
 #map-usa {
-    color: orange;
+    background-color: orange;
+    width: 65px;
 }
 
 .panel-list th{
