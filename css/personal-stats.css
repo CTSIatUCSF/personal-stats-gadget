@@ -78,10 +78,10 @@
     display: inline-block;
     vertical-align: bottom;
     margin-top: 10px;
-    margin-bottom: 10px !important;
+    margin-bottom: 7px !important;
     margin-left:30px;
-    width: 83px;
-    height: 45px;
+    /*width: 83px;*/
+    /*height: 45px;*/
 }
 .panel-list th{
     font-size:10px;
