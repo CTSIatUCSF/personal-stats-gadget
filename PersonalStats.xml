@@ -484,8 +484,12 @@
 			  	viewerFirstName = viewerData[FOAF("firstName")];
 			  	viewerFirstName = "James";
 			  	firstNameToDisplay = viewerFirstName + "'s";
+			  	console.log("last letter of first name:")
+			  	console.log(viewerFirstName.slice(-1));
 			  	if (viewerFirstName.slice(-1) == "s") {
 			  		firstNameToDisplay.slice(0, -1);
+			  		console.log("firstNameToDisplay:");
+			  		console.log(firstNameToDisplay);
 			  	}
 
 				var vccLastYear = document.getElementById('view_count_last_year');
