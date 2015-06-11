@@ -707,7 +707,7 @@
 				);
 
 				var uniques = dataFilteredByDate.map(function(elem) {
-				    return elem[0] + "_" + elem[1] + "_" + elem[2];
+				    return elem[1] + "_" + elem[2] + "_" + elem[3];
 				});
 
 				var filteredArray = uniques.filter(function(elem, i, array) {
