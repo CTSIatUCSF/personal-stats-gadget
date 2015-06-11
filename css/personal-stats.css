@@ -70,6 +70,11 @@
 .panel-title {
     margin: 5px;
     font-size:14px;
+    display: inline-block;
+}
+#world-map {
+    margin: 5px;
+    display: inline-block;
 }
 .panel-list th{
     font-size:10px;
