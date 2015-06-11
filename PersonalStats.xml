@@ -226,20 +226,20 @@
 		        	
 		        	if ($(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 			        	console.log("see all button clicked - last month");
-			            showViewsByCity(aggregatedByCountryLastMonth);
+			            showViewsByCity(aggregatedByCityLastMonth);
 		        	} else {
 			        	console.log("see all button clicked - last year");
-			            showViewsByCity(aggregatedByCountryLastYear);
+			            showViewsByCity(aggregatedByCityLastYear);
 		        	}
 	        	} else { // See Fewer Button
 		        	console.log("see fewer button clicked");
 		        	
 		        	if ($(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 			        	console.log("see fewer button clicked - last month");
-			            showViewsByCity(aggregatedByCountryLastMonth, onlyShow);
+			            showViewsByCity(aggregatedByCityLastMonth, onlyShow);
 		        	} else {
 			        	console.log("see fewer button clicked - last year");
-			            showViewsByCity(aggregatedByCountryLastYear, onlyShow);
+			            showViewsByCity(aggregatedByCityLastYear, onlyShow);
 		        	}
 	        	}
 	        });
