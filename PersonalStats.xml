@@ -699,6 +699,9 @@
 			}
 
 	      	function aggregateDataByCity(data, dateStart) {
+
+				console.log("data input to aggregateDataByCity:");
+	      		console.log(data);
 	      		
 				var start = dateStart || 0
 	      		var lastIndex = data[0].length-1;
