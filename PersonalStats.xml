@@ -131,7 +131,7 @@
 						</div>
 					</div>
 				</div>
-				<img id="world-map" class="toggle-btn-grp toggle-btn" src="http://cranestylelabs.github.io/personal-stats-gadget/images/world-map-th.png"></img>
+				<img id="world-map" class="toggle-btn" src="http://cranestylelabs.github.io/personal-stats-gadget/images/world-map-th.png"></img>
 				<div class="panel-data-area">
 					<div id="geo-list-area">
 						<table id="geo-list" class="panel-list"></table>

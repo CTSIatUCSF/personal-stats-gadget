@@ -77,8 +77,6 @@
 #world-map {
     display: inline-block;
     vertical-align: bottom;
-    margin-top: 10px;
-    margin-bottom: 5px !important;
     margin-left:30px !important;
     width: 83px;
     height: 45px;
