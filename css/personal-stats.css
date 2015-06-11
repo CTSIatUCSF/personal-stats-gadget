@@ -36,16 +36,13 @@
 .stats-table-item-left {
     width: 330px;    
     float: left;
-    vertical-align: top;
 }
 .stats-table-item-center {
 	width: 240px;
-    vertical-align: top;
 }
 .stats-table-item-right {
     width: 330px;    
     float: right;
-    vertical-align: top;
 }
 .stats-text,
 .stats-text-small,
@@ -63,7 +60,7 @@
 // Lower Panel Stuff
 .panel {
     /*width: 440px;*/
-    margin: 10px;
+    margin: 10px 0px;
 }
 .panel-title {
     margin: 5px;
@@ -83,16 +80,18 @@
 .geo-list-btn {
 }
 #geo-panel {
-    width: 580px;
+    width: 570px;
     display: inline-block;
     vertical-align: top;
     float: left;
+    margin-left: 10px;
 }
 #domain-panel {
     width: 330px;
     display: inline-block;
     vertical-align: top;
     float: right;
+    margin-right: 10px;
 }
 #geo-list {
 }
