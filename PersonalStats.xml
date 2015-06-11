@@ -826,7 +826,7 @@
 
 				var arrayToReturn = filteredDomainArray.map(function(domain) {
 				    var count = dataFilteredByDate.reduce(function(prevVal, elem) {
-				        if(elem[2] == domain) {
+				        if(elem[4] == domain) {
 				            return prevVal + parseInt(elem[lastIndex]);
 				        } 
 				        else {
