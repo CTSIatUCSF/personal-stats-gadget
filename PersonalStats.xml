@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Module>
-	<ModulePrefs title="Personal Stats" author="Dan Hoffman">
+	<ModulePrefs title="Profile Page Statistics" author="Dan Hoffman">
 		<OAuth2>
 		  <Service name="googleAPIv3" scope="https://www.googleapis.com/auth/analytics.readonly">
 		  </Service>
@@ -72,14 +72,14 @@
         <img id="waiting" src="images/waiting.gif" style="display:none;">
         
         <script type="text/javascript">
-        	var ownerURI;
+        	var viewerURI;
 
             function init() {
 
-				osapi.jsonld.getViewer().execute(function(ownerData) {
-					ownerURI = ownerData.uris[0];
+				osapi.jsonld.getViewer().execute(function(viewerData) {
+					viewerURI = viewerData.uris[0];
 
-					//don't enable the link until we have the owner data
+					//don't enable the link until we have the viewer data
 					$('#linkToCanvas').click(function(){ 
 						linkToCanvasClicked();
 						return false;
@@ -88,7 +88,7 @@
             }
 			
 			function linkToCanvasClicked() {
-		    	gadgets.views.requestNavigateTo("canvas", {}, ownerURI);
+		    	gadgets.views.requestNavigateTo("canvas", {}, viewerURI);
 			}
 		
             gadgets.util.registerOnLoadHandler(init);
@@ -167,7 +167,7 @@
 
 			window.personalStats = window.personalStats || { };
 
-			var ownerData, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCountryLastYear, aggregatedByCountryLastMonth, countryCodeList, aggregatedByDomainLastYear, aggregatedByDomainLastMonth;
+			var viewerData, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCountryLastYear, aggregatedByCountryLastMonth, countryCodeList, aggregatedByDomainLastYear, aggregatedByDomainLastMonth;
 			var onlyShow = 10;
 
 	        // Load the Visualization API and the column chart package.
@@ -272,11 +272,11 @@
 	  
 		  	function fetchData() {
 
-				var ownerHomePage = ownerData[FOAF("workplaceHomepage")];
+				var viewerHomePage = viewerData[FOAF("workplaceHomepage")];
 
-				var ownerUrlParts = ownerHomePage.split("/");
-				var ownerId = ownerUrlParts[ownerUrlParts.length-1];
-				var pagePath = encodeURIComponent("=~/" + ownerId);
+				var viewerUrlParts = viewerHomePage.split("/");
+				var viewerId = viewerUrlParts[viewerUrlParts.length-1];
+				var pagePath = encodeURIComponent("=~/" + viewerId);
 
 				var earliest_start_date = "2009-12-01"
 				var today = new Date().yyyy_mm_dd();
@@ -480,10 +480,12 @@
 	  
 		  	function showVisitorCountStats() {
 
+			  	console.log(viewerData);
+
 				var vccLastYear = document.getElementById('view_count_last_year');
 				var vccLastYearCount = calculateViewCountLastYear(aggregatedByMonthLastYear);
 				vccLastYearCount.count = vccLastYearCount.count.toLocaleString(); // adds thousands separators
-				vccLastYear.innerHTML = "Your profile has been viewed " + vccLastYearCount.count + " times since " + vccLastYearCount.start;
+				vccLastYear.innerHTML = " profile has been viewed " + vccLastYearCount.count + " times since " + vccLastYearCount.start;
 				
 				var vccThisMonth = document.getElementById("view_count_this_month");
 				vccThisMonthCount = calculateViewCountThisMonth(aggregatedByMonthAll);
@@ -742,8 +744,6 @@
 
 
 	      	function aggregateDataByDomain(data, dateStart) {
-	      		console.log(data);
-	      		console.log(dateStart);
 
 				var start = dateStart || 0
 	      		var lastIndex = data[0].length-1;
@@ -752,7 +752,6 @@
 				        return array.indexOf(elem) === i && elem >= start;
 				    }
 				);
-				console.log(dataFilteredByDate);
 
 				var domainArray = dataFilteredByDate.map(function(elem) {
 				    return elem[2];
@@ -762,8 +761,6 @@
 				        return array.indexOf(elem) === i;
 				    }
 				);
-
-				console.log(filteredDomainArray);
 
 				var arrayToReturn = filteredDomainArray.map(function(domain) {
 				    var count = dataFilteredByDate.reduce(function(prevVal, elem) {
@@ -787,9 +784,9 @@
 		
 			function init() {
 
-				osapi.jsonld.getViewer().execute(function(owner_data) {
-					framePerson(owner_data, function(ownerObj) {
-						ownerData = ownerObj;
+				osapi.jsonld.getViewer().execute(function(viewer_data) {
+					framePerson(viewer, function(viewerObj) {
+						viewerData = viewerObj;
 
 						//TODO: Fix this path
 						$.getJSON("http://cranestylelabs.github.io/personal-stats-gadget/countries.json", function(response){
