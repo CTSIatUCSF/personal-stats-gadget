@@ -491,7 +491,7 @@
 				var vccLastYear = document.getElementById('view_count_last_year');
 				var vccLastYearCount = calculateViewCountLastYear(aggregatedByMonthLastYear);
 				vccLastYearCount.count = vccLastYearCount.count.toLocaleString(); // adds thousands separators
-				vccLastYear.innerHTML = " profile has been viewed " + vccLastYearCount.count + " times since " + vccLastYearCount.start;
+				vccLastYear.innerHTML = firstNameToDisplay + " profile has been viewed " + vccLastYearCount.count + " times since " + vccLastYearCount.start;
 				
 				var vccThisMonth = document.getElementById("view_count_this_month");
 				vccThisMonthCount = calculateViewCountThisMonth(aggregatedByMonthAll);
