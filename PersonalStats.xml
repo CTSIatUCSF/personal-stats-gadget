@@ -814,6 +814,8 @@
 				osapi.jsonld.getViewer().execute(function(viewer_data) {
 					framePerson(viewer_data, function(viewerObj) {
 						viewerData = viewerObj;
+						console.log("viewerData");
+						console.log(viewerData);
 
 						//TODO: Fix this path
 						$.getJSON("http://cranestylelabs.github.io/personal-stats-gadget/countries.json", function(response){
