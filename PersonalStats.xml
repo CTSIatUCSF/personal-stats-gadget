@@ -128,6 +128,7 @@
 					<div class="geo date-toggle toggle-btn-grp joint-toggle">
 					    <label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last Year</label>
 					</div>
+					<img id="world-map" src="http://cranestylelabs.github.io/personal-stats-gadget/images/world-map-th.png"></img>
 				</div>
 				<div class="panel-data-area">
 					<div id="geo-list-area">
