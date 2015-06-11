@@ -136,7 +136,7 @@
 					    	<label onclick="" class="toggle-btn"><input type="radio" name="geoSee"/>See All</label><label onclick="" class="toggle-btn"><input type="radio" name="geoSee"/>See Fewer</label>
 						</div>
 					</div>
-					<div id="geo-chart"></div>
+					<!-- <div id="geo-chart"></div> -->
 				</div>
 			</div>
 			<div id="domain-panel" class="panel">
@@ -153,7 +153,6 @@
 					    	<label onclick="" class="toggle-btn"><input type="radio" name="domainSee"/>See All</label><label onclick="" class="toggle-btn"><input type="radio" name="domainSee"/>See Fewer</label>
 						</div>
 					</div>
-					<div id="geo-chart"></div>
 				</div>
 			</div>
 	    </div>
@@ -407,7 +406,7 @@
         		var options = {
 		            colorAxis: {colors: ["#FFCC00", "#FF0000"]},
         		};
-        		var chart = new google.visualization.GeoChart(document.getElementById("geo-chart"));
+        		//var chart = new google.visualization.GeoChart(document.getElementById("geo-chart"));
 		        //chart.draw(data_table, options);
 	      	}
 
