@@ -56,7 +56,7 @@
 
 // Lower Panel Stuff
 .panel {
-    width: 440px;
+    /*width: 440px;*/
     margin: 10px 0px;
 }
 .panel-title {
@@ -77,12 +77,14 @@
 .geo-list-btn {
 }
 #geo-panel {
+    width: 65%;
     display: inline-block;
     vertical-align: top;
     float: left;
     margin-left: 10px;
 }
 #domain-panel {
+    width: 30%;
     display: inline-block;
     vertical-align: top;
     float: right;
