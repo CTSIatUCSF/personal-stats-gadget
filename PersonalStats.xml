@@ -560,7 +560,11 @@
 						console.log(geoString.replace(", (not set)", ""));
 
 		  				geoString = geoString.replace("(not set), ", "");
+		  				console.log("geoString after first replace:");
+		  				console.log(geoString)
 		  				geoString = geoString.replace(", (not set)", "");
+		  				console.log("geoString after second replace:");
+		  				console.log(geoString)
 		  			}
 		  			count = item[3];
 
