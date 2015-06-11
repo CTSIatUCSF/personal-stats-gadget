@@ -77,14 +77,14 @@
 .geo-list-btn {
 }
 #geo-panel {
-    width: 62%;
+    width: 62.5%;
     display: inline-block;
     vertical-align: top;
     float: left;
     margin-left: 10px;
 }
 #domain-panel {
-    width: 35%;
+    width: 34%;
     display: inline-block;
     vertical-align: top;
     float: right;
