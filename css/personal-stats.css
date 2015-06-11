@@ -137,6 +137,9 @@
 #domain-list-area {
 	margin: 5px;
 }
+#domain-list {
+    width: 420px;
+}
 
 // Toggle Button Stuff
 .toggle-btn-grp { 
