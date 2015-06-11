@@ -81,9 +81,16 @@
     width: 83px;
     height: 45px;
 }
-#map-usa {
-    color: orange;
+.map-usa {
+    width: 65px;
+    height: 45px;
+
 }
+.map-world {
+    width: 83px;
+    height: 45px;
+}
+
 
 .panel-list th{
     font-size:10px;

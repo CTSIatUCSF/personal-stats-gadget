@@ -131,8 +131,12 @@
 						</div>
 					</div>
 				</div>
-				<img id="map-usa" class="map toggle-btn" src="http://cranestylelabs.github.io/personal-stats-gadget/images/map-usa.png"></img>
-				<img id="map-world" class="map toggle-btn" src="http://cranestylelabs.github.io/personal-stats-gadget/images/map-world.png"></img>
+				<div class="map toggle-btn">
+					<img class="map-usa" src="http://cranestylelabs.github.io/personal-stats-gadget/images/map-usa.png"></img>
+				</div>
+				<div class="map toggle-btn">
+					<img class="map-world" src="http://cranestylelabs.github.io/personal-stats-gadget/images/map-world.png"></img>
+				</div>
 				<div class="panel-data-area">
 					<div id="geo-list-area">
 						<table id="geo-list" class="panel-list"></table>
