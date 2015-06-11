@@ -25,20 +25,20 @@
 	margin-top: 20px;
 	margin-bottom: 0px;
     text-align: center;
-    display: inline-block;
 }
 .stats-table-item-left,
 .stats-table-item-center,
 .stats-table-item-right {
 	background-color: white;
 	margin: 10px;
+    display: inline-block;
 }
 .stats-table-item-left {
     width: 330px;    
     float: left;
 }
 .stats-table-item-center {
-	width: 220px;
+	width: 200px;
 }
 .stats-table-item-right {
     width: 330px;    
