@@ -727,6 +727,7 @@
 
 				var arrayToReturn = filteredArray.map(function(unique_value) {
 				    var count = dataFilteredByDate.reduce(function(prevVal, elem) {
+				    	console.log("elem = " + elem);
 				        if(elem[0] + "_" +elem[1] + "_" +elem[2] == unique_value) {
 				            return prevVal + parseInt(elem[lastIndex]);
 				        } 
