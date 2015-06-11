@@ -381,7 +381,7 @@
 		        // Create the data table.
 		        var data_table = new google.visualization.DataTable();
 		        data_table.addColumn('string', 'Month');
-		        data_table.addColumn('number', 'Sessions');
+		        data_table.addColumn('number', 'Views');
 			    data_table.addColumn({type: 'string', role: 'style'});
 				populateDataTable_ColumnChart(data_table, data);
 
@@ -401,7 +401,7 @@
 		        // Create the data table.
 		        var data_table = new google.visualization.DataTable();
 		        data_table.addColumn('string', 'Country');
-		        data_table.addColumn('number', 'Sessions');
+		        data_table.addColumn('number', 'Views');
 				populateDataTable_GeoChart(data_table, data);
 
         		var options = {
@@ -727,7 +727,7 @@
 				    return new Array(country, count); 
 				});
 
-				// sort by sessions, descending
+				// sort by views, descending
 				arrayToReturn.sort(function(a,b) {
 				    return b[1]-a[1]
 				});
@@ -779,7 +779,7 @@
 				    return new Array(domain, count); 
 				});
 
-				// sort by sessions, descending
+				// sort by views, descending
 				arrayToReturn.sort(function(a,b) {
 				    return b[1]-a[1]
 				});
