@@ -123,7 +123,7 @@
 					</div>
 			</div>
 			<div id="geo-panel" class="panel">
-				<div geo-panel-header>
+				<div id="geo-panel-header">
 					<div class="panel-title">Views By Country</div>
 					<div class="panel-button-area">
 						<div class="geo date-toggle toggle-btn-grp joint-toggle">
