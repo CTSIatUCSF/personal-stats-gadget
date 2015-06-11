@@ -70,10 +70,11 @@
 .panel-title {
     margin: 5px;
     font-size:14px;
+}
+#geo-panel-header {
     display: inline-block;
 }
 #world-map {
-    margin: 5px;
     display: inline-block;
 }
 .panel-list th{
