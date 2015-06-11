@@ -109,7 +109,7 @@
 }
 .panel-list-count {
     text-align: right !important;
-    width: 20% !important;
+    /*width: 20% !important;*/
 }
 .panel-list-image {
     width: 10% !important;
