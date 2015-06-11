@@ -131,8 +131,8 @@
 }
 #geo-list-area {
     /*width: 160px;*/
-    display: inline-block;
-    vertical-align: top;
+    /*display: inline-block;*/
+    /*vertical-align: top;*/
     margin: 5px;
 }
 #domain-list-area {
