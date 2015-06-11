@@ -78,11 +78,9 @@
     display: inline-block;
     vertical-align: top;
     margin-top: 10px;
-    /*margin-bottom: 5px;*/
     margin-left:30px;
     width: 83px;
     height: 45px;
-    /*border: 1px solid black;*/
 }
 .panel-list th{
     font-size:10px;
@@ -137,7 +135,7 @@
     margin: 5px;
     display: inline-block;
     width: 250px;
-    vertical-align: top;
+    vertical-align: bottom;
 }
 #panel-button-area {
     /*width: 155px;*/
