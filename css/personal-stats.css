@@ -99,12 +99,13 @@
     margin-right: 10px;
 }
 #geo-list {
+    width: 100%;
 }
 .panel-list tr:nth-child(odd) {
     background: #e3e3e3
 }
 #geo-list td {
-    width: 70%;
+    /*width: 70%;*/
 }
 .panel-list-count {
     text-align: right !important;
@@ -118,7 +119,6 @@
 }
 #geo-list th {
     /*width: 80px;*/
-    width: 100%;
 }
 #geo-chart {
     margin: 5px;
