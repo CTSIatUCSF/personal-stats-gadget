@@ -549,8 +549,8 @@
 		  			cityName = item[2];
 		  			geoString = cityName  + ", " + regionName;
 		  			if (geoString.indexOf("(not set)") > -1) {
-		  				geoString.replace("(not set, )", "");
-		  				geoString.replace("(, not set)", "");
+		  				geoString = geoString.replace("(not set, )", "");
+		  				geoString = geoString.replace("(, not set)", "");
 		  			}
 		  			count = item[3];
 
