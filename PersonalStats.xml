@@ -408,7 +408,7 @@
 		            colorAxis: {colors: ["#FFCC00", "#FF0000"]},
         		};
         		var chart = new google.visualization.GeoChart(document.getElementById("geo-chart"));
-		        chart.draw(data_table, options);
+		        //chart.draw(data_table, options);
 	      	}
 
 	      	function aggregateDataByMonth(data, yearMonthStart) {
