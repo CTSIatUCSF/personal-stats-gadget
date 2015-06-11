@@ -69,26 +69,24 @@
     		
 			<div id="chart_container" class="stats-chart"></div>
 
-			<table id="view_count_table" class="stats-table">
-				<tr>
-					<td class="stats-table-item-left">
+			<div id="view_count_table" class="stats-table">
+					<div class="stats-table-item-left">
 						<div class="stats-text">So Far This Month</div>
 						<div id="view_count_this_month" class="stats-text-large"></div>
 						<div class="stats-text">Visitors</div>
-					</td>
-					<td class="stats-table-item-center">
+					</div>
+					<div class="stats-table-item-center">
 						<div class="stats-text">Best Month Ever</div>
 						<div id="view_count_best_month" class="stats-text-large"></div>
 						<div class="stats-text">Visitors</div>
-					</td>
-					<td class="stats-table-item-right">
+					</div>
+					<div class="stats-table-item-right">
 						<div id="view_count_all_time_since" class="stats-text"></div>
 						<div id="view_count_all_time" class="stats-text-large"></div>
 						<div class="stats-text">Visitors</div>
 						<div class="stats-text-small">* First month data is available for your profile page</div>
-					</td>
-				</tr>
-			</table>
+					</div>
+			</div>
 			<div id="geo-panel" class="panel">
 				<div class="panel-title">Views By Country</div>
 				<div class="panel-button-area">
