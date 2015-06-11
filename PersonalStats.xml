@@ -58,41 +58,6 @@
         	};
         </script>]]>
 	</Content>
-	<Content type="html" view="small" preferred_height="75" preferred_width="190"><![CDATA[<!--HTML-->
-    <!DOCTYPE html>
- 
- 		<table id="button_and_help" cellspacing="2" cellpadding="0" style="display:block;">
- 				<tr>
- 						<td class="tool_table_cell_small" style="width:160px;padding:4px 0">
-							<a id="linkToCanvas"href=linkClicked()>Click here for canvas view.</a>
-						</td>
- 				</tr>
- 		</table>
-        
-        <img id="waiting" src="images/waiting.gif" style="display:none;">
-        
-        <script type="text/javascript">
-        	var viewerURI;
-
-            function init() {
-
-				osapi.jsonld.getViewer().execute(function(viewerData) {
-					viewerURI = viewerData.uris[0];
-
-					//don't enable the link until we have the viewer data
-					$('#linkToCanvas').click(function(){ 
-						linkToCanvasClicked();
-						return false;
-					});
-				});
-            }
-			
-			function linkToCanvasClicked() {
-		    	gadgets.views.requestNavigateTo("canvas", {}, viewerURI);
-			}
-		
-            gadgets.util.registerOnLoadHandler(init);
-        </script>]]></Content>
 	<Content type="html" view="canvas" preferred_height="1000" preferred_width="940"><![CDATA[<!--HTML-->
     <!DOCTYPE html>
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
