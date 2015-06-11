@@ -284,7 +284,7 @@
 				var query = {
 					'ids': 'ga:23439892',
 			    	'metrics': 'ga:uniquePageviews',
-			        'dimensions': 'ga:date,ga:pagePath,ga:country,ga:region,ga:city,ga:networkDomain',
+			        'dimensions': 'ga:date,ga:country,ga:region,ga:city,ga:networkDomain',
 					'filters': 'ga:pagePath' + pagePath,
 			        'start-date': earliest_start_date,
 			        'end-date': today
@@ -719,7 +719,7 @@
 				);
 
 				var uniques = dataFilteredByDate.map(function(elem) {
-				    return elem[2] + "_" + elem[3] + "_" + elem[4];
+				    return elem[1] + "_" + elem[2] + "_" + elem[3];
 				});
 
 				var filteredArray = uniques.filter(function(elem, i, array) {
@@ -729,7 +729,7 @@
 
 				var arrayToReturn = filteredArray.map(function(unique_value) {
 				    var count = dataFilteredByDate.reduce(function(prevVal, elem) {
-				        if(elem[2] + "_" +elem[3] + "_" +elem[4] == unique_value) {
+				        if(elem[1] + "_" +elem[2] + "_" +elem[3] == unique_value) {
 				            return prevVal + parseInt(elem[lastIndex]);
 				        } 
 				        else {
@@ -764,7 +764,7 @@
 				);
 
 				var countryArray = dataFilteredByDate.map(function(elem) {
-				    return elem[2];
+				    return elem[1];
 				});
 
 				var filteredCountryArray = countryArray.filter(function(elem, i, array) {
@@ -774,7 +774,7 @@
 
 				var arrayToReturn = filteredCountryArray.map(function(country) {
 				    var count = dataFilteredByDate.reduce(function(prevVal, elem) {
-				        if(elem[2] == country) {
+				        if(elem[1] == country) {
 				            return prevVal + parseInt(elem[lastIndex]);
 				        } 
 				        else {
@@ -816,7 +816,7 @@
 				);
 
 				var domainArray = dataFilteredByDate.map(function(elem) {
-				    return elem[5];
+				    return elem[4];
 				});
 
 				var filteredDomainArray = domainArray.filter(function(elem, i, array) {
@@ -826,7 +826,7 @@
 
 				var arrayToReturn = filteredDomainArray.map(function(domain) {
 				    var count = dataFilteredByDate.reduce(function(prevVal, elem) {
-				        if(elem[5] == domain) {
+				        if(elem[4] == domain) {
 				            return prevVal + parseInt(elem[lastIndex]);
 				        } 
 				        else {
