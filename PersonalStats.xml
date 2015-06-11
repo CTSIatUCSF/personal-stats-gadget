@@ -284,7 +284,7 @@
 				var query = {
 					'ids': 'ga:23439892',
 			    	'metrics': 'ga:uniquePageviews',
-			        'dimensions': 'ga:date,ga:country,ga:networkDomain',
+			        'dimensions': 'ga:date,ga:country,ga:region,ga:city,ga:networkDomain',
 					'filters': 'ga:pagePath' + pagePath,
 			        'start-date': earliest_start_date,
 			        'end-date': today
@@ -321,8 +321,8 @@
 						var data = JSON.parse(response.data);
 		      		 	aggregatedByMonthAll = aggregateDataByMonth(data.rows);
 				 		aggregatedByMonthLastYear = aggregateDataByMonth(data.rows, getYearMonthOneYearAgoMonthStart());
-				 		aggregatedByCountryLastYear = aggregateDataByCountry(data.rows, dateOneYearAgo().yyyymmdd());
-				 		aggregatedByCountryLastMonth = aggregateDataByCountry(data.rows, dateThirtyDaysAgo().yyyymmdd());
+				 		aggregatedByCountryLastYear = aggregateDataByCity(data.rows, dateOneYearAgo().yyyymmdd());
+				 		aggregatedByCountryLastMonth = aggregateDataByCity(data.rows, dateThirtyDaysAgo().yyyymmdd());
 				 		aggregatedByDomainLastYear = aggregateDataByDomain(data.rows, dateOneYearAgo().yyyymmdd());
 		      			console.log("aggregatedByDomainLastYear");
 		      			console.log(aggregatedByDomainLastYear);
@@ -696,6 +696,47 @@
 				return viewCount;
 			}
 
+	      	function aggregateDataByCity(data, dateStart) {
+	      		
+				var start = dateStart || 0
+	      		var lastIndex = data[0].length-1;
+
+				var dataFilteredByDate = data.filter(function(elem, i, array) {
+				        return array.indexOf(elem) === i && elem >= start;
+				    }
+				);
+
+				var uniques = dataFilteredByDate.map(function(elem) {
+				    return elem[1] + elem[2] + elem[3];
+				});
+
+				var filteredArray = uniques.filter(function(elem, i, array) {
+				        return array.indexOf(elem) === i;
+				    }
+				);
+
+				var arrayToReturn = filteredArray.map(function(unique_value) {
+				    var count = dataFilteredByDate.reduce(function(prevVal, elem) {
+				        if(elem[1]+elem[2]+elem[3] == unique_value) {
+				            return prevVal + parseInt(elem[lastIndex]);
+				        } 
+				        else {
+				            return prevVal;
+				        }
+				    }, 0);
+				    return new Array(elem[1], elem[2], elem[3], count); 
+				});
+
+				// sort by views, descending
+				arrayToReturn.sort(function(a,b) {
+				    return b[1]-a[1]
+				});
+
+				fixCountryNames(arrayToReturn);
+
+				return arrayToReturn;
+			}
+
 	      	function aggregateDataByCountry(data, dateStart) {
 	      		
 				var start = dateStart || 0
@@ -759,7 +800,7 @@
 				);
 
 				var domainArray = dataFilteredByDate.map(function(elem) {
-				    return elem[2];
+				    return elem[4];
 				});
 
 				var filteredDomainArray = domainArray.filter(function(elem, i, array) {
