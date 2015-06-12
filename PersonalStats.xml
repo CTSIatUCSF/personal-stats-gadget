@@ -398,7 +398,9 @@
 		            backgroundColor: {
 		            	stroke: "#000000",
 		            	strokeWidth: 1
-	            	}
+	            	},
+	            	width: 400,
+	            	height: 300
         		};
         		var chart = new google.visualization.GeoChart(document.getElementById("geo-chart"));
 		        chart.draw(data_table, options);
