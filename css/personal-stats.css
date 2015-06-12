@@ -134,6 +134,7 @@
 #geo-chart {
     margin: 5px;
     width: 100%;
+    vertical-align: top;
     border: 1px solid black;
 }
 #panel-button-area {
