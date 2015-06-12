@@ -421,6 +421,7 @@
 
         		var options = {
 	        		region: "US",
+	        		resolution: "provinces",
 		            colorAxis: {colors: ["#FFCC00", "#FF0000"]},
         		};
         		var chart = new google.visualization.GeoChart(document.getElementById("geo-chart-usa"));
