@@ -775,10 +775,16 @@
 				    elem[2];
 				});
 
+				console.log("uniques:");
+				console.log(uniques);
+
 				var filteredArray = uniques.filter(function(elem, i, array) {
 				        return array.indexOf(elem) === i;
 				    }
 				);
+
+				console.log("filteredArray:");
+				console.log(filteredArray);
 
 				var arrayToReturn = filteredArray.map(function(unique_value) {
 				    var count = dataFilteredByDate.reduce(function(prevVal, elem) {
