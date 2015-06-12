@@ -175,7 +175,7 @@
 		    <div class="overlay-content overlay-map-world">
 		    	<div class="panel-title">Views By Country</div>
 		        <div id="geo-chart"></div>
-		        <button class="close-btn toggle-btn">Close</button>
+		        <div class="close-btn toggle-btn">Close</div>
 		    </div>
 	    </div>
 	
