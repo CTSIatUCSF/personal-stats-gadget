@@ -762,7 +762,7 @@
 	      		var lastIndex = data[0].length-1;
 
 				var dataFilteredByDate = data.filter(function(elem, i, array) {
-				        return array.indexOf(elem) === i && elem >= start;
+				        return array.indexOf(elem) === i && elem[0] >= start;
 				    }
 				);
 
@@ -770,8 +770,7 @@
 				console.log(dataFilteredByDate);
 
 				var onlyUSA = dataFilteredByDate.filter(function(elem, i, array) {
-						console.log(elem[1]);
-				        return array.indexOf(elem) === i && elem == "United States";
+				        return array.indexOf(elem) === i && elem [1]== "United States";
 				    }
 				);
 
