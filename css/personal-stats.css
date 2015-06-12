@@ -133,7 +133,8 @@
 #geo-chart {
     margin-left: auto;
     margin-right: auto;
-    width: 96%;
+    /*width: 96%;*/
+    width: 400px;
 }
 #panel-button-area {
     /*width: 155px;*/
