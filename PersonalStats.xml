@@ -140,7 +140,6 @@
 							<table id="geo-list" class="panel-list"></table>
 							<div class="geo see-more toggle-btn">See All</div>
 						</div>
-						<!-- <div id="geo-chart"></div> -->
 					</div>
 				</div>
 				<div id="domain-panel" class="panel">
@@ -174,7 +173,7 @@
 		        <button class="close-btn">Close</button>
 		    </div>
 		    <div class="overlay-content overlay-map-world">
-		        <p>World Map</p>
+		        <div id="geo-chart"></div>
 		        <button class="close-btn">Close</button>
 		    </div>
 	    </div>
@@ -193,7 +192,7 @@
 	        google.load("visualization", "1.0", {"packages":["corechart", "geochart"]});
 
 	        // Set up the toggle buttons
-	        $(".toggle-btn input[type=radio]").addClass("visuallyhidden"); 							// hide the radio button circle on all buttons
+	        $(".toggle-btn input[type=radio]").addClass("visuallyhidden"); // hide the radio button circle on all buttons
 
 	        $(".date-toggle .toggle-btn input[type=radio]").change(function() {
 	            if( $(this).attr("name")) {
@@ -206,13 +205,11 @@
 	        $(".geo.date-toggle .toggle-btn input[type=radio]").first().click(function() {
 	        	console.log("country-month selected");
 	            showViewsByCity(aggregatedByCityLastMonth, onlyShow);
-	            drawGeoChart(aggregatedByCountryLastMonth);
 	        });
 
 	        $(".geo.date-toggle .toggle-btn input[type=radio]").last().click(function() {
 	            console.log("country-year selected");
 	            showViewsByCity(aggregatedByCityLastYear, onlyShow);
-	            drawGeoChart(aggregatedByCountryLastYear);
 	        });
 	        $(".domain.date-toggle .toggle-btn input[type=radio]").first().click(function() {
 	        	console.log("domain-month selected");
@@ -229,6 +226,13 @@
 	        $(".domain.date-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
 
 	        $("#map-world").click(function() {
+	        	if ($(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+		        	console.log("world map button clicked - last month");
+		            drawGeoChart(aggregatedByCityLastMonth);
+	        	} else {
+		        	console.log("world map button clicked - last year");
+		            drawGeoChart(aggregatedByCityLastYear);
+	        	}
 	        	showOverlay("map-world");
 	        });
 
@@ -313,8 +317,6 @@
 						drawColumnChart(aggregatedByMonthLastYear);
 
 		      			showViewsByCity(aggregatedByCityLastMonth, 10);
-		      			drawGeoChart(aggregatedByCountryLastMonth);
-
 		      			showViewsByDomain(aggregatedByDomainLastMonth, 10);
 
 		          	} else {
@@ -385,8 +387,8 @@
         		var options = {
 		            colorAxis: {colors: ["#FFCC00", "#FF0000"]},
         		};
-        		//var chart = new google.visualization.GeoChart(document.getElementById("geo-chart"));
-		        //chart.draw(data_table, options);
+        		var chart = new google.visualization.GeoChart(document.getElementById("geo-chart"));
+		        chart.draw(data_table, options);
 	      	}
 
 	      	function aggregateDataByMonth(data, yearMonthStart) {
