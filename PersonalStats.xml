@@ -162,19 +162,20 @@
 		    </div>
 		    <div class="overlay-content overlay-geo-list">
 		        <p>Geo Data</p>
-		        <button class="close-btn">Close</button>
+		        <button class="close-btn toggle-btn">Close</button>
 		    </div>
 		    <div class="overlay-content overlay-domain-list">
 		        <p>Domain Data</p>
-		        <button class="close-btn">Close</button>
+		        <button class="close-btn toggle-btn">Close</button>
 		    </div>
 		    <div class="overlay-content overlay-map-usa">
 		        <p>USA Map</p>
-		        <button class="close-btn">Close</button>
+		        <button class="close-btn toggle-btn">Close</button>
 		    </div>
 		    <div class="overlay-content overlay-map-world">
+		    	<div class="panel-title">Views By Country</div>
 		        <div id="geo-chart"></div>
-		        <button class="close-btn">Close</button>
+		        <button class="close-btn toggle-btn">Close</button>
 		    </div>
 	    </div>
 	
