@@ -130,7 +130,7 @@
 #geo-list th {
     /*width: 80px;*/
 }
-#geo-chart {
+.geo-chart {
     margin-left: auto;
     margin-right: auto;
     width: 600px;
