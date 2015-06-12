@@ -17,7 +17,8 @@
 	width: 80%;
 	position: absolute;
 	top: 40%;
-	margin: 0 0 0 10%; /* add negative left margin for half the width to center the div */
+	height: 50%;
+	margin: 0 0 0 10%;
 	cursor: default;
 	z-index: 10001;
 	border-radius: 4px;
