@@ -766,6 +766,9 @@
 				    }
 				);
 
+				console.log("filteredArray:");
+				console.log(filteredArray);
+
 				var onlyUSA = dataFilteredByDate.filter(function(elem, i, array) {
 				        return array.indexOf(elem) === i && elem [1]== "United States";
 				    }
