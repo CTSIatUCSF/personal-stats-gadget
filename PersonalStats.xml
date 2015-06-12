@@ -721,9 +721,6 @@
 				    }
 				);
 
-				console.log("data filtered by dates:");
-				console.log(dataFilteredByDate);
-
 				var uniques = dataFilteredByDate.map(function(elem) {
 				    return elem[1] + "_" + elem[2] + "_" + elem[3];
 				});
@@ -768,6 +765,19 @@
 				        return array.indexOf(elem) === i && elem >= start;
 				    }
 				);
+
+				console.log("data filtered by dates:");
+				console.log(dataFilteredByDate);
+
+				var onlyUSA = data.filter(function(elem, i, array) {
+				        return array.indexOf(elem) === i && elem == "United States";
+				    }
+				);
+
+
+				console.log("data filtered by onlyUSA:");
+				console.log(onlyUSA);
+
 
 				var uniques = dataFilteredByDate.map(function(elem) {
 				    return elem[1] + "_" + elem[2] + "_" + elem[3];
