@@ -225,12 +225,12 @@
 	        });
 	        $(".domain.date-toggle .toggle-btn input[type=radio]").first().click(function() {
 	        	console.log("domain-month selected");
-	            showViewsByDomain(aggregatedByDomainLastMonth, onlyShow);
+	            showViewsByDomain(aggregatedByDomainLastMonth, "domain-list", onlyShow);
 	        });
 
 	        $(".domain.date-toggle .toggle-btn input[type=radio]").last().click(function() {
 	            console.log("domain-year selected");
-	            showViewsByDomain(aggregatedByDomainLastYear, onlyShow);
+	            showViewsByDomain(aggregatedByDomainLastYear, "domain-list", onlyShow);
 	        });
 
 	        // Turn on the first toggle button for each panel
@@ -273,6 +273,13 @@
 
 	        // See All/Fewer (domain) button shows all for Month or Year (based on current selection)
 	        $(".domain.see-more.toggle-btn").click(function() {
+            	if ($(".domanin.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+    	        	console.log("domain show all button clicked - last month");
+    	            showViewsByDomain(aggregatedByDomainLastMonth, "domain-list-all");
+            	} else {
+    	        	console.log("domain show all button clicked - last year");
+    	            showViewsByDomain(aggregatedByDomainLastYear, "domain-list-all");
+            	}
 		        showOverlay("domain-list");
 	        });
 	  
@@ -345,7 +352,7 @@
 						drawColumnChart(aggregatedByMonthLastYear);
 
 		      			showViewsByCity(aggregatedByCityLastMonth, "geo-list", 10);
-		      			showViewsByDomain(aggregatedByDomainLastMonth, 10);
+		      			showViewsByDomain(aggregatedByDomainLastMonth, "domain-list", 10);
 
 		          	} else {
 			      		console.log("Error:")
@@ -543,11 +550,11 @@
 
 		  		// add the table headers
 		  		$("#" + tableToUpdateID).append("<tr></tr>");
-		  		$("#" + tableToUpdateID + " tr").append("<th>Country</th>");
+		  		$("#" + tableToUpdateID + " tr").append("<th>City</th>");
 			    $("#" + tableToUpdateID + " tr").append("<th></th>");
 		  		$("#" + tableToUpdateID + " tr").append("<th>Views</th>");
 
-		  		$("#" + tableToUpdateID + " tr th").addClass("panel-list-header"); 			//Add CSS class to the table headers
+		  		$("#" + tableToUpdateID + " tr th").addClass("panel-list-header"); 				//Add CSS class to the table headers
 			    $("#" + tableToUpdateID + " tr th:first-child").addClass("panel-list-image"); 	//Add CSS class to the first item in the header
 		  		$("#" + tableToUpdateID + " tr th:last-child").addClass("panel-list-count"); 	//Add CSS classes to the last item in the header
 
@@ -588,18 +595,18 @@
 				$("#" + tableToUpdateID + " tr td:last-child").addClass("panel-list-count");  	//Add CSS class to the last item in each row
 		  	}
 
-		  	function showViewsByDomain(data, onlyShowN) {
+		  	function showViewsByDomain(data, tableToUpdateID, onlyShowN) {
 		  		var dataToShow, index, item, domainName, count;
 
-				$("#domain-list tr").remove(); //Remove any existing rows before adding new ones
+				$("#" + tableToUpdateID + " tr").remove(); //Remove any existing rows before adding new ones
 		  		
 		  		// add the table headers
-		  		$("#domain-list").append("<tr></tr>");
-		  		$("#domain-list tr").append("<th>Domain</th>");
-		  		$("#domain-list tr").append("<th>Views</th>");
+		  		$("#" + tableToUpdateID).append("<tr></tr>");
+		  		$("#" + tableToUpdateID + " tr").append("<th>Domain</th>");
+		  		$("#" + tableToUpdateID + " tr").append("<th>Views</th>");
 
-		  		$("#domain-list tr th").addClass("panel-list-header"); //Add CSS class to the table headers
-		  		$("#domain-list tr th:last-child").addClass("panel-list-count"); //Add CSS classes to the last item in the header
+		  		$("#" + tableToUpdateID + " tr th").addClass("panel-list-header"); //Add CSS class to the table headers
+		  		$("#" + tableToUpdateID + " tr th:last-child").addClass("panel-list-count"); //Add CSS classes to the last item in the header
 
 		  		// filter out data that we don't want to display
 		  		if (onlyShowN > 0) {
@@ -621,11 +628,11 @@
 		  			domainName = item[0];
 		  			count = item[1];
 
-			  		$("#domain-list").append("<tr><td>" + domainName + "</td><td>" + count + "</td></tr>");
+			  		$("#" + tableToUpdateID).append("<tr><td>" + domainName + "</td><td>" + count + "</td></tr>");
 		  		}
 
-		  		$("#domain-list tr").addClass("panel-list-row"); 					//Add CSS class to the table rows
-				$("#domain-list tr td:last-child").addClass("panel-list-count"); 	//Add CSS class to the last item in each row
+		  		$("#" + tableToUpdateID + " tr").addClass("panel-list-row"); 					//Add CSS class to the table rows
+				$("#" + tableToUpdateID + " tr td:last-child").addClass("panel-list-count"); 	//Add CSS class to the last item in each row
 		  	}
 
 		  	function getCountryCode(countryName) {
