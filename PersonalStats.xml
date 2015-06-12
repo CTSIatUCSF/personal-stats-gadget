@@ -717,7 +717,7 @@
 	      		var lastIndex = data[0].length-1;
 
 				var dataFilteredByDate = data.filter(function(elem, i, array) {
-				        return array.indexOf(elem) === i && elem >= start;
+				        return array.indexOf(elem) === i && elem[0] >= start;
 				    }
 				);
 
@@ -766,21 +766,13 @@
 				    }
 				);
 
-				console.log("data filtered by dates:");
-				console.log(dataFilteredByDate);
-
 				var onlyUSA = dataFilteredByDate.filter(function(elem, i, array) {
 				        return array.indexOf(elem) === i && elem [1]== "United States";
 				    }
 				);
 
-
-				console.log("data filtered by onlyUSA:");
-				console.log(onlyUSA);
-
-
-				var uniques = dataFilteredByDate.map(function(elem) {
-				    return elem[1] + "_" + elem[2] + "_" + elem[3];
+				var uniques = onlyUSA.map(function(elem) {
+				    elem[2];
 				});
 
 				var filteredArray = uniques.filter(function(elem, i, array) {
@@ -790,23 +782,20 @@
 
 				var arrayToReturn = filteredArray.map(function(unique_value) {
 				    var count = dataFilteredByDate.reduce(function(prevVal, elem) {
-				        if(elem[1] + "_" +elem[2] + "_" +elem[3] == unique_value) {
+				        if(elem[2] == unique_value) {
 				            return prevVal + parseInt(elem[lastIndex]);
 				        } 
 				        else {
 				            return prevVal;
 				        }
 				    }, 0);
-				    var splits = unique_value.split("_");
-				    return new Array(splits[0], splits[1], splits[2], count); 
+				    return new Array(unique_value, count); 
 				});
 
 				// sort by views, descending
 				arrayToReturn.sort(function(a,b) {
 				    return b[3]-a[3]
 				});
-
-				fixCountryNames(arrayToReturn);
 
 				console.log("arrayToReturn");
 				console.log(arrayToReturn);
@@ -820,7 +809,7 @@
 	      		var lastIndex = data[0].length-1;
 
 				var dataFilteredByDate = data.filter(function(elem, i, array) {
-				        return array.indexOf(elem) === i && elem >= start;
+				        return array.indexOf(elem) === i && elem[0] >= start;
 				    }
 				);
 
