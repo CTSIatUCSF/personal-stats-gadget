@@ -74,7 +74,7 @@
 #geo-panel-header {
     display: inline-block;
 }
-.map {
+.map-button {
     display: inline-block;
     vertical-align: bottom;
     margin-left:30px !important;
@@ -133,7 +133,6 @@
 }
 #geo-chart {
     margin: 5px;
-    display: inline-block;
     width: 250px;
     vertical-align: top;
 }
