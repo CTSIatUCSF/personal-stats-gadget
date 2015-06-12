@@ -769,7 +769,7 @@
 				console.log("data filtered by dates:");
 				console.log(dataFilteredByDate);
 
-				var onlyUSA = data.filter(function(elem, i, array) {
+				var onlyUSA = dataFilteredByDate.filter(function(elem, i, array) {
 						console.log(elem);
 				        return array.indexOf(elem) === i && elem == "United States";
 				    }
