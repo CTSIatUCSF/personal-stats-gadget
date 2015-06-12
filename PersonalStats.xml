@@ -162,15 +162,21 @@
 		    </div>
 		    <div class="overlay-content overlay-geo-list">
 		    	<div class="stats-title overlay-title">All Geo Data</div>
-		        <div class="close-btn toggle-btn overlay-btn">Close</div>
+		        <div class="overlay-btn">
+			        <div class="close-btn toggle-btn">Close</div>
+			    </div>
 		    </div>
 		    <div class="overlay-content overlay-domain-list">
 		    	<div class="stats-title overlay-title">All Domain Data</div>
-		        <div class="close-btn toggle-btn overlay-btn">Close</div>
+		        <div class="overlay-btn">
+			        <div class="close-btn toggle-btn">Close</div>
+			    </div>
 		    </div>
 		    <div class="overlay-content overlay-map-usa">
 		    	<div class="stats-title overlay-title">Views By State</div>
-		        <div class="close-btn toggle-btn overlay-btn">Close</div>
+		        <div class="overlay-btn">
+			        <div class="close-btn toggle-btn">Close</div>
+			    </div>
 		    </div>
 		    <div class="overlay-content overlay-map-world">
 		    	<div class="stats-title overlay-title">Views By Country</div>
