@@ -131,7 +131,9 @@
     /*width: 80px;*/
 }
 #geo-chart {
-    margin: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
 }
 #panel-button-area {
     /*width: 155px;*/
