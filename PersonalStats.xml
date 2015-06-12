@@ -161,21 +161,21 @@
 		    <div class="overlay-bg">
 		    </div>
 		    <div class="overlay-content overlay-geo-list">
-		        <p>Geo Data</p>
-		        <button class="close-btn toggle-btn">Close</button>
+		    	<div class="stats-title overlay-title">All Geo Data</div>
+		        <button class="close-btn toggle-btn overlay-btn">Close</button>
 		    </div>
 		    <div class="overlay-content overlay-domain-list">
-		        <p>Domain Data</p>
-		        <button class="close-btn toggle-btn">Close</button>
+		    	<div class="stats-title overlay-title">All Domain Data</div>
+		        <button class="close-btn toggle-btn overlay-btn">Close</button>
 		    </div>
 		    <div class="overlay-content overlay-map-usa">
-		        <p>USA Map</p>
-		        <button class="close-btn toggle-btn">Close</button>
+		    	<div class="stats-title overlay-title">Views By State</div>
+		        <button class="close-btn toggle-btn overlay-btn">Close</button>
 		    </div>
 		    <div class="overlay-content overlay-map-world">
 		    	<div class="stats-title overlay-title">Views By Country</div>
 		        <div id="geo-chart"></div>
-		        <button class="close-btn toggle-btn">Close</button>
+		        <button class="close-btn toggle-btn overlay-btn">Close</button>
 		    </div>
 	    </div>
 	
