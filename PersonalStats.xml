@@ -175,7 +175,7 @@
 		    <div class="overlay-content overlay-map-world">
 		    	<div class="panel-title">Views By Country</div>
 		        <div id="geo-chart"></div>
-		        <div class="close-btn toggle-btn">Close</div>
+		        <button class="close-btn toggle-btn">Close</button>
 		    </div>
 	    </div>
 	
@@ -828,7 +828,7 @@
 			    var docHeight = $(document).height(); //grab the height of the page
 			    var scrollTop = $(window).scrollTop(); //grab the px value from the top of the page to where you're scrolling
 			    $(".overlay-bg").show().css({"height" : docHeight}); //display your overlay background and set height to the page height
-			    $(".overlay-"+whichoverlay).show().css({"top": scrollTop+20+"px"}); //show the appropriate overlay and set the content 20px from the window top
+			    $(".overlay-"+whichoverlay).show().css({"top": scrollTop+100+"px"}); //show the appropriate overlay and set the content 100px from the window top
 			}
 
 			// function to close our overlays
