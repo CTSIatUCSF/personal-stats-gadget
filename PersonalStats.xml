@@ -547,9 +547,9 @@
 			    $("#" + tableToUpdateID + " tr").append("<th></th>");
 		  		$("#" + tableToUpdateID + " tr").append("<th>Views</th>");
 
-		  		$("#geo-list tr th").addClass("panel-list-header"); 			//Add CSS class to the table headers
-			    $("#geo-list tr th:first-child").addClass("panel-list-image"); 	//Add CSS class to the first item in the header
-		  		$("#geo-list tr th:last-child").addClass("panel-list-count"); 	//Add CSS classes to the last item in the header
+		  		$("#" + tableToUpdateID + " tr th").addClass("panel-list-header"); 			//Add CSS class to the table headers
+			    $("#" + tableToUpdateID + " tr th:first-child").addClass("panel-list-image"); 	//Add CSS class to the first item in the header
+		  		$("#" + tableToUpdateID + " tr th:last-child").addClass("panel-list-count"); 	//Add CSS classes to the last item in the header
 
 		  		// filter out data that we don't want to display
 		  		if (onlyShowN > 0) {
@@ -580,12 +580,12 @@
 		  			count = item[3];
 
 					//TODO: Fix this path
-			  		$("#geo-list").append("<tr><td><img src=http://cranestylelabs.github.io/personal-stats-gadget/images/flag_icons/"+ countryCode + ".gif></img></td><td>" + geoString + "</td><td>" + count + "</td></tr>");
+			  		$("#" + tableToUpdateID).append("<tr><td><img src=http://cranestylelabs.github.io/personal-stats-gadget/images/flag_icons/"+ countryCode + ".gif></img></td><td>" + geoString + "</td><td>" + count + "</td></tr>");
 		  		}
 
-		  		$("#geo-list tr").addClass("panel-list-row"); 					//Add CSS class to the table rows
-			    $("#geo-list tr td:first-child").addClass("panel-list-image"); 	//Add CSS class to the first item in each row
-				$("#geo-list tr td:last-child").addClass("panel-list-count");  	//Add CSS class to the last item in each row
+		  		$("#" + tableToUpdateID + " tr").addClass("panel-list-row"); 					//Add CSS class to the table rows
+			    $("#" + tableToUpdateID + " tr td:first-child").addClass("panel-list-image"); 	//Add CSS class to the first item in each row
+				$("#" + tableToUpdateID + " tr td:last-child").addClass("panel-list-count");  	//Add CSS class to the last item in each row
 		  	}
 
 		  	function showViewsByDomain(data, onlyShowN) {
