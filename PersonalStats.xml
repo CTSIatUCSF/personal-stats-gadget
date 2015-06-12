@@ -174,7 +174,7 @@
 		    </div>
 		    <div class="overlay-content overlay-map-world">
 		    	<div class="atats-title">Views By Country</div>
-		        <div id="geo-chart"></div>
+		        <div id="d"></div>
 		        <button class="close-btn toggle-btn">Close</button>
 		    </div>
 	    </div>
@@ -229,10 +229,10 @@
 	        $("#map-world").click(function() {
 	        	if ($(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 		        	console.log("world map button clicked - last month");
-		            drawGeoChart(aggregatedByCityLastMonth);
+		            drawGeoChart(aggregatedByCountryLastMonth);
 	        	} else {
 		        	console.log("world map button clicked - last year");
-		            drawGeoChart(aggregatedByCityLastYear);
+		            drawGeoChart(aggregatedByCountryLastYear);
 	        	}
 	        	showOverlay("map-world");
 	        });
