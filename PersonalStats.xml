@@ -174,7 +174,7 @@
 		    </div>
 		    <div class="overlay-content overlay-map-world">
 		    	<div class="atats-title">Views By Country</div>
-		        <div id="d"></div>
+		        <div id="geo-chart"></div>
 		        <button class="close-btn toggle-btn">Close</button>
 		    </div>
 	    </div>
