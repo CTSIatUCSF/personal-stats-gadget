@@ -387,6 +387,8 @@
 
         		var options = {
 		            colorAxis: {colors: ["#FFCC00", "#FF0000"]},
+		            backgroundColor.stroke: "#000000",
+		            backgroundColor.strokeWidth: 1, 
         		};
         		var chart = new google.visualization.GeoChart(document.getElementById("geo-chart"));
 		        chart.draw(data_table, options);
