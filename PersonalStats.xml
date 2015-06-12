@@ -420,7 +420,7 @@
 				populateDataTable_GeoChart(data_table, data);
 
         		var options = {
-	        		region: "USA",
+	        		region: "US",
 		            colorAxis: {colors: ["#FFCC00", "#FF0000"]},
         		};
         		var chart = new google.visualization.GeoChart(document.getElementById("geo-chart-usa"));
