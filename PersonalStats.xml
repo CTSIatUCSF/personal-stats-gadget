@@ -162,12 +162,14 @@
 		    </div>
 		    <div class="overlay-content overlay-geo-list">
 		    	<div class="stats-title overlay-title">All Geo Data</div>
+		    	<table id="geo-list-all" class="panel-list"></table>
 		        <div class="overlay-btn">
 			        <div class="close-btn toggle-btn">Close</div>
 			    </div>
 		    </div>
 		    <div class="overlay-content overlay-domain-list">
 		    	<div class="stats-title overlay-title">All Domain Data</div>
+		    	<table id="domain-list-all" class="panel-list"></table>
 		        <div class="overlay-btn">
 			        <div class="close-btn toggle-btn">Close</div>
 			    </div>
@@ -214,12 +216,12 @@
 
 	        $(".geo.date-toggle .toggle-btn input[type=radio]").first().click(function() {
 	        	console.log("country-month selected");
-	            showViewsByCity(aggregatedByCityLastMonth, onlyShow);
+	            showViewsByCity(aggregatedByCityLastMonth, "geo-list", onlyShow);
 	        });
 
 	        $(".geo.date-toggle .toggle-btn input[type=radio]").last().click(function() {
 	            console.log("country-year selected");
-	            showViewsByCity(aggregatedByCityLastYear, onlyShow);
+	            showViewsByCity(aggregatedByCityLastYear, "geo-list", onlyShow);
 	        });
 	        $(".domain.date-toggle .toggle-btn input[type=radio]").first().click(function() {
 	        	console.log("domain-month selected");
@@ -259,6 +261,13 @@
 
 	        // See All/Fewer (geo) button shows all for Month or Year (based on current selection)
 	        $(".geo.see-more.toggle-btn").click(function() {
+	        	if ($(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+		        	console.log("geo show all button clicked - last month");
+		            showViewsByCity(aggregatedByCityLastMonth, "geo-list-all");
+	        	} else {
+		        	console.log("geo show all button clicked - last year");
+		            showViewsByCity(aggregatedByCityLastYear, "geo-list-all");
+	        	}
 	        	showOverlay("geo-list");
 	        });
 
@@ -335,7 +344,7 @@
 		      			showVisitorCountStats();
 						drawColumnChart(aggregatedByMonthLastYear);
 
-		      			showViewsByCity(aggregatedByCityLastMonth, 10);
+		      			showViewsByCity(aggregatedByCityLastMonth, "geo-list", 10);
 		      			showViewsByDomain(aggregatedByDomainLastMonth, 10);
 
 		          	} else {
@@ -527,16 +536,16 @@
 				vccAllTimeSince.innerHTML = "Since " + vccAllTimeCount.start + "*";
 		  	}
 
-		  	function showViewsByCity(data, onlyShowN) {
+		  	function showViewsByCity(data, tableToUpdateID, onlyShowN) {
 		  		var dataToShow, index, item, countryName, countryCode, regionName, cityName, geoString, count;
 
-				$("#geo-list tr").remove(); //Remove any existing rows before adding new ones
+		  		$("#" + tableToUpdateID + " tr").remove(); //Remove any existing rows before adding new ones
 
 		  		// add the table headers
-		  		$("#geo-list").append("<tr></tr>");
-		  		$("#geo-list tr").append("<th>Country</th>");
-			    $("#geo-list tr").append("<th></th>");
-		  		$("#geo-list tr").append("<th>Views</th>");
+		  		$("#" + tableToUpdateID).append("<tr></tr>");
+		  		$("#" + tableToUpdateID + " tr").append("<th>Country</th>");
+			    $("#" + tableToUpdateID + " tr").append("<th></th>");
+		  		$("#" + tableToUpdateID + " tr").append("<th>Views</th>");
 
 		  		$("#geo-list tr th").addClass("panel-list-header"); 			//Add CSS class to the table headers
 			    $("#geo-list tr th:first-child").addClass("panel-list-image"); 	//Add CSS class to the first item in the header
