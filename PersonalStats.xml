@@ -465,6 +465,7 @@
 		            
 		          	} else if (response.data) {
 						var data = JSON.parse(response.data);
+						console.log("pagePath data:");
 						console.log(data.rows);
 
 		          	} else {
