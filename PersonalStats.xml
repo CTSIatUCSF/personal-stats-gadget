@@ -1028,22 +1028,28 @@
 				    return array.indexOf(elem) === i && elem[0] >= start;
 				});
 
-				var cleanedArray = dataFilteredByDate.map(function (item) {
-					var cleaned = item.filter( function (elem) {
+				// clear out any values that are not profiles page ids, and clear out the viewer's page id
+				var cleanedData = dataFilteredByDate.map(function (item) {
+					var cleanedItem = item.filter( function (elem) {
 						return regEx.test(elem) && elem != viewersPage;
 					});
-					if (cleaned.length > 0) {
+					if (cleanedItem.length > 0) {
 						return cleaned;
 					} else {
 						return null;
 					}
 				});
+
+				// remove any empty arrays returned above
+				var validData = cleanedData.filter( function (elem) {
+    				return elem.length > 0;
+				});
 				
-				console.log("cleanedArray");
-				console.log(cleanedArray);
+				console.log("validData");
+				console.log(validData);
 
 				var collapsed = [];
-				collapsed = (collapsed.concat.apply(collapsed, cleanedArray)).filter(function(elem) {
+				collapsed = (collapsed.concat.apply(collapsed, validData)).filter(function(elem) {
 					return regEx.test(elem) && elem != viewersPage;
 				});
 
@@ -1052,9 +1058,23 @@
 				    }
 				);
 				
+				console.log("uniques");
+				console.log(uniques);
+
+				var arrayToReturn = uniques.map( function(unique_val) {
+					var count = validData.reduce(function(prevVal, elem) {
+				        if(elem == unique_val) {
+				            return prevVal ++);
+				        } 
+				        else {
+				            return prevVal;
+				        }
+				    }, 0);
+				});
+				
 				// sort alphabetically, ascending
 				uniques.sort(function(a,b) {
-				    return a-b;
+				    return a[1]-b[1];
 				});
 				
 				console.log("arrayToReturn");
