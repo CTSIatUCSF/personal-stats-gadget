@@ -24,6 +24,10 @@
 	border-radius: 4px;
 	box-shadow: 0 0 5px rgba(0,0,0,0.9);
 }
+.overlay-content-scrollable {
+	height: 800px;
+	overflow: scroll;
+}
 .overlay-title {
 	padding-top:20px !important;
 	margin-bottom: 20px !important;
