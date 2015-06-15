@@ -1023,13 +1023,12 @@
 	      		var lastIndex = data[0].length-1;
 
 				var dataFilteredByDate = data.filter(function(elem, i, array) {
-				        return array.indexOf(elem) === i && elem[0] >= start;
-				    }
-				);
+				    return array.indexOf(elem) === i && elem[0] >= start;
+				});
 
-				var filteredArray = dataFilteredByDate.filter(elem, i, array) {
+				var filteredArray = dataFilteredByDate.filter(function (elem, i, array) {
 					return regEx.test(elem) && elem != viewersPage;
-				}
+				});
 				
 				console.log("filteredArray");
 				console.log(filteredArray);
