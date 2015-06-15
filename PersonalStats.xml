@@ -349,7 +349,7 @@
 	        }
 	  
 		  	function fetchData(callback) {
-				var viewerId = getViewerId(viewerHomePage);
+				var viewerId = getViewerId();
 				var pagePath = encodeURIComponent("=~/" + viewerId);
 
 				var earliest_start_date = "2009-12-01"
@@ -425,7 +425,7 @@
 	    	}
 
 			function fetchPagePathData() {
-				var viewerId = getViewerId(viewerHomePage);
+				var viewerId = getViewerId();
 				var pagePath = encodeURIComponent("=~/" + viewerId);
 
 				var earliest_start_date = "2009-12-01"
