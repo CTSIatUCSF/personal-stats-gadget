@@ -172,7 +172,7 @@
 		    <div class="overlay-content overlay-domain-list">
 		    	<div class="stats-title overlay-title">All Domain Data</div>
 		    	<div class="overlay-content-scrollable">
-			    	<table id="domain-list-all-header">
+			    	<table id="domain-list-all-header" class="panel-list">
 			    		<tr class="panel-list-row">
 			    			<th class="panel-list-header">Domain</th>
 			    			<th class="panel-list-header panel-list-count">Views</th>
