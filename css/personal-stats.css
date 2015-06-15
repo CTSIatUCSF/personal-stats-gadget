@@ -90,7 +90,10 @@
 .panel-list td{
     font-size:12px;
 }
-.panel-list-row, .geo-list-row {
+.panel-list-header-row {
+    background-color: #e3e3e3;
+}
+.panel-list-row {
     background-color: white;
 }
 .panel-list-header {
@@ -110,7 +113,7 @@
     float: right;
     margin-right: 10px;
 }
-.panel-list tr:nth-child(odd) {
+.panel-list tr:nth-child(even) {
     background: #e3e3e3
 }
 #geo-list td {
