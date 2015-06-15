@@ -1034,7 +1034,7 @@
 						return regEx.test(elem) && elem != viewersPage;
 					});
 					if (cleanedItem.length > 0) {
-						return cleaned;
+						return cleanedItem;
 					} else {
 						return null;
 					}
