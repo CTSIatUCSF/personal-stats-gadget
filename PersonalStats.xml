@@ -1027,21 +1027,25 @@
 				    }
 				);
 
+				var filteredArray = dataFilteredByDate.filter(elem, i, array) {
+					return regEx.test(elem) && elem != viewersPage;
+				}
+				
+				console.log("filteredArray");
+				console.log(filteredArray);
+
 				var collapsed = [];
 				collapsed = (collapsed.concat.apply(collapsed, dataFilteredByDate)).filter(function(elem) {
 					return regEx.test(elem) && elem != viewersPage;
 				});
-				
-				console.log("collapsed");
-				console.log(collapsed);
 
-				var arrayToReturn = collapsed.filter(function(elem, i, array) {
+				var uniques = collapsed.filter(function(elem, i, array) {
 				        return array.indexOf(elem) === i;
 				    }
 				);
 				
 				// sort alphabetically, ascending
-				arrayToReturn.sort(function(a,b) {
+				uniques.sort(function(a,b) {
 				    return a-b;
 				});
 				
