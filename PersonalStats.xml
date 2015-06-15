@@ -495,7 +495,7 @@
 					dataTableRow = new Array();
 					dataTableRow[0] = formatMonthYear(row[0]);
 					dataTableRow[1] = row[lastIndex];
-					dataTableRow[2] = "color: #CA7C29";
+					dataTableRow[2] = "color: #F26D04";
 					dataTable.addRow(dataTableRow);
 				}
 				// remove the last row, which contains data for this month (we show this data elsewhere)
