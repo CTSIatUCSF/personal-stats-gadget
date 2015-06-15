@@ -137,6 +137,12 @@
 					<img id="map-world" class="map-button toggle-btn" src="http://cranestylelabs.github.io/personal-stats-gadget/images/map-world.png"></img>
 					<div class="panel-data-area">
 						<div id="geo-list-area">
+				    		<table class="panel-list">
+					    		<tr class="panel-list-row">
+					    			<th class="panel-list-header">City</th>
+					    			<th class="panel-list-header panel-list-count">Views</th>
+					    		</tr>
+					    	</table>
 							<table id="geo-list" class="panel-list"></table>
 							<div class="geo see-more toggle-btn">See All</div>
 						</div>
@@ -151,6 +157,12 @@
 					</div>
 					<div class="panel-data-area">
 						<div id="domain-list-area">
+				    		<table class="panel-list">
+					    		<tr class="panel-list-row">
+					    			<th class="panel-list-header">Domain</th>
+					    			<th class="panel-list-header panel-list-count">Views</th>
+					    		</tr>
+					    	</table>
 							<table id="domain-list" class="panel-list"></table>
 							<div class="domain see-more toggle-btn">See All</div>
 						</div>
@@ -163,7 +175,13 @@
 		    <div class="overlay-content overlay-geo-list">
 		    	<div class="stats-title overlay-title">All Geo Data</div>
 		    	<div class="overlay-content-scrollable">
-		    		<table id="geo-list-all" class="panel-list"></table>
+		    		<table class="panel-list">
+			    		<tr class="panel-list-row">
+			    			<th class="panel-list-header">City</th>
+			    			<th class="panel-list-header panel-list-count">Views</th>
+			    		</tr>
+			    	</table>
+			    	<table id="geo-list-all" class="panel-list"></table>
 		    	</div>
 		        <div class="overlay-btn">
 			        <div class="close-btn toggle-btn">Close</div>
@@ -172,7 +190,7 @@
 		    <div class="overlay-content overlay-domain-list">
 		    	<div class="stats-title overlay-title">All Domain Data</div>
 		    	<div class="overlay-content-scrollable">
-			    	<table id="domain-list-all-header" class="panel-list">
+			    	<table class="panel-list">
 			    		<tr class="panel-list-row">
 			    			<th class="panel-list-header">Domain</th>
 			    			<th class="panel-list-header panel-list-count">Views</th>
@@ -558,16 +576,6 @@
 
 		  		$("#" + tableToUpdateID + " tr").remove(); //Remove any existing rows before adding new ones
 
-		  		// add the table headers
-		  		$("#" + tableToUpdateID).append("<tr></tr>");
-		  		$("#" + tableToUpdateID + " tr").append("<th>City</th>");
-			    $("#" + tableToUpdateID + " tr").append("<th></th>");
-		  		$("#" + tableToUpdateID + " tr").append("<th>Views</th>");
-
-		  		$("#" + tableToUpdateID + " tr th").addClass("panel-list-header"); 				//Add CSS class to the table headers
-			    $("#" + tableToUpdateID + " tr th:first-child").addClass("panel-list-image"); 	//Add CSS class to the first item in the header
-		  		$("#" + tableToUpdateID + " tr th:last-child").addClass("panel-list-count"); 	//Add CSS classes to the last item in the header
-
 		  		// filter out data that we don't want to display
 		  		if (onlyShowN > 0) {
 		  			dataToShow = data.slice(0, onlyShowN);
@@ -608,14 +616,6 @@
 		  		var dataToShow, index, item, domainName, count;
 
 				$("#" + tableToUpdateID + " tr").remove(); //Remove any existing rows before adding new ones
-		  		
-		  		// add the table headers
-		  		$("#" + tableToUpdateID).append("<tr></tr>");
-		  		$("#" + tableToUpdateID + " tr").append("<th>Domain</th>");
-		  		$("#" + tableToUpdateID + " tr").append("<th>Views</th>");
-
-		  		$("#" + tableToUpdateID + " tr th").addClass("panel-list-header"); //Add CSS class to the table headers
-		  		$("#" + tableToUpdateID + " tr th:last-child").addClass("panel-list-count"); //Add CSS classes to the last item in the header
 
 		  		// filter out data that we don't want to display
 		  		if (onlyShowN > 0) {
