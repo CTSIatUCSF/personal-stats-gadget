@@ -10,20 +10,25 @@
 	background: #000; /* fallback */
 	background: rgba(0,0,0,0.75);
 }
-.overlay-content {
+.overlay-content,
+.overlay-content-wide {
 	display: none;
 	background: #fff;
 	padding: 1%;
-	width: 80%;
 	position: absolute;
 	top: 40%;
 	left: 50%;
-	margin: 0 0 0 -40%; /* add negative left margin for half the width to center the div */
+	width: 40%;
+	margin: 0 0 0 -20%; /* add negative left margin for half the width to center the div */
 	cursor: default;
 	z-index: 10001;
 	border-radius: 4px;
 	box-shadow: 0 0 5px rgba(0,0,0,0.9);
-	height: 800px;
+	max-height: 800px;
+}
+.overlay-content-wide {
+	width: 80% !important;
+	margin: 0 0 0 -40% !important; /* add negative left margin for half the width to center the div */
 }
 .overlay-content-scrollable {
 	max-height: 400px;

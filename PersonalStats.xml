@@ -178,14 +178,14 @@
 			        <div class="close-btn toggle-btn">Close</div>
 			    </div>
 		    </div>
-		    <div class="overlay-content overlay-map-usa">
+		    <div class="overlay-content overlay-content-wide overlay-map-usa">
 		    	<div class="stats-title overlay-title">Views By State</div>
 		        <div id="geo-chart-usa" class="geo-chart"></div>
 		        <div class="overlay-btn">
 			        <div class="close-btn toggle-btn">Close</div>
 			    </div>
 		    </div>
-		    <div class="overlay-content overlay-map-world">
+		    <div class="overlay-content overlay-content-wide overlay-map-world">
 		    	<div class="stats-title overlay-title">Views By Country</div>
 		        <div id="geo-chart-world" class="geo-chart"></div>
 		        <div class="overlay-btn">
