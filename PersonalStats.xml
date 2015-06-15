@@ -1034,8 +1034,7 @@
 					});
 					if (cleaned.length > 0) {
 						return cleaned;
-					}
-					return false;
+					};
 				});
 				
 				console.log("cleanedArray");
