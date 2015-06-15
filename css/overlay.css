@@ -23,7 +23,7 @@
 	z-index: 10001;
 	border-radius: 4px;
 	box-shadow: 0 0 5px rgba(0,0,0,0.9);
-	max-height: 600px;
+	height: 800px;
 }
 .overlay-content-scrollable {
 	max-height: 400px;
