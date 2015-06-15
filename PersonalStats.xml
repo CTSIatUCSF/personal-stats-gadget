@@ -1018,6 +1018,8 @@
 	      	function aggregateDataByAlsoViewed(data, dateStart) {
 	      		var regEx = new RegExp("^/([a-z][a-z-\.]+)$");
 	      		var viewersPage = "/" + getViewerId();
+	      		console.log(viewersPage);
+	      		console.log("viewersPage");
 
 				var start = dateStart || 0
 	      		var lastIndex = data[0].length-1;
@@ -1028,10 +1030,10 @@
 
 				var cleanedArray = dataFilteredByDate.map(function (item) {
 					return item.filter( function (elem) {
-						console.log("elem = " + elem);
-						console.log("regex test = " + regEx.test(elem));
-						console.log("not viewers page = " + elem != viewersPage);
-						return regEx.test(elem);
+						//console.log("elem = " + elem);
+						//console.log("regex test = " + regEx.test(elem));
+						//console.log("not viewers page = " + elem != viewersPage);
+						return regEx.test(elem) && elem != viewersPage;
 					});
 				});
 				
