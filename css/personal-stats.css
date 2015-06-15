@@ -117,6 +117,12 @@
     float: right;
     margin-right: 10px;
 }
+#instructions-panel {
+    display: inline-block;
+    vertical-align: top;
+    float: right;
+    margin-right: 10px;
+}
 .panel-list tr:nth-child(even) {
     background: #e3e3e3
 }
