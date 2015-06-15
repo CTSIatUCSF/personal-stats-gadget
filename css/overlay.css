@@ -29,10 +29,12 @@
 	width: 80% !important;
 	margin: 0 0 0 -40% !important; /* add negative left margin for half the width to center the div */
 }
+.overlay-content-frame {
+	margin:0 10px;
+}
 .overlay-content-scrollable {
 	max-height: 400px;
 	overflow-y: scroll;
-	margin:0 10px;
 }
 .overlay-title {
 	padding-top:20px !important;

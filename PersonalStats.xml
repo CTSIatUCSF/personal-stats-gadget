@@ -173,33 +173,37 @@
 		    <div class="overlay-bg">
 		    </div>
 		    <div class="overlay-content overlay-geo-list">
-		    	<div class="stats-title overlay-title">All Geo Data</div>
-		    		<table class="panel-list">
-			    		<tr class="panel-list-header-row">
-			    			<th class="panel-list-header">City</th>
-			    			<th class="panel-list-header panel-list-count">Views</th>
-			    		</tr>
-			    	</table>
-		    	<div class="overlay-content-scrollable">
-			    	<table id="geo-list-all" class="panel-list"></table>
-		    	</div>
-		        <div class="overlay-btn">
-			        <div class="close-btn toggle-btn">Close</div>
+		    	<div class="overlay-content-frame">
+			    	<div class="stats-title overlay-title">All Geo Data</div>
+			    		<table class="panel-list">
+				    		<tr class="panel-list-header-row">
+				    			<th class="panel-list-header">City</th>
+				    			<th class="panel-list-header panel-list-count">Views</th>
+				    		</tr>
+				    	</table>
+			    	<div class="overlay-content-scrollable">
+				    	<table id="geo-list-all" class="panel-list"></table>
+			    	</div>
+			        <div class="overlay-btn">
+				        <div class="close-btn toggle-btn">Close</div>
+				    </div>
 			    </div>
 		    </div>
 		    <div class="overlay-content overlay-domain-list">
-		    	<div class="stats-title overlay-title">All Domain Data</div>
-			    	<table class="panel-list">
-			    		<tr class="panel-list-header-row">
-			    			<th class="panel-list-header">Domain</th>
-			    			<th class="panel-list-header panel-list-count">Views</th>
-			    		</tr>
-			    	</table>
-		    	<div class="overlay-content-scrollable">
-			    	<table id="domain-list-all" class="panel-list"></table>
-			    </div>
-		        <div class="overlay-btn">
-			        <div class="close-btn toggle-btn">Close</div>
+		    	<div class="overlay-content-frame">
+			    	<div class="stats-title overlay-title">All Domain Data</div>
+				    	<table class="panel-list">
+				    		<tr class="panel-list-header-row">
+				    			<th class="panel-list-header">Domain</th>
+				    			<th class="panel-list-header panel-list-count">Views</th>
+				    		</tr>
+				    	</table>
+			    	<div class="overlay-content-scrollable">
+				    	<table id="domain-list-all" class="panel-list"></table>
+				    </div>
+			        <div class="overlay-btn">
+				        <div class="close-btn toggle-btn">Close</div>
+				    </div>
 			    </div>
 		    </div>
 		    <div class="overlay-content overlay-content-wide overlay-map-usa">
