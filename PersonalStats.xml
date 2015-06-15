@@ -1017,6 +1017,8 @@
 
 	      	function aggregateDataByAlsoViewed(data, dateStart) {
 	      		var regEx = new RegExp("^/([a-z][a-z-\.]+)$");
+	      		var viewersPage = "/" + getViewerId();
+
 				var start = dateStart || 0
 	      		var lastIndex = data[0].length-1;
 
@@ -1027,26 +1029,20 @@
 
 				var collapsed = [];
 				collapsed = (collapsed.concat.apply(collapsed, dataFilteredByDate)).filter(function(elem) {
-					return regEx.test(elem) && elem != getViewerId();
+
+					return regEx.test(elem) && elem != viewersPage;
 				});
 
 				console.log("collapsed");
 				console.log(collapsed);
 
-				var uniques = collapsed.map(function(elem) {
-				    return elem;
-				});
-
-				console.log("uniques");
-				console.log(uniques);
-
-				var filteredArray = uniques.filter(function(elem, i, array) {
+				var uniques = collapsed.filter(function(elem, i, array) {
 				        return array.indexOf(elem) === i;
 				    }
 				);
-				
-				console.log("filteredArray");
-				console.log(filteredArray);
+
+				console.log("uniques");
+				console.log(uniques);
 
 				var arrayToReturn = filteredArray.map(function(unique_value) {
 				    var count = dataFilteredByDate.reduce(function(prevVal, elem) {
