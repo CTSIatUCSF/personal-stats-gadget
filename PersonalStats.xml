@@ -170,11 +170,11 @@
 				</div>
 				<div id="instructions-panel" class="panel">
 					<div id="instructions-section-one">
-						<p class="panel-title">Want more visitors?</p>
+						<div class="panel-title">Want more visitors?</div>
 					</div>
 					<div id="instructions-section-two">
-						<p class="panel-title">Want more clicks from visitors?</p>
-							<p class="panel-text"><a href="http://profiles.ucsf.edu/login/default.aspx?method=login&edit=true">Add more sections</a> to your page.</p>
+						<div class="panel-title">Want more clicks from visitors?</div>
+						<p class="panel-text"><a href="http://profiles.ucsf.edu/login/default.aspx?method=login&edit=true">Add more sections</a> to your page.</p>
 					</div>
 				</div>
 		    </div>
