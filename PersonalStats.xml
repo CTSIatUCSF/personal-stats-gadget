@@ -1027,7 +1027,7 @@
 
 				var collapsed = [];
 				collapsed = (collapsed.concat.apply(collapsed, dataFilteredByDate)).filter(function(elem) {
-					return regEx.test(elem);
+					return regEx.test(elem) && elem != getViewerId();
 				});
 
 				console.log("collapsed");
