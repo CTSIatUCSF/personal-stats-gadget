@@ -25,7 +25,7 @@
 	box-shadow: 0 0 5px rgba(0,0,0,0.9);
 }
 .overlay-content-scrollable {
-	height: 800px;
+	height: 600px;
 	overflow: scroll;
 }
 .overlay-title {
