@@ -1027,6 +1027,8 @@
 
 				var collapsed = [];
 				collapsed = (collapsed.concat.apply(collapsed, dataFilteredByDate)).filter(function(elem) {
+					console.log("elem");
+					console.log(elem);
 					elem.shift(); //remove the first item in the array, which is a date string
 					return elem;
 				});
