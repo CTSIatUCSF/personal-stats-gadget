@@ -174,13 +174,13 @@
 		    </div>
 		    <div class="overlay-content overlay-geo-list">
 		    	<div class="stats-title overlay-title">All Geo Data</div>
-		    	<div class="overlay-content-scrollable">
 		    		<table class="panel-list">
 			    		<tr class="panel-list-header-row">
 			    			<th class="panel-list-header">City</th>
 			    			<th class="panel-list-header panel-list-count">Views</th>
 			    		</tr>
 			    	</table>
+		    	<div class="overlay-content-scrollable">
 			    	<table id="geo-list-all" class="panel-list"></table>
 		    	</div>
 		        <div class="overlay-btn">
@@ -189,13 +189,13 @@
 		    </div>
 		    <div class="overlay-content overlay-domain-list">
 		    	<div class="stats-title overlay-title">All Domain Data</div>
-		    	<div class="overlay-content-scrollable">
 			    	<table class="panel-list">
 			    		<tr class="panel-list-header-row">
 			    			<th class="panel-list-header">Domain</th>
 			    			<th class="panel-list-header panel-list-count">Views</th>
 			    		</tr>
 			    	</table>
+		    	<div class="overlay-content-scrollable">
 			    	<table id="domain-list-all" class="panel-list"></table>
 			    </div>
 		        <div class="overlay-btn">
