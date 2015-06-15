@@ -164,7 +164,7 @@
 		    	<div class="stats-title overlay-title">All Geo Data</div>
 		    	<div class="overlay-content-scrollable">
 		    		<table id="geo-list-all" class="panel-list"></table>
-		    	<div>
+		    	</div>
 		        <div class="overlay-btn">
 			        <div class="close-btn toggle-btn">Close</div>
 			    </div>
