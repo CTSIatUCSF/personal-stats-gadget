@@ -1026,15 +1026,17 @@
 				    return array.indexOf(elem) === i && elem[0] >= start;
 				});
 
-				var filteredArray = dataFilteredByDate.filter(function (elem, i, array) {
-					return regEx.test(elem) && elem != viewersPage;
+				var cleanedArray = dataFilteredByDate.map(function (item) {
+					return item.filter( function (elem) {
+						return regEx.test(elem) && elem != viewersPage;
+					});
 				});
 				
-				console.log("filteredArray");
-				console.log(filteredArray);
+				console.log("cleanedArray");
+				console.log(cleanedArray);
 
 				var collapsed = [];
-				collapsed = (collapsed.concat.apply(collapsed, dataFilteredByDate)).filter(function(elem) {
+				collapsed = (collapsed.concat.apply(collapsed, cleanedArray)).filter(function(elem) {
 					return regEx.test(elem) && elem != viewersPage;
 				});
 
