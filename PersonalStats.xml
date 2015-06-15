@@ -350,7 +350,7 @@
 				var query = {
 					'ids': 'ga:23439892',
 			    	'metrics': 'ga:uniquePageviews',
-			        'dimensions': 'ga:date,ga:country,ga:region,ga:city,ga:networkLocation',
+			        'dimensions': 'ga:date,ga:country,ga:region,ga:city,ga:networkLocation,ga:pagePathLevel1,ga:landingPagePath,ga:secondPagePath,ga:exitPagePath,ga:previousPagePath,ga:nextPagePath'
 					'filters': 'ga:pagePath' + pagePath,
 			        'start-date': earliest_start_date,
 			        'end-date': today
@@ -385,6 +385,7 @@
 		            
 		          	} else if (response.data) {
 						var data = JSON.parse(response.data);
+						console.log(data.rows);
 		      		 	aggregatedByMonthAll = aggregateDataByMonth(data.rows);
 				 		aggregatedByMonthLastYear = aggregateDataByMonth(data.rows, getYearMonthOneYearAgoMonthStart());
 				 		aggregatedByCityLastYear = aggregateDataByCity(data.rows, dateOneYearAgo().yyyymmdd());
@@ -394,13 +395,8 @@
 				 		aggregatedByCountryLastYear = aggregateDataByCountry(data.rows, dateOneYearAgo().yyyymmdd());
 				 		aggregatedByCountryLastMonth = aggregateDataByCountry(data.rows, dateThirtyDaysAgo().yyyymmdd());
 				 		aggregatedByDomainLastYear = aggregateDataByDomain(data.rows, dateOneYearAgo().yyyymmdd());
-		      			console.log("aggregatedByDomainLastYear");
-		      			console.log(aggregatedByDomainLastYear);
-		      			console.log(dateThirtyDaysAgo());
-				 		aggregatedByDomainLastMonth = aggregateDataByDomain(data.rows, dateThirtyDaysAgo().yyyymmdd());
-		      			console.log("aggregatedByDomainLastMonth");
-		      			console.log(aggregatedByDomainLastMonth);
-
+		      			aggregatedByDomainLastMonth = aggregateDataByDomain(data.rows, dateThirtyDaysAgo().yyyymmdd());
+		      			
 		      			showVisitorCountStats();
 						drawColumnChart(aggregatedByMonthLastYear);
 
