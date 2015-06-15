@@ -471,7 +471,7 @@
 						var data = JSON.parse(response.data);
 						console.log("pagePath data:");
 						console.log(data.rows);
-						aggregateDataByAlsoViewed();
+						aggregateDataByAlsoViewed(data.rows);
 
 		          	} else {
 			      		console.log("Error:")
