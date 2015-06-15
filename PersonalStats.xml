@@ -1039,6 +1039,9 @@
 						return null;
 					}
 				});
+				
+				console.log("cleanedData");
+				console.log(cleanedData);
 
 				// remove any empty arrays returned above
 				var validData = cleanedData.filter( function (elem) {
