@@ -256,8 +256,6 @@
 
 	        }
 
-	        populateInstructionsPanel();
-
 	        // Set up the toggle buttons
 	        $(".toggle-btn input[type=radio]").addClass("visuallyhidden"); // hide the radio button circle on all buttons
 
@@ -986,6 +984,7 @@
 						//TODO: Fix this path
 						$.getJSON("http://cranestylelabs.github.io/personal-stats-gadget/countries.json", function(response){
 						    countryCodeList = response;
+					        populateInstructionsPanel();
 					  		fetchData();
 						});
 					});
