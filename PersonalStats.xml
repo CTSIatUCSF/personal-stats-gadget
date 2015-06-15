@@ -1016,7 +1016,7 @@
 			}
 
 	      	function aggregateDataByAlsoViewed(data, dateStart) {
-	      		var regEx = new RegEx("^/([a-z][a-z-\.]+)$");
+	      		var regEx = new RegExp("^/([a-z][a-z-\.]+)$");
 				var start = dateStart || 0
 	      		var lastIndex = data[0].length-1;
 
