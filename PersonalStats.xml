@@ -471,6 +471,7 @@
 						var data = JSON.parse(response.data);
 						console.log("pagePath data:");
 						console.log(data.rows);
+						aggregateDataByAlsoViewed();
 
 		          	} else {
 			      		console.log("Error:")
@@ -1010,6 +1011,60 @@
 				arrayToReturn.sort(function(a,b) {
 				    return b[1]-a[1]
 				});
+
+				return arrayToReturn;
+			}
+
+	      	function aggregateDataByAlsoViewed(data, dateStart) {
+
+				var start = dateStart || 0
+	      		var lastIndex = data[0].length-1;
+
+				var dataFilteredByDate = data.filter(function(elem, i, array) {
+				        return array.indexOf(elem) === i && elem[0] >= start;
+				    }
+				);
+
+				var collapsed = [];
+				collapsed = (collapsed.concat.apply(collapsed, dataFilteredByDate)).filter(function(n) {return n});
+
+				console.log("collapsed");
+				console.log(collapsed);
+
+				var uniques = collapsed.map(function(elem) {
+				    return elem;
+				});
+
+				console.log("uniques");
+				console.log(uniques);
+
+				var filteredArray = uniques.filter(function(elem, i, array) {
+				        return array.indexOf(elem) === i;
+				    }
+				);
+				
+				console.log("filteredArray");
+				console.log(filteredArray);
+
+				var arrayToReturn = filteredArray.map(function(unique_value) {
+				    var count = dataFilteredByDate.reduce(function(prevVal, elem) {
+				        if(elem[0] == unique_value) {
+				            return prevVal + parseInt(elem[lastIndex]);
+				        } 
+				        else {
+				            return prevVal;
+				        }
+				    }, 0);
+				    return new Array(unique_value, count); 
+				});
+
+				// sort by views, descending
+				arrayToReturn.sort(function(a,b) {
+				    return b[1]-a[1]
+				});
+				
+				console.log("arrayToReturn");
+				console.log(arrayToReturn);
 
 				return arrayToReturn;
 			}
