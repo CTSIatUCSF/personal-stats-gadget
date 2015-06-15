@@ -95,14 +95,12 @@
 .geo-list-btn {
 }
 #geo-panel {
-    /*width: 570px;*/
     display: inline-block;
     vertical-align: top;
     float: left;
     margin-left: 10px;
 }
 #domain-panel {
-    /*width: 330px;*/
     display: inline-block;
     vertical-align: top;
     float: right;
@@ -115,11 +113,9 @@
     background: #e3e3e3
 }
 #geo-list td {
-    /*width: 70%;*/
 }
 .panel-list-count {
     text-align: right !important;
-    /*width: 20% !important;*/
 }
 .panel-list-image {
     width: 10% !important;
@@ -128,7 +124,6 @@
     vertical-align: middle;
 }
 #geo-list th {
-    /*width: 80px;*/
 }
 .geo-chart {
     margin-left: auto;
@@ -137,12 +132,8 @@
 }
 
 #panel-button-area {
-    /*width: 155px;*/
 }
 #geo-list-area {
-    /*width: 160px;*/
-    /*display: inline-block;*/
-    /*vertical-align: top;*/
     margin: 5px;
 }
 #domain-list-area {
