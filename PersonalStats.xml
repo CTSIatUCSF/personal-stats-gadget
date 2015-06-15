@@ -245,8 +245,8 @@
 	        google.load("visualization", "1.0", {"packages":["corechart", "geochart"]});
 
 	        // Fill in the Instructions panel
-	        $("#instructions-section-one").append(<p>Addition One</p>);
-	        $("#instructions-section-one").append(<p>Addition Two</p>);
+	        $("#instructions-section-one").append("<p>Addition One</p>");
+	        $("#instructions-section-one").append("<p>Addition Two</p>");
 			$("#instructions-section-one p").addClass("panel-text");
 
 	        // Set up the toggle buttons
