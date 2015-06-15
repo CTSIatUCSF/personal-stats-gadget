@@ -174,7 +174,7 @@
 		    	<div class="overlay-content-scrollable">
 			    	<table id="domain-list-all-header">
 			    		<tr>
-			    			<th class="panel-list-header">City</th>
+			    			<th class="panel-list-header">Domain</th>
 			    			<th class="panel-list-header panel-list-count">Views</th>
 			    		</tr>
 			    	</table>
