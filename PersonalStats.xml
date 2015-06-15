@@ -160,16 +160,16 @@
 
 		    <div class="overlay-bg">
 		    </div>
-		    <div class="overlay-content overlay-geo-list">
+		    <div class="overlay-content overlay-content-scrollable overlay-geo-list">
 		    	<div class="stats-title overlay-title">All Geo Data</div>
-		    	<table id="geo-list-all" class="panel-list overlay-content-scrollable"></table>
+		    	<table id="geo-list-all" class="panel-list"></table>
 		        <div class="overlay-btn">
 			        <div class="close-btn toggle-btn">Close</div>
 			    </div>
 		    </div>
-		    <div class="overlay-content overlay-domain-list">
+		    <div class="overlay-content overlay-content-scrollable overlay-domain-list">
 		    	<div class="stats-title overlay-title">All Domain Data</div>
-		    	<table id="domain-list-all" class="panel-list overlay-content-scrollable"></table>
+		    	<table id="domain-list-all" class="panel-list"></table>
 		        <div class="overlay-btn">
 			        <div class="close-btn toggle-btn">Close</div>
 			    </div>
