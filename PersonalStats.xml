@@ -1030,14 +1030,9 @@
 
 				// clear out any values that are not profiles page ids, and clear out the viewer's page id
 				var cleanedData = dataFilteredByDate.map(function (item) {
-					var cleanedItem = item.filter( function (elem) {
+					return item.filter( function (elem) {
 						return regEx.test(elem) && elem != viewersPage;
 					});
-					if (cleanedItem.length > 0) {
-						return cleanedItem;
-					} else {
-						return null;
-					}
 				});
 				
 				console.log("cleanedData");
