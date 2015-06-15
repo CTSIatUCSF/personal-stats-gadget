@@ -168,6 +168,15 @@
 						</div>
 					</div>
 				</div>
+				<div id="instructions-panel" class="panel">
+					<div id="instructions-section-one">
+						<p class="panel-title">Want more visitors?</p>
+					</div>
+					<div id="instructions-section-two">
+						<p class="panel-title">Want more clicks from visitors?</p>
+							<p panel-text><a href="http://profiles.ucsf.edu/login/default.aspx?method=login&edit=true>Add more sections</a> to your page.</p>
+					</div>
+				</div>
 		    </div>
 
 		    <div class="overlay-bg">
@@ -234,6 +243,9 @@
 
 	        // Load the Visualization API and the column chart package.
 	        google.load("visualization", "1.0", {"packages":["corechart", "geochart"]});
+
+	        $("#instructions-section-one").append(<p>Addition One</p>);
+	        $("#instructions-section-one").append(<p>Addition Two</p>);
 
 	        // Set up the toggle buttons
 	        $(".toggle-btn input[type=radio]").addClass("visuallyhidden"); // hide the radio button circle on all buttons

@@ -71,6 +71,10 @@
     margin: 5px;
     font-size:14px;
 }
+.panel-text {
+    margin-left: 10px;
+    font-size: 12px;
+}
 #geo-panel-header {
     display: inline-block;
 }
