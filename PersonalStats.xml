@@ -174,7 +174,6 @@
 					</div>
 					<div id="instructions-section-two">
 						<div class="panel-title">Want more clicks from visitors?</div>
-						<p class="panel-text"><a href="http://profiles.ucsf.edu/login/default.aspx?method=login&edit=true">Add more sections</a> to your page.</p>
 					</div>
 				</div>
 		    </div>
@@ -244,10 +243,18 @@
 	        // Load the Visualization API and the column chart package.
 	        google.load("visualization", "1.0", {"packages":["corechart", "geochart"]});
 
-	        // Fill in the Instructions panel
-	        $("#instructions-section-one").append("<p>Addition One</p>");
-	        $("#instructions-section-one").append("<p>Addition Two</p>");
-			$("#instructions-section-one p").addClass("panel-text");
+	        function populateInstructionsPanel() {
+	        	var viewerHomePage = viewerData[FOAF("workplaceHomepage")];
+	        	var profilesLoginPage = "http://profiles.ucsf.edu/login/default.aspx?method=login&edit=true";
+
+		        $("#instructions-section-one").append("<p>Add <a href=viewerHomePage> to your email footer, business card and department site.</p>");
+		        $("#instructions-section-one").append("<p>Add more personalized content (overview, awards, videos) to <a href=profilesLoginPage> your profile page.></p>");
+				$("#instructions-section-one p").addClass("panel-text");
+				
+		        $("#instructions-section-two").append("<p><a href="http://profiles.ucsf.edu/login/default.aspx?method=login&edit=true">Add more sections</a> to your page.</p>");
+				$("#instructions-section-two p").addClass("panel-text");
+
+	        }
 
 	        // Set up the toggle buttons
 	        $(".toggle-btn input[type=radio]").addClass("visuallyhidden"); // hide the radio button circle on all buttons
