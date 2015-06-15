@@ -251,11 +251,11 @@
 		        $("#instructions-section-one").append("<p>Add more personalized content (overview, awards, videos) to <a href=profilesLoginPage> your profile page.></p>");
 				$("#instructions-section-one p").addClass("panel-text");
 
-		        $("#instructions-section-two").append("<p><a href="http://profiles.ucsf.edu/login/default.aspx?method=login&edit=true">Add more sections</a> to your page.</p>");
+		        $("#instructions-section-two").append("<p><a href=profilesLoginPage>Add more sections</a> to your page.</p>");
 				$("#instructions-section-two p").addClass("panel-text");
 
 	        }
-	        
+
 	        populateInstructionsPanel();
 
 	        // Set up the toggle buttons
