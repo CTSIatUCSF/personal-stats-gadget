@@ -168,6 +168,11 @@
 						</div>
 					</div>
 				</div>
+				<div id="related-people-panel" class="panel">
+					<div class="panel-title">Your Visitors Also Viewed</div>
+					<table id="related-people-list">
+					</table>
+				</div>
 				<div id="instructions-panel" class="panel">
 					<div id="instructions-section-one">
 						<div class="panel-title">Want more visitors?</div>
@@ -335,13 +340,16 @@
             	}
 		        showOverlay("domain-list");
 	        });
-	  
-		  	function fetchData(callback) {
 
-				var viewerHomePage = viewerData[FOAF("workplaceHomepage")];
-
+	        function getViewerId() {
+	        	var viewerHomePage = viewerData[FOAF("workplaceHomepage")];
 				var viewerUrlParts = viewerHomePage.split("/");
 				var viewerId = viewerUrlParts[viewerUrlParts.length-1];
+				return viewerId;
+	        }
+	  
+		  	function fetchData(callback) {
+				var viewerId = getViewerId(viewerHomePage);
 				var pagePath = encodeURIComponent("=~/" + viewerId);
 
 				var earliest_start_date = "2009-12-01"
@@ -417,11 +425,7 @@
 	    	}
 
 			function fetchPagePathData() {
-
-				var viewerHomePage = viewerData[FOAF("workplaceHomepage")];
-
-				var viewerUrlParts = viewerHomePage.split("/");
-				var viewerId = viewerUrlParts[viewerUrlParts.length-1];
+				var viewerId = getViewerId(viewerHomePage);
 				var pagePath = encodeURIComponent("=~/" + viewerId);
 
 				var earliest_start_date = "2009-12-01"
