@@ -573,7 +573,6 @@
 		  			}
 		  		} else {
 		  			dataToShow = data;
-	  				$(".geo.see-more-.toggle-btn").addClass("visuallyhidden"); //Hide the See All button 
 		  		}
 
 		  		// add table rows for dataToShow
@@ -623,7 +622,6 @@
 		  			}
 		  		} else {
 		  			dataToShow = data;
-	  				$(".domain.see-more.toggle-btn").addClass("visuallyhidden"); //Hide the See All button 
 		  		}
 
 		  		// add table rows for dataToShow
