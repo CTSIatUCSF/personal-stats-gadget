@@ -1028,6 +1028,7 @@
 
 				var cleanedArray = dataFilteredByDate.map(function (item) {
 					return item.filter( function (elem) {
+						console.log("elem = " + elem);
 						return regEx.test(elem) && elem != viewersPage;
 					});
 				});
