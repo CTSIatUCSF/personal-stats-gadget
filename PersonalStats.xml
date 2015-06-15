@@ -1024,6 +1024,8 @@
 				        return array.indexOf(elem) === i && elem[0] >= start;
 				    }
 				);
+				console.log("dataFilteredByDate");
+				console.log(dataFilteredByDate);
 
 				var collapsed = [];
 				collapsed = (collapsed.concat.apply(collapsed, dataFilteredByDate)).filter(function(n) {return n});
