@@ -1016,7 +1016,7 @@
 			}
 
 	      	function aggregateDataByAlsoViewed(data, dateStart) {
-
+	      		var regEx = /^/([a-z][a-z-\.]+)$/;
 				var start = dateStart || 0
 	      		var lastIndex = data[0].length-1;
 
@@ -1027,10 +1027,7 @@
 
 				var collapsed = [];
 				collapsed = (collapsed.concat.apply(collapsed, dataFilteredByDate)).filter(function(elem) {
-					console.log("elem");
-					console.log(elem);
-					elem.shift(); //remove the first item in the array, which is a date string
-					return elem;
+					return regEx.test(elem);
 				});
 
 				console.log("collapsed");
