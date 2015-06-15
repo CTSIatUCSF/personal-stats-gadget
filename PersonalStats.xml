@@ -248,7 +248,7 @@
 	        	var profilesLoginPage = "http://profiles.ucsf.edu/login/default.aspx?method=login&edit=true";
 
 		        $("#instructions-section-one").append("<p>Add <a href=viewerHomePage> to your email footer, business card and department site.</p>");
-		        $("#instructions-section-one").append("<p>Add more personalized content (overview, awards, videos) to <a href=profilesLoginPage> your profile page.></p>");
+		        $("#instructions-section-one").append("<p>Add more personalized content (overview, awards, videos) to <a href=profilesLoginPage> your profile page.</p>");
 				$("#instructions-section-one p").addClass("panel-text");
 
 		        $("#instructions-section-two").append("<p><a href=profilesLoginPage>Add more sections</a> to your page.</p>");
