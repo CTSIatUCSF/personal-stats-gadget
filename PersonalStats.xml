@@ -1064,7 +1064,7 @@
 				var arrayToReturn = uniques.map( function(unique_val) {
 					var count = validData.reduce(function(prevVal, elem) {
 				        if(elem == unique_val) {
-				            return prevVal ++);
+				            return prevVal++;
 				        } 
 				        else {
 				            return prevVal;
