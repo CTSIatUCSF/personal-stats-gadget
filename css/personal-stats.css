@@ -81,6 +81,9 @@
     width: 83px;
     height: 45px;
 }
+.panel-list {
+    width: 100%;
+}
 .panel-list th{
     font-size:10px;
 }
@@ -105,9 +108,6 @@
     vertical-align: top;
     float: right;
     margin-right: 10px;
-}
-#geo-list {
-    width: 100%;
 }
 .panel-list tr:nth-child(odd) {
     background: #e3e3e3
@@ -138,9 +138,6 @@
 }
 #domain-list-area {
 	margin: 5px;
-}
-#domain-list {
-    width: 100%;
 }
 
 // Toggle Button Stuff
