@@ -1076,8 +1076,9 @@
 				console.log(uniques.length);
 				console.log(uniques);
 
-				var arrayToReturn = uniques.map( function(unique_val) {
-					var count = collapsed.reduce(function(prevVal, elem) {
+				var arrayToReturn = uniques.map( function(unique_val, i) {
+					var count = collapsed.reduce(function(prevVal, elem, i) {
+					    console.log("reduce " + i);
 				        if(elem == unique_val) {
 					        //console.log(unique_val, elem, prevVal);
 				            return prevVal + 1;
@@ -1087,6 +1088,7 @@
 				            return prevVal;
 				        }
 				    }, 0);
+				    console.log("map " + i);
 				    return new Array(unique_val, count); 
 				});
 				
