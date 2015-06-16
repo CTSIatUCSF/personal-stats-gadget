@@ -412,7 +412,7 @@
 		        gadgets.io.makeRequest(url, fetchDataResponseHandler, params);
 	    	}
 
-	    	function fetchDataResponseHandler(response) {
+	    	function fetchDataResponseHandler(response, callback) {
 	    		console.log("response via oauth2")
 	        	console.log(response);
 	          	if (response.oauthApprovalUrl) {
