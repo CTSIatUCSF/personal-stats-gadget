@@ -135,6 +135,8 @@
     vertical-align: top;
     float: left;
     margin-left: 10px;
+}
+#related-people-panel-content {
     height: 145px;
 }
 #instructions-panel {
