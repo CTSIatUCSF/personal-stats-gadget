@@ -736,9 +736,8 @@
 		  	}
 
 		  	function showRelatedPeople(data, divToUpdateID, onlyShowN) {
-		  		var dataToShow, index, item, linkText, linkHref, count;
-		  		var topLevel = "profiles.ucsf.edu";
-		  		var href = "http://" + topLevel;
+		  		var dataToShow, index, item, link, count;
+		  		var hostName = "profiles.ucsf.edu";
 
 				$("#" + divToUpdateID + " p").remove(); //Remove any existing rows before adding new ones
 
@@ -758,10 +757,9 @@
 		  		// add table rows for dataToShow
 		  		for (index in dataToShow) {
 		  			item = dataToShow[index];
-		  			linkHref = href + item[0];
-		  			linkText = href + item[0];
+		  			link = hostName + item[0];
 
-			  		$("#" + divToUpdateID).append("<p><a href=" + linkHref + ">" + linkText + "</a></p>");
+			  		$("#" + divToUpdateID).append("<p><a href=" + link + ">" + link + "</a></p>");
 		  		}
 
 		  		$("#" + divToUpdateID + " p").addClass("panel-text"); //Add CSS class to paragraphs
