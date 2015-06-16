@@ -1075,11 +1075,11 @@
 				var arrayToReturn = uniques.map( function(unique_val) {
 					var count = collapsed.reduce(function(prevVal, elem) {
 				        if(elem == unique_val) {
-					        //console.log(elem, prevVal);
+					        console.log(unique_val, prevVal);
 				            return prevVal++;
 				        } 
 				        else {
-					        //console.log(elem);
+					        console.log(unique_val);
 				            return prevVal;
 				        }
 				    }, 0);
