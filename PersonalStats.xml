@@ -418,7 +418,7 @@
 		          	} else if (response.data) {
 		          		fetchDataSuccessHandler(response, callback);
 		          	} else {
-		          		fetchDataErrorHandler(reponse, tryCountdown, fetchData(tryCountdown, callback));
+		          		fetchDataErrorHandler(response, tryCountdown, fetchData(tryCountdown, callback));
 		          	}
 		        }, params);
 	    	}
@@ -513,7 +513,7 @@
 		          		fetchPagePathDataSuccessHandler(response, callback);
 
 		          	} else {
-		          		fetchDataErrorHandler(reponse, tryCountdown, fetchPagePathData(tryCountdown, callback));
+		          		fetchDataErrorHandler(response, tryCountdown, fetchPagePathData(tryCountdown, callback));
 		          	}
 		        }, params);
 	    	}
