@@ -1190,7 +1190,7 @@
 						    countryCodeList = response;
 					        populateInstructionsPanel();
 					  		fetchData( 5, function () {
-					  			fetchPagePathData( function () {
+					  			fetchPagePathData( 5, function () {
 					  				console.log("done with callbacks");
 					  			});
 					  		});
