@@ -373,7 +373,7 @@
 				return hostname;
 	        }
 	  
-		  	function fetchData(callback) {
+		  	function fetchData(tryCountdown, callback) {
 				var viewerId = getViewerId();
 				var pagePath = encodeURIComponent("=~/" + viewerId);
 
@@ -415,25 +415,17 @@
 		          	if (response.oauthApprovalUrl) {
 		        		console.log("OAuth Approval URL:")
 		        		console.log(response.oauthApprovalUrl);
-		            
 		          	} else if (response.data) {
 		          		fetchDataSuccessHandler(response, callback);
 		          	} else {
-			      		console.log("Error:")
-			      		console.log(response.data);
-			      		console.log(response.oauthError);
-			      		console.log(response.oauthErrorUri);
-			      		console.log(response.oauthErrorText);
-			      		console.log(response.oauthErrorExplanation);
-			      		console.log(response.oauthErrorTrace);
-			      		console.log(response.rc);
+		          		fetchDataErrorHandler(reponse, tryCountdown, callback);
 		          	}
 		        }, params);
 	    	}
 
 	    	function fetchDataSuccessHandler(response, callback) {
 				var data = JSON.parse(response.data);
-				console.log(data.rows);
+				
       		 	aggregatedByMonthAll = aggregateDataByMonth(data.rows);
 		 		aggregatedByMonthLastYear = aggregateDataByMonth(data.rows, getYearMonthOneYearAgoMonthStart());
 		 		aggregatedByCityLastYear = aggregateDataByCity(data.rows, dateOneYearAgo().yyyymmdd());
@@ -459,6 +451,19 @@
       			$("#loading").hide();
 
 		        callback();
+	    	}
+
+	    	function fetchDataErrorHandler(response, tryCountdown, callback) {
+	      		console.log("Error:")
+	      		console.log(response.data);
+	      		if (response.rc == 504) {
+	      			if (tryCountdown > 0) {
+		      			fetchData(tryCountdown, callback);
+	      			}
+	      			else {
+	      				console.log("Done trying!!!!");
+	      			}
+	      		}
 	    	}
 
 			function fetchPagePathData(callback) {
@@ -1183,7 +1188,7 @@
 						$.getJSON("http://cranestylelabs.github.io/personal-stats-gadget/countries.json", function(response){
 						    countryCodeList = response;
 					        populateInstructionsPanel();
-					  		fetchData( function () {
+					  		fetchData( 5, function () {
 					  			fetchPagePathData( function () {
 					  				console.log("done with callbacks");
 					  			});
