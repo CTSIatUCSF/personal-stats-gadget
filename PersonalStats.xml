@@ -1076,20 +1076,21 @@
 				console.log(uniques.length);
 				console.log(uniques);
 
-				var arrayToReturn = uniques.map( function(unique_val, i) {
+				var arrayToReturn = uniques.map( function(uniqueVal, i) {
 					var count = collapsed.reduce(function(prevVal, elem, i) {
-					    console.log("reduce " + i);
-				        if(elem == unique_val) {
-					        //console.log(unique_val, elem, prevVal);
+					    //console.log("reduce " + i);
+				        if(elem == uniqueVal) {
+					        //console.log(uniqueVal, elem, prevVal);
 				            return prevVal + 1;
 				        } 
 				        else {
-					        //console.log(unique_val, elem);
+					        //console.log(uniqueVal, elem);
 				            return prevVal;
 				        }
 				    }, 0);
-				    console.log("map " + i);
-				    return new Array(unique_val, count); 
+				    //console.log("map " + i);
+				    console.log("count = " + count);
+				    return new Array(uniqueVal, count); 
 				});
 				
 				// sort by number of pageViews, descending
