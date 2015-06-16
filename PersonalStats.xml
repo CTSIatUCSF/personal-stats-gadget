@@ -102,7 +102,7 @@
     
 	    <div class="gadget-content">
         	<div>
-        		<div id="loading"></div>
+        		<div id="count_area_loading" class="loading"></div>
         		<div id="count_area" class ="visuallyhidden">
 		    		<div id="view_count_last_year" class="stats-title"></div>
 		    		<div id="chart_container" class="stats-chart"></div>
@@ -465,11 +465,11 @@
 						drawColumnChart(aggregatedByMonthLastYear);
 		      			showVisitorCountStats();
 		      			$("#count_area").removeClass("visuallyhidden");
+		      			$("#count_area_loading").hide();
 
 		      			showViewsByCity(aggregatedByCityLastMonth, "geo-list", 10);
 		      			showViewsByDomain(aggregatedByDomainLastMonth, "domain-list", 10);
 				        callback();
-		      			$("#loading").hide();
 
 		          	} else {
 			      		console.log("Error:")
