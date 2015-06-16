@@ -170,8 +170,8 @@
 				</div>
 				<div id="related-people-panel" class="panel">
 					<div class="panel-title">Your Visitors Also Viewed</div>
-					<table id="related-people-list">
-					</table>
+					<div id="related-people-list">
+					</div>
 				</div>
 				<div id="instructions-panel" class="panel">
 					<div id="instructions-section-one">
@@ -242,7 +242,7 @@
 
 			window.personalStats = window.personalStats || { };
 
-			var viewerData, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCityLastYear, aggregatedByCityLastMonth, aggregatedByCountryLastYear, aggregatedByCountryLastMonth, countryCodeList, aggregatedByDomainLastYear, aggregatedByDomainLastMonth;
+			var viewerData, aggregatedByMonthAll, aggregatedByMonthLastYear, aggregatedByCityLastYear, aggregatedByCityLastMonth, aggregatedByCountryLastYear, aggregatedByCountryLastMonth, countryCodeList, aggregatedByDomainLastYear, aggregatedByDomainLastMonth, aggregatedByAlsoViewed;
 			var onlyShow = 10;
 
 	        // Load the Visualization API and the column chart package.
@@ -469,9 +469,9 @@
 		            
 		          	} else if (response.data) {
 						var data = JSON.parse(response.data);
-						console.log("pagePath data:");
 						console.log(data.rows);
-						aggregateDataByAlsoViewed(data.rows);
+						aggregatedByAlsoViewed = aggregateDataByAlsoViewed(data.rows);
+						showAlsoViewed(aggregatedByAlsoViewed, "related-people-list", 5);
 
 		          	} else {
 			      		console.log("Error:")
@@ -733,6 +733,38 @@
 
 		  		$("#" + tableToUpdateID + " tr").addClass("panel-list-row"); 					//Add CSS class to the table rows
 				$("#" + tableToUpdateID + " tr td:last-child").addClass("panel-list-count"); 	//Add CSS class to the last item in each row
+		  	}
+
+		  	function showAlsoViewed(data, divToUpdateID, onlyShowN) {
+		  		var dataToShow, index, item, linkText, linkHref, count;
+		  		var topLevel = "profiles.ucsf.edu";
+		  		var href = "http://" + topLevel;
+
+				$("#" + tableToUpdateID + " p").remove(); //Remove any existing rows before adding new ones
+
+		  		// filter out data that we don't want to display
+		  		if (onlyShowN > 0) {
+		  			dataToShow = data.slice(0, onlyShowN);
+		  			if (data.length > dataToShow.length) {
+		  				$(".alsoViewed.see-more.toggle-btn").removeClass("visuallyhidden"); //Unhide the See All button 
+		  			} else {
+			  			dataToShow = data;
+		  				$(".alsoViewed.see-more.toggle-btn").addClass("visuallyhidden"); //Hide the See All button 
+		  			}
+		  		} else {
+		  			dataToShow = data;
+		  		}
+
+		  		// add table rows for dataToShow
+		  		for (index in dataToShow) {
+		  			item = dataToShow[index];
+		  			linkHref = href + item[0];
+		  			linkText = href + item[0];
+
+			  		$("#" + tableToUpdateID).append("<p><a href=" + linkHref + ">" + linkText + "</a></p>");
+		  		}
+
+		  		$("#" + tableToUpdateID + " p").addClass("panel-text"); //Add CSS class to paragraphs
 		  	}
 
 		  	function getCountryCode(countryName) {
