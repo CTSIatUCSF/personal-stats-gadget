@@ -780,7 +780,8 @@
 			  		$("#" + divToUpdateID).append("<div><a href=http://" + link + ">" + link + "</a></div>");
 		  		}
 
-		  		$("#" + divToUpdateID + " div").addClass("panel-text"); //Add CSS class to paragraphs
+		  		$("#" + divToUpdateID + " div").addClass("panel-text"); 			//Add CSS class to divs
+		  		$("#" + divToUpdateID + " div").addClass("related-people-link"); 	//Add CSS class to divs
 		  	}
 
 		  	function getCountryCode(countryName) {

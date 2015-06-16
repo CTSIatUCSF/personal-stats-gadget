@@ -76,6 +76,10 @@
     margin-right: 10px;
     font-size: 12px;
 }
+.related-people-link {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
 #geo-panel-header {
     display: inline-block;
 }
