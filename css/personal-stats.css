@@ -4,7 +4,7 @@
     height: 100%; 
     background: url('../images/waiting.gif') no-repeat center center;
     z-index: 999; /* high z-index */
-    background-color: rgba(0,0,0,0.75);
+    /*background-color: rgba(0,0,0,0.75);*/
 }
 .gadget-content {
 	height: 100%;
