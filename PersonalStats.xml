@@ -450,7 +450,9 @@
       			$("#instructions-panel").removeClass("visuallyhidden");
       			$("#loading").hide();
 
-		        callback();
+      			console.log("fetchDataSuccessHandler callback");
+      			console.log(callback);
+				callback();
 	    	}
 
 	    	function fetchDataErrorHandler(response, tryCountdown, retryFunction) {
@@ -525,6 +527,8 @@
 				showRelatedPeople(aggregatedByAlsoViewed, "related-people-list", 5);
 				$("#related-people-panel-content").removeClass("visuallyhidden");
       			$("#related-people-loading").hide();
+      			console.log("fetchPagePathDataSuccessHandler callback");
+      			console.log(callback);
 		        callback();
 	    	}
 	    			
