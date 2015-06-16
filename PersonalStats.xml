@@ -1078,6 +1078,7 @@
 				            return prevVal;
 				        }
 				    }, 0);
+				    return new Array(unique_val, count); 
 				});
 				
 				// sort alphabetically, ascending
