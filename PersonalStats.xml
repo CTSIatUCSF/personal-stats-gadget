@@ -58,7 +58,7 @@
         	};
         </script>]]>
 	</Content>
-	<Content type="html" view="canvas" preferred_height="900" preferred_width="940"><![CDATA[<!--HTML-->
+	<Content type="html" view="canvas" preferred_height="840" preferred_width="940"><![CDATA[<!--HTML-->
     <!DOCTYPE html>
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
            <link rel="stylesheet" href="css/personal-stats.css" type="text/css" />
