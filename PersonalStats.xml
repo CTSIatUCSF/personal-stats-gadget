@@ -418,7 +418,7 @@
 		          	} else if (response.data) {
 		          		fetchDataSuccessHandler(response, callback);
 		          	} else {
-		          		fetchDataErrorHandler(reponse, tryCountdown, callback);
+		          		fetchDataErrorHandler(reponse, tryCountdown, fetchData(tryCountdown, callback));
 		          	}
 		        }, params);
 	    	}
@@ -453,12 +453,12 @@
 		        callback();
 	    	}
 
-	    	function fetchDataErrorHandler(response, tryCountdown, callback) {
+	    	function fetchDataErrorHandler(response, tryCountdown, retryFunction) {
 	      		console.log("Error:")
 	      		console.log(response.data);
 	      		if (response.rc == 504) {
 	      			if (tryCountdown > 0) {
-		      			fetchData(tryCountdown, callback);
+		      			retryFunction();
 	      			}
 	      			else {
 	      				console.log("Done trying!!!!");
@@ -466,7 +466,7 @@
 	      		}
 	    	}
 
-			function fetchPagePathData(callback) {
+			function fetchPagePathData(tryCountdown, callback) {
 				var viewerId = getViewerId();
 				var pagePath = encodeURIComponent("=~/" + viewerId);
 
@@ -510,26 +510,23 @@
 		        		console.log(response.oauthApprovalUrl);
 		            
 		          	} else if (response.data) {
-						var data = JSON.parse(response.data);
-						console.log(data.rows);
-						aggregatedByAlsoViewed = aggregateDataByAlsoViewed(data.rows);
-						showRelatedPeople(aggregatedByAlsoViewed, "related-people-list", 5);
-						$("#related-people-panel-content").removeClass("visuallyhidden");
-		      			$("#related-people-loading").hide();
-				        callback();
+		          		fetchPagePathDataSuccessHandler(response, callback);
 
 		          	} else {
-			      		console.log("Error:")
-			      		console.log(response.data);
-			      		console.log(response.oauthError);
-			      		console.log(response.oauthErrorUri);
-			      		console.log(response.oauthErrorText);
-			      		console.log(response.oauthErrorExplanation);
-			      		console.log(response.oauthErrorTrace);
+		          		fetchDataErrorHandler(reponse, tryCountdown, fetchPagePathData(tryCountdown, callback));
 		          	}
 		        }, params);
 	    	}
 
+	    	function fetchPagePathDataSuccessHandler(response, callback) {	    		
+				var data = JSON.parse(response.data);
+				console.log(data.rows);
+				aggregatedByAlsoViewed = aggregateDataByAlsoViewed(data.rows);
+				showRelatedPeople(aggregatedByAlsoViewed, "related-people-list", 5);
+				$("#related-people-panel-content").removeClass("visuallyhidden");
+      			$("#related-people-loading").hide();
+		        callback();
+	    	}
 	    			
 			// Format Google Analytics yearMonth string (ex: 201506) as Mmm-YYYY (ex: Jun-2015)
 			function formatMonthYear(yearMonthString) {
