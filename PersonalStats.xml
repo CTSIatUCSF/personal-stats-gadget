@@ -1046,6 +1046,7 @@
 				});
 				
 				console.log("dedupedData");
+				console.log(dedupedData.length);
 				console.log(dedupedData);
 
 				// remove any empty arrays returned above
@@ -1054,6 +1055,7 @@
 				});
 				
 				console.log("validData");
+				console.log(validData.length);
 				console.log(validData);
 
 				var collapsed = [];
