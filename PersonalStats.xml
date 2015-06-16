@@ -757,7 +757,7 @@
 		  		var dataToShow, index, item, link, count;
 		  		var hostName = "profiles.ucsf.edu";
 
-				$("#" + divToUpdateID + " p").remove(); //Remove any existing rows before adding new ones
+				$("#" + divToUpdateID + " div").remove(); //Remove any existing rows before adding new ones
 
 		  		// filter out data that we don't want to display
 		  		if (onlyShowN > 0) {
@@ -777,10 +777,10 @@
 		  			item = dataToShow[index];
 		  			link = hostName + item[0];
 
-			  		$("#" + divToUpdateID).append("<p><a href=http://" + link + ">" + link + "</a></p>");
+			  		$("#" + divToUpdateID).append("<div><a href=http://" + link + ">" + link + "</a></div>");
 		  		}
 
-		  		$("#" + divToUpdateID + " p").addClass("panel-text"); //Add CSS class to paragraphs
+		  		$("#" + divToUpdateID + " div").addClass("panel-text"); //Add CSS class to paragraphs
 		  	}
 
 		  	function getCountryCode(countryName) {
