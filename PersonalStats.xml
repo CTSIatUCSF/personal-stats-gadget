@@ -365,6 +365,13 @@
 				var viewerId = viewerUrlParts[viewerUrlParts.length-1];
 				return viewerId;
 	        }
+
+	        function getHostname() {
+	        	var viewerHomePage = viewerData[FOAF("workplaceHomepage")];
+				var viewerUrlParts = viewerHomePage.split("/");
+				var hostname = viewerUrlParts[2];
+				return hostname;
+	        }
 	  
 		  	function fetchData(callback) {
 				var viewerId = getViewerId();
@@ -755,7 +762,7 @@
 
 		  	function showRelatedPeople(data, divToUpdateID, onlyShowN) {
 		  		var dataToShow, index, item, link, count;
-		  		var hostName = "profiles.ucsf.edu";
+		  		var hostname = getHostname();
 
 				$("#" + divToUpdateID + " div").remove(); //Remove any existing rows before adding new ones
 
@@ -775,7 +782,7 @@
 		  		// add table rows for dataToShow
 		  		for (index in dataToShow) {
 		  			item = dataToShow[index];
-		  			link = hostName + item[0];
+		  			link = hostname + item[0];
 
 			  		$("#" + divToUpdateID).append("<div><a href=http://" + link + ">" + link + "</a></div>");
 		  		}
