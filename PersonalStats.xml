@@ -1076,7 +1076,7 @@
 					var count = collapsed.reduce(function(prevVal, elem) {
 				        if(elem == unique_val) {
 					        console.log(unique_val, elem, prevVal);
-				            return prevVal++;
+				            return prevVal + 1;
 				        } 
 				        else {
 					        console.log(unique_val, elem);
