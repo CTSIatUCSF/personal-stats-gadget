@@ -5,6 +5,9 @@
     z-index: 999; /* high z-index */
     background-color: rgba(0,0,0,0.75);
 }
+#count_area_loading {
+    height: 400px !important;
+}
 .gadget-content {
 	height: 100%;
 	background-color: #D6EBFF;
