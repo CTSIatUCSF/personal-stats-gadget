@@ -1073,7 +1073,7 @@
 				console.log(uniques);
 
 				var arrayToReturn = uniques.map( function(unique_val) {
-					var count = validData.reduce(function(prevVal, elem) {
+					var count = collapsed.reduce(function(prevVal, elem) {
 				        if(elem == unique_val) {
 					        //console.log(elem, prevVal);
 				            return prevVal++;
