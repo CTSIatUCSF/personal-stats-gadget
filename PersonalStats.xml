@@ -101,9 +101,9 @@
            <script type="text/javascript" src="js/jquery.blockUI-2.66.0.js"></script>
     
 	    <div class="gadget-content">
+    		<div id="loading"</div>
         	<div>
-        		<div id="count_area_loading" class="loading"></div>
-        		<div id="count_area" class ="visuallyhidden">
+        		<div id="count_area" class="visuallyhidden">
 		    		<div id="view_count_last_year" class="stats-title"></div>
 		    		<div id="chart_container" class="stats-chart"></div>
 					<div id="view_count_table" class="stats-table">
@@ -125,7 +125,7 @@
 							</div>
 					</div>
 				</div>
-				<div id="geo-panel" class="panel">
+				<div id="geo-panel" class="panel visuallyhidden">
 					<div id="geo-panel-header">
 						<div class="panel-title">Views By Country</div>
 						<div class="panel-button-area">
@@ -149,7 +149,7 @@
 						</div>
 					</div>
 				</div>
-				<div id="domain-panel" class="panel">
+				<div id="domain-panel" class="panel visuallyhidden">
 					<div class="panel-title">Views By Company/Domain</div>
 					<div class="panel-button-area">
 						<div class="domain date-toggle toggle-btn-grp joint-toggle">
@@ -169,12 +169,12 @@
 						</div>
 					</div>
 				</div>
-				<div id="related-people-panel" class="panel">
+				<div id="related-people-panel" class="panel visuallyhidden">
 					<div class="panel-title">Your Visitors Also Viewed</div>
 					<div id="related-people-list"></div>
 					<div class="related-people see-more toggle-btn">See All</div>
 				</div>
-				<div id="instructions-panel" class="panel">
+				<div id="instructions-panel" class="panel visuallyhidden">
 					<div id="instructions-section-one">
 						<div class="panel-title">Want more visitors?</div>
 					</div>
@@ -464,11 +464,17 @@
 		      			
 						drawColumnChart(aggregatedByMonthLastYear);
 		      			showVisitorCountStats();
-		      			$("#count_area").removeClass("visuallyhidden");
-		      			$("#count_area_loading").hide();
 
 		      			showViewsByCity(aggregatedByCityLastMonth, "geo-list", 10);
 		      			showViewsByDomain(aggregatedByDomainLastMonth, "domain-list", 10);
+
+		      			$("#count_area").removeClass("visuallyhidden");
+		      			$("#geo-panel").removeClass("visuallyhidden");
+		      			$("#domain-panel").removeClass("visuallyhidden");
+		      			$("#related-people-panel").removeClass("visuallyhidden");
+		      			$("#instructions-panel").removeClass("visuallyhidden");
+		      			$("#loading").hide();
+		      			
 				        callback();
 
 		          	} else {
