@@ -1062,6 +1062,7 @@
 				});
 				
 				console.log("collapsed");
+				console.log(collapsed.length);
 				console.log(collapsed);
 
 				var uniques = collapsed.filter(function(elem, i, array) {
@@ -1070,16 +1071,17 @@
 				);
 				
 				console.log("uniques");
+				console.log(uniques.length);
 				console.log(uniques);
 
 				var arrayToReturn = uniques.map( function(unique_val) {
 					var count = collapsed.reduce(function(prevVal, elem) {
 				        if(elem == unique_val) {
-					        console.log(unique_val, elem, prevVal);
+					        //console.log(unique_val, elem, prevVal);
 				            return prevVal + 1;
 				        } 
 				        else {
-					        console.log(unique_val, elem);
+					        //console.log(unique_val, elem);
 				            return prevVal;
 				        }
 				    }, 0);
