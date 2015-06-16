@@ -1038,6 +1038,16 @@
 				console.log("cleanedData");
 				console.log(cleanedData);
 
+				// de-dupe each array returned above (we want arrays to contain no duplicates, but duplicates across arrays are fine)
+				var dedupedData = cleanedData.map(function (item) {
+					return item.filter( function (elem, i, array) {
+						return array.indexOf(elem) === i;
+					});
+				});
+				
+				console.log("dedupedData");
+				console.log(dedupedData);
+
 				// remove any empty arrays returned above
 				var validData = cleanedData.filter( function (elem) {
     				return elem.length > 0;
