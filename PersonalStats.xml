@@ -245,6 +245,8 @@
 			    </div>
 		    </div>
 	    </div>
+
+	    <div id="loading"></div>
 	
 		<!--Load the Google AJAX API-->
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -1208,6 +1210,10 @@
 					});
 				});
 			}
+
+			$(window).ready(function() {
+			    $('#loading').hide();
+			});
 	
         	gadgets.util.registerOnLoadHandler(init);
 	  
