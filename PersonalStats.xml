@@ -100,6 +100,7 @@
 		   <link type="text/css" rel="stylesheet" href="css/overlay.css" />
            <script type="text/javascript" src="js/jquery.blockUI-2.66.0.js"></script>
     
+	    <div id="loading"></div>
         <div class="gadget-content">
         	<div>
 	    		<div id="view_count_last_year" class="stats-title">This is the Personal Stats Gadget's canvas page.</div>
@@ -245,8 +246,6 @@
 			    </div>
 		    </div>
 	    </div>
-
-	    <div id="loading"></div>
 	
 		<!--Load the Google AJAX API-->
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -403,8 +402,6 @@
 	        function getHostname() {
 	        	var viewerHomePage = viewerData[FOAF("workplaceHomepage")];
 	        	var hostname = viewerHomePage.replace(getViewerId(), "").slice(7, -1);
-	        	console.log("hostname");
-	        	console.log(hostname);
 				return hostname;
 	        }
 	  
@@ -1206,6 +1203,7 @@
 					        populateInstructionsPanel();
 					  		fetchData( function () {
 					  			fetchPagePathData( function () {
+					  				console.log("hide loading");
 					  				$('#loading').hide();
 					  			});
 					  		});
