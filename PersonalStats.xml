@@ -368,8 +368,7 @@
 
 	        function getHostname() {
 	        	var viewerHomePage = viewerData[FOAF("workplaceHomepage")];
-				var viewerUrlParts = viewerHomePage.split("/");
-				var hostname = viewerUrlParts[2];
+	        	var hostname = viewerHomePage.replace(getViewerId(), "");
 				return hostname;
 	        }
 	  
