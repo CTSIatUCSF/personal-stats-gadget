@@ -1089,12 +1089,12 @@
 				        }
 				    }, 0);
 				    //console.log("map " + i);
-				    console.log("count = " + count);
+				    //console.log("count = " + count);
 				    return new Array(uniqueVal, count); 
 				});
 				
 				// sort by number of pageViews, descending
-				uniques.sort(function(a,b) {
+				arrayToReturn.sort(function(a,b) {
 				    return b[1]-a[1];
 				});
 				
