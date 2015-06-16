@@ -259,15 +259,37 @@
 	        // Load the Visualization API and the column chart package.
 	        google.load("visualization", "1.0", {"packages":["corechart", "geochart"]});
 
+
+	        // ==============================================================
+	        function gadgetEventTrack(action, label, value) {        
+				var message = {'action' : action};
+				if (label) {message.label = label;}
+				if (value) {message.value = value;}
+				console.log("gadgetEventTrack");
+				console.log("action = " + action);
+				console.log("label = " + label);
+				//gadgets.orng.reportGoogleAnalyticsEvent(message);
+	        }
+	        // ==============================================================
+
 	        function populateInstructionsPanel() {
 	        	var viewerHomePage = viewerData[FOAF("workplaceHomepage")];
 	        	var profilesLoginPage = "http://profiles.ucsf.edu/login/default.aspx?method=login&edit=true";
 
-		        $("#instructions-section-one").append("<p>Add <a href=" + viewerHomePage + ">" + viewerHomePage + "</a> to your email footer, business card and department site.</p>");
-		        $("#instructions-section-one").append("<p>Add more personalized content (overview, awards, videos) to <a href=" + profilesLoginPage + "> your profile page.</p>");
+		        $("#instructions-section-one").append("<p>Add <a id="profile_link" href=" + viewerHomePage + ">" + viewerHomePage + "</a> to your email footer, business card and department site.</p>");
+		        $("#profile_link").click(function () {
+		        	gadgetEventTrack($(this).attr("id"), viewerHomePage);
+		        })
+		        $("#instructions-section-one").append("<p>Add more personalized content (overview, awards, videos) to <a id="add_content" href=" + profilesLoginPage + "> your profile page.</p>");
+		        $("#add_content").click(function () {
+		        	gadgetEventTrack($(this).attr("id"));
+		        })
 				$("#instructions-section-one p").addClass("panel-text");
 
-		        $("#instructions-section-two").append("<p><a href=" + profilesLoginPage + ">Add more sections</a> to your page.</p>");
+		        $("#instructions-section-two").append("<p><a id="add_sections" href=" + profilesLoginPage + ">Add more sections</a> to your page.</p>");
+		        $("#add_sections").click(function () {
+		        	gadgetEventTrack($(this).attr("id"));
+		        })
 				$("#instructions-section-two p").addClass("panel-text");
 
 	        }
@@ -284,20 +306,24 @@
 	        });
 
 	        $(".geo.date-toggle .toggle-btn input[type=radio]").first().click(function() {
+		        gadgetEventTrack("country_toggle");
 	        	console.log("country-month selected");
 	            showViewsByCity(aggregatedByCityLastMonth, "geo-list", onlyShow);
 	        });
 
 	        $(".geo.date-toggle .toggle-btn input[type=radio]").last().click(function() {
+		        gadgetEventTrack("country_toggle");
 	            console.log("country-year selected");
 	            showViewsByCity(aggregatedByCityLastYear, "geo-list", onlyShow);
 	        });
 	        $(".domain.date-toggle .toggle-btn input[type=radio]").first().click(function() {
+		        gadgetEventTrack("domain_toggle");
 	        	console.log("domain-month selected");
 	            showViewsByDomain(aggregatedByDomainLastMonth, "domain-list", onlyShow);
 	        });
 
 	        $(".domain.date-toggle .toggle-btn input[type=radio]").last().click(function() {
+		        gadgetEventTrack("domain_toggle");
 	            console.log("domain-year selected");
 	            showViewsByDomain(aggregatedByDomainLastYear, "domain-list", onlyShow);
 	        });
@@ -307,6 +333,7 @@
 	        $(".domain.date-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
 
 	        $("#map-world").click(function() {
+		        gadgetEventTrack("map_world");
 	        	if ($(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 		        	console.log("world map button clicked - last month");
 		            drawGeoChart_World(aggregatedByCountryLastMonth);
@@ -318,6 +345,7 @@
 	        });
 
 	        $("#map-usa").click(function() {
+		        gadgetEventTrack("map_usa");
 	        	if ($(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 		        	console.log("USA map button clicked - last month");
 		            drawGeoChart_USA(aggregatedByStateLastMonth);
@@ -330,6 +358,7 @@
 
 	        // See All (geo) button shows all for Month or Year (based on current selection)
 	        $(".geo.see-more.toggle-btn").click(function() {
+		        gadgetEventTrack("country_see_all");
 	        	if ($(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 		        	console.log("geo show all button clicked - last month");
 		            showViewsByCity(aggregatedByCityLastMonth, "geo-list-all");
@@ -342,6 +371,7 @@
 
 	        // See All (domain) button shows all for Month or Year (based on current selection)
 	        $(".domain.see-more.toggle-btn").click(function() {
+		        gadgetEventTrack("domain_see_all");
             	if ($(".domanin.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
     	        	console.log("domain show all button clicked - last month");
     	            showViewsByDomain(aggregatedByDomainLastMonth, "domain-list-all");
@@ -354,6 +384,7 @@
 
 	        // See All (related people) button shows all
 	        $(".related-people.see-more.toggle-btn").click(function() {
+		        gadgetEventTrack("related_people_see_all");
 	        	console.log("related people show all button clicked");
 	            showRelatedPeople(aggregatedByAlsoViewed, "related-people-list-all");
 		        showOverlay("related-people-list");
