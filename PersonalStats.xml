@@ -169,6 +169,7 @@
 						</div>
 					</div>
 				</div>
+				<div id="related-people-loading"></div>
 				<div id="related-people-panel" class="panel visuallyhidden">
 					<div class="panel-title">Your Visitors Also Viewed</div>
 					<div id="related-people-list"></div>
@@ -474,7 +475,7 @@
 		      			$("#related-people-panel").removeClass("visuallyhidden");
 		      			$("#instructions-panel").removeClass("visuallyhidden");
 		      			$("#loading").hide();
-		      			
+
 				        callback();
 
 		          	} else {
@@ -537,6 +538,7 @@
 						console.log(data.rows);
 						aggregatedByAlsoViewed = aggregateDataByAlsoViewed(data.rows);
 						showRelatedPeople(aggregatedByAlsoViewed, "related-people-list", 5);
+		      			$("#related-people-loading").hide();
 				        callback();
 
 		          	} else {
