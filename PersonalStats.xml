@@ -100,8 +100,8 @@
 		   <link type="text/css" rel="stylesheet" href="css/overlay.css" />
            <script type="text/javascript" src="js/jquery.blockUI-2.66.0.js"></script>
     
-	    <div id="loading"></div>
-        <div class="gadget-content">
+	    <div class="gadget-content">
+        	<div id="loading"></div>
         	<div>
 	    		<div id="view_count_last_year" class="stats-title">This is the Personal Stats Gadget's canvas page.</div>
 	    		
