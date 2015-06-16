@@ -1018,8 +1018,6 @@
 	      	function aggregateDataByAlsoViewed(data, dateStart) {
 	      		var regEx = new RegExp("^/([a-z][a-z-\.]+)$");
 	      		var viewersPage = "/" + getViewerId();
-	      		console.log("viewersPage");
-				console.log(viewersPage);
 			      		
 				var start = dateStart || 0
 	      		var lastIndex = data[0].length-1;
@@ -1034,9 +1032,6 @@
 						return regEx.test(elem) && elem != viewersPage;
 					});
 				});
-				
-				console.log("cleanedData");
-				console.log(cleanedData);
 
 				// de-dupe each array returned above (we want arrays to contain no duplicates, but duplicates across arrays are fine)
 				var dedupedData = cleanedData.map(function (item) {
@@ -1044,52 +1039,31 @@
 						return array.indexOf(elem) === i;
 					});
 				});
-				
-				console.log("dedupedData");
-				console.log(dedupedData.length);
-				console.log(dedupedData);
 
 				// remove any empty arrays returned above
 				var validData = dedupedData.filter( function (elem) {
     				return elem.length > 0;
 				});
-				
-				console.log("validData");
-				console.log(validData.length);
-				console.log(validData);
 
 				var collapsed = [];
 				collapsed = (collapsed.concat.apply(collapsed, validData)).filter(function(elem) {
 					return elem;
 				});
-				
-				console.log("collapsed");
-				console.log(collapsed.length);
-				console.log(collapsed);
 
 				var uniques = collapsed.filter(function(elem, i, array) {
 				        return array.indexOf(elem) === i;
 				    }
 				);
-				
-				console.log("uniques");
-				console.log(uniques.length);
-				console.log(uniques);
 
 				var arrayToReturn = uniques.map( function(uniqueVal, i) {
 					var count = collapsed.reduce(function(prevVal, elem, i) {
-					    //console.log("reduce " + i);
 				        if(elem == uniqueVal) {
-					        //console.log(uniqueVal, elem, prevVal);
 				            return prevVal + 1;
 				        } 
 				        else {
-					        //console.log(uniqueVal, elem);
 				            return prevVal;
 				        }
 				    }, 0);
-				    //console.log("map " + i);
-				    //console.log("count = " + count);
 				    return new Array(uniqueVal, count); 
 				});
 				
@@ -1097,9 +1071,6 @@
 				arrayToReturn.sort(function(a,b) {
 				    return b[1]-a[1];
 				});
-				
-				console.log("arrayToReturn");
-				console.log(arrayToReturn);
 
 				return arrayToReturn;
 			}
