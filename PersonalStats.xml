@@ -403,7 +403,9 @@
 		          	} else if (response.data) {
 		          		fetchDataSuccessHandler(response, callback);
 		          	} else {
-		          		fetchDataErrorHandler(response, tryCountdown, fetchData(tryCountdown, callback));
+		          		fetchDataErrorHandler(response, tryCountdown, function() {
+		          			fetchData(tryCountdown, callback);
+	          			});
 		          	}
 		        }, params);
 	    	}
@@ -496,7 +498,9 @@
 		          		fetchPagePathDataSuccessHandler(response, callback);
 
 		          	} else {
-		          		fetchDataErrorHandler(response, tryCountdown, fetchPagePathData(tryCountdown, callback));
+		          		fetchDataErrorHandler(response, tryCountdown, function() {
+		          			fetchPagePathData(tryCountdown, callback);
+	          			});
 		          	}
 		        }, params);
 	    	}
