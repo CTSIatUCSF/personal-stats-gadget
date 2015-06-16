@@ -127,12 +127,14 @@
     vertical-align: top;
     float: left;
     margin-left: 10px;
+    height: 100px;
 }
 #instructions-panel {
     display: inline-block;
     vertical-align: top;
     float: right;
     margin-right: 10px;
+    height: 100px;
 }
 .panel-list tr:nth-child(even) {
     background: #e3e3e3
