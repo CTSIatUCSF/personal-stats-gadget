@@ -233,6 +233,17 @@
 			        <div class="close-btn toggle-btn">Close</div>
 			    </div>
 		    </div>
+		    <div class="overlay-content overlay-related-people-list">
+		    	<div class="overlay-content-frame">
+			    	<div class="stats-title overlay-title">Your Visitors Also Viewed</div>
+			    	<div class="overlay-content-scrollable">
+				    	<div id="related-people-list-all"></div>
+				    </div>
+			        <div class="overlay-btn">
+				        <div class="close-btn toggle-btn">Close</div>
+				    </div>
+			    </div>
+		    </div>
 	    </div>
 	
 		<!--Load the Google AJAX API-->
@@ -317,7 +328,7 @@
 	        	showOverlay("map-usa");
 	        });
 
-	        // See All/Fewer (geo) button shows all for Month or Year (based on current selection)
+	        // See All (geo) button shows all for Month or Year (based on current selection)
 	        $(".geo.see-more.toggle-btn").click(function() {
 	        	if ($(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 		        	console.log("geo show all button clicked - last month");
@@ -329,7 +340,7 @@
 	        	showOverlay("geo-list");
 	        });
 
-	        // See All/Fewer (domain) button shows all for Month or Year (based on current selection)
+	        // See All (domain) button shows all for Month or Year (based on current selection)
 	        $(".domain.see-more.toggle-btn").click(function() {
             	if ($(".domanin.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
     	        	console.log("domain show all button clicked - last month");
@@ -340,6 +351,15 @@
             	}
 		        showOverlay("domain-list");
 	        });
+
+	        // See All (related people) button shows all
+	        $(".related-people.see-more.toggle-btn").click(function() {
+	        	console.log("related people show all button clicked");
+	            showRelatedPeople(aggregatedByAlsoViewed, "related-people-list-all");
+		        showOverlay("related-people-list");
+	        });
+
+	        overlay-related-people-list
 
 	        function getViewerId() {
 	        	var viewerHomePage = viewerData[FOAF("workplaceHomepage")];
