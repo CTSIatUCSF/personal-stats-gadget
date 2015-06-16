@@ -101,9 +101,9 @@
            <script type="text/javascript" src="js/jquery.blockUI-2.66.0.js"></script>
     
 	    <div class="gadget-content">
-        	<div id="loading"></div>
         	<div>
-        		<div>
+        		<div class="loading">
+        		<div id="count_area" class="visuallyhidden">
 		    		<div id="view_count_last_year" class="stats-title"></div>
 		    		<div id="chart_container" class="stats-chart"></div>
 					<div id="view_count_table" class="stats-table">
@@ -464,6 +464,8 @@
 		      			
 						drawColumnChart(aggregatedByMonthLastYear);
 		      			showVisitorCountStats();
+		      			$(".loading").hide();
+		      			$("#count_area").removeClass("visuallyhidden");
 
 		      			showViewsByCity(aggregatedByCityLastMonth, "geo-list", 10);
 		      			showViewsByDomain(aggregatedByDomainLastMonth, "domain-list", 10);
@@ -1203,8 +1205,7 @@
 					        populateInstructionsPanel();
 					  		fetchData( function () {
 					  			fetchPagePathData( function () {
-					  				console.log("hide loading");
-					  				$('#loading').hide();
+					  				console.log("done with callbacks");
 					  			});
 					  		});
 						});
