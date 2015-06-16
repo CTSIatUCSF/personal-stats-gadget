@@ -359,8 +359,6 @@
 		        showOverlay("related-people-list");
 	        });
 
-	        overlay-related-people-list
-
 	        function getViewerId() {
 	        	var viewerHomePage = viewerData[FOAF("workplaceHomepage")];
 				var viewerUrlParts = viewerHomePage.split("/");
