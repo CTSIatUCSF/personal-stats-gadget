@@ -484,7 +484,7 @@
 		        callback();
 	    	}
 
-			function fetchPagePathData() {
+			function fetchPagePathData(callback) {
 				var viewerId = getViewerId();
 				var pagePath = encodeURIComponent("=~/" + viewerId);
 
@@ -543,6 +543,7 @@
 			      		console.log(response.oauthErrorTrace);
 		          	}
 		        }, params);
+		        callback();
 	    	}
 
 	    			
@@ -1204,17 +1205,14 @@
 						    countryCodeList = response;
 					        populateInstructionsPanel();
 					  		fetchData( function () {
-					  			fetchPagePathData();
+					  			fetchPagePathData( function () {
+					  				$('#loading').hide();
+					  			});
 					  		});
 						});
 					});
 				});
 			}
-
-			$(window).ready(function() {
-			    $('#loading').hide();
-			});
-	
         	gadgets.util.registerOnLoadHandler(init);
 	  
 		</script>
