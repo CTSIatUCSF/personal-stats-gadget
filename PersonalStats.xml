@@ -1058,8 +1058,11 @@
 
 				var collapsed = [];
 				collapsed = (collapsed.concat.apply(collapsed, validData)).filter(function(elem) {
-					return regEx.test(elem) && elem != viewersPage;
+					return elem;
 				});
+				
+				console.log("collapsed");
+				console.log(collapsed);
 
 				var uniques = collapsed.filter(function(elem, i, array) {
 				        return array.indexOf(elem) === i;
@@ -1070,13 +1073,13 @@
 				console.log(uniques);
 
 				var arrayToReturn = uniques.map( function(unique_val) {
-					var count = collapsed.reduce(function(prevVal, elem) {
+					var count = validData.reduce(function(prevVal, elem) {
 				        if(elem == unique_val) {
-					        console.log(elem, prevVal);
+					        //console.log(elem, prevVal);
 				            return prevVal++;
 				        } 
 				        else {
-					        console.log(elem);
+					        //console.log(elem);
 				            return prevVal;
 				        }
 				    }, 0);
