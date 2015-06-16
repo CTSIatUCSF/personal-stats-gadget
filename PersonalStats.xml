@@ -777,7 +777,7 @@
 		  			item = dataToShow[index];
 		  			link = hostName + item[0];
 
-			  		$("#" + divToUpdateID).append("<p><a href=" + link + ">" + link + "</a></p>");
+			  		$("#" + divToUpdateID).append("<p><a href=http://" + link + ">" + link + "</a></p>");
 		  		}
 
 		  		$("#" + divToUpdateID + " p").addClass("panel-text"); //Add CSS class to paragraphs
