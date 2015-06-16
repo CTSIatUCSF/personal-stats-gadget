@@ -1049,7 +1049,7 @@
 				console.log(dedupedData);
 
 				// remove any empty arrays returned above
-				var validData = cleanedData.filter( function (elem) {
+				var validData = dedupedData.filter( function (elem) {
     				return elem.length > 0;
 				});
 				
