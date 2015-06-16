@@ -1072,9 +1072,11 @@
 				var arrayToReturn = uniques.map( function(unique_val) {
 					var count = validData.reduce(function(prevVal, elem) {
 				        if(elem == unique_val) {
+					        console.log(elem, prevVal);
 				            return prevVal++;
 				        } 
 				        else {
+					        console.log(elem);
 				            return prevVal;
 				        }
 				    }, 0);
