@@ -442,7 +442,7 @@
 
 	    	function fetchDataErrorHandler(response, tryCountdown, retryFunction) {
 	      		console.log("Error:")
-	      		console.log(response.data);
+	      		console.log(response.rc);
 	      		if (response.rc == 504) {
 	      			if (tryCountdown > 0) {
 		      			retryFunction();
