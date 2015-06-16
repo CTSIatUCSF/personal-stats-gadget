@@ -462,13 +462,15 @@
 				 		aggregatedByDomainLastYear = aggregateDataByDomain(data.rows, dateOneYearAgo().yyyymmdd());
 		      			aggregatedByDomainLastMonth = aggregateDataByDomain(data.rows, dateThirtyDaysAgo().yyyymmdd());
 		      			
-		      			showVisitorCountStats();
-						drawColumnChart(aggregatedByMonthLastYear);
-
-		      			showViewsByCity(aggregatedByCityLastMonth, "geo-list", 10);
-		      			showViewsByDomain(aggregatedByDomainLastMonth, "domain-list", 10);
-				        callback();
-
+						drawColumnChart(aggregatedByMonthLastYear, function() {
+			      			showVisitorCountStats( function () {
+				      			showViewsByCity(aggregatedByCityLastMonth, "geo-list", 10, function () {
+				      				showViewsByDomain(aggregatedByDomainLastMonth, "domain-list", 10, function () {
+				      					callback();
+				      				});
+				      			});
+			      			});
+						});
 		          	} else {
 			      		console.log("Error:")
 			      		console.log(response.data);
@@ -568,7 +570,7 @@
 			 	return thirtyDaysAgo;
 	    	}
 
-		    function drawColumnChart(data) {
+		    function drawColumnChart(data, callback) {
 				console.log("drawColumnChart called")
 			
 		        // Create the data table.
@@ -586,6 +588,7 @@
 		        // Instantiate and draw our chart, passing in some options.
 		        var chart = new google.visualization.ColumnChart(document.getElementById('chart_container'));
 		        chart.draw(data_table, options);
+		        callback()
 	      	}
 
 		    function drawGeoChart_World(data) {
@@ -688,7 +691,7 @@
 				}
 			}
 	  
-		  	function showVisitorCountStats() {
+		  	function showVisitorCountStats(callback) {
 			  	var viewerFirstName, firstNameToDisplay;
 			  	
 			  	viewerFirstName = viewerData[FOAF("firstName")];
@@ -719,9 +722,10 @@
 			
 				var vccAllTimeSince = document.getElementById("view_count_all_time_since");
 				vccAllTimeSince.innerHTML = "Since " + vccAllTimeCount.start + "*";
+				callback();
 		  	}
 
-		  	function showViewsByCity(data, tableToUpdateID, onlyShowN) {
+		  	function showViewsByCity(data, tableToUpdateID, onlyShowN, callback) {
 		  		var dataToShow, index, item, countryName, countryCode, regionName, cityName, geoString, count;
 
 		  		$("#" + tableToUpdateID + " tr").remove(); //Remove any existing rows before adding new ones
@@ -760,6 +764,7 @@
 		  		$("#" + tableToUpdateID + " tr").addClass("panel-list-row"); 					//Add CSS class to the table rows
 			    $("#" + tableToUpdateID + " tr td:first-child").addClass("panel-list-image"); 	//Add CSS class to the first item in each row
 				$("#" + tableToUpdateID + " tr td:last-child").addClass("panel-list-count");  	//Add CSS class to the last item in each row
+				callback();
 		  	}
 
 		  	function showViewsByDomain(data, tableToUpdateID, onlyShowN) {
