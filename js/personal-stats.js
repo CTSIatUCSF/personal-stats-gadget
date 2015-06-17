@@ -303,6 +303,12 @@ personalStats.gaRequestParams = function gaRequestParams() {
 }
 
 personalStats.gaBaseQuery = function gaBaseQuery(pagePath) {
+	var viewerId = personalStats.getViewerId();
+	var pagePath = encodeURIComponent("=~/" + viewerId);
+
+	var earliest_start_date = "2009-12-01"
+	var today = new Date().yyyy_mm_dd();
+
 	var query =  {
 		'ids': 'ga:23439892',
     	'metrics': 'ga:uniquePageviews',
@@ -327,13 +333,8 @@ personalStats.convertToQueryString = function convertToQueryString(queryObject) 
 }
 
 personalStats.fetchData = function fetchData(tryCountdown, callback) {
-	var viewerId = personalStats.getViewerId();
-	var pagePath = encodeURIComponent("=~/" + viewerId);
-
-	var earliest_start_date = "2009-12-01"
-	var today = new Date().yyyy_mm_dd();
-
-	var query =  personalStats.gaBaseQuery(pagePath);
+	
+	var query =  personalStats.gaBaseQuery();
 	query.dimensions = "ga:date,ga:country,ga:region,ga:city,ga:networkLocation";
 
 	var query_string = personalStats.convertToQueryString(query);
@@ -357,13 +358,8 @@ personalStats.fetchData = function fetchData(tryCountdown, callback) {
 }
 
 personalStats.fetchPagePathData = function fetchPagePathData(tryCountdown, callback) {
-	var viewerId = personalStats.getViewerId();
-	var pagePath = encodeURIComponent("=~/" + viewerId);
 
-	var earliest_start_date = "2009-12-01"
-	var today = new Date().yyyy_mm_dd();
-
-	var query =  personalStats.gaBaseQuery(pagePath);
+	var query =  personalStats.gaBaseQuery();
 	query.dimensions = "ga:date,ga:pagePathLevel1,ga:landingPagePath,ga:secondPagePath,ga:exitPagePath,ga:previousPagePath,ga:nextPagePath";
 
 	var query_string = personalStats.convertToQueryString(query);
