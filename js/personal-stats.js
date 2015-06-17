@@ -809,11 +809,6 @@ personalStats.showOverlay = function showOverlay(whichoverlay){
 personalStats.closeOverlay = function closeOverlay(){
     $('.overlay-bg, .overlay-content').hide(); //hide the overlay
 }
-	  
-// hide overlay when user clicks on close button or if user clicks anywhere outside the container
-$('.close-btn, .overlay-bg').click(function(){
-    personalStats.closeOverlay();
-});
 
 // hide the overlay when user presses the esc key
 $(document).keyup(function(e) {

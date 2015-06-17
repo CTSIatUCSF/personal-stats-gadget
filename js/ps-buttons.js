@@ -1,7 +1,7 @@
 window.personalStats  = window.personalStats || {};
 personalStats.buttons = personalStats.buttons || {};
 
-personalStats.buttons.setButtonVariables = function() {
+personalStats.buttons.setButtonVariables = function setButtonVariables() {
 
     personalStats.buttons.geoToggle                 = $(".geo.date-toggle .toggle-btn input[type=radio]");
     personalStats.buttons.geoMonthButton            = personalStats.buttons.geoToggle.first();
@@ -17,18 +17,18 @@ personalStats.buttons.setButtonVariables = function() {
     personalStats.buttons.geoSeeAllButton           = $(".geo.show-all.toggle-btn");
     personalStats.buttons.domainSeeAllButton        = $(".domain.show-all.toggle-btn");
     personalStats.buttons.relatedPeopleSeeAllButton = $(".related-people.show-all.toggle-btn");
+    personalStats.buttons.overlayCloseButtons       = $('.close-btn, .overlay-bg');
 }
 
-personalStats.buttons.toggleButtonActive = function($button) {
+personalStats.buttons.toggleButtonActive = function toggleButtonActive($button) {
     if($button.parent().hasClass("success")) {
         return true;
     }
     return false;
 }
 
-personalStats.buttons.setupToggleButtons = function() {
-    console.log("setup toggle buttons");
-
+personalStats.buttons.setupToggleButtons = function setupToggleButtons() {
+    
     personalStats.buttons.setButtonVariables();
 
     $(".toggle-btn input[type=radio]").addClass("visuallyhidden"); // hide the radio button circle on all buttons
@@ -66,8 +66,7 @@ personalStats.buttons.setupToggleButtons = function() {
     personalStats.buttons.domainMonthButton.parent().addClass("success");
 }
 
-personalStats.buttons.setupMapButtons = function() {
-    console.log("setup map buttons");
+personalStats.buttons.setupMapButtons = function setupMapButtons() {
 
     personalStats.buttons.setButtonVariables();
 
@@ -92,8 +91,7 @@ personalStats.buttons.setupMapButtons = function() {
     });
 }
 
-personalStats.buttons.setupSeeAllButtons = function() {
-    console.log("setup see all buttons");
+personalStats.buttons.setupSeeAllButtons = function setupSeeAllButtons() {
 
     personalStats.buttons.setButtonVariables();
 
@@ -124,5 +122,15 @@ personalStats.buttons.setupSeeAllButtons = function() {
         personalStats.gadgetEventTrack("related_people_see_all");
         personalStats.showRelatedPeople(personalStats.aggregatedByAlsoViewed, "related-people-list-all");
         personalStats.showOverlay("related-people-list");
+    });
+}
+
+personalStats.buttons.setupOverlayCloseButtons = function setupOverlayCloseButtons() {
+  
+    personalStats.buttons.setButtonVariables();
+
+    // hide overlay when user clicks on close button or if user clicks anywhere outside the container
+    personalStats.buttons.overlayCloseButtons.click(function(){
+        personalStats.closeOverlay();
     });
 }

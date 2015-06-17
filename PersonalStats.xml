@@ -229,6 +229,7 @@
 	        personalStats.buttons.setupToggleButtons();
 	        personalStats.buttons.setupMapButtons();
 	        personalStats.buttons.setupSeeAllButtons();
+	        personalStats.buttons.setupOverlayCloseButtons();
 		
 			function init() {
 
