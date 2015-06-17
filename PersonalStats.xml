@@ -62,8 +62,7 @@
         <link rel="stylesheet" href="css/personal-stats.css" type="text/css" />
         <link rel="stylesheet" href="css/overlay.css" type="text/css" />
 
-        <!-- <script type="text/javascript" src="js/jquery.blockUI-2.66.0.js"></script> -->
-		<script type="text/javascript" src="https://www.google.com/jsapi"></script> <!--Load the Google AJAX API-->
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script> <!--Load the Google AJAX API-->
         <script type="text/javascript" src="js/personal-stats.js"></script>
         <script type="text/javascript" src="js/personal-stats-buttons.js"></script>
         <script type="text/javascript" src="js/personal-stats-calc.js"></script>
@@ -245,7 +244,7 @@
 					        personalStats.populateInstructionsPanel();
 					  		personalStats.ga.fetchData( 5, function () {
 					  			personalStats.ga.fetchPagePathData( 5, function () {
-					  				console.log("v6");
+					  				console.log("v7");
 					  			});
 					  		});
 						});
