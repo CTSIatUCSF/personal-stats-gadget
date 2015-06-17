@@ -77,3 +77,5 @@ personalStats.util.convertDateToYearMonthString = function convertDateToYearMont
  	var date_string = date.getFullYear() + month_numbers[date.getMonth()];
  	return date_string;
 }
+
+//====================================================================================
