@@ -527,7 +527,7 @@ personalStats.aggregateDataByCity = function aggregateDataByCity(data, dateStart
 	    return b[3]-a[3]
 	});
 
-	fixCountryNames(arrayToReturn);
+	personalStats.fixCountryNames(arrayToReturn);
 
 	return arrayToReturn;
 }
@@ -612,7 +612,7 @@ personalStats.aggregateDataByCountry = function aggregateDataByCountry(data, dat
 	    return b[1]-a[1]
 	});
 
-	fixCountryNames(arrayToReturn);
+	personalStats.fixCountryNames(arrayToReturn);
 
 	return arrayToReturn;
 }
