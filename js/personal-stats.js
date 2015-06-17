@@ -49,7 +49,7 @@ personalStats.showVisitorCountStats = function showVisitorCountStats() {
 
 	var allTime 			= personalStats.calc.calculateViewCountAllTime(personalStats.aggregatedByMonthAll);
 	allTime.count 			= allTime.count.toLocaleString(); // adds thousands separators
-	$("#view_count_all_time").append(allTime);
+	$("#view_count_all_time").append(allTime.count);
 	$("#view_count_all_time_since").append("Since " + allTime.start + "*");
 }
 
