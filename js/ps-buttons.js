@@ -44,21 +44,21 @@ personalStats.buttons.setupToggleButtons = function() {
     // setup click events
     personalStats.buttons.geoToggle.first().click(function() {
         personalStats.gadgetEventTrack("country_toggle");
-        showViewsByCity(aggregatedByCityLastMonth, "geo-list", personalStats.onlyShow);
+        personalStats.showViewsByCity(aggregatedByCityLastMonth, "geo-list", personalStats.onlyShow);
     });
 
     personalStats.buttons.geoToggle.last().click(function() {
         personalStats.gadgetEventTrack("country_toggle");
-        showViewsByCity(aggregatedByCityLastYear, "geo-list", personalStats.onlyShow);
+        personalStats.showViewsByCity(aggregatedByCityLastYear, "geo-list", personalStats.onlyShow);
     });
     personalStats.buttons.domainMonthButton.click(function() {
         personalStats.gadgetEventTrack("domain_toggle");
-        showViewsByDomain(aggregatedByDomainLastMonth, "domain-list", personalStats.onlyShow);
+        personalStats.showViewsByDomain(aggregatedByDomainLastMonth, "domain-list", personalStats.onlyShow);
     });
 
     personalStats.buttons.domainYearButton.click(function() {
         personalStats.gadgetEventTrack("domain_toggle");
-        showViewsByDomain(aggregatedByDomainLastYear, "domain-list", personalStats.onlyShow);
+        personalStats.showViewsByDomain(aggregatedByDomainLastYear, "domain-list", personalStats.onlyShow);
     });
 
     // Turn on the first toggle button for each panel
@@ -74,21 +74,21 @@ personalStats.buttons.setupMapButtons = function() {
     personalStats.buttons.mapWorldButton.click(function() {
         personalStats.gadgetEventTrack("map_world");
         if (personalStats.buttons.toggleButtonActive(personalStats.buttons.geoMonthButton)) {
-            drawGeoChart_World(aggregatedByCountryLastMonth);
+            personalStats.drawGeoChart_World(aggregatedByCountryLastMonth);
         } else {
-            drawGeoChart_World(aggregatedByCountryLastYear);
+            personalStats.drawGeoChart_World(aggregatedByCountryLastYear);
         }
-        showOverlay("map-world");
+        personalStats.showOverlay("map-world");
     });
 
     personalStats.buttons.mapUsaButton.click(function() {
         personalStats.gadgetEventTrack("map_usa");
         if (personalStats.buttons.toggleButtonActive(personalStats.buttons.geoMonthButton)) {
-            drawGeoChart_USA(aggregatedByStateLastMonth);
+            personalStats.drawGeoChart_USA(aggregatedByStateLastMonth);
         } else {
-            drawGeoChart_USA(aggregatedByStateLastYear);
+            personalStats.drawGeoChart_USA(aggregatedByStateLastYear);
         }
-        showOverlay("map-usa");
+        personalStats.showOverlay("map-usa");
     });
 }
 
@@ -101,28 +101,28 @@ personalStats.buttons.setupSeeAllButtons = function() {
     personalStats.buttons.geoSeeAllButton.click(function() {
         personalStats.gadgetEventTrack("country_see_all");
         if (personalStats.buttons.toggleButtonActive(personalStats.buttons.geoMonthButton)) {
-            showViewsByCity(aggregatedByCityLastMonth, "geo-list-all");
+            personalStats.showViewsByCity(aggregatedByCityLastMonth, "geo-list-all");
         } else {
-            showViewsByCity(aggregatedByCityLastYear, "geo-list-all");
+            personalStats.showViewsByCity(aggregatedByCityLastYear, "geo-list-all");
         }
-        showOverlay("geo-list");
+        personalStats.showOverlay("geo-list");
     });
 
     // See All (domain) button shows all for Month or Year (based on current selection)
     personalStats.buttons.domainSeeAllButton.click(function() {
-        gadgetEventTrack("domain_see_all");
+        personalStats.gadgetEventTrack("domain_see_all");
         if (personalStats.buttons.toggleButtonActive(personalStats.buttons.domainMonthButton)) {
-            showViewsByDomain(aggregatedByDomainLastMonth, "domain-list-all");
+            personalStats.showViewsByDomain(aggregatedByDomainLastMonth, "domain-list-all");
         } else {
-            showViewsByDomain(aggregatedByDomainLastYear, "domain-list-all");
+            personalStats.showViewsByDomain(aggregatedByDomainLastYear, "domain-list-all");
         }
-        showOverlay("domain-list");
+        personalStats.showOverlay("domain-list");
     });
 
     // See All (related people) button shows all
     personalStats.buttons.relatedPeopleSeeAllButton.click(function() {
-        gadgetEventTrack("related_people_see_all");
-        showRelatedPeople(aggregatedByAlsoViewed, "related-people-list-all");
-        showOverlay("related-people-list");
+        personalStats.gadgetEventTrack("related_people_see_all");
+        personalStats.showRelatedPeople(aggregatedByAlsoViewed, "related-people-list-all");
+        personalStats.showOverlay("related-people-list");
     });
 }
