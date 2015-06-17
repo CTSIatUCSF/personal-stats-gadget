@@ -43,21 +43,21 @@ personalStats.buttons.setupToggleButtons = function() {
 
     // setup click events
     personalStats.buttons.geoToggle.first().click(function() {
-        gadgetEventTrack("country_toggle");
+        personalStats.gadgetEventTrack("country_toggle");
         showViewsByCity(aggregatedByCityLastMonth, "geo-list", personalStats.onlyShow);
     });
 
     personalStats.buttons.geoToggle.last().click(function() {
-        gadgetEventTrack("country_toggle");
+        personalStats.gadgetEventTrack("country_toggle");
         showViewsByCity(aggregatedByCityLastYear, "geo-list", personalStats.onlyShow);
     });
     personalStats.buttons.domainMonthButton.click(function() {
-        gadgetEventTrack("domain_toggle");
+        personalStats.gadgetEventTrack("domain_toggle");
         showViewsByDomain(aggregatedByDomainLastMonth, "domain-list", personalStats.onlyShow);
     });
 
     personalStats.buttons.domainYearButton.click(function() {
-        gadgetEventTrack("domain_toggle");
+        personalStats.gadgetEventTrack("domain_toggle");
         showViewsByDomain(aggregatedByDomainLastYear, "domain-list", personalStats.onlyShow);
     });
 
@@ -72,7 +72,7 @@ personalStats.buttons.setupMapButtons = function() {
     personalStats.buttons.setButtonVariables();
 
     personalStats.buttons.mapWorldButton.click(function() {
-        gadgetEventTrack("map_world");
+        personalStats.gadgetEventTrack("map_world");
         if (personalStats.buttons.toggleButtonActive(personalStats.buttons.geoMonthButton)) {
             drawGeoChart_World(aggregatedByCountryLastMonth);
         } else {
@@ -82,7 +82,7 @@ personalStats.buttons.setupMapButtons = function() {
     });
 
     personalStats.buttons.mapUsaButton.click(function() {
-        gadgetEventTrack("map_usa");
+        personalStats.gadgetEventTrack("map_usa");
         if (personalStats.buttons.toggleButtonActive(personalStats.buttons.geoMonthButton)) {
             drawGeoChart_USA(aggregatedByStateLastMonth);
         } else {
@@ -99,7 +99,7 @@ personalStats.buttons.setupSeeAllButtons = function() {
 
     // See All (geo) button shows all for Month or Year (based on current selection)
     personalStats.buttons.geoSeeAllButton.click(function() {
-        gadgetEventTrack("country_see_all");
+        personalStats.gadgetEventTrack("country_see_all");
         if (personalStats.buttons.toggleButtonActive(personalStats.buttons.geoMonthButton)) {
             showViewsByCity(aggregatedByCityLastMonth, "geo-list-all");
         } else {
