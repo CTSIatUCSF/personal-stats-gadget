@@ -327,7 +327,7 @@ personalStats.convertToQueryString = function convertToQueryString(queryObject) 
 }
 
 personalStats.fetchData = function fetchData(tryCountdown, callback) {
-	var viewerId = getViewerId();
+	var viewerId = personalStats.getViewerId();
 	var pagePath = encodeURIComponent("=~/" + viewerId);
 
 	var earliest_start_date = "2009-12-01"
@@ -357,7 +357,7 @@ personalStats.fetchData = function fetchData(tryCountdown, callback) {
 }
 
 personalStats.fetchPagePathData = function fetchPagePathData(tryCountdown, callback) {
-	var viewerId = getViewerId();
+	var viewerId = personalStats.getViewerId();
 	var pagePath = encodeURIComponent("=~/" + viewerId);
 
 	var earliest_start_date = "2009-12-01"
