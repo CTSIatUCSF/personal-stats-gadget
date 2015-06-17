@@ -241,7 +241,6 @@
 	        }
 	        // ==============================================================
 
-	        personalStats.populateInstructionsPanel(viewerData[FOAF("workplaceHomepage")]);
 	        personalStats.buttons.setupToggleButtons();
 	        personalStats.buttons.setupMapButtons();
 	        personalStats.buttons.setupSeeAllButtons();
@@ -908,7 +907,7 @@
 						//TODO: Fix this path
 						$.getJSON("http://cranestylelabs.github.io/personal-stats-gadget/countries.json", function(response){
 						    countryCodeList = response;
-					        populateInstructionsPanel();
+					        personalStats.populateInstructionsPanel(viewerData[FOAF("workplaceHomepage")]);
 					  		personalStats.fetchData( 5, function () {
 					  			personalStats.fetchPagePathData( 5, function () {
 					  				console.log("done with callbacks");
