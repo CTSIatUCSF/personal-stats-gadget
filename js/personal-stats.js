@@ -35,27 +35,27 @@ personalStats.showVisitorCountStats = function showVisitorCountStats() {
   		firstNameToDisplay = firstNameToDisplay.slice(0, -1);
   	}
 
-	var vccLastYear = document.getElementById('view_count_last_year');
-	var vccLastYearCount = calculateViewCountLastYear(aggregatedByMonthLastYear);
-	vccLastYearCount.count = vccLastYearCount.count.toLocaleString(); // adds thousands separators
-	vccLastYear.innerHTML = firstNameToDisplay + " profile has been viewed " + vccLastYearCount.count + " times since " + vccLastYearCount.start;
+	var vccLastYear 		= document.getElementById('view_count_last_year');
+	var vccLastYearCount 	= personalStats.calculateViewCountLastYear(aggregatedByMonthLastYear);
+	vccLastYearCount.count 	= vccLastYearCount.count.toLocaleString(); // adds thousands separators
+	vccLastYear.innerHTML 	= firstNameToDisplay + " profile has been viewed " + vccLastYearCount.count + " times since " + vccLastYearCount.start;
 	
-	var vccThisMonth = document.getElementById("view_count_this_month");
-	vccThisMonthCount = calculateViewCountThisMonth(aggregatedByMonthAll);
-	vccThisMonthCount = vccThisMonthCount.toLocaleString(); // adds thousands separators
-	vccThisMonth.innerHTML = vccThisMonthCount;
+	var vccThisMonth 		= document.getElementById("view_count_this_month");
+	vccThisMonthCount 		= personalStats.calculateViewCountThisMonth(aggregatedByMonthAll);
+	vccThisMonthCount 		= vccThisMonthCount.toLocaleString(); // adds thousands separators
+	vccThisMonth.innerHTML 	= vccThisMonthCount;
 
-	var vccBestMonth = document.getElementById("view_count_best_month");
-	vccBestMonthCount = calculateViewCountBestMonth(aggregatedByMonthAll);
-	vccBestMonthCount = vccBestMonthCount.toLocaleString(); // adds thousands separators
-	vccBestMonth.innerHTML = vccBestMonthCount;
+	var vccBestMonth 		= document.getElementById("view_count_best_month");
+	vccBestMonthCount 		= personalStats.calculateViewCountBestMonth(aggregatedByMonthAll);
+	vccBestMonthCount 		= vccBestMonthCount.toLocaleString(); // adds thousands separators
+	vccBestMonth.innerHTML 	= vccBestMonthCount;
 
-	var vccAllTime = document.getElementById("view_count_all_time");
-	vccAllTimeCount = calculateViewCountAllTime(aggregatedByMonthAll);
-	vccAllTimeCount.count = vccAllTimeCount.count.toLocaleString(); // adds thousands separators
-	vccAllTime.innerHTML = vccAllTimeCount.count;
+	var vccAllTime 			= document.getElementById("view_count_all_time");
+	vccAllTimeCount 		= personalStats.calculateViewCountAllTime(aggregatedByMonthAll);
+	vccAllTimeCount.count 	= vccAllTimeCount.count.toLocaleString(); // adds thousands separators
+	vccAllTime.innerHTML 	= vccAllTimeCount.count;
 
-	var vccAllTimeSince = document.getElementById("view_count_all_time_since");
+	var vccAllTimeSince 	= document.getElementById("view_count_all_time_since");
 	vccAllTimeSince.innerHTML = "Since " + vccAllTimeCount.start + "*";
 }
 
