@@ -6,6 +6,11 @@ buttons.countryToggle      = $(".geo.date-toggle .toggle-btn input[type=radio]")
 buttons.countryMonthButton = buttons.countryToggle.first();
 buttons.countryYearButton  = buttons.countryToggle.last();
 
+console.log(personalStats.buttons.countryMonthButton);
+console.log(buttons.countryMonthButton);
+console.log(personalStats.buttons.countryYearButton);
+console.log(buttons.countryYearButton);
+
 personalStats.buttons.setupToggleButtons = function() {
     console.log("setup toggle buttons");
 
