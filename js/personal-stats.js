@@ -36,22 +36,22 @@ personalStats.showVisitorCountStats = function showVisitorCountStats() {
   	}
 
 	var vccLastYear 		= document.getElementById('view_count_last_year');
-	var vccLastYearCount 	= personalStats.calculateViewCountLastYear(aggregatedByMonthLastYear);
+	var vccLastYearCount 	= personalStats.calculateViewCountLastYear(personalStats.aggregatedByMonthLastYear);
 	vccLastYearCount.count 	= vccLastYearCount.count.toLocaleString(); // adds thousands separators
 	vccLastYear.innerHTML 	= firstNameToDisplay + " profile has been viewed " + vccLastYearCount.count + " times since " + vccLastYearCount.start;
 	
 	var vccThisMonth 		= document.getElementById("view_count_this_month");
-	vccThisMonthCount 		= personalStats.calculateViewCountThisMonth(aggregatedByMonthAll);
+	vccThisMonthCount 		= personalStats.calculateViewCountThisMonth(personalStats.aggregatedByMonthAll);
 	vccThisMonthCount 		= vccThisMonthCount.toLocaleString(); // adds thousands separators
 	vccThisMonth.innerHTML 	= vccThisMonthCount;
 
 	var vccBestMonth 		= document.getElementById("view_count_best_month");
-	vccBestMonthCount 		= personalStats.calculateViewCountBestMonth(aggregatedByMonthAll);
+	vccBestMonthCount 		= personalStats.calculateViewCountBestMonth(personalStats.aggregatedByMonthAll);
 	vccBestMonthCount 		= vccBestMonthCount.toLocaleString(); // adds thousands separators
 	vccBestMonth.innerHTML 	= vccBestMonthCount;
 
 	var vccAllTime 			= document.getElementById("view_count_all_time");
-	vccAllTimeCount 		= personalStats.calculateViewCountAllTime(aggregatedByMonthAll);
+	vccAllTimeCount 		= personalStats.calculateViewCountAllTime(personalStats.aggregatedByMonthAll);
 	vccAllTimeCount.count 	= vccAllTimeCount.count.toLocaleString(); // adds thousands separators
 	vccAllTime.innerHTML 	= vccAllTimeCount.count;
 
