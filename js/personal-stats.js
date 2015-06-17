@@ -188,7 +188,7 @@ personalStats.fetchDataSuccessHandler = function fetchDataSuccessHandler(respons
 		personalStats.aggregatedByDomainLastYear 	= personalStats.aggregateDataByDomain(data.rows, 	personalStats.dateOneYearAgo().yyyymmdd());
 		personalStats.aggregatedByDomainLastMonth 	= personalStats.aggregateDataByDomain(data.rows, 	personalStats.dateThirtyDaysAgo().yyyymmdd());
 		
-		personalStats.drawColumnChart(aggregatedByMonthLastYear);
+		personalStats.drawColumnChart(personalStats.aggregatedByMonthLastYear);
 		personalStats.showVisitorCountStats();
 
 		personalStats.showViewsByCity(personalStats.aggregatedByCityLastMonth, "geo-list", 10);
