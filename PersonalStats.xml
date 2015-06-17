@@ -20,7 +20,7 @@
     
         <!-- #includes -->
         <link rel="stylesheet" href="css/gadget.css" type="text/css" media="screen, projection" >
-        <!-- <link rel="stylesheet" href="css/inst.css" type="text/css" media="screen, projection" > -->
+        <link rel="stylesheet" href="css/inst.css" type="text/css" media="screen, projection" >
         <!-- <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css" media="screen, projection" > -->
 	    <script type="text/javascript" src="js/os.js" ></script>
 	    <script type="text/javascript" src="js/ontology.js" ></script>
@@ -60,7 +60,7 @@
 	</Content>
 	<Content type="html" view="canvas" preferred_height="870" preferred_width="940"><![CDATA[<!--HTML-->
     <!DOCTYPE html>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
         <link rel="stylesheet" href="css/personal-stats.css" type="text/css" />
 	    <link type="text/css" rel="stylesheet" href="css/overlay.css" />
         <script type="text/javascript" src="js/jquery.blockUI-2.66.0.js"></script>
