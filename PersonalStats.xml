@@ -246,7 +246,7 @@
 					        personalStats.populateInstructionsPanel();
 					  		personalStats.ga.fetchData( 5, function () {
 					  			personalStats.ga.fetchPagePathData( 5, function () {
-					  				console.log("done with callbacks");
+					  				console.log("v1");
 					  			});
 					  		});
 						});
