@@ -837,7 +837,7 @@ personalStats.getViewerId = function getViewerId() {
 	return viewerId;
 }
 
-personalStats.getHostname function getHostname() {
+personalStats.getHostname = function getHostname() {
 	var viewerHomepage = personalStats.viewerData[FOAF("workplaceHomepage")];
 	var hostname = viewerHomepage.replace(getViewerId(), "").slice(7, -1);
 	return hostname;
