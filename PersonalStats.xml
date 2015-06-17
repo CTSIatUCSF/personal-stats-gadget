@@ -19,7 +19,7 @@
     <!DOCTYPE html>
     
         <!-- #includes -->
-        <!-- <link rel="stylesheet" href="css/gadget.css" type="text/css" media="screen, projection" > -->
+        <link rel="stylesheet" href="css/gadget.css" type="text/css" media="screen, projection" >
         <!-- <link rel="stylesheet" href="css/inst.css" type="text/css" media="screen, projection" > -->
         <!-- <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css" media="screen, projection" > -->
 	    <script type="text/javascript" src="js/os.js" ></script>
