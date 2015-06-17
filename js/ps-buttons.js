@@ -1,15 +1,12 @@
 window.personalStats  = window.personalStats || {};
 personalStats.buttons = personalStats.buttons || {};
-buttons = personalStats.buttons;
 
-buttons.countryToggle      = $(".geo.date-toggle .toggle-btn input[type=radio]");
-buttons.countryMonthButton = buttons.countryToggle.first();
-buttons.countryYearButton  = buttons.countryToggle.last();
+personalStats.buttons.countryToggle      = $(".geo.date-toggle .toggle-btn input[type=radio]");
+personalStats.buttons.countryMonthButton = personalStats.buttons.countryToggle.first();
+personalStats.buttons.countryYearButton  = personalStats.buttons.countryToggle.last();
 
 console.log(personalStats.buttons.countryMonthButton);
-console.log(buttons.countryMonthButton);
 console.log(personalStats.buttons.countryYearButton);
-console.log(buttons.countryYearButton);
 
 personalStats.buttons.setupToggleButtons = function() {
     console.log("setup toggle buttons");
@@ -24,12 +21,12 @@ personalStats.buttons.setupToggleButtons = function() {
         }
     });
 
-    buttons.countryMonthButton.click(function() {
+    personalStats.buttons.countryMonthButton.click(function() {
         gadgetEventTrack("country_toggle");
         showViewsByCity(aggregatedByCityLastMonth, "geo-list", onlyShow);
     });
 
-    buttons.countryYearButton.click(function() {
+    personalStats.buttons.countryYearButton.click(function() {
         gadgetEventTrack("country_toggle");
         showViewsByCity(aggregatedByCityLastYear, "geo-list", onlyShow);
     });
