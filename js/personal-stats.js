@@ -39,23 +39,18 @@ personalStats.showVisitorCountStats = function showVisitorCountStats() {
 	lastYear.count 	= lastYear.count.toLocaleString(); // adds thousands separators
 	$("#view_count_last_year").append(firstNameToDisplay + " profile has been viewed " + lastYear.count + " times since " + lastYear.start);
 	
-	var vcThisMonth 		= document.getElementById("view_count_this_month");
-	vcThisMonthCount 		= personalStats.calc.calculateViewCountThisMonth(personalStats.aggregatedByMonthAll);
-	vcThisMonthCount 		= vcThisMonthCount.toLocaleString(); // adds thousands separators
-	vcThisMonth.innerHTML 	= vcThisMonthCount;
+	var thisMonth 	= personalStats.calc.calculateViewCountThisMonth(personalStats.aggregatedByMonthAll);
+	thisMonth 		= thisMonth.toLocaleString(); // adds thousands separators
+	$("#view_count_this_month").append(thisMonth);
 
-	var vcBestMonth 		= document.getElementById("view_count_best_month");
-	vcBestMonthCount 		= personalStats.calc.calculateViewCountBestMonth(personalStats.aggregatedByMonthAll);
-	vcBestMonthCount 		= vcBestMonthCount.toLocaleString(); // adds thousands separators
-	vcBestMonth.innerHTML 	= vcBestMonthCount;
+	var bestMonth 		= personalStats.calc.calculateViewCountBestMonth(personalStats.aggregatedByMonthAll);
+	bestMonth 			= bestMonth.toLocaleString(); // adds thousands separators
+	$("#view_count_best_month").append(bestMonth);
 
-	var vcAllTime 			= document.getElementById("view_count_all_time");
-	vcAllTimeCount 			= personalStats.calc.calculateViewCountAllTime(personalStats.aggregatedByMonthAll);
-	vcAllTimeCount.count 	= vcAllTimeCount.count.toLocaleString(); // adds thousands separators
-	vcAllTime.innerHTML 	= vcAllTimeCount.count;
-
-	var vcAllTimeSince 		= document.getElementById("view_count_all_time_since");
-	vcAllTimeSince.innerHTML = "Since " + vcAllTimeCount.start + "*";
+	var allTime 			= personalStats.calc.calculateViewCountAllTime(personalStats.aggregatedByMonthAll);
+	allTime.count 			= allTime.count.toLocaleString(); // adds thousands separators
+	$("#view_count_all_time").append(allTime);
+	$("#view_count_all_time_since").append("Since " + allTime.start + "*");
 }
 
 personalStats.showViewsByCity = function showViewsByCity(data, tableToUpdateID, onlyShowN) {
