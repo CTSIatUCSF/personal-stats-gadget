@@ -1,12 +1,31 @@
 window.personalStats  = window.personalStats || {};
 personalStats.buttons = personalStats.buttons || {};
 
+personalStats.buttons.setButtonVariables = function() {
+
+    personalStats.buttons.geoToggle         = $(".geo.date-toggle .toggle-btn input[type=radio]");
+    personalStats.buttons.geoMonthButton    = personalStats.buttons.geoToggle.first();
+    personalStats.buttons.geoYearButton     = personalStats.buttons.geoToggle.last();
+
+    personalStats.buttons.domainToggle      = $(".domain.date-toggle .toggle-btn input[type=radio]");
+    personalStats.buttons.domainMonthButton = personalStats.buttons.domainToggle.first();
+    personalStats.buttons.domainYearButton  = personalStats.buttons.domainToggle.last();
+
+    personalStats.buttons.mapWorldButton    = $("#map-world");
+    personalStats.buttons.mapUsaButton      = $("#map-usa");
+}
+
+personalStats.buttons.toggleButtonActive = function($button) {
+    if($button.parent().hasClass("success")) {
+        return true;
+    }
+    return false;
+}
+
 personalStats.buttons.setupToggleButtons = function() {
     console.log("setup toggle buttons");
 
-    personalStats.buttons.countryToggle      = $(".geo.date-toggle .toggle-btn input[type=radio]");
-    personalStats.buttons.countryMonthButton = personalStats.buttons.countryToggle.first();
-    personalStats.buttons.countryYearButton  = personalStats.buttons.countryToggle.last();
+    personalStats.buttons.setButtonVariables();
 
     $(".toggle-btn input[type=radio]").addClass("visuallyhidden"); // hide the radio button circle on all buttons
 
@@ -18,36 +37,39 @@ personalStats.buttons.setupToggleButtons = function() {
         }
     });
 
-    personalStats.buttons.countryToggle.first().click(function() {
+    // setup click events
+    personalStats.buttons.geoToggle.first().click(function() {
         gadgetEventTrack("country_toggle");
         showViewsByCity(aggregatedByCityLastMonth, "geo-list", onlyShow);
     });
 
-    personalStats.buttons.countryToggle.last().click(function() {
+    personalStats.buttons.geoToggle.last().click(function() {
         gadgetEventTrack("country_toggle");
         showViewsByCity(aggregatedByCityLastYear, "geo-list", onlyShow);
     });
-    $(".domain.date-toggle .toggle-btn input[type=radio]").first().click(function() {
+    personalStats.buttons.domainMonthButton.click(function() {
         gadgetEventTrack("domain_toggle");
         showViewsByDomain(aggregatedByDomainLastMonth, "domain-list", onlyShow);
     });
 
-    $(".domain.date-toggle .toggle-btn input[type=radio]").last().click(function() {
+    personalStats.buttons.domainYearButton.click(function() {
         gadgetEventTrack("domain_toggle");
         showViewsByDomain(aggregatedByDomainLastYear, "domain-list", onlyShow);
     });
 
     // Turn on the first toggle button for each panel
-    $(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
-    $(".domain.date-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
+    personalStats.buttons.geoMonthButton.parent().addClass("success");
+    personalStats.buttons.domainMonthButton.parent().addClass("success");
 }
 
 personalStats.buttons.setupMapButtons = function() {
     console.log("setup map buttons");
 
-    $("#map-world").click(function() {
+    personalStats.buttons.setButtonVariables();
+
+    personalStats.buttons.mapWorldButton.click(function() {
         gadgetEventTrack("map_world");
-        if ($(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+        if (personalStats.buttons.toggleButtonActive(geoMonthButton) {
             drawGeoChart_World(aggregatedByCountryLastMonth);
         } else {
             drawGeoChart_World(aggregatedByCountryLastYear);
@@ -55,9 +77,9 @@ personalStats.buttons.setupMapButtons = function() {
         showOverlay("map-world");
     });
 
-    $("#map-usa").click(function() {
+    personalStats.buttons.mapUsaButton.click(function() {
         gadgetEventTrack("map_usa");
-        if ($(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+        if (personalStats.buttons.toggleButtonActive(geoMonthButton) {
             drawGeoChart_USA(aggregatedByStateLastMonth);
         } else {
             drawGeoChart_USA(aggregatedByStateLastYear);
