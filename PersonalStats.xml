@@ -66,7 +66,8 @@
         <script type="text/javascript" src="js/jquery.blockUI-2.66.0.js"></script>
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script> <!--Load the Google AJAX API-->
         <script type="text/javascript" src="js/personal-stats.js"></script>
-        <script type="text/javascript" src="js/ps-buttons.js"></script>
+        <script type="text/javascript" src="js/personal-stats-buttons.js"></script>
+        <script type="text/javascript" src="js/personal-stats-ga.js"></script>
     
 	    <div class="gadget-content">
     		<div id="loading"</div>
