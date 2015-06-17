@@ -144,7 +144,7 @@ personalStats.showViewsByDomain = function showViewsByDomain(data, tableToUpdate
 
 personalStats.showRelatedPeople = function showRelatedPeople(data, divToUpdateID, onlyShowN) {
 	var dataToShow, index, item, link, count;
-	var hostname = personalStats>getHostname();
+	var hostname = personalStats.getHostname();
 
 	$("#" + divToUpdateID + " div").remove(); //Remove any existing rows before adding new ones
 
