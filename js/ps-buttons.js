@@ -69,7 +69,7 @@ personalStats.buttons.setupMapButtons = function() {
 
     personalStats.buttons.mapWorldButton.click(function() {
         gadgetEventTrack("map_world");
-        if (personalStats.buttons.toggleButtonActive(geoMonthButton) {
+        if (personalStats.buttons.toggleButtonActive(geoMonthButton)) {
             drawGeoChart_World(aggregatedByCountryLastMonth);
         } else {
             drawGeoChart_World(aggregatedByCountryLastYear);
@@ -79,7 +79,7 @@ personalStats.buttons.setupMapButtons = function() {
 
     personalStats.buttons.mapUsaButton.click(function() {
         gadgetEventTrack("map_usa");
-        if (personalStats.buttons.toggleButtonActive(geoMonthButton) {
+        if (personalStats.buttons.toggleButtonActive(geoMonthButton)) {
             drawGeoChart_USA(aggregatedByStateLastMonth);
         } else {
             drawGeoChart_USA(aggregatedByStateLastYear);
