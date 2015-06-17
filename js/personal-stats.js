@@ -302,7 +302,7 @@ personalStats.gaRequestParams = function gaRequestParams() {
     return params;
 }
 
-personalStats.gaBaseQuery = function gaBaseQuery() {
+personalStats.gaBaseQuery = function gaBaseQuery(pagePath) {
 	var query =  {
 		'ids': 'ga:23439892',
     	'metrics': 'ga:uniquePageviews',
@@ -333,7 +333,7 @@ personalStats.fetchData = function fetchData(tryCountdown, callback) {
 	var earliest_start_date = "2009-12-01"
 	var today = new Date().yyyy_mm_dd();
 
-	var query =  personalStats.gaBaseQuery();
+	var query =  personalStats.gaBaseQuery(pagePath);
 	query.dimensions = "ga:date,ga:country,ga:region,ga:city,ga:networkLocation";
 
 	var query_string = personalStats.convertToQueryString(query);
@@ -363,7 +363,7 @@ personalStats.fetchPagePathData = function fetchPagePathData(tryCountdown, callb
 	var earliest_start_date = "2009-12-01"
 	var today = new Date().yyyy_mm_dd();
 
-	var query =  personalStats.gaBaseQuery();
+	var query =  personalStats.gaBaseQuery(pagePath);
 	query.dimensions = "ga:date,ga:pagePathLevel1,ga:landingPagePath,ga:secondPagePath,ga:exitPagePath,ga:previousPagePath,ga:nextPagePath";
 
 	var query_string = personalStats.convertToQueryString(query);
