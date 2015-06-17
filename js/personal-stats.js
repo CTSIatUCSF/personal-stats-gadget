@@ -35,28 +35,27 @@ personalStats.showVisitorCountStats = function showVisitorCountStats() {
   		firstNameToDisplay = firstNameToDisplay.slice(0, -1);
   	}
 
-	var vccLastYear 		= document.getElementById('view_count_last_year');
-	var vccLastYearCount 	= personalStats.calc.calculateViewCountLastYear(personalStats.aggregatedByMonthLastYear);
-	vccLastYearCount.count 	= vccLastYearCount.count.toLocaleString(); // adds thousands separators
-	vccLastYear.innerHTML 	= firstNameToDisplay + " profile has been viewed " + vccLastYearCount.count + " times since " + vccLastYearCount.start;
+	var lastYear 	= personalStats.calc.calculateViewCountLastYear(personalStats.aggregatedByMonthLastYear);
+	lastYear.count 	= lastYear.count.toLocaleString(); // adds thousands separators
+	$("#view_count_last_year");.append(firstNameToDisplay + " profile has been viewed " + lastYear.count + " times since " + lastYear.start);
 	
-	var vccThisMonth 		= document.getElementById("view_count_this_month");
-	vccThisMonthCount 		= personalStats.calc.calculateViewCountThisMonth(personalStats.aggregatedByMonthAll);
-	vccThisMonthCount 		= vccThisMonthCount.toLocaleString(); // adds thousands separators
-	vccThisMonth.innerHTML 	= vccThisMonthCount;
+	var vcThisMonth 		= document.getElementById("view_count_this_month");
+	vcThisMonthCount 		= personalStats.calc.calculateViewCountThisMonth(personalStats.aggregatedByMonthAll);
+	vcThisMonthCount 		= vcThisMonthCount.toLocaleString(); // adds thousands separators
+	vcThisMonth.innerHTML 	= vcThisMonthCount;
 
-	var vccBestMonth 		= document.getElementById("view_count_best_month");
-	vccBestMonthCount 		= personalStats.calc.calculateViewCountBestMonth(personalStats.aggregatedByMonthAll);
-	vccBestMonthCount 		= vccBestMonthCount.toLocaleString(); // adds thousands separators
-	vccBestMonth.innerHTML 	= vccBestMonthCount;
+	var vcBestMonth 		= document.getElementById("view_count_best_month");
+	vcBestMonthCount 		= personalStats.calc.calculateViewCountBestMonth(personalStats.aggregatedByMonthAll);
+	vcBestMonthCount 		= vcBestMonthCount.toLocaleString(); // adds thousands separators
+	vcBestMonth.innerHTML 	= vcBestMonthCount;
 
-	var vccAllTime 			= document.getElementById("view_count_all_time");
-	vccAllTimeCount 		= personalStats.calc.calculateViewCountAllTime(personalStats.aggregatedByMonthAll);
-	vccAllTimeCount.count 	= vccAllTimeCount.count.toLocaleString(); // adds thousands separators
-	vccAllTime.innerHTML 	= vccAllTimeCount.count;
+	var vcAllTime 			= document.getElementById("view_count_all_time");
+	vcAllTimeCount 			= personalStats.calc.calculateViewCountAllTime(personalStats.aggregatedByMonthAll);
+	vcAllTimeCount.count 	= vcAllTimeCount.count.toLocaleString(); // adds thousands separators
+	vcAllTime.innerHTML 	= vcAllTimeCount.count;
 
-	var vccAllTimeSince 	= document.getElementById("view_count_all_time_since");
-	vccAllTimeSince.innerHTML = "Since " + vccAllTimeCount.start + "*";
+	var vcAllTimeSince 		= document.getElementById("view_count_all_time_since");
+	vcAllTimeSince.innerHTML = "Since " + vcAllTimeCount.start + "*";
 }
 
 personalStats.showViewsByCity = function showViewsByCity(data, tableToUpdateID, onlyShowN) {
@@ -68,10 +67,10 @@ personalStats.showViewsByCity = function showViewsByCity(data, tableToUpdateID, 
 	if (onlyShowN > 0) {
 		dataToShow = data.slice(0, onlyShowN);
 		if (data.length > dataToShow.length) {
-			$(".geo.show-all.toggle-btn").removeClass("visuallyhidden"); //Unhide the See All button 
+			personalStats.buttons.geoSeeAllButton.removeClass("visuallyhidden"); //Unhide the See All button 
 		} else {
 			dataToShow = data;
-			$(".geo.show-all.toggle-btn").addClass("visuallyhidden"); //Hide the See All button 
+			personalStats.buttons.geoSeeAllButton.addClass("visuallyhidden"); //Hide the See All button 
 		}
 	} else {
 		dataToShow = data;
@@ -109,10 +108,10 @@ personalStats.showViewsByDomain = function showViewsByDomain(data, tableToUpdate
 	if (onlyShowN > 0) {
 		dataToShow = data.slice(0, onlyShowN);
 		if (data.length > dataToShow.length) {
-			$(".domain.show-all.toggle-btn").removeClass("visuallyhidden"); //Unhide the See All button 
+			personalStats.buttons.domainSeeAllButton.removeClass("visuallyhidden"); //Unhide the See All button 
 		} else {
 			dataToShow = data;
-			$(".domain.show-all.toggle-btn").addClass("visuallyhidden"); //Hide the See All button 
+			personalStats.buttons.domainSeeAllButton.addClass("visuallyhidden"); //Hide the See All button 
 		}
 	} else {
 		dataToShow = data;
@@ -141,10 +140,10 @@ personalStats.showRelatedPeople = function showRelatedPeople(data, divToUpdateID
 	if (onlyShowN > 0) {
 		dataToShow = data.slice(0, onlyShowN);
 		if (data.length > dataToShow.length) {
-			$(".related-people.show-all.toggle-btn").removeClass("visuallyhidden"); //Unhide the See All button 
+			personalStats.buttons.relatedPeopleSeeAllButton.removeClass("visuallyhidden"); //Unhide the See All button 
 		} else {
 			dataToShow = data;
-			$(".related-people.show-all.toggle-btn").addClass("visuallyhidden"); //Hide the See All button 
+			personalStats.buttons.relatedPeopleSeeAllButton.addClass("visuallyhidden"); //Hide the See All button 
 		}
 	} else {
 		dataToShow = data;
