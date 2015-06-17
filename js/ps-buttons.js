@@ -21,12 +21,12 @@ personalStats.buttons.setupToggleButtons = function() {
         }
     });
 
-    personalStats.buttons.countryMonthButton.click(function() {
+    personalStats.buttons.countryToggle.first().click(function() {
         gadgetEventTrack("country_toggle");
         showViewsByCity(aggregatedByCityLastMonth, "geo-list", onlyShow);
     });
 
-    personalStats.buttons.countryYearButton.click(function() {
+    personalStats.buttons.countryToggle.last();.click(function() {
         gadgetEventTrack("country_toggle");
         showViewsByCity(aggregatedByCityLastYear, "geo-list", onlyShow);
     });
