@@ -1,6 +1,10 @@
 window.personalStats = window.personalStats || {};
 personalStats.buttons = personalStats.buttons || {};
 
+personalStats.buttons.countryMonthButton = $(".geo.date-toggle .toggle-btn input[type=radio]").first();
+
+console.log(personalStats.buttons.countryMonthButton);
+
 personalStats.buttons.setupToggleButtons = function() {
     console.log("setup toggle buttons");
 
