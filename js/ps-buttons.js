@@ -43,8 +43,8 @@ personalStats.buttons.setupToggleButtons = function() {
     });
 
     // Turn on the first toggle button for each panel
-    buttons.countryMonthButton.parent().addClass("success");
-    buttons.domainMonthButton.parent().addClass("success");
+    buttons.countryMonthButton.addClass("success");
+    buttons.domainMonthButton.addClass("success");
 }
 
 personalStats.buttons.setupMapButtons = function() {
