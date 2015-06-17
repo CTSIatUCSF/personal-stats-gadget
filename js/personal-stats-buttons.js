@@ -43,21 +43,21 @@ personalStats.buttons.setupToggleButtons = function setupToggleButtons() {
 
     // setup click events
     personalStats.buttons.geoToggle.first().click(function() {
-        personalStats.gadgetEventTrack("country_toggle");
-        personalStats.showViewsByCity(personalStats.aggregatedByCityLastMonth, "geo-list", personalStats.onlyShow);
+        personalStats.ga.gadgetEventTrack("country_toggle");
+        personalStats.ga.showViewsByCity(personalStats.aggregatedByCityLastMonth, "geo-list", personalStats.onlyShow);
     });
 
     personalStats.buttons.geoToggle.last().click(function() {
-        personalStats.gadgetEventTrack("country_toggle");
-        personalStats.showViewsByCity(personalStats.aggregatedByCityLastYear, "geo-list", personalStats.onlyShow);
+        personalStats.ga.gadgetEventTrack("country_toggle");
+        personalStats.ga.showViewsByCity(personalStats.aggregatedByCityLastYear, "geo-list", personalStats.onlyShow);
     });
     personalStats.buttons.domainMonthButton.click(function() {
-        personalStats.gadgetEventTrack("domain_toggle");
+        personalStats.ga.gadgetEventTrack("domain_toggle");
         personalStats.showViewsByDomain(personalStats.aggregatedByDomainLastMonth, "domain-list", personalStats.onlyShow);
     });
 
     personalStats.buttons.domainYearButton.click(function() {
-        personalStats.gadgetEventTrack("domain_toggle");
+        personalStats.ga.gadgetEventTrack("domain_toggle");
         personalStats.showViewsByDomain(personalStats.aggregatedByDomainLastYear, "domain-list", personalStats.onlyShow);
     });
 
@@ -71,7 +71,7 @@ personalStats.buttons.setupMapButtons = function setupMapButtons() {
     personalStats.buttons.setButtonVariables();
 
     personalStats.buttons.mapWorldButton.click(function() {
-        personalStats.gadgetEventTrack("map_world");
+        personalStats.ga.gadgetEventTrack("map_world");
         if (personalStats.buttons.toggleButtonActive(personalStats.buttons.geoMonthButton)) {
             personalStats.drawGeoChart_World(personalStats.aggregatedByCountryLastMonth);
         } else {
@@ -81,7 +81,7 @@ personalStats.buttons.setupMapButtons = function setupMapButtons() {
     });
 
     personalStats.buttons.mapUsaButton.click(function() {
-        personalStats.gadgetEventTrack("map_usa");
+        personalStats.ga.gadgetEventTrack("map_usa");
         if (personalStats.buttons.toggleButtonActive(personalStats.buttons.geoMonthButton)) {
             personalStats.drawGeoChart_USA(personalStats.aggregatedByStateLastMonth);
         } else {
@@ -97,7 +97,7 @@ personalStats.buttons.setupSeeAllButtons = function setupSeeAllButtons() {
 
     // See All (geo) button shows all for Month or Year (based on current selection)
     personalStats.buttons.geoSeeAllButton.click(function() {
-        personalStats.gadgetEventTrack("country_see_all");
+        personalStats.ga.gadgetEventTrack("country_see_all");
         if (personalStats.buttons.toggleButtonActive(personalStats.buttons.geoMonthButton)) {
             personalStats.showViewsByCity(personalStats.aggregatedByCityLastMonth, "geo-list-all");
         } else {
@@ -108,7 +108,7 @@ personalStats.buttons.setupSeeAllButtons = function setupSeeAllButtons() {
 
     // See All (domain) button shows all for Month or Year (based on current selection)
     personalStats.buttons.domainSeeAllButton.click(function() {
-        personalStats.gadgetEventTrack("domain_see_all");
+        personalStats.ga.gadgetEventTrack("domain_see_all");
         if (personalStats.buttons.toggleButtonActive(personalStats.buttons.domainMonthButton)) {
             personalStats.showViewsByDomain(personalStats.aggregatedByDomainLastMonth, "domain-list-all");
         } else {
@@ -119,7 +119,7 @@ personalStats.buttons.setupSeeAllButtons = function setupSeeAllButtons() {
 
     // See All (related people) button shows all
     personalStats.buttons.relatedPeopleSeeAllButton.click(function() {
-        personalStats.gadgetEventTrack("related_people_see_all");
+        personalStats.ga.gadgetEventTrack("related_people_see_all");
         personalStats.showRelatedPeople(personalStats.aggregatedByAlsoViewed, "related-people-list-all");
         personalStats.showOverlay("related-people-list");
     });

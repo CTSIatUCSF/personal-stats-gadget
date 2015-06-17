@@ -1,9 +1,10 @@
 window.personalStats  = window.personalStats || {};
+personalStats.ga = personalStats.ga || {};
 
 //====================================================================================
 //GOOGLE ANALYTICS QUERIES 
 
-personalStats.gaRequestParams = function gaRequestParams() {
+personalStats.ga.requestParams = function gaRequestParams() {
 	var params = {};		
     params[gadgets.io.RequestParameters.CONTENT_TYPE] 		= gadgets.io.ContentType.TEXT;
     params[gadgets.io.RequestParameters.AUTHORIZATION] 		= gadgets.io.AuthorizationType.OAUTH2;
@@ -13,7 +14,7 @@ personalStats.gaRequestParams = function gaRequestParams() {
     return params;
 }
 
-personalStats.gaBaseQuery = function gaBaseQuery(pagePath) {
+personalStats.ga.baseQuery = function gaBaseQuery(pagePath) {
 	var viewerId = personalStats.getViewerId();
 	var pagePath = encodeURIComponent("=~/" + viewerId);
 
@@ -31,7 +32,7 @@ personalStats.gaBaseQuery = function gaBaseQuery(pagePath) {
     return query;
 }
 
-personalStats.convertToQueryString = function convertToQueryString(queryObject) {
+personalStats.ga.convertToQueryString = function convertToQueryString(queryObject) {
 	var queryString = "";
 	for (var key in queryObject) {
 	   if (queryObject.hasOwnProperty(key)) {
@@ -43,16 +44,16 @@ personalStats.convertToQueryString = function convertToQueryString(queryObject) 
 	return queryString;
 }
 
-personalStats.fetchData = function fetchData(tryCountdown, callback) {
+personalStats.ga.fetchData = function fetchData(tryCountdown, callback) {
 	
-	var query =  personalStats.gaBaseQuery();
+	var query =  personalStats.ga.baseQuery();
 	query.dimensions = "ga:date,ga:country,ga:region,ga:city,ga:networkLocation";
 
-	var query_string = personalStats.convertToQueryString(query);
+	var query_string = personalStats.ga.convertToQueryString(query);
 
     url = "https://www.googleapis.com/analytics/v3/data/ga?" + query_string;
     
-    var params = personalStats.gaRequestParams();
+    var params = personalStats.ga.requestParams();
 
     gadgets.io.makeRequest(url, function (response) {
       	if (response.oauthApprovalUrl) {
@@ -61,23 +62,23 @@ personalStats.fetchData = function fetchData(tryCountdown, callback) {
       	} else if (response.data) {
       		personalStats.fetchDataSuccessHandler(response, callback);
       	} else {
-      		personalStats.fetchDataErrorHandler(response, tryCountdown, function() {
-      			personalStats.fetchData(tryCountdown, callback);
+      		personalStats.ga.fetchDataErrorHandler(response, tryCountdown, function() {
+      			personalStats.ga.fetchData(tryCountdown, callback);
   			});
       	}
     }, params);
 }
 
-personalStats.fetchPagePathData = function fetchPagePathData(tryCountdown, callback) {
+personalStats.ga.fetchPagePathData = function fetchPagePathData(tryCountdown, callback) {
 
-	var query =  personalStats.gaBaseQuery();
+	var query =  personalStats.ga.baseQuery();
 	query.dimensions = "ga:date,ga:pagePathLevel1,ga:landingPagePath,ga:secondPagePath,ga:exitPagePath,ga:previousPagePath,ga:nextPagePath";
 
-	var query_string = personalStats.convertToQueryString(query);
+	var query_string = personalStats.ga.convertToQueryString(query);
 
     url = "https://www.googleapis.com/analytics/v3/data/ga?" + query_string;
     
-    var params = personalStats.gaRequestParams();
+    var params = personalStats.ga.requestParams();
 
     gadgets.io.makeRequest(url, function (response) {
     	if (response.oauthApprovalUrl) {
@@ -88,14 +89,14 @@ personalStats.fetchPagePathData = function fetchPagePathData(tryCountdown, callb
       		personalStats.fetchPagePathDataSuccessHandler(response, callback);
 
       	} else {
-      		personalStats.fetchDataErrorHandler(response, tryCountdown, function() {
-      			personalStats.fetchPagePathData(tryCountdown, callback);
+      		personalStats.ga.fetchDataErrorHandler(response, tryCountdown, function() {
+      			personalStats.ga.fetchPagePathData(tryCountdown, callback);
   			});
       	}
     }, params);
 }
 
-personalStats.fetchDataErrorHandler = function fetchDataErrorHandler(response, tryCountdown, retryFunction) {
+personalStats.ga.fetchDataErrorHandler = function fetchDataErrorHandler(response, tryCountdown, retryFunction) {
 		console.log("Error:")
 		console.log(response.rc);
 		if (tryCountdown > 0) {
@@ -108,13 +109,10 @@ personalStats.fetchDataErrorHandler = function fetchDataErrorHandler(response, t
 //====================================================================================
 // GOOGLE ANALYTICS EVENT TRACKING
 
-personalStats.gadgetEventTrack = function gadgetEventTrack(action, label, value) {        
+personalStats.ga.gadgetEventTrack = function gadgetEventTrack(action, label, value) {        
 	var message = {'action' : action};
 	if (label) {message.label = label;}
 	if (value) {message.value = value;}
-	console.log("gadgetEventTrack");
-	console.log("action = " + action);
-	console.log("label = " + label);
 	gadgets.orng.reportGoogleAnalyticsEvent(message);
 }
 
