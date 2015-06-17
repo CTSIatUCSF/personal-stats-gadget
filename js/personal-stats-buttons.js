@@ -44,12 +44,12 @@ personalStats.buttons.setupToggleButtons = function setupToggleButtons() {
     // setup click events
     personalStats.buttons.geoToggle.first().click(function() {
         personalStats.ga.gadgetEventTrack("country_toggle");
-        personalStats.ga.showViewsByCity(personalStats.aggregatedByCityLastMonth, "geo-list", personalStats.onlyShow);
+        personalStats.showViewsByCity(personalStats.aggregatedByCityLastMonth, "geo-list", personalStats.onlyShow);
     });
 
     personalStats.buttons.geoToggle.last().click(function() {
         personalStats.ga.gadgetEventTrack("country_toggle");
-        personalStats.ga.showViewsByCity(personalStats.aggregatedByCityLastYear, "geo-list", personalStats.onlyShow);
+        personalStats.showViewsByCity(personalStats.aggregatedByCityLastYear, "geo-list", personalStats.onlyShow);
     });
     personalStats.buttons.domainMonthButton.click(function() {
         personalStats.ga.gadgetEventTrack("domain_toggle");
