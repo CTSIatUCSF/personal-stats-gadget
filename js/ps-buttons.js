@@ -26,7 +26,7 @@ personalStats.buttons.setupToggleButtons = function() {
         showViewsByCity(aggregatedByCityLastMonth, "geo-list", onlyShow);
     });
 
-    personalStats.buttons.countryToggle.last();.click(function() {
+    personalStats.buttons.countryToggle.last().click(function() {
         gadgetEventTrack("country_toggle");
         showViewsByCity(aggregatedByCityLastYear, "geo-list", onlyShow);
     });
