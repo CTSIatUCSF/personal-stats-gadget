@@ -1,9 +1,12 @@
 window.personalStats = window.personalStats || {};
 personalStats.buttons = personalStats.buttons || {};
 
-personalStats.buttons.countryMonthButton = $(".geo.date-toggle .toggle-btn input[type=radio]").first();
+personalStats.buttons.counrtryToggle     = $(".geo.date-toggle .toggle-btn input[type=radio]");
+personalStats.buttons.countryMonthButton = counrtryToggle.first();
+personalStats.buttons.countryYearButton  = counrtryToggle.last();
 
 console.log(personalStats.buttons.countryMonthButton);
+console.log(personalStats.buttons.countryYearButton);
 
 personalStats.buttons.setupToggleButtons = function() {
     console.log("setup toggle buttons");
@@ -18,12 +21,12 @@ personalStats.buttons.setupToggleButtons = function() {
         }
     });
 
-    $(".geo.date-toggle .toggle-btn input[type=radio]").first().click(function() {
+    personalStats.buttons.countryMonthButton.click(function() {
         gadgetEventTrack("country_toggle");
         showViewsByCity(aggregatedByCityLastMonth, "geo-list", onlyShow);
     });
 
-    $(".geo.date-toggle .toggle-btn input[type=radio]").last().click(function() {
+    personalStats.buttons.countryYearButton.last().click(function() {
         gadgetEventTrack("country_toggle");
         showViewsByCity(aggregatedByCityLastYear, "geo-list", onlyShow);
     });
