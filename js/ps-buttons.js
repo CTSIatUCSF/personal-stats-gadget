@@ -74,9 +74,9 @@ personalStats.buttons.setupMapButtons = function() {
     personalStats.buttons.mapWorldButton.click(function() {
         personalStats.gadgetEventTrack("map_world");
         if (personalStats.buttons.toggleButtonActive(personalStats.buttons.geoMonthButton)) {
-            personalStats.drawGeoChart_World(aggregatedByCountryLastMonth);
+            personalStats.drawGeoChart_World(personalStats.aggregatedByCountryLastMonth);
         } else {
-            personalStats.drawGeoChart_World(aggregatedByCountryLastYear);
+            personalStats.drawGeoChart_World(personalStats.aggregatedByCountryLastYear);
         }
         personalStats.showOverlay("map-world");
     });
@@ -84,9 +84,9 @@ personalStats.buttons.setupMapButtons = function() {
     personalStats.buttons.mapUsaButton.click(function() {
         personalStats.gadgetEventTrack("map_usa");
         if (personalStats.buttons.toggleButtonActive(personalStats.buttons.geoMonthButton)) {
-            personalStats.drawGeoChart_USA(aggregatedByStateLastMonth);
+            personalStats.drawGeoChart_USA(personalStats.aggregatedByStateLastMonth);
         } else {
-            personalStats.drawGeoChart_USA(aggregatedByStateLastYear);
+            personalStats.drawGeoChart_USA(personalStats.aggregatedByStateLastYear);
         }
         personalStats.showOverlay("map-usa");
     });
@@ -101,9 +101,9 @@ personalStats.buttons.setupSeeAllButtons = function() {
     personalStats.buttons.geoSeeAllButton.click(function() {
         personalStats.gadgetEventTrack("country_see_all");
         if (personalStats.buttons.toggleButtonActive(personalStats.buttons.geoMonthButton)) {
-            personalStats.showViewsByCity(aggregatedByCityLastMonth, "geo-list-all");
+            personalStats.showViewsByCity(personalStats.aggregatedByCityLastMonth, "geo-list-all");
         } else {
-            personalStats.showViewsByCity(aggregatedByCityLastYear, "geo-list-all");
+            personalStats.showViewsByCity(personalStats.aggregatedByCityLastYear, "geo-list-all");
         }
         personalStats.showOverlay("geo-list");
     });
@@ -112,9 +112,9 @@ personalStats.buttons.setupSeeAllButtons = function() {
     personalStats.buttons.domainSeeAllButton.click(function() {
         personalStats.gadgetEventTrack("domain_see_all");
         if (personalStats.buttons.toggleButtonActive(personalStats.buttons.domainMonthButton)) {
-            personalStats.showViewsByDomain(aggregatedByDomainLastMonth, "domain-list-all");
+            personalStats.showViewsByDomain(personalStats.aggregatedByDomainLastMonth, "domain-list-all");
         } else {
-            personalStats.showViewsByDomain(aggregatedByDomainLastYear, "domain-list-all");
+            personalStats.showViewsByDomain(personalStats.aggregatedByDomainLastYear, "domain-list-all");
         }
         personalStats.showOverlay("domain-list");
     });
@@ -122,7 +122,7 @@ personalStats.buttons.setupSeeAllButtons = function() {
     // See All (related people) button shows all
     personalStats.buttons.relatedPeopleSeeAllButton.click(function() {
         personalStats.gadgetEventTrack("related_people_see_all");
-        personalStats.showRelatedPeople(aggregatedByAlsoViewed, "related-people-list-all");
+        personalStats.showRelatedPeople(personalStats.aggregatedByAlsoViewed, "related-people-list-all");
         personalStats.showOverlay("related-people-list");
     });
 }
