@@ -3,16 +3,20 @@ personalStats.buttons = personalStats.buttons || {};
 
 personalStats.buttons.setButtonVariables = function() {
 
-    personalStats.buttons.geoToggle         = $(".geo.date-toggle .toggle-btn input[type=radio]");
-    personalStats.buttons.geoMonthButton    = personalStats.buttons.geoToggle.first();
-    personalStats.buttons.geoYearButton     = personalStats.buttons.geoToggle.last();
+    personalStats.buttons.geoToggle                 = $(".geo.date-toggle .toggle-btn input[type=radio]");
+    personalStats.buttons.geoMonthButton            = personalStats.buttons.geoToggle.first();
+    personalStats.buttons.geoYearButton             = personalStats.buttons.geoToggle.last();
 
-    personalStats.buttons.domainToggle      = $(".domain.date-toggle .toggle-btn input[type=radio]");
-    personalStats.buttons.domainMonthButton = personalStats.buttons.domainToggle.first();
-    personalStats.buttons.domainYearButton  = personalStats.buttons.domainToggle.last();
+    personalStats.buttons.domainToggle              = $(".domain.date-toggle .toggle-btn input[type=radio]");
+    personalStats.buttons.domainMonthButton         = personalStats.buttons.domainToggle.first();
+    personalStats.buttons.domainYearButton          = personalStats.buttons.domainToggle.last();
 
-    personalStats.buttons.mapWorldButton    = $("#map-world");
-    personalStats.buttons.mapUsaButton      = $("#map-usa");
+    personalStats.buttons.mapWorldButton            = $("#map-world");
+    personalStats.buttons.mapUsaButton              = $("#map-usa");
+
+    personalStats.buttons.geoSeeAllButton           = $(".geo.show-all.toggle-btn");
+    personalStats.buttons.domainSeeAllButton        = $(".domain.show-all.toggle-btn");
+    personalStats.buttons.relatedPeopleSeeAllButton = $(".related-people.show-all.toggle-btn");
 }
 
 personalStats.buttons.toggleButtonActive = function($button) {
@@ -91,10 +95,12 @@ personalStats.buttons.setupMapButtons = function() {
 personalStats.buttons.setupSeeAllButtons = function() {
     console.log("setup see all buttons");
 
+    personalStats.buttons.setButtonVariables();
+
     // See All (geo) button shows all for Month or Year (based on current selection)
-    $(".geo.show-all.toggle-btn").click(function() {
+    personalStats.buttons.geoSeeAllButton.click(function() {
         gadgetEventTrack("country_see_all");
-        if ($(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+        if (personalStats.buttons.toggleButtonActive(personalStats.buttons.geoMonthButton)) {
             showViewsByCity(aggregatedByCityLastMonth, "geo-list-all");
         } else {
             showViewsByCity(aggregatedByCityLastYear, "geo-list-all");
@@ -103,9 +109,9 @@ personalStats.buttons.setupSeeAllButtons = function() {
     });
 
     // See All (domain) button shows all for Month or Year (based on current selection)
-    $(".domain.show-all.toggle-btn").click(function() {
+    personalStats.buttons.domainSeeAllButton.click(function() {
         gadgetEventTrack("domain_see_all");
-        if ($(".domanin.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
+        if (personalStats.buttons.toggleButtonActive(personalStats.buttons.domainMonthButton)) {
             showViewsByDomain(aggregatedByDomainLastMonth, "domain-list-all");
         } else {
             showViewsByDomain(aggregatedByDomainLastYear, "domain-list-all");
@@ -114,7 +120,7 @@ personalStats.buttons.setupSeeAllButtons = function() {
     });
 
     // See All (related people) button shows all
-    $(".related-people.show-all.toggle-btn").click(function() {
+    personalStats.buttons.relatedPeopleSeeAllButton.click(function() {
         gadgetEventTrack("related_people_see_all");
         showRelatedPeople(aggregatedByAlsoViewed, "related-people-list-all");
         showOverlay("related-people-list");
