@@ -44,21 +44,21 @@ personalStats.buttons.setupToggleButtons = function() {
     // setup click events
     personalStats.buttons.geoToggle.first().click(function() {
         personalStats.gadgetEventTrack("country_toggle");
-        personalStats.showViewsByCity(aggregatedByCityLastMonth, "geo-list", personalStats.onlyShow);
+        personalStats.showViewsByCity(personalStats.aggregatedByCityLastMonth, "geo-list", personalStats.onlyShow);
     });
 
     personalStats.buttons.geoToggle.last().click(function() {
         personalStats.gadgetEventTrack("country_toggle");
-        personalStats.showViewsByCity(aggregatedByCityLastYear, "geo-list", personalStats.onlyShow);
+        personalStats.showViewsByCity(personalStats.aggregatedByCityLastYear, "geo-list", personalStats.onlyShow);
     });
     personalStats.buttons.domainMonthButton.click(function() {
         personalStats.gadgetEventTrack("domain_toggle");
-        personalStats.showViewsByDomain(aggregatedByDomainLastMonth, "domain-list", personalStats.onlyShow);
+        personalStats.showViewsByDomain(personalStats.aggregatedByDomainLastMonth, "domain-list", personalStats.onlyShow);
     });
 
     personalStats.buttons.domainYearButton.click(function() {
         personalStats.gadgetEventTrack("domain_toggle");
-        personalStats.showViewsByDomain(aggregatedByDomainLastYear, "domain-list", personalStats.onlyShow);
+        personalStats.showViewsByDomain(personalStatsaggregatedByDomainLastYear, "domain-list", personalStats.onlyShow);
     });
 
     // Turn on the first toggle button for each panel
