@@ -65,6 +65,7 @@
 	    <link type="text/css" rel="stylesheet" href="css/overlay.css" />
         <script type="text/javascript" src="js/jquery.blockUI-2.66.0.js"></script>
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script> <!--Load the Google AJAX API-->
+        <script type="text/javascript" src="js/ps-buttons.js"></script>
     
 	    <div class="gadget-content">
     		<div id="loading"</div>
@@ -215,8 +216,6 @@
 			    </div>
 		    </div>
 	    </div>
-
-        <script type="text/javascript" src="js/ps-buttons.js"></script> <!-- Must load this after the HTML is set up. -->
 
 		<script language="JavaScript" type="text/javascript">
 

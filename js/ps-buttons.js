@@ -1,15 +1,12 @@
 window.personalStats  = window.personalStats || {};
 personalStats.buttons = personalStats.buttons || {};
 
-personalStats.buttons.countryToggle      = $(".geo.date-toggle .toggle-btn input[type=radio]");
-personalStats.buttons.countryMonthButton = personalStats.buttons.countryToggle.first();
-personalStats.buttons.countryYearButton  = personalStats.buttons.countryToggle.last();
-
-console.log(personalStats.buttons.countryMonthButton);
-console.log(personalStats.buttons.countryYearButton);
-
 personalStats.buttons.setupToggleButtons = function() {
     console.log("setup toggle buttons");
+
+    personalStats.buttons.countryToggle      = $(".geo.date-toggle .toggle-btn input[type=radio]");
+    personalStats.buttons.countryMonthButton = personalStats.buttons.countryToggle.first();
+    personalStats.buttons.countryYearButton  = personalStats.buttons.countryToggle.last();
 
     $(".toggle-btn input[type=radio]").addClass("visuallyhidden"); // hide the radio button circle on all buttons
 
