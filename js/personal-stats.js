@@ -1,7 +1,7 @@
 window.personalStats  = window.personalStats || {};
 
 
-personalStats.populateInstructionsPanel = function () {
+personalStats.populateInstructionsPanel = function (viewerData) {
 	var viewerHomePage = viewerData[FOAF("workplaceHomepage")];
 	var profilesLoginPage = "http://profiles.ucsf.edu/login/default.aspx?method=login&edit=true";
 
