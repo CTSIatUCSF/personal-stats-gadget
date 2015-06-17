@@ -58,7 +58,7 @@ personalStats.buttons.setupToggleButtons = function() {
 
     personalStats.buttons.domainYearButton.click(function() {
         personalStats.gadgetEventTrack("domain_toggle");
-        personalStats.showViewsByDomain(personalStatsaggregatedByDomainLastYear, "domain-list", personalStats.onlyShow);
+        personalStats.showViewsByDomain(personalStats.aggregatedByDomainLastYear, "domain-list", personalStats.onlyShow);
     });
 
     // Turn on the first toggle button for each panel
