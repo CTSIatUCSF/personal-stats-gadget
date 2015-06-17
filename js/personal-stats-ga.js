@@ -15,7 +15,7 @@ personalStats.ga.requestParams = function gaRequestParams() {
 }
 
 personalStats.ga.baseQuery = function gaBaseQuery(pagePath) {
-	var viewerId = personalStats.getViewerId();
+	var viewerId = personalStats.util.getViewerId();
 	var pagePath = encodeURIComponent("=~/" + viewerId);
 
 	var earliest_start_date = "2009-12-01"

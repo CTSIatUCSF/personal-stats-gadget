@@ -81,7 +81,7 @@ personalStats.showViewsByCity = function showViewsByCity(data, tableToUpdateID, 
 	for (index in dataToShow) {
 		item = dataToShow[index];
 		countryName = item[0];
-		countryCode = personalStats.getCountryCode(countryName);
+		countryCode = personalStats.util.getCountryCode(countryName);
 		regionName = item[1];
 		cityName = item[2];
 		geoString = cityName  + ", " + regionName;
@@ -133,7 +133,7 @@ personalStats.showViewsByDomain = function showViewsByDomain(data, tableToUpdate
 
 personalStats.showRelatedPeople = function showRelatedPeople(data, divToUpdateID, onlyShowN) {
 	var dataToShow, index, item, link, count;
-	var hostname = personalStats.getHostname();
+	var hostname = personalStats.util.getHostname();
 
 	$("#" + divToUpdateID + " div").remove(); //Remove any existing rows before adding new ones
 
@@ -166,15 +166,15 @@ personalStats.fetchDataSuccessHandler = function fetchDataSuccessHandler(respons
 	var data = JSON.parse(response.data);
 	
 	 	personalStats.aggregatedByMonthAll 			= personalStats.aggregateDataByMonth(data.rows);
-		personalStats.aggregatedByMonthLastYear 	= personalStats.aggregateDataByMonth(data.rows, 	personalStats.getYearMonthOneYearAgoMonthStart());
-		personalStats.aggregatedByCityLastYear 		= personalStats.aggregateDataByCity(data.rows, 		personalStats.dateOneYearAgo().yyyymmdd());
-		personalStats.aggregatedByCityLastMonth 	= personalStats.aggregateDataByCity(data.rows,		personalStats.dateThirtyDaysAgo().yyyymmdd());
-		personalStats.aggregatedByStateLastYear 	= personalStats.aggregateDataByState(data.rows, 	personalStats.dateOneYearAgo().yyyymmdd());
-		personalStats.aggregatedByStateLastMonth 	= personalStats.aggregateDataByState(data.rows, 	personalStats.dateThirtyDaysAgo().yyyymmdd());
-		personalStats.aggregatedByCountryLastYear 	= personalStats.aggregateDataByCountry(data.rows, 	personalStats.dateOneYearAgo().yyyymmdd());
-		personalStats.aggregatedByCountryLastMonth 	= personalStats.aggregateDataByCountry(data.rows, 	personalStats.dateThirtyDaysAgo().yyyymmdd());
-		personalStats.aggregatedByDomainLastYear 	= personalStats.aggregateDataByDomain(data.rows, 	personalStats.dateOneYearAgo().yyyymmdd());
-		personalStats.aggregatedByDomainLastMonth 	= personalStats.aggregateDataByDomain(data.rows, 	personalStats.dateThirtyDaysAgo().yyyymmdd());
+		personalStats.aggregatedByMonthLastYear 	= personalStats.aggregateDataByMonth(data.rows, 	personalStats.util.getYearMonthOneYearAgoMonthStart());
+		personalStats.aggregatedByCityLastYear 		= personalStats.aggregateDataByCity(data.rows, 		personalStats.util.dateOneYearAgo().yyyymmdd());
+		personalStats.aggregatedByCityLastMonth 	= personalStats.aggregateDataByCity(data.rows,		personalStats.util.dateThirtyDaysAgo().yyyymmdd());
+		personalStats.aggregatedByStateLastYear 	= personalStats.aggregateDataByState(data.rows, 	personalStats.util.dateOneYearAgo().yyyymmdd());
+		personalStats.aggregatedByStateLastMonth 	= personalStats.aggregateDataByState(data.rows, 	personalStats.util.dateThirtyDaysAgo().yyyymmdd());
+		personalStats.aggregatedByCountryLastYear 	= personalStats.aggregateDataByCountry(data.rows, 	personalStats.util.dateOneYearAgo().yyyymmdd());
+		personalStats.aggregatedByCountryLastMonth 	= personalStats.aggregateDataByCountry(data.rows, 	personalStats.util.dateThirtyDaysAgo().yyyymmdd());
+		personalStats.aggregatedByDomainLastYear 	= personalStats.aggregateDataByDomain(data.rows, 	personalStats.util.dateOneYearAgo().yyyymmdd());
+		personalStats.aggregatedByDomainLastMonth 	= personalStats.aggregateDataByDomain(data.rows, 	personalStats.util.dateThirtyDaysAgo().yyyymmdd());
 		
 		personalStats.drawColumnChart(personalStats.aggregatedByMonthLastYear);
 		personalStats.showVisitorCountStats();
@@ -256,7 +256,7 @@ personalStats.populateDataTable_ColumnChart = function populateDataTable_ColumnC
 		row = dataToAdd[idx];
 		lastIndex = row.length-1;
 		dataTableRow = new Array();
-		dataTableRow[0] = personalStats.formatMonthYear(row[0]);
+		dataTableRow[0] = personalStats.util.formatMonthYear(row[0]);
 		dataTableRow[1] = row[lastIndex];
 		dataTableRow[2] = "color: #F26D04";
 		dataTable.addRow(dataTableRow);
@@ -275,45 +275,6 @@ personalStats.populateDataTable_GeoChart = function populateDataTable_GeoChart(d
 		dataTableRow[1] = row[lastIndex];
 		dataTable.addRow(dataTableRow);
 	}
-}
-
-// DATES
-
-personalStats.formatMonthYear =  function formatMonthYear(yearMonthString) {
-	// Format Google Analytics yearMonth string (ex: 201506) as Mmm-YYYY (ex: Jun-2015)
-  	var months = new Array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'); 
-	var year, month_number, month;
-
-	year = yearMonthString.substring(2, 4);
-	month_number = yearMonthString.substring(4, 6) - 1;
-	month = months[month_number];
-	new_value = month + "-" + year;
-	return new_value;
-}
-
-personalStats.dateOneYearAgo = function dateOneYearAgo() {
-	var today = new Date();
- 	var oneYearAgo = new Date(today.getFullYear() - 1, today.getMonth(), today.getDay());
- 	return oneYearAgo;
-}
-
-personalStats.dateThirtyDaysAgo = function dateThirtyDaysAgo() {
-	var today = new Date();
-	var thirtyDaysAgo = new Date(today.setDate(today.getDate()-30));
- 	return thirtyDaysAgo;
-}
-			
-personalStats.getYearMonthOneYearAgoMonthStart = function getYearMonthOneYearAgoMonthStart() {
-	var today = new Date();
- 	var start_date = new Date(today.getFullYear() - 1, today.getMonth(), 1);
- 	var start_date_string = personalStats.convertDateToYearMonthString(start_date);
-	return start_date_string;
-}
-
-personalStats.convertDateToYearMonthString = function convertDateToYearMonthString(date) {
- 	var month_numbers = new Array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
- 	var date_string = date.getFullYear() + month_numbers[date.getMonth()];
- 	return date_string;
 }
 
 //====================================================================================
@@ -348,7 +309,7 @@ personalStats.aggregateDataByMonth = function aggregateDataByMonth(data, yearMon
 
 	// add a row for the current month if one doesn't exist
 	var today = new Date();
-	var thisYearMonth = personalStats.convertDateToYearMonthString(today);
+	var thisYearMonth = personalStats.util.convertDateToYearMonthString(today);
 
 	var lastItem = data[lastItemIndex];
 	if (lastItem[0].slice(0, -2) != thisYearMonth) {
@@ -396,7 +357,7 @@ personalStats.aggregateDataByCity = function aggregateDataByCity(data, dateStart
 	    return b[3]-a[3]
 	});
 
-	personalStats.fixCountryNames(arrayToReturn);
+	personalStats.util.fixCountryNames(arrayToReturn);
 
 	return arrayToReturn;
 }
@@ -481,7 +442,7 @@ personalStats.aggregateDataByCountry = function aggregateDataByCountry(data, dat
 	    return b[1]-a[1]
 	});
 
-	personalStats.fixCountryNames(arrayToReturn);
+	personalStats.util.fixCountryNames(arrayToReturn);
 
 	return arrayToReturn;
 }
@@ -528,7 +489,7 @@ personalStats.aggregateDataByDomain = function aggregateDataByDomain(data, dateS
 personalStats.aggregateDataByAlsoViewed = function aggregateDataByAlsoViewed(data, dateStart) {
 
 	var regEx = new RegExp("^/([a-z][a-z-\.]+)$");
-	var viewersPage = "/" + personalStats.getViewerId();
+	var viewersPage = "/" + personalStats.util.getViewerId();
       		
 	var start = dateStart || 0
 		var lastIndex = data[0].length-1;
@@ -599,7 +560,7 @@ personalStats.calculateViewCountLastYear = function calculateViewCountLastYear(d
 	}, 0);
 
 	  	var start = firstRow[0];
-	start = personalStats.formatMonthYear(start);
+	start = personalStats.util.formatMonthYear(start);
 	start = start.replace("-", " 20");
 	
 	var viewCount = {
@@ -653,7 +614,7 @@ personalStats.calculateViewCountAllTime = function calculateViewCountAllTime(dat
 	}
 
 	// Format for viewing after counting is done
-	start = personalStats.formatMonthYear(start);
+	start = personalStats.util.formatMonthYear(start);
 	start = start.replace("-", " 20");
 	
 	var viewCount = {
@@ -686,43 +647,6 @@ $(document).keyup(function(e) {
         personalStats.closeOverlay();
     }
 });
-
-//====================================================================================
-// UTILITY FUNCTIONS
-
-personalStats.getViewerId = function getViewerId() {
-	var viewerHomepage = personalStats.viewerData[FOAF("workplaceHomepage")];
-	var viewerUrlParts = viewerHomepage.split("/");
-	var viewerId = viewerUrlParts[viewerUrlParts.length-1];
-	return viewerId;
-}
-
-personalStats.getHostname = function getHostname() {
-	var viewerHomepage = personalStats.viewerData[FOAF("workplaceHomepage")];
-	var hostname = viewerHomepage.replace(personalStats.getViewerId(), "").slice(7, -1);
-	return hostname;
-}
-
-personalStats.fixCountryNames = function fixCountryNames(arr) {
-	var idx, item;
-	for (idx in arr) {
-		item = arr[idx];
-		if(item[0] == "Côte d’Ivoire" || item[0] == "Côte d'Ivoire") {
-			item[0] = "Cote d'Ivoire";
-		}
-	}
-}
-
-personalStats.getCountryCode = function getCountryCode(countryName) {
-	var returnValue = "";
-	var filteredList = countryCodeList.filter(function(item) { 
-	    return item.name === countryName;
-	});
-	if (filteredList[0]) {
-		return filteredList[0].code.toLowerCase()
-	}
-	return returnValue;
-}
 
 //====================================================================================
 
