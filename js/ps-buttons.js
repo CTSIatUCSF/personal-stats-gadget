@@ -1,12 +1,14 @@
-window.personalStats = window.personalStats || {};
+window.personalStats  = window.personalStats || {};
 personalStats.buttons = personalStats.buttons || {};
+buttons = personalStats.buttons;
 
-personalStats.buttons.countryToggle      = $(".geo.date-toggle .toggle-btn input[type=radio]");
-personalStats.buttons.countryMonthButton = personalStats.buttons.countryToggle.first();
-personalStats.buttons.countryYearButton  = personalStats.buttons.countryToggle.last();
+buttons.countryToggle      = $(".geo.date-toggle .toggle-btn input[type=radio]");
+buttons.countryMonthButton = buttons.countryToggle.first();
+buttons.countryYearButton  = buttons.countryToggle.last();
 
-console.log(personalStats.buttons.countryMonthButton);
-console.log(personalStats.buttons.countryYearButton);
+buttons.domainToggle       = $(".domain.date-toggle .toggle-btn input[type=radio]");
+buttons.domainMonthButton  = buttons.domainToggle.first();
+buttons.domainYearButton   = buttons.domainToggle.last();
 
 personalStats.buttons.setupToggleButtons = function() {
     console.log("setup toggle buttons");
@@ -21,28 +23,28 @@ personalStats.buttons.setupToggleButtons = function() {
         }
     });
 
-    personalStats.buttons.countryMonthButton.click(function() {
+    buttons.countryMonthButton.click(function() {
         gadgetEventTrack("country_toggle");
         showViewsByCity(aggregatedByCityLastMonth, "geo-list", onlyShow);
     });
 
-    personalStats.buttons.countryYearButton.last().click(function() {
+    buttons.countryYearButton.click(function() {
         gadgetEventTrack("country_toggle");
         showViewsByCity(aggregatedByCityLastYear, "geo-list", onlyShow);
     });
-    $(".domain.date-toggle .toggle-btn input[type=radio]").first().click(function() {
+    buttons.domainMonthButton.click(function() {
         gadgetEventTrack("domain_toggle");
         showViewsByDomain(aggregatedByDomainLastMonth, "domain-list", onlyShow);
     });
 
-    $(".domain.date-toggle .toggle-btn input[type=radio]").last().click(function() {
+    buttons.domainYearButton.click(function() {
         gadgetEventTrack("domain_toggle");
         showViewsByDomain(aggregatedByDomainLastYear, "domain-list", onlyShow);
     });
 
     // Turn on the first toggle button for each panel
-    $(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
-    $(".domain.date-toggle .toggle-btn input[type=radio]").first().parent().addClass("success");
+    buttons.countryMonthButton.parent().addClass("success");
+    buttons.domainMonthButton.parent().addClass("success");
 }
 
 personalStats.buttons.setupMapButtons = function() {
