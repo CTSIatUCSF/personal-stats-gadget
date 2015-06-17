@@ -37,7 +37,7 @@ personalStats.showVisitorCountStats = function showVisitorCountStats() {
 
 	var lastYear 	= personalStats.calc.calculateViewCountLastYear(personalStats.aggregatedByMonthLastYear);
 	lastYear.count 	= lastYear.count.toLocaleString(); // adds thousands separators
-	$("#view_count_last_year");.append(firstNameToDisplay + " profile has been viewed " + lastYear.count + " times since " + lastYear.start);
+	$("#view_count_last_year").append(firstNameToDisplay + " profile has been viewed " + lastYear.count + " times since " + lastYear.start);
 	
 	var vcThisMonth 		= document.getElementById("view_count_this_month");
 	vcThisMonthCount 		= personalStats.calc.calculateViewCountThisMonth(personalStats.aggregatedByMonthAll);
