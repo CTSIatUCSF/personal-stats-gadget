@@ -110,7 +110,7 @@
 					    		</tr>
 					    	</table>
 							<table id="geo-list" class="panel-list"></table>
-							<div class="geo see-more toggle-btn">See All</div>
+							<div class="geo show-all toggle-btn">See All</div>
 						</div>
 					</div>
 				</div>
@@ -130,7 +130,7 @@
 					    		</tr>
 					    	</table>
 							<table id="domain-list" class="panel-list"></table>
-							<div class="domain see-more toggle-btn">See All</div>
+							<div class="domain show-all toggle-btn">See All</div>
 						</div>
 					</div>
 				</div>
@@ -139,7 +139,7 @@
 					<div id="related-people-panel-content" class="visuallyhidden">
 						<div class="panel-title">Your Visitors Also Viewed</div>
 						<div id="related-people-list"></div>
-						<div class="related-people see-more toggle-btn">See All</div>
+						<div class="related-people show-all toggle-btn">See All</div>
 					</div>
 				</div>
 				<div id="instructions-panel" class="panel visuallyhidden">
@@ -319,7 +319,7 @@
 	        });
 
 	        // See All (geo) button shows all for Month or Year (based on current selection)
-	        $(".geo.see-more.toggle-btn").click(function() {
+	        $(".geo.show-all.toggle-btn").click(function() {
 		        gadgetEventTrack("country_see_all");
 	        	if ($(".geo.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
 		        	showViewsByCity(aggregatedByCityLastMonth, "geo-list-all");
@@ -330,7 +330,7 @@
 	        });
 
 	        // See All (domain) button shows all for Month or Year (based on current selection)
-	        $(".domain.see-more.toggle-btn").click(function() {
+	        $(".domain.show-all.toggle-btn").click(function() {
 		        gadgetEventTrack("domain_see_all");
             	if ($(".domanin.date-toggle .toggle-btn input[type=radio]").first().parent().hasClass("success")) {
     	        	showViewsByDomain(aggregatedByDomainLastMonth, "domain-list-all");
@@ -341,7 +341,7 @@
 	        });
 
 	        // See All (related people) button shows all
-	        $(".related-people.see-more.toggle-btn").click(function() {
+	        $(".related-people.show-all.toggle-btn").click(function() {
 		        gadgetEventTrack("related_people_see_all");
 	        	showRelatedPeople(aggregatedByAlsoViewed, "related-people-list-all");
 		        showOverlay("related-people-list");
@@ -693,10 +693,10 @@
 		  		if (onlyShowN > 0) {
 		  			dataToShow = data.slice(0, onlyShowN);
 		  			if (data.length > dataToShow.length) {
-		  				$(".geo.see-more.toggle-btn").removeClass("visuallyhidden"); //Unhide the See All button 
+		  				$(".geo.show-all.toggle-btn").removeClass("visuallyhidden"); //Unhide the See All button 
 		  			} else {
 			  			dataToShow = data;
-		  				$(".geo.see-more.toggle-btn").addClass("visuallyhidden"); //Hide the See All button 
+		  				$(".geo.show-all.toggle-btn").addClass("visuallyhidden"); //Hide the See All button 
 		  			}
 		  		} else {
 		  			dataToShow = data;
@@ -734,10 +734,10 @@
 		  		if (onlyShowN > 0) {
 		  			dataToShow = data.slice(0, onlyShowN);
 		  			if (data.length > dataToShow.length) {
-		  				$(".domain.see-more.toggle-btn").removeClass("visuallyhidden"); //Unhide the See All button 
+		  				$(".domain.show-all.toggle-btn").removeClass("visuallyhidden"); //Unhide the See All button 
 		  			} else {
 			  			dataToShow = data;
-		  				$(".domain.see-more.toggle-btn").addClass("visuallyhidden"); //Hide the See All button 
+		  				$(".domain.show-all.toggle-btn").addClass("visuallyhidden"); //Hide the See All button 
 		  			}
 		  		} else {
 		  			dataToShow = data;
@@ -766,10 +766,10 @@
 		  		if (onlyShowN > 0) {
 		  			dataToShow = data.slice(0, onlyShowN);
 		  			if (data.length > dataToShow.length) {
-		  				$(".related-people.see-more.toggle-btn").removeClass("visuallyhidden"); //Unhide the See All button 
+		  				$(".related-people.show-all.toggle-btn").removeClass("visuallyhidden"); //Unhide the See All button 
 		  			} else {
 			  			dataToShow = data;
-		  				$(".related-people.see-more.toggle-btn").addClass("visuallyhidden"); //Hide the See All button 
+		  				$(".related-people.show-all.toggle-btn").addClass("visuallyhidden"); //Hide the See All button 
 		  			}
 		  		} else {
 		  			dataToShow = data;
