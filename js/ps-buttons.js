@@ -63,6 +63,8 @@ personalStats.buttons.setupMapButtons = function() {
 }
 
 personalStats.buttons.setupSeeAllButtons = function() {
+    console.log("setup see all buttons");
+
     // See All (geo) button shows all for Month or Year (based on current selection)
     $(".geo.show-all.toggle-btn").click(function() {
         gadgetEventTrack("country_see_all");
