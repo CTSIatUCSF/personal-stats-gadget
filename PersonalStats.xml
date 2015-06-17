@@ -241,21 +241,21 @@
 	        }
 	        // ==============================================================
 
-	        personalStats.populateInstructionsPanel(viewerData);
+	        personalStats.populateInstructionsPanel(viewerData[FOAF("workplaceHomepage")]);
 	        personalStats.buttons.setupToggleButtons();
 	        personalStats.buttons.setupMapButtons();
 	        personalStats.buttons.setupSeeAllButtons();
 
 	        function getViewerId() {
-	        	var viewerHomePage = viewerData[FOAF("workplaceHomepage")];
-				var viewerUrlParts = viewerHomePage.split("/");
+	        	var viewerHomepage = viewerData[FOAF("workplaceHomepage")];
+				var viewerUrlParts = viewerHomepage.split("/");
 				var viewerId = viewerUrlParts[viewerUrlParts.length-1];
 				return viewerId;
 	        }
 
 	        function getHostname() {
-	        	var viewerHomePage = viewerData[FOAF("workplaceHomepage")];
-	        	var hostname = viewerHomePage.replace(getViewerId(), "").slice(7, -1);
+	        	var viewerHomepage = viewerData[FOAF("workplaceHomepage")];
+	        	var hostname = viewerHomepage.replace(getViewerId(), "").slice(7, -1);
 				return hostname;
 	        }
 	  
