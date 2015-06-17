@@ -242,8 +242,8 @@
 						$.getJSON("http://cranestylelabs.github.io/personal-stats-gadget/countries.json", function(response){
 						    countryCodeList = response;
 					        personalStats.populateInstructionsPanel();
-					  		personalStats.fetchData( 5, function () {
-					  			personalStats.fetchPagePathData( 5, function () {
+					  		personalStats.ga.fetchData( 5, function () {
+					  			personalStats.ga.fetchPagePathData( 5, function () {
 					  				console.log("done with callbacks");
 					  			});
 					  		});
