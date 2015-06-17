@@ -659,7 +659,7 @@ personalStats.aggregateDataByDomain = function aggregateDataByDomain(data, dateS
 personalStats.aggregateDataByAlsoViewed = function aggregateDataByAlsoViewed(data, dateStart) {
 
 	var regEx = new RegExp("^/([a-z][a-z-\.]+)$");
-	var viewersPage = "/" + getViewerId();
+	var viewersPage = "/" + personalStats.getViewerId();
       		
 	var start = dateStart || 0
 		var lastIndex = data[0].length-1;
