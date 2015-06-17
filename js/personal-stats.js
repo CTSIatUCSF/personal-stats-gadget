@@ -144,7 +144,7 @@ personalStats.showViewsByDomain = function showViewsByDomain(data, tableToUpdate
 
 personalStats.showRelatedPeople = function showRelatedPeople(data, divToUpdateID, onlyShowN) {
 	var dataToShow, index, item, link, count;
-	var hostname = getHostname();
+	var hostname = personalStats>getHostname();
 
 	$("#" + divToUpdateID + " div").remove(); //Remove any existing rows before adding new ones
 
@@ -172,7 +172,6 @@ personalStats.showRelatedPeople = function showRelatedPeople(data, divToUpdateID
 	$("#" + divToUpdateID + " div").addClass("panel-text"); 			//Add CSS class to divs
 	$("#" + divToUpdateID + " div").addClass("related-people-link"); 	//Add CSS class to divs
 }
-
 
 personalStats.fetchDataSuccessHandler = function fetchDataSuccessHandler(response, callback) {
 	var data = JSON.parse(response.data);
