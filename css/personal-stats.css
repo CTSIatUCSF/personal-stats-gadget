@@ -108,9 +108,13 @@
 }
 #map-icon-usa {
     font-size: 0.9em;
+    margin-left: -5px;
+    margin-top: 3px;
 }
 #map-icon-world {
     font-size: 1.2em;
+    margin-left: -5px;
+    margin-top: -10px;
 }
 .panel-list {
     width: 100%;
