@@ -104,8 +104,13 @@
 						</div>
 					</div>
 					<!-- HERE -->
-					<div id="map-usa" class="map-button toggle-btn">1</div>
-					<div id="map-world" class="map-button toggle-btn">0</div>
+					<div id="map-usa" class="map-button toggle-btn">
+						<div>1</div>
+					</div>
+
+					<div id="map-world" class="map-button toggle-btn">
+						<div>0</div>
+					</div>
 					<!-- HERE -->
 					<div class="panel-data-area">
 						<div id="geo-list-area">
@@ -233,7 +238,7 @@
 	        personalStats.buttons.setupMapButtons();
 	        personalStats.buttons.setupSeeAllButtons();
 	        personalStats.buttons.setupOverlayCloseButtons();
-	        console.log("v15");
+	        console.log("v16");
 		
 			function init() {
 
