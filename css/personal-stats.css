@@ -106,6 +106,12 @@
     font-family: 'geobats';
     color: #F26D04 !important;
 }
+#map-icon-usa {
+    font-size: 0.9em;
+}
+#map-icon-world {
+    font-size: 1.2em;
+}
 .panel-list {
     width: 100%;
 }
