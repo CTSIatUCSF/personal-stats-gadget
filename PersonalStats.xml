@@ -233,6 +233,7 @@
 	        personalStats.buttons.setupMapButtons();
 	        personalStats.buttons.setupSeeAllButtons();
 	        personalStats.buttons.setupOverlayCloseButtons();
+	        console.log("v15");
 		
 			function init() {
 
@@ -246,7 +247,7 @@
 					        personalStats.populateInstructionsPanel();
 					  		personalStats.ga.fetchData( 5, function () {
 					  			personalStats.ga.fetchPagePathData( 5, function () {
-					  				console.log("v14");
+					  				//
 					  			});
 					  		});
 						});
