@@ -104,8 +104,8 @@
 						</div>
 					</div>
 					<!-- HERE -->
-					<div id="map-usa" class="map-button toggle-btn">1</img>
-					<div id="map-world" class="map-button toggle-btn">0</img>
+					<div id="map-usa" class="map-button toggle-btn">1</div>
+					<div id="map-world" class="map-button toggle-btn">0</div>
 					<!-- HERE -->
 					<div class="panel-data-area">
 						<div id="geo-list-area">
@@ -246,7 +246,7 @@
 					        personalStats.populateInstructionsPanel();
 					  		personalStats.ga.fetchData( 5, function () {
 					  			personalStats.ga.fetchPagePathData( 5, function () {
-					  				console.log("v13");
+					  				console.log("v14");
 					  			});
 					  		});
 						});
