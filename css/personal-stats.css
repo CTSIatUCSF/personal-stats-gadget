@@ -102,7 +102,7 @@
     width: 83px;
     height: 45px;
     font-family: 'geobats';
-    color: #F26D04;
+    color: #F26D04 !important;
 }
 .panel-list {
     width: 100%;
