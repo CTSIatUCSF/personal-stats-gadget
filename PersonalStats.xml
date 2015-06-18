@@ -103,8 +103,10 @@
 							</div>
 						</div>
 					</div>
-					<img id="map-usa" class="map-button toggle-btn" src="http://cranestylelabs.github.io/personal-stats-gadget/images/map-usa.png"></img>
-					<img id="map-world" class="map-button toggle-btn" src="http://cranestylelabs.github.io/personal-stats-gadget/images/map-world.png"></img>
+					<!-- HERE -->
+					<div id="map-usa" class="map-button toggle-btn">1</img>
+					<div id="map-world" class="map-button toggle-btn">0</img>
+					<!-- HERE -->
 					<div class="panel-data-area">
 						<div id="geo-list-area">
 				    		<table class="panel-list">
