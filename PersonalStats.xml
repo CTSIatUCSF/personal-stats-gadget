@@ -96,14 +96,13 @@
 				</div>
 				<div id="geo-panel" class="panel visuallyhidden">
 					<div id="geo-panel-header">
-						<div class="panel-title">Views By Country</div>
+						<div class="panel-title">Views By City/Region</div>
 						<div class="panel-button-area">
 							<div class="geo date-toggle toggle-btn-grp joint-toggle">
 							    <label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last Year</label>
 							</div>
 						</div>
 					</div>
-					<!-- HERE -->
 					<div id="map-usa" class="map-button toggle-btn">
 						<div id="map-icon-usa" class="map-icon">1</div>
 					</div>
@@ -111,12 +110,11 @@
 					<div id="map-world" class="map-button toggle-btn">
 						<div id="map-icon-world" class="map-icon">0</div>
 					</div>
-					<!-- HERE -->
 					<div class="panel-data-area">
 						<div id="geo-list-area">
 				    		<table class="panel-list">
 					    		<tr class="panel-list-header-row">
-					    			<th class="panel-list-header">City</th>
+					    			<th class="panel-list-header">City/Region</th>
 					    			<th class="panel-list-header panel-list-count">Views</th>
 					    		</tr>
 					    	</table>
@@ -136,7 +134,7 @@
 						<div id="domain-list-area">
 				    		<table class="panel-list">
 					    		<tr class="panel-list-header-row">
-					    			<th class="panel-list-header">Domain</th>
+					    			<th class="panel-list-header">Company/Domain</th>
 					    			<th class="panel-list-header panel-list-count">Views</th>
 					    		</tr>
 					    	</table>
@@ -167,10 +165,10 @@
 		    </div>
 		    <div class="overlay-content overlay-geo-list">
 		    	<div class="overlay-content-frame">
-			    	<div class="stats-title overlay-title">All Geo Data</div>
+			    	<div class="stats-title overlay-title">All Views By City/Region</div>
 			    		<table class="panel-list">
 				    		<tr class="panel-list-header-row">
-				    			<th class="panel-list-header">City</th>
+				    			<th class="panel-list-header">City/Region</th>
 				    			<th class="panel-list-header panel-list-count">Views</th>
 				    		</tr>
 				    	</table>
@@ -184,10 +182,10 @@
 		    </div>
 		    <div class="overlay-content overlay-domain-list">
 		    	<div class="overlay-content-frame">
-			    	<div class="stats-title overlay-title">All Domain Data</div>
+			    	<div class="stats-title overlay-title">All Views By Company/Domain</div>
 				    	<table class="panel-list">
 				    		<tr class="panel-list-header-row">
-				    			<th class="panel-list-header">Domain</th>
+				    			<th class="panel-list-header">Company/Domain</th>
 				    			<th class="panel-list-header panel-list-count">Views</th>
 				    		</tr>
 				    	</table>
@@ -238,7 +236,7 @@
 	        personalStats.buttons.setupMapButtons();
 	        personalStats.buttons.setupSeeAllButtons();
 	        personalStats.buttons.setupOverlayCloseButtons();
-	        console.log("v26");
+	        console.log("v27");
 		
 			function init() {
 
