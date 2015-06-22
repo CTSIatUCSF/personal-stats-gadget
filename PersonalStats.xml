@@ -238,7 +238,7 @@
 	        personalStats.buttons.setupMapButtons();
 	        personalStats.buttons.setupSeeAllButtons();
 	        personalStats.buttons.setupOverlayCloseButtons();
-	        console.log("v25");
+	        console.log("v26");
 		
 			function init() {
 
@@ -247,7 +247,7 @@
 						personalStats.viewerData = viewerObj;
 
 						//TODO: Fix this path
-						$.getJSON("countries.json", function(response){
+						$.getJSON(ENV_STATS_PATH + "/countries.json", function(response){
 						    countryCodeList = response;
 					        personalStats.populateInstructionsPanel();
 					  		personalStats.ga.fetchData( 5, function () {

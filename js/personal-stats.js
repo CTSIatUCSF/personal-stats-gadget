@@ -86,7 +86,7 @@ personalStats.showViewsByCity = function showViewsByCity(data, tableToUpdateID, 
 		count = item[3];
 
 		//TODO: Fix this path
-		$("#" + tableToUpdateID).append("<tr><td><img src=http://cranestylelabs.github.io/personal-stats-gadget/images/flag_icons/"+ countryCode + ".gif></img></td><td>" + geoString + "</td><td>" + count + "</td></tr>");
+		$("#" + tableToUpdateID).append("<tr><td><img src=" + ENV_STATS_PATH + "/images/flag_icons/"+ countryCode + ".gif></img></td><td>" + geoString + "</td><td>" + count + "</td></tr>");
 	}
 
 	$("#" + tableToUpdateID + " tr").addClass("panel-list-row"); 					//Add CSS class to the table rows

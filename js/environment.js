@@ -4,11 +4,13 @@
 /************
 var ENV_PROFILES_URL = 'http://profiles.ucsf.edu';
 var ENV_LOCAL_URL = 'http://profiles.ucsf.edu';
+var ENV_STATS_PATH = 'http://profiles.ucsf.edu/personal-stats-gadget';
 **************/
 
 //For staging
 var ENV_PROFILES_URL = 'http://stage-profiles.ucsf.edu/profiles200';
 var ENV_LOCAL_URL = 'http://stage-profiles.ucsf.edu';
+var ENV_STATS_PATH = 'http://cranestylelabs.github.io/personal-stats-gadget';
 
 //Institution variables
 var ENV_INST_ABRV = 'UCSF';
