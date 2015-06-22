@@ -27,7 +27,8 @@ personalStats.ga.baseQuery = function gaBaseQuery(pagePath) {
         'dimensions': '',
         'filters': 'ga:pagePath' + pagePath,
         'start-date': earliest_start_date,
-        'end-date': today
+        'end-date': today,
+        'samplingLevel': HIGHER_PRECISION
     }
     return query;
 }
