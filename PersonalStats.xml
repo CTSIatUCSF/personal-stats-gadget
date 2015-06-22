@@ -236,7 +236,7 @@
 	        personalStats.buttons.setupMapButtons();
 	        personalStats.buttons.setupSeeAllButtons();
 	        personalStats.buttons.setupOverlayCloseButtons();
-	        console.log("v27");
+	        // console.log("v28");
 		
 			function init() {
 
