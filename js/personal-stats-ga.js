@@ -1,14 +1,17 @@
 window.personalStats  = window.personalStats || {};
 personalStats.ga = personalStats.ga || {};
 
+personalStats.ga.apiUrl     = "https://www.googleapis.com/analytics/v3/data/ga?";
+personalStats.ga.profileId  = 23439892;
+
 //====================================================================================
 //GOOGLE ANALYTICS QUERIES 
 
 personalStats.ga.requestParams = function gaRequestParams() {
 	var params = {};		
-    params[gadgets.io.RequestParameters.CONTENT_TYPE] 		= gadgets.io.ContentType.TEXT;
-    params[gadgets.io.RequestParameters.AUTHORIZATION] 		= gadgets.io.AuthorizationType.OAUTH2;
-    params[gadgets.io.RequestParameters.METHOD]		 		= gadgets.io.MethodType.GET;
+    params[gadgets.io.RequestParameters.CONTENT_TYPE] 		  = gadgets.io.ContentType.TEXT;
+    params[gadgets.io.RequestParameters.AUTHORIZATION] 		  = gadgets.io.AuthorizationType.OAUTH2;
+    params[gadgets.io.RequestParameters.METHOD]		 		      = gadgets.io.MethodType.GET;
     params[gadgets.io.RequestParameters.OAUTH_SERVICE_NAME] = "googleAPIv3";
     params[gadgets.io.RequestParameters.REFRESH_INTERVAL] 	= "0";
     return params;
@@ -22,7 +25,7 @@ personalStats.ga.baseQuery = function gaBaseQuery(pagePath) {
 	var today = new Date().yyyy_mm_dd();
 
 	var query =  {
-		'ids': 'ga:23439892',
+		'ids': 'ga:' + personalStats.ga.profileId,
     	'metrics': 'ga:uniquePageviews',
         'dimensions': '',
         'filters': 'ga:pagePath' + pagePath,
@@ -51,9 +54,7 @@ personalStats.ga.fetchData = function fetchData(tryCountdown, callback) {
 	query.dimensions = "ga:date,ga:country,ga:region,ga:city,ga:networkLocation";
 
 	var query_string = personalStats.ga.convertToQueryString(query);
-
-    url = "https://www.googleapis.com/analytics/v3/data/ga?" + query_string;
-    
+    var url = personalStats.ga.apiUrl + query_string;
     var params = personalStats.ga.requestParams();
 
     gadgets.io.makeRequest(url, function (response) {
@@ -76,9 +77,7 @@ personalStats.ga.fetchPagePathData = function fetchPagePathData(tryCountdown, ca
 	query.dimensions = "ga:date,ga:pagePathLevel1,ga:landingPagePath,ga:secondPagePath,ga:exitPagePath,ga:previousPagePath,ga:nextPagePath";
 
 	var query_string = personalStats.ga.convertToQueryString(query);
-
-    url = "https://www.googleapis.com/analytics/v3/data/ga?" + query_string;
-    
+    var url = personalStats.ga.apiUrl + query_string;
     var params = personalStats.ga.requestParams();
 
     gadgets.io.makeRequest(url, function (response) {
