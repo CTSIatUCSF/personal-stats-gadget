@@ -12,12 +12,12 @@
 }
 .gadget-content {
 	height: 100%;
-	background-color: #D6EBFF;
+	background-color: #9AA5B6;
 }
 .stats-title {
 	font-weight:bold;
 	font-size:20px;
-	color:#F26D04;
+	color:#000;
 	padding-top:40px;
 	margin-bottom: 40px;
     text-align: center;
@@ -29,7 +29,7 @@
     margin-left: auto;
     margin-right: auto;
     border-width: 1px;
-    border-style: solid;
+    border-style: none;
     border-color: black;
 }
 .stats-table {
