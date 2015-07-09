@@ -69,7 +69,7 @@
         <script type="text/javascript" src="js/personal-stats-ga.js"></script>
         <script type="text/javascript" src="js/personal-stats-util.js"></script>
     
-	    <div class="gadget-content">
+	    <div class="gadget-content" style="overflow-y:hidden">
     		<div id="loading"</div>
         	<div>
         		<div id="count_area" class="visuallyhidden">
