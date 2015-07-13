@@ -17,11 +17,10 @@ personalStats.ga.requestParams = function gaRequestParams() {
     return params;
 }
 
-personalStats.ga.baseQuery = function gaBaseQuery(pagePath) {
+personalStats.ga.baseQuery = function gaBaseQuery(pagePath, startDate) {
 	var viewerId = personalStats.util.getViewerId();
 	var pagePath = encodeURIComponent("=~/" + viewerId);
 
-	var earliest_start_date = "2009-12-01"
 	var today = new Date().yyyy_mm_dd();
 
 	var query =  {
@@ -29,7 +28,7 @@ personalStats.ga.baseQuery = function gaBaseQuery(pagePath) {
     	'metrics': 'ga:uniquePageviews',
         'dimensions': '',
         'filters': 'ga:pagePath' + pagePath,
-        'start-date': earliest_start_date,
+        'start-date': startDate,
         'end-date': today,
         'samplingLevel': "HIGHER_PRECISION"
     }
@@ -48,7 +47,7 @@ personalStats.ga.convertToQueryString = function convertToQueryString(queryObjec
 	return queryString;
 }
 
-personalStats.ga.fetchData = function fetchData(tryCountdown, callback) {
+personalStats.ga.fetchData = function fetchData(tryCountdown, startDate, successHandler, callback) {
 	
 	var query =  personalStats.ga.baseQuery();
 	query.dimensions = "ga:date,ga:country,ga:region,ga:city,ga:networkLocation";
@@ -62,16 +61,16 @@ personalStats.ga.fetchData = function fetchData(tryCountdown, callback) {
     		console.log("OAuth Approval URL:")
     		console.log(response.oauthApprovalUrl);
       	} else if (response.data) {
-      		personalStats.fetchDataSuccessHandler(response, callback);
+      		successHandler(response, callback);
       	} else {
       		personalStats.ga.fetchDataErrorHandler(response, tryCountdown, function() {
-      			personalStats.ga.fetchData(tryCountdown, callback);
+      			personalStats.ga.fetchData(tryCountdown, startDate, successHandler, callback);
   			});
       	}
     }, params);
 }
 
-personalStats.ga.fetchPagePathData = function fetchPagePathData(tryCountdown, callback) {
+personalStats.ga.fetchPagePathData = function fetchPagePathData(tryCountdown, startDate, successHandler, callback) {
 
 	var query =  personalStats.ga.baseQuery();
 	query.dimensions = "ga:date,ga:pagePathLevel1,ga:landingPagePath,ga:secondPagePath,ga:exitPagePath,ga:previousPagePath,ga:nextPagePath";
@@ -86,11 +85,11 @@ personalStats.ga.fetchPagePathData = function fetchPagePathData(tryCountdown, ca
     		console.log(response.oauthApprovalUrl);
         
       	} else if (response.data) {
-      		personalStats.fetchPagePathDataSuccessHandler(response, callback);
+      		successHandler(response, callback);
 
       	} else {
       		personalStats.ga.fetchDataErrorHandler(response, tryCountdown, function() {
-      			personalStats.ga.fetchPagePathData(tryCountdown, callback);
+      			personalStats.ga.fetchPagePathData(tryCountdown, startDate, successHandler, callback);
   			});
       	}
     }, params);

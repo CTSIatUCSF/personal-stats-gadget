@@ -244,12 +244,15 @@
 					framePerson(viewer_data, function(viewerObj) {
 						personalStats.viewerData = viewerObj;
 
-						//TODO: Fix this path
 						$.getJSON(ENV_STATS_PATH + "/countries.json", function(response){
 						    countryCodeList = response;
 					        personalStats.populateInstructionsPanel();
-					  		personalStats.ga.fetchData( 5, function () {
-					  			personalStats.ga.fetchPagePathData( 5, function () {
+					        // TODO: figure out last year date
+					        // TODO: figure out last 30 days date
+					        var all_time_start_date = "2009-12-01"
+					        // Load order: year, month, all time
+					  		personalStats.ga.fetchData( 5, all_time_start_date, personalStats.fetchDataSuccessHandler, function () {
+					  			personalStats.ga.fetchPagePathData( 5, all_time_start_date, personalStats.fetchPagePathDataSuccessHandler, function () {
 					  				//
 					  			});
 					  		});
