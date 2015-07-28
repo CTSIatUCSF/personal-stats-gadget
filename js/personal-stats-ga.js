@@ -52,27 +52,28 @@ personalStats.ga.fetchData = function fetchData(tryCountdown, startDate, success
 	query.dimensions = "ga:date,ga:country,ga:region,ga:city,ga:networkLocation";
 
 	var query_string = personalStats.ga.convertToQueryString(query);
-    var url = personalStats.ga.apiUrl + query_string;
-    var params = personalStats.ga.requestParams();
+  var url = personalStats.ga.apiUrl + query_string;
+  var params = personalStats.ga.requestParams();
 
-    console.log("fetchData URL:");
-    console.log(url);
+  console.log("fetchData URL:");
+  console.log(url);
 
-    gadgets.io.makeRequest(url, function (response) {
-      	if (response.oauthApprovalUrl) {
-    		console.log("OAuth Approval URL:")
-    		console.log(response.oauthApprovalUrl);
-      	} else if (response.data) {
-      		successHandler(response, callback);
-      	} else {
-          var tries = tryCountdown--;
-          console.log("tries:");
-          console.log(tries);
-      		personalStats.ga.fetchDataErrorHandler(response, tries, function() {
-      			personalStats.ga.fetchData(tries, startDate, successHandler, callback);
-  			  });
-      	}
-    }, params);
+  tryCountdown--;
+  console.log("tryCountdown");
+  console.log(tryCountdown);
+
+  gadgets.io.makeRequest(url, function (response) {
+    	if (response.oauthApprovalUrl) {
+  		console.log("OAuth Approval URL:")
+  		console.log(response.oauthApprovalUrl);
+    	} else if (response.data) {
+    		successHandler(response, callback);
+    	} else {
+    		personalStats.ga.fetchDataErrorHandler(response, tryCountdown, function() {
+    			personalStats.ga.fetchData(tryCountdown, startDate, successHandler, callback);
+			  });
+    	}
+  }, params);
 }
 
 personalStats.ga.fetchPagePathData = function fetchPagePathData(tryCountdown, startDate, successHandler, callback) {
@@ -81,26 +82,27 @@ personalStats.ga.fetchPagePathData = function fetchPagePathData(tryCountdown, st
 	query.dimensions = "ga:date,ga:pagePathLevel1,ga:landingPagePath,ga:secondPagePath,ga:exitPagePath,ga:previousPagePath,ga:nextPagePath";
 
 	var query_string = personalStats.ga.convertToQueryString(query);
-    var url = personalStats.ga.apiUrl + query_string;
-    var params = personalStats.ga.requestParams();
+  var url = personalStats.ga.apiUrl + query_string;
+  var params = personalStats.ga.requestParams();
 
-    gadgets.io.makeRequest(url, function (response) {
-    	if (response.oauthApprovalUrl) {
-    		console.log("OAuth Approval URL:")
-    		console.log(response.oauthApprovalUrl);
-        
-      	} else if (response.data) {
-      		successHandler(response, callback);
+  tryCountdown--;
+  console.log("tryCountdown");
+  console.log(tryCountdown);
 
-      	} else {
-          var tries = tryCountdown--;
-          console.log("tries:");
-          console.log(tries);
-      		personalStats.ga.fetchDataErrorHandler(response, tries, function() {
-      			personalStats.ga.fetchPagePathData(tries, startDate, successHandler, callback);
-  			  });
-      	}
-    }, params);
+  gadgets.io.makeRequest(url, function (response) {
+  	if (response.oauthApprovalUrl) {
+  		console.log("OAuth Approval URL:")
+  		console.log(response.oauthApprovalUrl);
+      
+    	} else if (response.data) {
+    		successHandler(response, callback);
+
+    	} else {
+    		personalStats.ga.fetchDataErrorHandler(response, tryCountdown, function() {
+    			personalStats.ga.fetchPagePathData(tryCountdown, startDate, successHandler, callback);
+			  });
+    	}
+  }, params);
 }
 
 personalStats.ga.fetchDataErrorHandler = function fetchDataErrorHandler(response, tryCountdown, retryFunction) {
