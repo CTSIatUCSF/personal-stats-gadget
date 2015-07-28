@@ -258,12 +258,18 @@
 					        console.log(thirty_days_ago_start_date);
 					        var all_time_start_date = "2009-12-01"
 					        // Load order: year, month, all time
-					  		personalStats.ga.fetchData( 5, all_time_start_date, personalStats.fetchDataSuccessHandler, function () {
-					  			console.log("first callback");
-					  			personalStats.ga.fetchPagePathData( 5, all_time_start_date, personalStats.fetchPagePathDataSuccessHandler, function () {
-					  				//
-					  				console.log("second callback");
-					  			});
+					        personalStats.ga.fetchData( 5, last_year_start_date, personalStats.fetchDataSuccessHandler, function () {
+					        	console.log("last year data loaded");
+						        personalStats.ga.fetchData( 5, thirty_days_ago_start_date, personalStats.fetchDataSuccessHandler, function () {
+							        console.log("last thirty days data loaded");
+							  		personalStats.ga.fetchData( 5, all_time_start_date, personalStats.fetchDataSuccessHandler, function () {
+							  			console.log("all time data loaded");
+							  			personalStats.ga.fetchPagePathData( 5, all_time_start_date, personalStats.fetchPagePathDataSuccessHandler, function () {
+							  				//
+							  				console.log("page path data loaded");
+							  			});
+							  		});
+						  		});
 					  		});
 						});
 					});
