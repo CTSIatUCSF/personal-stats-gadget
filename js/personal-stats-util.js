@@ -78,10 +78,4 @@ personalStats.util.convertDateToYearMonthString = function convertDateToYearMont
  	return date_string;
 }
 
-personalStats.util.convertDateToYearMonthDayString = function convertDateToYearMonthDayString(date) {
- 	var month_numbers = new Array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
- 	var date_string = date.getFullYear() + month_numbers[date.getMonth()] + date.getDay();
- 	return date_string;
-}
-
 //====================================================================================

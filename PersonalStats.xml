@@ -249,11 +249,11 @@
 						    countryCodeList = response;
 					        personalStats.populateInstructionsPanel();
 					        // TODO: figure out last year date
-					        var last_year_start_date = personalStats.util.convertDateToYearMonthDayString(personalStats.util.dateOneYearAgo());
+					        var last_year_start_date = personalStats.util.dateOneYearAgo().yyyy_mm_dd();
 					        console.log("last_year_start_date");
 					        console.log(last_year_start_date);
 					        // TODO: figure out last 30 days date
-					        var thirty_days_ago_start_date = personalStats.util.convertDateToYearMonthDayString(personalStats.util.dateThirtyDaysAgo());
+					        var thirty_days_ago_start_date = personalStats.util.dateThirtyDaysAgo().yyyy_mm_dd();
 					        console.log("thirty_days_ago_start_date");
 					        console.log(thirty_days_ago_start_date);
 					        var all_time_start_date = "2009-12-01"
