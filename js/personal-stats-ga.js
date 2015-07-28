@@ -48,7 +48,8 @@ personalStats.ga.convertToQueryString = function convertToQueryString(queryObjec
 }
 
 personalStats.ga.fetchData = function fetchData(tryCountdown, startDate, successHandler, callback) {
-	
+	console.log("tryCountdown:");
+  console.log(tryCountdown);
 	var query =  personalStats.ga.baseQuery(startDate);
 	query.dimensions = "ga:date,ga:country,ga:region,ga:city,ga:networkLocation";
 
