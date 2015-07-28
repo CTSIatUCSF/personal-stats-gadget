@@ -201,16 +201,7 @@ personalStats.fetchLastMonthDataSuccessHandler = function fetchLastMonthDataSucc
 personalStats.fetchDataAllTimeSuccessHandler = function fetchDataAllTimeSuccessHandler(response, callback) {
 	var data = JSON.parse(response.data);
 	
-	 	personalStats.aggregatedByMonthAll 			= personalStats.calc.aggregateDataByMonth(data.rows);
-		personalStats.aggregatedByMonthLastYear 	= personalStats.calc.aggregateDataByMonth(data.rows, 	personalStats.util.getYearMonthOneYearAgoMonthStart());
-		personalStats.aggregatedByCityLastYear 		= personalStats.calc.aggregateDataByCity(data.rows, 	personalStats.util.dateOneYearAgo().yyyymmdd());
-		personalStats.aggregatedByCityLastMonth 	= personalStats.calc.aggregateDataByCity(data.rows,		personalStats.util.dateThirtyDaysAgo().yyyymmdd());
-		personalStats.aggregatedByStateLastYear 	= personalStats.calc.aggregateDataByState(data.rows, 	personalStats.util.dateOneYearAgo().yyyymmdd());
-		personalStats.aggregatedByStateLastMonth 	= personalStats.calc.aggregateDataByState(data.rows, 	personalStats.util.dateThirtyDaysAgo().yyyymmdd());
-		personalStats.aggregatedByCountryLastYear 	= personalStats.calc.aggregateDataByCountry(data.rows, 	personalStats.util.dateOneYearAgo().yyyymmdd());
-		personalStats.aggregatedByCountryLastMonth 	= personalStats.calc.aggregateDataByCountry(data.rows, 	personalStats.util.dateThirtyDaysAgo().yyyymmdd());
-		personalStats.aggregatedByDomainLastYear 	= personalStats.calc.aggregateDataByDomain(data.rows, 	personalStats.util.dateOneYearAgo().yyyymmdd());
-		personalStats.aggregatedByDomainLastMonth 	= personalStats.calc.aggregateDataByDomain(data.rows, 	personalStats.util.dateThirtyDaysAgo().yyyymmdd());
+	 	personalStats.aggregatedByMonthAll = personalStats.calc.aggregateDataByMonth(data.rows);
 		
 		personalStats.showVisitorCountStats();
 
