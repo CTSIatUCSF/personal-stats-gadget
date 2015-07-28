@@ -67,9 +67,10 @@ personalStats.ga.fetchData = function fetchData(tryCountdown, startDate, success
       	} else if (response.data) {
       		successHandler(response, callback);
       	} else {
-      		personalStats.ga.fetchDataErrorHandler(response, tryCountdown, function() {
-      			personalStats.ga.fetchData(tryCountdown, startDate, successHandler, callback);
-  			});
+          var tries = tryCountdown--;
+      		personalStats.ga.fetchDataErrorHandler(response, tries, function() {
+      			personalStats.ga.fetchData(tries, startDate, successHandler, callback);
+  			  });
       	}
     }, params);
 }
@@ -92,9 +93,10 @@ personalStats.ga.fetchPagePathData = function fetchPagePathData(tryCountdown, st
       		successHandler(response, callback);
 
       	} else {
-      		personalStats.ga.fetchDataErrorHandler(response, tryCountdown, function() {
-      			personalStats.ga.fetchPagePathData(tryCountdown, startDate, successHandler, callback);
-  			});
+          var tries = tryCountdown--;
+      		personalStats.ga.fetchDataErrorHandler(response, tries, function() {
+      			personalStats.ga.fetchPagePathData(tries, startDate, successHandler, callback);
+  			  });
       	}
     }, params);
 }
@@ -103,7 +105,6 @@ personalStats.ga.fetchDataErrorHandler = function fetchDataErrorHandler(response
 		console.log("Error:")
 		console.log(response.rc);
 		if (tryCountdown > 0) {
-      tryCountdown--;
 			retryFunction();
 		}
 		else {
