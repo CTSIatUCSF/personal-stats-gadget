@@ -103,6 +103,7 @@ personalStats.ga.fetchDataErrorHandler = function fetchDataErrorHandler(response
 		console.log("Error:")
 		console.log(response.rc);
 		if (tryCountdown > 0) {
+      tryCountdown--;
 			retryFunction();
 		}
 		else {
