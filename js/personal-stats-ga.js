@@ -48,8 +48,6 @@ personalStats.ga.convertToQueryString = function convertToQueryString(queryObjec
 }
 
 personalStats.ga.fetchData = function fetchData(tryCountdown, startDate, successHandler, callback) {
-	console.log("tryCountdown:");
-  console.log(tryCountdown);
 	var query =  personalStats.ga.baseQuery(startDate);
 	query.dimensions = "ga:date,ga:country,ga:region,ga:city,ga:networkLocation";
 
@@ -68,6 +66,8 @@ personalStats.ga.fetchData = function fetchData(tryCountdown, startDate, success
       		successHandler(response, callback);
       	} else {
           var tries = tryCountdown--;
+          console.log("tries:");
+          console.log(tries);
       		personalStats.ga.fetchDataErrorHandler(response, tries, function() {
       			personalStats.ga.fetchData(tries, startDate, successHandler, callback);
   			  });
@@ -94,6 +94,8 @@ personalStats.ga.fetchPagePathData = function fetchPagePathData(tryCountdown, st
 
       	} else {
           var tries = tryCountdown--;
+          console.log("tries:");
+          console.log(tries);
       		personalStats.ga.fetchDataErrorHandler(response, tries, function() {
       			personalStats.ga.fetchPagePathData(tries, startDate, successHandler, callback);
   			  });
