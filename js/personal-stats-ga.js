@@ -56,6 +56,9 @@ personalStats.ga.fetchData = function fetchData(tryCountdown, startDate, success
     var url = personalStats.ga.apiUrl + query_string;
     var params = personalStats.ga.requestParams();
 
+    console.log("fetchData URL:");
+    console.log(url);
+
     gadgets.io.makeRequest(url, function (response) {
       	if (response.oauthApprovalUrl) {
     		console.log("OAuth Approval URL:")
