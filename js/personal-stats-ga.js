@@ -17,7 +17,7 @@ personalStats.ga.requestParams = function gaRequestParams() {
     return params;
 }
 
-personalStats.ga.baseQuery = function gaBaseQuery(pagePath, startDate) {
+personalStats.ga.baseQuery = function gaBaseQuery(startDate) {
 	var viewerId = personalStats.util.getViewerId();
 	var pagePath = encodeURIComponent("=~/" + viewerId);
 
@@ -49,7 +49,7 @@ personalStats.ga.convertToQueryString = function convertToQueryString(queryObjec
 
 personalStats.ga.fetchData = function fetchData(tryCountdown, startDate, successHandler, callback) {
 	
-	var query =  personalStats.ga.baseQuery();
+	var query =  personalStats.ga.baseQuery(startDate);
 	query.dimensions = "ga:date,ga:country,ga:region,ga:city,ga:networkLocation";
 
 	var query_string = personalStats.ga.convertToQueryString(query);
@@ -72,7 +72,7 @@ personalStats.ga.fetchData = function fetchData(tryCountdown, startDate, success
 
 personalStats.ga.fetchPagePathData = function fetchPagePathData(tryCountdown, startDate, successHandler, callback) {
 
-	var query =  personalStats.ga.baseQuery();
+	var query =  personalStats.ga.baseQuery(startDate);
 	query.dimensions = "ga:date,ga:pagePathLevel1,ga:landingPagePath,ga:secondPagePath,ga:exitPagePath,ga:previousPagePath,ga:nextPagePath";
 
 	var query_string = personalStats.ga.convertToQueryString(query);
