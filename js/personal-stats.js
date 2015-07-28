@@ -156,12 +156,54 @@ personalStats.showRelatedPeople = function showRelatedPeople(data, divToUpdateID
 	$("#" + divToUpdateID + " div").addClass("related-people-link"); 	//Add CSS class to divs
 }
 
-personalStats.fetchDataSuccessHandler = function fetchDataSuccessHandler(response, callback) {
+personalStats.fetchLastYearDataSuccessHandler = function fetchLastYearDataSuccessHandler(response, callback) {
+	var data = JSON.parse(response.data);
+	
+	 	personalStats.aggregatedByMonthLastYear 	= personalStats.calc.aggregateDataByMonth(data.rows, 	personalStats.util.getYearMonthOneYearAgoMonthStart());
+		personalStats.aggregatedByCityLastYear 		= personalStats.calc.aggregateDataByCity(data.rows, 	personalStats.util.dateOneYearAgo().yyyymmdd());
+		personalStats.aggregatedByStateLastYear 	= personalStats.calc.aggregateDataByState(data.rows, 	personalStats.util.dateOneYearAgo().yyyymmdd());
+		personalStats.aggregatedByCountryLastYear 	= personalStats.calc.aggregateDataByCountry(data.rows, 	personalStats.util.dateOneYearAgo().yyyymmdd());
+		personalStats.aggregatedByDomainLastYear 	= personalStats.calc.aggregateDataByDomain(data.rows, 	personalStats.util.dateOneYearAgo().yyyymmdd());
+		
+		personalStats.drawColumnChart(personalStats.aggregatedByMonthLastYear);
+
+		$("#count_area").removeClass("visuallyhidden");
+		$("#geo-panel").removeClass("visuallyhidden");
+		$("#domain-panel").removeClass("visuallyhidden");
+		$("#related-people-panel").removeClass("visuallyhidden");
+		$("#instructions-panel").removeClass("visuallyhidden");
+		$("#loading").hide();
+
+	callback();
+}
+
+personalStats.fetchLastMonthDataSuccessHandler = function fetchLastMonthDataSuccessHandler(response, callback) {
+	var data = JSON.parse(response.data);
+	
+	 	personalStats.aggregatedByCityLastMonth 	= personalStats.calc.aggregateDataByCity(data.rows,		personalStats.util.dateThirtyDaysAgo().yyyymmdd());
+		personalStats.aggregatedByStateLastMonth 	= personalStats.calc.aggregateDataByState(data.rows, 	personalStats.util.dateThirtyDaysAgo().yyyymmdd());
+		personalStats.aggregatedByCountryLastMonth 	= personalStats.calc.aggregateDataByCountry(data.rows, 	personalStats.util.dateThirtyDaysAgo().yyyymmdd());
+		personalStats.aggregatedByDomainLastMonth 	= personalStats.calc.aggregateDataByDomain(data.rows, 	personalStats.util.dateThirtyDaysAgo().yyyymmdd());
+		
+		personalStats.showViewsByCity(personalStats.aggregatedByCityLastMonth, "geo-list", 10);
+		personalStats.showViewsByDomain(personalStats.aggregatedByDomainLastMonth, "domain-list", 10);
+
+		$("#count_area").removeClass("visuallyhidden");
+		$("#geo-panel").removeClass("visuallyhidden");
+		$("#domain-panel").removeClass("visuallyhidden");
+		$("#related-people-panel").removeClass("visuallyhidden");
+		$("#instructions-panel").removeClass("visuallyhidden");
+		$("#loading").hide();
+
+	callback();
+}
+
+personalStats.fetchDataAllTimeSuccessHandler = function fetchDataAllTimeSuccessHandler(response, callback) {
 	var data = JSON.parse(response.data);
 	
 	 	personalStats.aggregatedByMonthAll 			= personalStats.calc.aggregateDataByMonth(data.rows);
 		personalStats.aggregatedByMonthLastYear 	= personalStats.calc.aggregateDataByMonth(data.rows, 	personalStats.util.getYearMonthOneYearAgoMonthStart());
-		personalStats.aggregatedByCityLastYear 		= personalStats.calc.aggregateDataByCity(data.rows, 		personalStats.util.dateOneYearAgo().yyyymmdd());
+		personalStats.aggregatedByCityLastYear 		= personalStats.calc.aggregateDataByCity(data.rows, 	personalStats.util.dateOneYearAgo().yyyymmdd());
 		personalStats.aggregatedByCityLastMonth 	= personalStats.calc.aggregateDataByCity(data.rows,		personalStats.util.dateThirtyDaysAgo().yyyymmdd());
 		personalStats.aggregatedByStateLastYear 	= personalStats.calc.aggregateDataByState(data.rows, 	personalStats.util.dateOneYearAgo().yyyymmdd());
 		personalStats.aggregatedByStateLastMonth 	= personalStats.calc.aggregateDataByState(data.rows, 	personalStats.util.dateThirtyDaysAgo().yyyymmdd());
@@ -170,11 +212,7 @@ personalStats.fetchDataSuccessHandler = function fetchDataSuccessHandler(respons
 		personalStats.aggregatedByDomainLastYear 	= personalStats.calc.aggregateDataByDomain(data.rows, 	personalStats.util.dateOneYearAgo().yyyymmdd());
 		personalStats.aggregatedByDomainLastMonth 	= personalStats.calc.aggregateDataByDomain(data.rows, 	personalStats.util.dateThirtyDaysAgo().yyyymmdd());
 		
-		personalStats.drawColumnChart(personalStats.aggregatedByMonthLastYear);
 		personalStats.showVisitorCountStats();
-
-		personalStats.showViewsByCity(personalStats.aggregatedByCityLastMonth, "geo-list", 10);
-		personalStats.showViewsByDomain(personalStats.aggregatedByDomainLastMonth, "domain-list", 10);
 
 		$("#count_area").removeClass("visuallyhidden");
 		$("#geo-panel").removeClass("visuallyhidden");
