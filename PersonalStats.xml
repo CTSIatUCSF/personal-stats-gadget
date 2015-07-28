@@ -225,6 +225,8 @@
 	    </div>
 
 		<script language="JavaScript" type="text/javascript">
+			
+	        console.log("v29");
 
 			window.personalStats = window.personalStats || { };
 			personalStats.onlyShow = 10;
@@ -236,7 +238,6 @@
 	        personalStats.buttons.setupMapButtons();
 	        personalStats.buttons.setupSeeAllButtons();
 	        personalStats.buttons.setupOverlayCloseButtons();
-	        console.log("v29");
 		
 			function init() {
 
