@@ -226,6 +226,8 @@
 
 		<script language="JavaScript" type="text/javascript">
 
+	        console.log("v30");
+
 			window.personalStats = window.personalStats || { };
 			personalStats.onlyShow = 10;
 
@@ -236,7 +238,6 @@
 	        personalStats.buttons.setupMapButtons();
 	        personalStats.buttons.setupSeeAllButtons();
 	        personalStats.buttons.setupOverlayCloseButtons();
-	        // console.log("v28");
 		
 			function init() {
 
@@ -244,14 +245,31 @@
 					framePerson(viewer_data, function(viewerObj) {
 						personalStats.viewerData = viewerObj;
 
-						//TODO: Fix this path
 						$.getJSON(ENV_STATS_PATH + "/countries.json", function(response){
 						    countryCodeList = response;
 					        personalStats.populateInstructionsPanel();
-					  		personalStats.ga.fetchData( 5, function () {
-					  			personalStats.ga.fetchPagePathData( 5, function () {
-					  				//
-					  			});
+					        // TODO: figure out last year date
+					        var last_year_start_date = personalStats.util.dateOneYearAgo().yyyy_mm_dd();
+					        console.log("last_year_start_date");
+					        console.log(last_year_start_date);
+					        // TODO: figure out last 30 days date
+					        var thirty_days_ago_start_date = personalStats.util.dateThirtyDaysAgo().yyyy_mm_dd();
+					        console.log("thirty_days_ago_start_date");
+					        console.log(thirty_days_ago_start_date);
+					        var all_time_start_date = "2009-12-01"
+					        // Load order: year, month, all time
+					        personalStats.ga.fetchData( 5, last_year_start_date, personalStats.fetchLastYearDataSuccessHandler, function () {
+					        	console.log("last year data loaded");
+						        personalStats.ga.fetchData( 5, thirty_days_ago_start_date, personalStats.fetchLastMonthDataSuccessHandler, function () {
+							        console.log("last thirty days data loaded");
+							  		personalStats.ga.fetchData( 5, all_time_start_date, personalStats.fetchDataAllTimeSuccessHandler, function () {
+							  			console.log("all time data loaded");
+							  			personalStats.ga.fetchPagePathData( 5, all_time_start_date, personalStats.fetchPagePathDataSuccessHandler, function () {
+							  				//
+							  				console.log("page path data loaded");
+							  			});
+							  		});
+						  		});
 					  		});
 						});
 					});

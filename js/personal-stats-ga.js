@@ -17,11 +17,10 @@ personalStats.ga.requestParams = function gaRequestParams() {
     return params;
 }
 
-personalStats.ga.baseQuery = function gaBaseQuery(pagePath) {
+personalStats.ga.baseQuery = function gaBaseQuery(startDate) {
 	var viewerId = personalStats.util.getViewerId();
 	var pagePath = encodeURIComponent("=~/" + viewerId);
 
-	var earliest_start_date = "2009-12-01"
 	var today = new Date().yyyy_mm_dd();
 
 	var query =  {
@@ -29,7 +28,7 @@ personalStats.ga.baseQuery = function gaBaseQuery(pagePath) {
     	'metrics': 'ga:uniquePageviews',
         'dimensions': '',
         'filters': 'ga:pagePath' + pagePath,
-        'start-date': earliest_start_date,
+        'start-date': startDate,
         'end-date': today,
         'samplingLevel': "HIGHER_PRECISION"
     }
@@ -48,52 +47,62 @@ personalStats.ga.convertToQueryString = function convertToQueryString(queryObjec
 	return queryString;
 }
 
-personalStats.ga.fetchData = function fetchData(tryCountdown, callback) {
-	
-	var query =  personalStats.ga.baseQuery();
+personalStats.ga.fetchData = function fetchData(tryCountdown, startDate, successHandler, callback) {
+	var query =  personalStats.ga.baseQuery(startDate);
 	query.dimensions = "ga:date,ga:country,ga:region,ga:city,ga:networkLocation";
 
 	var query_string = personalStats.ga.convertToQueryString(query);
-    var url = personalStats.ga.apiUrl + query_string;
-    var params = personalStats.ga.requestParams();
+  var url = personalStats.ga.apiUrl + query_string;
+  var params = personalStats.ga.requestParams();
 
-    gadgets.io.makeRequest(url, function (response) {
-      	if (response.oauthApprovalUrl) {
-    		console.log("OAuth Approval URL:")
-    		console.log(response.oauthApprovalUrl);
-      	} else if (response.data) {
-      		personalStats.fetchDataSuccessHandler(response, callback);
-      	} else {
-      		personalStats.ga.fetchDataErrorHandler(response, tryCountdown, function() {
-      			personalStats.ga.fetchData(tryCountdown, callback);
-  			});
-      	}
-    }, params);
+  console.log("fetchData URL:");
+  console.log(url);
+
+  tryCountdown--;
+  console.log("tryCountdown");
+  console.log(tryCountdown);
+
+  gadgets.io.makeRequest(url, function (response) {
+    	if (response.oauthApprovalUrl) {
+  		console.log("OAuth Approval URL:")
+  		console.log(response.oauthApprovalUrl);
+    	} else if (response.data) {
+    		successHandler(response, callback);
+    	} else {
+    		personalStats.ga.fetchDataErrorHandler(response, tryCountdown, function() {
+    			personalStats.ga.fetchData(tryCountdown, startDate, successHandler, callback);
+			  });
+    	}
+  }, params);
 }
 
-personalStats.ga.fetchPagePathData = function fetchPagePathData(tryCountdown, callback) {
+personalStats.ga.fetchPagePathData = function fetchPagePathData(tryCountdown, startDate, successHandler, callback) {
 
-	var query =  personalStats.ga.baseQuery();
+	var query =  personalStats.ga.baseQuery(startDate);
 	query.dimensions = "ga:date,ga:pagePathLevel1,ga:landingPagePath,ga:secondPagePath,ga:exitPagePath,ga:previousPagePath,ga:nextPagePath";
 
 	var query_string = personalStats.ga.convertToQueryString(query);
-    var url = personalStats.ga.apiUrl + query_string;
-    var params = personalStats.ga.requestParams();
+  var url = personalStats.ga.apiUrl + query_string;
+  var params = personalStats.ga.requestParams();
 
-    gadgets.io.makeRequest(url, function (response) {
-    	if (response.oauthApprovalUrl) {
-    		console.log("OAuth Approval URL:")
-    		console.log(response.oauthApprovalUrl);
-        
-      	} else if (response.data) {
-      		personalStats.fetchPagePathDataSuccessHandler(response, callback);
+  tryCountdown--;
+  console.log("tryCountdown");
+  console.log(tryCountdown);
 
-      	} else {
-      		personalStats.ga.fetchDataErrorHandler(response, tryCountdown, function() {
-      			personalStats.ga.fetchPagePathData(tryCountdown, callback);
-  			});
-      	}
-    }, params);
+  gadgets.io.makeRequest(url, function (response) {
+  	if (response.oauthApprovalUrl) {
+  		console.log("OAuth Approval URL:")
+  		console.log(response.oauthApprovalUrl);
+      
+    	} else if (response.data) {
+    		successHandler(response, callback);
+
+    	} else {
+    		personalStats.ga.fetchDataErrorHandler(response, tryCountdown, function() {
+    			personalStats.ga.fetchPagePathData(tryCountdown, startDate, successHandler, callback);
+			  });
+    	}
+  }, params);
 }
 
 personalStats.ga.fetchDataErrorHandler = function fetchDataErrorHandler(response, tryCountdown, retryFunction) {
