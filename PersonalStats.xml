@@ -96,7 +96,7 @@
 				</div>
 				<div id="geo-panel" class="panel visuallyhidden">
 					<div id="geo-panel-header">
-						<div class="panel-title">Views By City/Region</div>
+						<div class="panel-title">Views By City / Region</div>
 						<div class="panel-button-area">
 							<div class="geo date-toggle toggle-btn-grp joint-toggle">
 							    <label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last Year</label>
@@ -114,7 +114,7 @@
 						<div id="geo-list-area">
 				    		<table class="panel-list">
 					    		<tr class="panel-list-header-row">
-					    			<th class="panel-list-header">City/Region</th>
+					    			<th class="panel-list-header">City / Region</th>
 					    			<th class="panel-list-header panel-list-count">Views</th>
 					    		</tr>
 					    	</table>
@@ -124,7 +124,7 @@
 					</div>
 				</div>
 				<div id="domain-panel" class="panel visuallyhidden">
-					<div class="panel-title">Views By Company/Domain</div>
+					<div class="panel-title">Views By Company / ISP</div>
 					<div class="panel-button-area">
 						<div class="domain date-toggle toggle-btn-grp joint-toggle">
 						    <label onclick="" class="toggle-btn"><input type="radio" name="domainToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="domainToggle"/>Last Year</label>
@@ -134,7 +134,7 @@
 						<div id="domain-list-area">
 				    		<table class="panel-list">
 					    		<tr class="panel-list-header-row">
-					    			<th class="panel-list-header">Company/Domain</th>
+					    			<th class="panel-list-header">Company / ISP</th>
 					    			<th class="panel-list-header panel-list-count">Views</th>
 					    		</tr>
 					    	</table>
@@ -165,10 +165,10 @@
 		    </div>
 		    <div class="overlay-content overlay-geo-list">
 		    	<div class="overlay-content-frame">
-			    	<div class="stats-title overlay-title">All Views By City/Region</div>
+			    	<div class="stats-title overlay-title">All Views By City / Region</div>
 			    		<table class="panel-list">
 				    		<tr class="panel-list-header-row">
-				    			<th class="panel-list-header">City/Region</th>
+				    			<th class="panel-list-header">City / Region</th>
 				    			<th class="panel-list-header panel-list-count">Views</th>
 				    		</tr>
 				    	</table>
@@ -182,10 +182,10 @@
 		    </div>
 		    <div class="overlay-content overlay-domain-list">
 		    	<div class="overlay-content-frame">
-			    	<div class="stats-title overlay-title">All Views By Company/Domain</div>
+			    	<div class="stats-title overlay-title">All Views By Company / ISP</div>
 				    	<table class="panel-list">
 				    		<tr class="panel-list-header-row">
-				    			<th class="panel-list-header">Company/Domain</th>
+				    			<th class="panel-list-header">Company / ISP</th>
 				    			<th class="panel-list-header panel-list-count">Views</th>
 				    		</tr>
 				    	</table>
