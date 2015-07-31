@@ -230,7 +230,7 @@
 
 		<script language="JavaScript" type="text/javascript">
 
-	        console.log("v30");
+	        console.log("v31");
 
 			window.personalStats = window.personalStats || { };
 			personalStats.onlyShow = 10;
@@ -261,19 +261,20 @@
 					        console.log("thirty_days_ago_start_date");
 					        console.log(thirty_days_ago_start_date);
 					        var all_time_start_date = "2009-12-01"
-					        // Load order: year, month, all time
-					        personalStats.ga.fetchData( 5, last_year_start_date, personalStats.fetchLastYearDataSuccessHandler, function () {
-					        	console.log("last year data loaded");
-						        personalStats.ga.fetchData( 5, thirty_days_ago_start_date, personalStats.fetchLastMonthDataSuccessHandler, function () {
-							        console.log("last thirty days data loaded");
-							  		personalStats.ga.fetchData( 5, all_time_start_date, personalStats.fetchDataAllTimeSuccessHandler, function () {
-							  			console.log("all time data loaded");
-							  			personalStats.ga.fetchPagePathData( 5, all_time_start_date, personalStats.fetchPagePathDataSuccessHandler, function () {
-							  				//
-							  				console.log("page path data loaded");
-							  			});
+					        // Load order: all time, year, month
+
+					  		personalStats.ga.fetchData( 5, all_time_start_date, personalStats.fetchDataAllTimeSuccessHandler, function () {
+					  			console.log("all time data loaded");
+						        personalStats.ga.fetchData( 5, last_year_start_date, personalStats.fetchLastYearDataSuccessHandler, function () {
+						        	console.log("last year data loaded");
+							        personalStats.ga.fetchData( 5, thirty_days_ago_start_date, personalStats.fetchLastMonthDataSuccessHandler, function () {
+								        console.log("last thirty days data loaded");
+								  			personalStats.ga.fetchPagePathData( 5, all_time_start_date, personalStats.fetchPagePathDataSuccessHandler, function () {
+								  				//
+								  				console.log("page path data loaded");
+								  			});
+								  		});
 							  		});
-						  		});
 					  		});
 						});
 					});

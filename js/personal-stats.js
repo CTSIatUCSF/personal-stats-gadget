@@ -156,6 +156,14 @@ personalStats.showRelatedPeople = function showRelatedPeople(data, divToUpdateID
 	$("#" + divToUpdateID + " div").addClass("related-people-link"); 	//Add CSS class to divs
 }
 
+personalStats.fetchDataAllTimeSuccessHandler = function fetchDataAllTimeSuccessHandler(response, callback) {
+	var data = JSON.parse(response.data);
+	
+	 	personalStats.aggregatedByMonthAll = personalStats.calc.aggregateDataByMonth(data.rows);
+
+	callback();
+}
+
 personalStats.fetchLastYearDataSuccessHandler = function fetchLastYearDataSuccessHandler(response, callback) {
 	var data = JSON.parse(response.data);
 	
@@ -166,13 +174,6 @@ personalStats.fetchLastYearDataSuccessHandler = function fetchLastYearDataSucces
 		personalStats.aggregatedByDomainLastYear 	= personalStats.calc.aggregateDataByDomain(data.rows, 	personalStats.util.dateOneYearAgo().yyyymmdd());
 		
 		personalStats.drawColumnChart(personalStats.aggregatedByMonthLastYear);
-
-		$("#count_area").removeClass("visuallyhidden");
-		$("#geo-panel").removeClass("visuallyhidden");
-		$("#domain-panel").removeClass("visuallyhidden");
-		$("#related-people-panel").removeClass("visuallyhidden");
-		$("#instructions-panel").removeClass("visuallyhidden");
-		$("#loading").hide();
 
 	callback();
 }
@@ -187,30 +188,9 @@ personalStats.fetchLastMonthDataSuccessHandler = function fetchLastMonthDataSucc
 		
 		personalStats.showViewsByCity(personalStats.aggregatedByCityLastMonth, "geo-list", 10);
 		personalStats.showViewsByDomain(personalStats.aggregatedByDomainLastMonth, "domain-list", 10);
-
-		$("#count_area").removeClass("visuallyhidden");
-		$("#geo-panel").removeClass("visuallyhidden");
-		$("#domain-panel").removeClass("visuallyhidden");
-		$("#related-people-panel").removeClass("visuallyhidden");
-		$("#instructions-panel").removeClass("visuallyhidden");
-		$("#loading").hide();
-
-	callback();
-}
-
-personalStats.fetchDataAllTimeSuccessHandler = function fetchDataAllTimeSuccessHandler(response, callback) {
-	var data = JSON.parse(response.data);
-	
-	 	personalStats.aggregatedByMonthAll = personalStats.calc.aggregateDataByMonth(data.rows);
-		
 		personalStats.showVisitorCountStats();
 
-		$("#count_area").removeClass("visuallyhidden");
-		$("#geo-panel").removeClass("visuallyhidden");
-		$("#domain-panel").removeClass("visuallyhidden");
-		$("#related-people-panel").removeClass("visuallyhidden");
-		$("#instructions-panel").removeClass("visuallyhidden");
-		$("#loading").hide();
+		personalStats.showGadgetContent();
 
 	callback();
 }
@@ -223,6 +203,15 @@ personalStats.fetchPagePathDataSuccessHandler = function fetchPagePathDataSucces
 		$("#related-people-loading").hide();
 
     callback();
+}
+
+personalStats.showGadgetContent = function showGadgetContent() {
+	$("#count_area").removeClass("visuallyhidden");
+	$("#geo-panel").removeClass("visuallyhidden");
+	$("#domain-panel").removeClass("visuallyhidden");
+	$("#related-people-panel").removeClass("visuallyhidden");
+	$("#instructions-panel").removeClass("visuallyhidden");
+	$("#loading").hide();
 }
 
 //====================================================================================
