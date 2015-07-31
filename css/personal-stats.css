@@ -84,11 +84,12 @@
     font-size:14px;
 }
 .panel-text {
-    margin-left: 10px;
+    margin-left: 20px;
     margin-right: 10px;
     font-size: 12px;
 }
 .related-people-link {
+    margin-left: 10px !important;
     margin-top: 3px;
     margin-bottom: 3px;
 }
