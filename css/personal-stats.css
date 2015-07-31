@@ -77,7 +77,15 @@
 // Lower Panel Stuff
 .panel {
     width: 450px;
-    margin: 10px 0px;
+    margin: 10px 5px 0px;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+.panel-row {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
 }
 .panel-title {
     margin: 5px;

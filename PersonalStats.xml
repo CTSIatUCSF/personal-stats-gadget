@@ -94,69 +94,73 @@
 							</div>
 					</div>
 				</div>
-				<div id="geo-panel" class="panel visuallyhidden">
-					<div id="geo-panel-header">
-						<div class="panel-title">Views By City / Region</div>
-						<div class="panel-button-area">
-							<div class="geo date-toggle toggle-btn-grp joint-toggle">
-							    <label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last Year</label>
+				<div id="panel-row-one" class="panel-row">
+					<div id="geo-panel" class="panel visuallyhidden">
+						<div id="geo-panel-header">
+							<div class="panel-title">Views By City / Region</div>
+							<div class="panel-button-area">
+								<div class="geo date-toggle toggle-btn-grp joint-toggle">
+								    <label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="countryToggle"/>Last Year</label>
+								</div>
+							</div>
+						</div>
+						<div id="map-usa" class="map-button toggle-btn">
+							<div id="map-icon-usa" class="map-icon">1</div>
+						</div>
+
+						<div id="map-world" class="map-button toggle-btn">
+							<div id="map-icon-world" class="map-icon">0</div>
+						</div>
+						<div class="panel-data-area">
+							<div id="geo-list-area">
+					    		<table class="panel-list">
+						    		<tr class="panel-list-header-row">
+						    			<th class="panel-list-header">City / Region</th>
+						    			<th class="panel-list-header panel-list-count">Views</th>
+						    		</tr>
+						    	</table>
+								<table id="geo-list" class="panel-list"></table>
+								<div class="geo show-all toggle-btn">See All</div>
 							</div>
 						</div>
 					</div>
-					<div id="map-usa" class="map-button toggle-btn">
-						<div id="map-icon-usa" class="map-icon">1</div>
-					</div>
-
-					<div id="map-world" class="map-button toggle-btn">
-						<div id="map-icon-world" class="map-icon">0</div>
-					</div>
-					<div class="panel-data-area">
-						<div id="geo-list-area">
-				    		<table class="panel-list">
-					    		<tr class="panel-list-header-row">
-					    			<th class="panel-list-header">City / Region</th>
-					    			<th class="panel-list-header panel-list-count">Views</th>
-					    		</tr>
-					    	</table>
-							<table id="geo-list" class="panel-list"></table>
-							<div class="geo show-all toggle-btn">See All</div>
+					<div id="domain-panel" class="panel visuallyhidden">
+						<div class="panel-title">Views By Company / ISP</div>
+						<div class="panel-button-area">
+							<div class="domain date-toggle toggle-btn-grp joint-toggle">
+							    <label onclick="" class="toggle-btn"><input type="radio" name="domainToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="domainToggle"/>Last Year</label>
+							</div>
+						</div>
+						<div class="panel-data-area">
+							<div id="domain-list-area">
+					    		<table class="panel-list">
+						    		<tr class="panel-list-header-row">
+						    			<th class="panel-list-header">Company / ISP</th>
+						    			<th class="panel-list-header panel-list-count">Views</th>
+						    		</tr>
+						    	</table>
+								<table id="domain-list" class="panel-list"></table>
+								<div class="domain show-all toggle-btn">See All</div>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div id="domain-panel" class="panel visuallyhidden">
-					<div class="panel-title">Views By Company / ISP</div>
-					<div class="panel-button-area">
-						<div class="domain date-toggle toggle-btn-grp joint-toggle">
-						    <label onclick="" class="toggle-btn"><input type="radio" name="domainToggle"/>Last 30 Days</label><label onclick="" class="toggle-btn"><input type="radio" name="domainToggle"/>Last Year</label>
+				<div id="panel-row-two" class="panel-row">
+					<div id="related-people-panel" class="panel visuallyhidden">
+						<div id="related-people-loading"></div>
+						<div id="related-people-panel-content" class="visuallyhidden">
+							<div class="panel-title">Your Visitors Also Viewed</div>
+							<div id="related-people-list"></div>
+							<div class="related-people show-all toggle-btn">See All</div>
 						</div>
 					</div>
-					<div class="panel-data-area">
-						<div id="domain-list-area">
-				    		<table class="panel-list">
-					    		<tr class="panel-list-header-row">
-					    			<th class="panel-list-header">Company / ISP</th>
-					    			<th class="panel-list-header panel-list-count">Views</th>
-					    		</tr>
-					    	</table>
-							<table id="domain-list" class="panel-list"></table>
-							<div class="domain show-all toggle-btn">See All</div>
+					<div id="instructions-panel" class="panel visuallyhidden">
+						<div id="instructions-section-one">
+							<div class="panel-title">Want more visitors?</div>
 						</div>
-					</div>
-				</div>
-				<div id="related-people-panel" class="panel visuallyhidden">
-					<div id="related-people-loading"></div>
-					<div id="related-people-panel-content" class="visuallyhidden">
-						<div class="panel-title">Your Visitors Also Viewed</div>
-						<div id="related-people-list"></div>
-						<div class="related-people show-all toggle-btn">See All</div>
-					</div>
-				</div>
-				<div id="instructions-panel" class="panel visuallyhidden">
-					<div id="instructions-section-one">
-						<div class="panel-title">Want more visitors?</div>
-					</div>
-					<div id="instructions-section-two">
-						<div class="panel-title">Want more clicks from visitors?</div>
+						<div id="instructions-section-two">
+							<div class="panel-title">Want more clicks from visitors?</div>
+						</div>
 					</div>
 				</div>
 		    </div>
