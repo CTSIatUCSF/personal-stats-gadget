@@ -1,5 +1,7 @@
 window.personalStats  = window.personalStats || {};
 
+personalStats.dataForYear = [];
+
 //====================================================================================
 //SHOW CONTENT
 
@@ -159,21 +161,26 @@ personalStats.showRelatedPeople = function showRelatedPeople(data, divToUpdateID
 personalStats.fetchDataAllTimeSuccessHandler = function fetchDataAllTimeSuccessHandler(response, callback) {
 	var data = JSON.parse(response.data);
 	
-	 	personalStats.aggregatedByMonthAll = personalStats.calc.aggregateDataByMonth(data.rows);
+	personalStats.aggregatedByMonthAll = personalStats.calc.aggregateDataByMonth(data.rows);
 
 	callback();
 }
 
 personalStats.fetchLastYearDataSuccessHandler = function fetchLastYearDataSuccessHandler(response, callback) {
-	var data = JSON.parse(response.data);
+	var newData = JSON.parse(response.data);
+	var data = personalStats.dataForYear.concat(newData.rows);
+	personalStats.dataForYear = data;
+	callback();
+}
+
+personalStats.processLastYearData = function processLastYearData(callback){
+ 	personalStats.aggregatedByMonthLastYear 	= personalStats.calc.aggregateDataByMonth(personalStats.dataForYear, 	personalStats.util.getYearMonthOneYearAgoMonthStart());
+	personalStats.aggregatedByCityLastYear 		= personalStats.calc.aggregateDataByCity(personalStats.dataForYear, 	personalStats.util.dateOneYearAgo().yyyymmdd());
+	personalStats.aggregatedByStateLastYear 	= personalStats.calc.aggregateDataByState(personalStats.dataForYear, 	personalStats.util.dateOneYearAgo().yyyymmdd());
+	personalStats.aggregatedByCountryLastYear 	= personalStats.calc.aggregateDataByCountry(personalStats.dataForYear, personalStats.util.dateOneYearAgo().yyyymmdd());
+	personalStats.aggregatedByDomainLastYear 	= personalStats.calc.aggregateDataByDomain(personalStats.dataForYear, 	personalStats.util.dateOneYearAgo().yyyymmdd());
 	
-	 	personalStats.aggregatedByMonthLastYear 	= personalStats.calc.aggregateDataByMonth(data.rows, 	personalStats.util.getYearMonthOneYearAgoMonthStart());
-		personalStats.aggregatedByCityLastYear 		= personalStats.calc.aggregateDataByCity(data.rows, 	personalStats.util.dateOneYearAgo().yyyymmdd());
-		personalStats.aggregatedByStateLastYear 	= personalStats.calc.aggregateDataByState(data.rows, 	personalStats.util.dateOneYearAgo().yyyymmdd());
-		personalStats.aggregatedByCountryLastYear 	= personalStats.calc.aggregateDataByCountry(data.rows, 	personalStats.util.dateOneYearAgo().yyyymmdd());
-		personalStats.aggregatedByDomainLastYear 	= personalStats.calc.aggregateDataByDomain(data.rows, 	personalStats.util.dateOneYearAgo().yyyymmdd());
-		
-		personalStats.drawColumnChart(personalStats.aggregatedByMonthLastYear);
+	personalStats.drawColumnChart(personalStats.aggregatedByMonthLastYear);
 
 	callback();
 }
@@ -181,16 +188,16 @@ personalStats.fetchLastYearDataSuccessHandler = function fetchLastYearDataSucces
 personalStats.fetchLastMonthDataSuccessHandler = function fetchLastMonthDataSuccessHandler(response, callback) {
 	var data = JSON.parse(response.data);
 	
-	 	personalStats.aggregatedByCityLastMonth 	= personalStats.calc.aggregateDataByCity(data.rows,		personalStats.util.dateThirtyDaysAgo().yyyymmdd());
-		personalStats.aggregatedByStateLastMonth 	= personalStats.calc.aggregateDataByState(data.rows, 	personalStats.util.dateThirtyDaysAgo().yyyymmdd());
-		personalStats.aggregatedByCountryLastMonth 	= personalStats.calc.aggregateDataByCountry(data.rows, 	personalStats.util.dateThirtyDaysAgo().yyyymmdd());
-		personalStats.aggregatedByDomainLastMonth 	= personalStats.calc.aggregateDataByDomain(data.rows, 	personalStats.util.dateThirtyDaysAgo().yyyymmdd());
-		
-		personalStats.showViewsByCity(personalStats.aggregatedByCityLastMonth, "geo-list", 10);
-		personalStats.showViewsByDomain(personalStats.aggregatedByDomainLastMonth, "domain-list", 10);
-		personalStats.showVisitorCountStats();
+ 	personalStats.aggregatedByCityLastMonth 	= personalStats.calc.aggregateDataByCity(data.rows,		personalStats.util.dateThirtyDaysAgo().yyyymmdd());
+	personalStats.aggregatedByStateLastMonth 	= personalStats.calc.aggregateDataByState(data.rows, 	personalStats.util.dateThirtyDaysAgo().yyyymmdd());
+	personalStats.aggregatedByCountryLastMonth 	= personalStats.calc.aggregateDataByCountry(data.rows, 	personalStats.util.dateThirtyDaysAgo().yyyymmdd());
+	personalStats.aggregatedByDomainLastMonth 	= personalStats.calc.aggregateDataByDomain(data.rows, 	personalStats.util.dateThirtyDaysAgo().yyyymmdd());
+	
+	personalStats.showViewsByCity(personalStats.aggregatedByCityLastMonth, "geo-list", 10);
+	personalStats.showViewsByDomain(personalStats.aggregatedByDomainLastMonth, "domain-list", 10);
+	personalStats.showVisitorCountStats();
 
-		personalStats.showGadgetContent();
+	personalStats.showGadgetContent();
 
 	callback();
 }
