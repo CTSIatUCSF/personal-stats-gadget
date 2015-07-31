@@ -55,12 +55,7 @@ personalStats.ga.fetchData = function fetchData(tryCountdown, startDate, success
   var url = personalStats.ga.apiUrl + query_string;
   var params = personalStats.ga.requestParams();
 
-  console.log("fetchData URL:");
-  console.log(url);
-
   tryCountdown--;
-  console.log("tryCountdown");
-  console.log(tryCountdown);
 
   gadgets.io.makeRequest(url, function (response) {
     	if (response.oauthApprovalUrl) {
@@ -86,8 +81,6 @@ personalStats.ga.fetchPagePathData = function fetchPagePathData(tryCountdown, st
   var params = personalStats.ga.requestParams();
 
   tryCountdown--;
-  console.log("tryCountdown");
-  console.log(tryCountdown);
 
   gadgets.io.makeRequest(url, function (response) {
   	if (response.oauthApprovalUrl) {
@@ -112,7 +105,7 @@ personalStats.ga.fetchDataErrorHandler = function fetchDataErrorHandler(response
 			retryFunction();
 		}
 		else {
-			console.log("Done trying!!!!");
+			console.log("Reached maximum number of API call attempts.");
 		}
 }
 //====================================================================================

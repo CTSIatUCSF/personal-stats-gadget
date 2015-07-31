@@ -230,7 +230,7 @@
 
 		<script language="JavaScript" type="text/javascript">
 
-	        console.log("v31");
+	        //console.log("v31");
 
 			window.personalStats = window.personalStats || { };
 			personalStats.onlyShow = 10;
@@ -254,27 +254,23 @@
 					        personalStats.populateInstructionsPanel();
 					        
 					        // NOTE: Add more date variables to break up the last year query into multiple queries
-					        
+
 					        var last_year_start_date = personalStats.util.dateOneYearAgo().yyyy_mm_dd();
 					        var thirty_days_ago_start_date = personalStats.util.dateThirtyDaysAgo().yyyy_mm_dd();
 					        var all_time_start_date = "2009-12-01"
 					        
 					  		personalStats.ga.fetchData( 5, all_time_start_date, personalStats.fetchDataAllTimeSuccessHandler, function () {
-					  			console.log("all time data loaded");
-
+					  			
 					  			// NOTE: To break the last year query into multiple queries, run multiple fetchData calls using the fetchLastYearDataSuccessHandler
 					  			//   Put the remaining code below (indicated by ********) in the callback of the last fetchData call
 						        
 						        personalStats.ga.fetchData( 5, last_year_start_date, personalStats.fetchLastYearDataSuccessHandler, function () {
-						        	console.log("last year data loaded");
-
+						        	
 						        	//******** This goes in the callback of the final fetchData call for the last year
 						        	personalStats.processLastYearData( function () {					        		
 								        personalStats.ga.fetchData( 5, thirty_days_ago_start_date, personalStats.fetchLastMonthDataSuccessHandler, function () {
-									        console.log("last thirty days data loaded");
-								  			personalStats.ga.fetchPagePathData( 5, all_time_start_date, personalStats.fetchPagePathDataSuccessHandler, function () {
+									        personalStats.ga.fetchPagePathData( 5, all_time_start_date, personalStats.fetchPagePathDataSuccessHandler, function () {
 								  				//
-								  				console.log("page path data loaded");
 								  			});
 								  		});
 						        	});
