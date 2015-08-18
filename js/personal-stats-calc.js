@@ -296,10 +296,18 @@ personalStats.calc.calculateViewCountLastYear = function calculateViewCountLastY
 }
 		
 personalStats.calc.calculateViewCountThisMonth = function calculateViewCountThisMonth(data) {
-	var lastRowIndex = data.length-1;
-	var lastRow = data[lastRowIndex];
-	var lastIndex = lastRow.length-1;
-	return parseInt(lastRow[lastIndex]);
+	var i, row, lastIndex, views;
+	var count = 0;
+
+	var firstRow  = data[0];
+	var lastIndex = firstRow.length-1;
+
+	for (i = 0; i < data.length; i++) {
+		row = data[i];
+		views = parseInt(row[lastIndex]);
+		count = count + views;
+	}
+	return count;
 }
 			
 personalStats.calc.calculateViewCountBestMonth = function calculateViewCountBestMonth(data) {

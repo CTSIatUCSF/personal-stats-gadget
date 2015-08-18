@@ -32,6 +32,7 @@ personalStats.ga.baseQuery = function gaBaseQuery(startDate) {
         'end-date': today,
         'samplingLevel': "HIGHER_PRECISION"
     }
+
     return query;
 }
 

@@ -41,7 +41,7 @@ personalStats.showVisitorCountStats = function showVisitorCountStats() {
 	lastYear.count 	= lastYear.count.toLocaleString(); // adds thousands separators
 	$("#view_count_last_year").append(firstNameToDisplay + " profile has been viewed " + lastYear.count + " times since " + lastYear.start);
 	
-	var thisMonth 	= personalStats.calc.calculateViewCountThisMonth(personalStats.aggregatedByMonthAll);
+	var thisMonth 	= personalStats.calc.calculateViewCountThisMonth(personalStats.dataLast30Days);
 	thisMonth 		= thisMonth.toLocaleString(); // adds thousands separators
 	$("#view_count_this_month").append(thisMonth);
 
@@ -187,7 +187,8 @@ personalStats.processLastYearData = function processLastYearData(callback){
 
 personalStats.fetchLastMonthDataSuccessHandler = function fetchLastMonthDataSuccessHandler(response, callback) {
 	var data = JSON.parse(response.data);
-	
+
+	personalStats.dataLast30Days 				= personalStats.calc.aggregateDataByMonth(data.rows,	personalStats.util.dateThirtyDaysAgo().yyyymmdd());
  	personalStats.aggregatedByCityLastMonth 	= personalStats.calc.aggregateDataByCity(data.rows,		personalStats.util.dateThirtyDaysAgo().yyyymmdd());
 	personalStats.aggregatedByStateLastMonth 	= personalStats.calc.aggregateDataByState(data.rows, 	personalStats.util.dateThirtyDaysAgo().yyyymmdd());
 	personalStats.aggregatedByCountryLastMonth 	= personalStats.calc.aggregateDataByCountry(data.rows, 	personalStats.util.dateThirtyDaysAgo().yyyymmdd());
