@@ -44,7 +44,7 @@
 .stats-table-item-right {
 	background-color: white;
 	margin: 10px 0px;
-    height: 85px;
+    height: 100px;
     display: inline-block;
 }
 .stats-table-item-left {
@@ -163,7 +163,7 @@
     vertical-align: top;
     float: left;
     margin-left: 10px;
-    height: 145px;
+    height: 160px;
 }
 #related-people-panel-content {
     height: 145px;
@@ -173,7 +173,7 @@
     vertical-align: top;
     float: right;
     margin-right: 10px;
-    height: 145px;
+    height: 160px;
 }
 .panel-list tr:nth-child(even) {
     background: #e3e3e3
