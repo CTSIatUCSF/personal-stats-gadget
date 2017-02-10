@@ -7,7 +7,7 @@ personalStats.dataForYear = [];
 
 personalStats.populateInstructionsPanel = function populateInstructionsPanel() {
 	var viewerHomepage = personalStats.viewerData[FOAF("workplaceHomepage")];
-	var profilesLoginPage = "http://profiles.ucsf.edu/login/default.aspx?method=login&edit=true";
+	var profilesLoginPage = ENV_PROFILES_URL + "/login/default.aspx?method=login&edit=true";
 
     $("#instructions-section-one").append("<p>Add <a id=\x22profile_link\x22 href=" + viewerHomepage + ">" + viewerHomepage + "</a> to your email footer, business card and department site.</p>");
     $("#instructions-section-one").append("<p>Add more personalized content (overview, awards, videos) to <a id=\x22add_content\x22 href=" + profilesLoginPage + "> your profile page.</p>");
