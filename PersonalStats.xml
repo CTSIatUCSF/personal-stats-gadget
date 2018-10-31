@@ -249,7 +249,7 @@
 					framePerson(viewer_data, function(viewerObj) {
 						personalStats.viewerData = viewerObj;
 
-						$.getJSON(ENV_STATS_PATH + "/countries.json", function(response){
+						$.getJSON(UCSF.ENV_GADGET_URL + "/countries.json", function(response){
 						    countryCodeList = response;
 					        personalStats.populateInstructionsPanel();
 					        
